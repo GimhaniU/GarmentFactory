@@ -39,7 +39,7 @@ public class StartSplash extends javax.swing.JFrame {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                value += 5;
+                value += 25;//set to 5
                 progressbar.setValue(value);
 
                 if (value < 10) {
@@ -55,8 +55,7 @@ public class StartSplash extends javax.swing.JFrame {
                 } else if (value < 85) {
                     textLabel.setText("Starting ..");
                 } else if (value == 100) {
-                    // new LoginForm().setVisible(true);
-                    new FrontPage().setVisible(true);
+                    new LoginForm().setVisible(true);
                     dispose();
                 }
             }

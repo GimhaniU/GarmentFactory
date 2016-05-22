@@ -21,7 +21,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author Nuwantha
+ * @author Gimhani Uthpala
  */
 public class SalesDetailFrame extends javax.swing.JInternalFrame {
 
@@ -45,7 +45,7 @@ public class SalesDetailFrame extends javax.swing.JInternalFrame {
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jPanel2 = new javax.swing.JPanel();
-        jTabbedPane1 = new javax.swing.JTabbedPane();
+        tabpane = new javax.swing.JTabbedPane();
         jPanel3 = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -273,7 +273,7 @@ public class SalesDetailFrame extends javax.swing.JInternalFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("Add a sale", jPanel3);
+        tabpane.addTab("Add a sale", jPanel3);
 
         jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder("Personal Details"));
 
@@ -409,7 +409,7 @@ public class SalesDetailFrame extends javax.swing.JInternalFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("Add new Customer", jPanel4);
+        tabpane.addTab("Add new Customer", jPanel4);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -417,14 +417,14 @@ public class SalesDetailFrame extends javax.swing.JInternalFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 622, Short.MAX_VALUE)
+                .addComponent(tabpane, javax.swing.GroupLayout.DEFAULT_SIZE, 622, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTabbedPane1)
+                .addComponent(tabpane)
                 .addContainerGap())
         );
 
@@ -434,7 +434,7 @@ public class SalesDetailFrame extends javax.swing.JInternalFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 644, Short.MAX_VALUE)
+            .addComponent(jScrollPane1)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -500,11 +500,11 @@ public class SalesDetailFrame extends javax.swing.JInternalFrame {
     }
     
     void focustabbedpane(int num) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        tabpane.setSelectedIndex(num);
     }
 
     void requestFoucsForm() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        customerCombo.requestFocus();
     }
 
     class KeyClass extends KeyAdapter {
@@ -563,7 +563,6 @@ public class SalesDetailFrame extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JSpinner jSpinner1;
-    private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
@@ -574,6 +573,7 @@ public class SalesDetailFrame extends javax.swing.JInternalFrame {
     private javax.swing.JLabel reg_no_label;
     private javax.swing.JTextField regno_text;
     private javax.swing.JButton save_button;
+    private javax.swing.JTabbedPane tabpane;
     private javax.swing.JTextField telephone_text;
     private javax.swing.JLabel telephonelabel;
     private javax.swing.JTextField total_payement;

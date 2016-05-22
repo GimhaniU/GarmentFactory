@@ -294,9 +294,6 @@
       <SubComponents>
         <Menu class="javax.swing.JMenu" name="employeeMenu">
           <Properties>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/las/icons/applicant - s.png"/>
-            </Property>
             <Property name="text" type="java.lang.String" value="Employee"/>
           </Properties>
           <SubComponents>
@@ -340,9 +337,6 @@
         </Menu>
         <Menu class="javax.swing.JMenu" name="materialMenu">
           <Properties>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/las/icons/permit - s.png"/>
-            </Property>
             <Property name="text" type="java.lang.String" value="Material"/>
           </Properties>
           <SubComponents>
@@ -379,9 +373,6 @@
         </Menu>
         <Menu class="javax.swing.JMenu" name="salesMenu">
           <Properties>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/las/icons/grant - s.png"/>
-            </Property>
             <Property name="text" type="java.lang.String" value="Sales"/>
           </Properties>
           <SubComponents>
@@ -418,9 +409,6 @@
         </Menu>
         <Menu class="javax.swing.JMenu" name="jMenu3">
           <Properties>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/las/icons/chart.png"/>
-            </Property>
             <Property name="text" type="java.lang.String" value="Production"/>
           </Properties>
           <SubComponents>
@@ -466,9 +454,6 @@
         </Menu>
         <Menu class="javax.swing.JMenu" name="systemMenu">
           <Properties>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/las/icons/System.png"/>
-            </Property>
             <Property name="text" type="java.lang.String" value="System"/>
           </Properties>
           <SubComponents>
@@ -646,7 +631,7 @@
             <Component class="javax.swing.JLabel" name="jLabel1">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/gfcl/images/icon - Copy.jpg"/>
+                  <Image iconType="3" name="/gfcl/images/iconc.jpg"/>
                 </Property>
               </Properties>
             </Component>
@@ -768,9 +753,6 @@
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                           <Font name="SansSerif" size="12" style="1"/>
                         </Property>
-                        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                          <Image iconType="3" name="/las/icons/logoff1.png"/>
-                        </Property>
                         <Property name="text" type="java.lang.String" value="Log off"/>
                         <Property name="toolTipText" type="java.lang.String" value="Log-off"/>
                       </Properties>
@@ -782,9 +764,6 @@
                       <Properties>
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                           <Font name="SansSerif" size="12" style="1"/>
-                        </Property>
-                        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                          <Image iconType="3" name="/las/icons/exit1.png"/>
                         </Property>
                         <Property name="text" type="java.lang.String" value="Exit"/>
                         <Property name="toolTipText" type="java.lang.String" value="Exit"/>
@@ -877,9 +856,6 @@
                 </Component>
                 <Component class="javax.swing.JButton" name="CalenderButton">
                   <Properties>
-                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/las/icons/Calendar68.png"/>
-                    </Property>
                     <Property name="toolTipText" type="java.lang.String" value="Calender"/>
                   </Properties>
                   <Events>
@@ -896,9 +872,6 @@
                 </Component>
                 <Component class="javax.swing.JButton" name="jButton17">
                   <Properties>
-                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/las/icons/Calc6868.png"/>
-                    </Property>
                     <Property name="toolTipText" type="java.lang.String" value="Calculator"/>
                   </Properties>
                   <Events>
@@ -907,9 +880,6 @@
                 </Component>
                 <Component class="javax.swing.JButton" name="jButton18">
                   <Properties>
-                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/las/icons/Calc6868.png"/>
-                    </Property>
                     <Property name="toolTipText" type="java.lang.String" value="Calculator"/>
                   </Properties>
                 </Component>
@@ -1036,9 +1006,6 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="SansSerif" size="12" style="1"/>
                 </Property>
-                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/las/icons/ourlogo.png"/>
-                </Property>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel9">
@@ -1144,9 +1111,6 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Microsoft Sans Serif" size="14" style="1"/>
                 </Property>
-                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/las/icons/applicant.png"/>
-                </Property>
                 <Property name="text" type="java.lang.String" value="1-Employee Details"/>
                 <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
                   <ComponentRef name="importantButtonSet"/>
@@ -1160,9 +1124,6 @@
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Microsoft Sans Serif" size="14" style="1"/>
-                </Property>
-                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/las/icons/permit.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="2-Stock Details"/>
                 <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
@@ -1178,9 +1139,6 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Microsoft Sans Serif" size="14" style="1"/>
                 </Property>
-                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/las/icons/grant.png"/>
-                </Property>
                 <Property name="text" type="java.lang.String" value="3-Sales Details"/>
                 <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
                   <ComponentRef name="importantButtonSet"/>
@@ -1194,9 +1152,6 @@
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Microsoft Sans Serif" size="14" style="1"/>
-                </Property>
-                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/las/icons/land.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="4-Prodcution Details"/>
                 <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
@@ -1212,9 +1167,6 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Microsoft Sans Serif" size="14" style="1"/>
                 </Property>
-                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/las/icons/certify.png"/>
-                </Property>
                 <Property name="text" type="java.lang.String" value="5-Other Expenses"/>
                 <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
                   <ComponentRef name="importantButtonSet"/>
@@ -1229,9 +1181,6 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Microsoft Sans Serif" size="14" style="1"/>
                 </Property>
-                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/las/icons/villages.png"/>
-                </Property>
                 <Property name="text" type="java.lang.String" value="6-Add New Employee"/>
                 <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
                   <ComponentRef name="importantButtonSet"/>
@@ -1245,9 +1194,6 @@
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Microsoft Sans Serif" size="14" style="1"/>
-                </Property>
-                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/las/icons/change_owner.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="7-Pay Salary"/>
                 <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">

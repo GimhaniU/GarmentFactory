@@ -42,15 +42,15 @@ public class FrontPage extends javax.swing.JFrame {
     UserController UserController;
     BackUP backUP;
     private String curruser;
-    
+
     private JDialog reminderDialog = new JDialog(this, "Reminders", false);
 
-   // private static FrontPage frontpage = new FrontPage();
+    private static FrontPage frontpage = null;
 
     /**
      * Creates new form FrontPage
      */
-     FrontPage() {
+    FrontPage() {
         initComponents();
 
         ImageIcon icon1 = new ImageIcon(getClass().getResource("/gfcl/images/iconc.jpg"));
@@ -59,7 +59,6 @@ public class FrontPage extends javax.swing.JFrame {
             Connector sConnector = Connector.getSConnector();
             UserController = sConnector.getUserController();
             backUP = sConnector.getbBackUPController();
-            
 
         } catch (NotBoundException | MalformedURLException | RemoteException | SQLException | ClassNotFoundException | InterruptedException ex) {
             Logger.getLogger(FrontPage.class.getName()).log(Level.SEVERE, null, ex);
@@ -79,7 +78,7 @@ public class FrontPage extends javax.swing.JFrame {
         setPreferredSize(new Dimension(1366, 768));
     }
 
-     FrontPage(String user) {
+    FrontPage(String user) {
         this();
         try {
             this.curruser = user;
@@ -135,18 +134,20 @@ public class FrontPage extends javax.swing.JFrame {
         }
 
     }
-    */
+     */
     public static FrontPage getInstance() {
         return frontpage;
     }
 
     public static FrontPage getInstance(String str) {
-        frontpage = new FrontPage(str);
+        FrontPage fp = new FrontPage(str);
+        frontpage = fp;
+        //frontpage = new FrontPage(str);
         return frontpage;
     }
 
     private void setDate() {
-        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-d");
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         Date date = new Date();
         dateLabel.setText(dateFormat.format(date));
     }
@@ -412,7 +413,7 @@ public class FrontPage extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gfcl/images/icon - Copy.jpg"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gfcl/images/iconc.jpg"))); // NOI18N
 
         jLabel2.setFont(new java.awt.Font("Stencil", 1, 36)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(0, 153, 51));
@@ -466,7 +467,6 @@ public class FrontPage extends javax.swing.JFrame {
         jPanel2.setLayout(new java.awt.GridLayout(1, 2, 10, 0));
 
         LogOutButton.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
-        LogOutButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/las/icons/logoff1.png"))); // NOI18N
         LogOutButton.setText("Log off");
         LogOutButton.setToolTipText("Log-off");
         LogOutButton.addActionListener(new java.awt.event.ActionListener() {
@@ -477,7 +477,6 @@ public class FrontPage extends javax.swing.JFrame {
         jPanel2.add(LogOutButton);
 
         ExitButton.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
-        ExitButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/las/icons/exit1.png"))); // NOI18N
         ExitButton.setText("Exit");
         ExitButton.setToolTipText("Exit");
         ExitButton.addActionListener(new java.awt.event.ActionListener() {
@@ -518,7 +517,6 @@ public class FrontPage extends javax.swing.JFrame {
 
         dateLabel.setForeground(new java.awt.Color(255, 255, 255));
 
-        CalenderButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/las/icons/Calendar68.png"))); // NOI18N
         CalenderButton.setToolTipText("Calender");
         CalenderButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -533,7 +531,6 @@ public class FrontPage extends javax.swing.JFrame {
             }
         });
 
-        jButton17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/las/icons/Calc6868.png"))); // NOI18N
         jButton17.setToolTipText("Calculator");
         jButton17.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -541,7 +538,6 @@ public class FrontPage extends javax.swing.JFrame {
             }
         });
 
-        jButton18.setIcon(new javax.swing.ImageIcon(getClass().getResource("/las/icons/Calc6868.png"))); // NOI18N
         jButton18.setToolTipText("Calculator");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -638,7 +634,6 @@ public class FrontPage extends javax.swing.JFrame {
         });
 
         jLabel5.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/las/icons/ourlogo.png"))); // NOI18N
 
         jLabel9.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
         jLabel9.setText("-A Product By GenuiN Soft-");
@@ -736,7 +731,6 @@ public class FrontPage extends javax.swing.JFrame {
         shortcutAccessPanel.setLayout(new java.awt.GridLayout(7, 1, 50, 10));
 
         employeeDetailsButton.setFont(new java.awt.Font("Microsoft Sans Serif", 1, 14)); // NOI18N
-        employeeDetailsButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/las/icons/applicant.png"))); // NOI18N
         employeeDetailsButton.setText("1-Employee Details");
         importantButtonSet.add(employeeDetailsButton);
         employeeDetailsButton.addActionListener(new java.awt.event.ActionListener() {
@@ -747,7 +741,6 @@ public class FrontPage extends javax.swing.JFrame {
         shortcutAccessPanel.add(employeeDetailsButton);
 
         stockDetailsButton.setFont(new java.awt.Font("Microsoft Sans Serif", 1, 14)); // NOI18N
-        stockDetailsButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/las/icons/permit.png"))); // NOI18N
         stockDetailsButton.setText("2-Stock Details");
         importantButtonSet.add(stockDetailsButton);
         stockDetailsButton.addActionListener(new java.awt.event.ActionListener() {
@@ -758,7 +751,6 @@ public class FrontPage extends javax.swing.JFrame {
         shortcutAccessPanel.add(stockDetailsButton);
 
         salesDetailsButton.setFont(new java.awt.Font("Microsoft Sans Serif", 1, 14)); // NOI18N
-        salesDetailsButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/las/icons/grant.png"))); // NOI18N
         salesDetailsButton.setText("3-Sales Details");
         importantButtonSet.add(salesDetailsButton);
         salesDetailsButton.addActionListener(new java.awt.event.ActionListener() {
@@ -769,7 +761,6 @@ public class FrontPage extends javax.swing.JFrame {
         shortcutAccessPanel.add(salesDetailsButton);
 
         productionDetailsButton.setFont(new java.awt.Font("Microsoft Sans Serif", 1, 14)); // NOI18N
-        productionDetailsButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/las/icons/land.png"))); // NOI18N
         productionDetailsButton.setText("4-Prodcution Details");
         importantButtonSet.add(productionDetailsButton);
         productionDetailsButton.addActionListener(new java.awt.event.ActionListener() {
@@ -780,7 +771,6 @@ public class FrontPage extends javax.swing.JFrame {
         shortcutAccessPanel.add(productionDetailsButton);
 
         otherExpensesButton.setFont(new java.awt.Font("Microsoft Sans Serif", 1, 14)); // NOI18N
-        otherExpensesButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/las/icons/certify.png"))); // NOI18N
         otherExpensesButton.setText("5-Other Expenses");
         importantButtonSet.add(otherExpensesButton);
         otherExpensesButton.addActionListener(new java.awt.event.ActionListener() {
@@ -791,7 +781,6 @@ public class FrontPage extends javax.swing.JFrame {
         shortcutAccessPanel.add(otherExpensesButton);
 
         addNewEmployeeButton.setFont(new java.awt.Font("Microsoft Sans Serif", 1, 14)); // NOI18N
-        addNewEmployeeButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/las/icons/villages.png"))); // NOI18N
         addNewEmployeeButton.setText("6-Add New Employee");
         importantButtonSet.add(addNewEmployeeButton);
         addNewEmployeeButton.addActionListener(new java.awt.event.ActionListener() {
@@ -802,7 +791,6 @@ public class FrontPage extends javax.swing.JFrame {
         shortcutAccessPanel.add(addNewEmployeeButton);
 
         paySalaryButton.setFont(new java.awt.Font("Microsoft Sans Serif", 1, 14)); // NOI18N
-        paySalaryButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/las/icons/change_owner.png"))); // NOI18N
         paySalaryButton.setText("7-Pay Salary");
         importantButtonSet.add(paySalaryButton);
         paySalaryButton.addActionListener(new java.awt.event.ActionListener() {
@@ -844,7 +832,6 @@ public class FrontPage extends javax.swing.JFrame {
 
         jMenuBar1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        employeeMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/las/icons/applicant - s.png"))); // NOI18N
         employeeMenu.setText("Employee");
 
         addEmployeeMenu.setText("Add new employee");
@@ -880,7 +867,6 @@ public class FrontPage extends javax.swing.JFrame {
 
         jMenuBar1.add(employeeMenu);
 
-        materialMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/las/icons/permit - s.png"))); // NOI18N
         materialMenu.setText("Material");
 
         addNewMatMenu.setText("Add new material");
@@ -912,7 +898,6 @@ public class FrontPage extends javax.swing.JFrame {
 
         jMenuBar1.add(materialMenu);
 
-        salesMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/las/icons/grant - s.png"))); // NOI18N
         salesMenu.setText("Sales");
 
         addCustomerMenu.setText("Add new Customer");
@@ -944,7 +929,6 @@ public class FrontPage extends javax.swing.JFrame {
 
         jMenuBar1.add(salesMenu);
 
-        jMenu3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/las/icons/chart.png"))); // NOI18N
         jMenu3.setText("Production");
 
         addDailyProdMenu.setText("Add Daily Production");
@@ -978,7 +962,6 @@ public class FrontPage extends javax.swing.JFrame {
 
         jMenuBar1.add(incomeSummaryMenu);
 
-        systemMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/las/icons/System.png"))); // NOI18N
         systemMenu.setText("System");
 
         changePasswordMenu.setText("Change password");
@@ -1074,7 +1057,7 @@ public class FrontPage extends javax.swing.JFrame {
         form.focustabbedpane(num);
         form.requestFoucsForm();
     }
-    
+
     public void setDesktopPaneForProduction(ProductionDetailFrame form, int num) {
         form.setSize(desktopPane.getSize());
         desktopPane.removeAll();
@@ -1083,7 +1066,7 @@ public class FrontPage extends javax.swing.JFrame {
         form.focustabbedpane(num);
         form.requestFoucsForm();
     }
-    
+
     public void setDesktopPaneForIncome(IncomeSummaryFrame form, int num) {
         form.setSize(desktopPane.getSize());
         desktopPane.removeAll();
@@ -1101,7 +1084,7 @@ public class FrontPage extends javax.swing.JFrame {
         form.focustabbedpane(num);
         form.requestFoucsForm();
     }
-    
+
     public void addEmployeeForm(String nic) {
         EmployeeDetailFrame form = new EmployeeDetailFrame(nic);
         form.setSize(desktopPane.getSize());
@@ -1120,18 +1103,18 @@ public class FrontPage extends javax.swing.JFrame {
     }//GEN-LAST:event_addNewEmployeeButtonActionPerformed
 
     private void productionDetailsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_productionDetailsButtonActionPerformed
-        ProductionDetailFrame form=new ProductionDetailFrame();
+        ProductionDetailFrame form = new ProductionDetailFrame();
         setDesktopPaneForProduction(form, 0);
 
     }//GEN-LAST:event_productionDetailsButtonActionPerformed
 
     private void stockDetailsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_stockDetailsButtonActionPerformed
-        StockDetailFrame form=new StockDetailFrame();
+        StockDetailFrame form = new StockDetailFrame();
         setDesktopPaneForStock(form, 0);
     }//GEN-LAST:event_stockDetailsButtonActionPerformed
 
     private void salesDetailsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salesDetailsButtonActionPerformed
-        SalesDetailFrame form=new SalesDetailFrame();
+        SalesDetailFrame form = new SalesDetailFrame();
         setDesktopPaneForSales(form, 0);
     }//GEN-LAST:event_salesDetailsButtonActionPerformed
 
@@ -1142,26 +1125,28 @@ public class FrontPage extends javax.swing.JFrame {
     private void searchSetComboItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_searchSetComboItemStateChanged
         String selected = String.valueOf(searchSetCombo.getSelectedItem());
 
-        ArrayList<String> employeelist = new ArrayList<>(Arrays.asList("By Reg Id","By name", "By NIC"));
+        ArrayList<String> employeelist = new ArrayList<>(Arrays.asList("By Reg Id", "By name", "By NIC"));
         ArrayList<String> materialList = new ArrayList<>(Arrays.asList("By material id", "By material name"));
         ArrayList<String> garmentList = new ArrayList<>(Arrays.asList("By garment id", "By garment name"));
         ArrayList<String> customerList = new ArrayList<>(Arrays.asList("By garment id", "By garment name"));
 
-        if (null != selected) switch (selected) {
-            case "Employee":
-                GUIitemsValidator.addItemToCombo(employeelist, searchByWhatCombo);
-                break;
-            case "Material":
-                GUIitemsValidator.addItemToCombo(materialList, searchByWhatCombo);
-                break;
-            case "Garment":
-                GUIitemsValidator.addItemToCombo(garmentList, searchByWhatCombo);
-                break;
-            case "Customer":
-                GUIitemsValidator.addItemToCombo(customerList, searchByWhatCombo);
-                break;
-            default:
-                break;
+        if (null != selected) {
+            switch (selected) {
+                case "Employee":
+                    GUIitemsValidator.addItemToCombo(employeelist, searchByWhatCombo);
+                    break;
+                case "Material":
+                    GUIitemsValidator.addItemToCombo(materialList, searchByWhatCombo);
+                    break;
+                case "Garment":
+                    GUIitemsValidator.addItemToCombo(garmentList, searchByWhatCombo);
+                    break;
+                case "Customer":
+                    GUIitemsValidator.addItemToCombo(customerList, searchByWhatCombo);
+                    break;
+                default:
+                    break;
+            }
         }
     }//GEN-LAST:event_searchSetComboItemStateChanged
 
@@ -1246,7 +1231,7 @@ public class FrontPage extends javax.swing.JFrame {
     }//GEN-LAST:event_viewAllUsersMenuActionPerformed
 
     private void addCustomerMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addCustomerMenuActionPerformed
-        SalesDetailFrame form=new SalesDetailFrame();
+        SalesDetailFrame form = new SalesDetailFrame();
         setDesktopPaneForSales(form, 0);
     }//GEN-LAST:event_addCustomerMenuActionPerformed
 
@@ -1259,7 +1244,7 @@ public class FrontPage extends javax.swing.JFrame {
     }//GEN-LAST:event_addEmployeeMenuActionPerformed
 
     private void editEmployeeMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editEmployeeMenuActionPerformed
-       setDesktopPaneForEmployee(new EmployeeDetailFrame(), 0);
+        setDesktopPaneForEmployee(new EmployeeDetailFrame(), 0);
     }//GEN-LAST:event_editEmployeeMenuActionPerformed
 
     private void searchEmployeeMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchEmployeeMenuActionPerformed
@@ -1312,18 +1297,17 @@ public class FrontPage extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_formKeyReleased
 
-    
-    
+
     private void jButton17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton17ActionPerformed
-       
+
     }//GEN-LAST:event_jButton17ActionPerformed
 
     private void CalenderButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CalenderButtonActionPerformed
-        
+
     }//GEN-LAST:event_CalenderButtonActionPerformed
 
     private void paySalaryButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_paySalaryButtonActionPerformed
-        setDesktopPaneForEmployee(new EmployeeDetailFrame(),0);
+        setDesktopPaneForEmployee(new EmployeeDetailFrame(), 0);
     }//GEN-LAST:event_paySalaryButtonActionPerformed
 
     /**
@@ -1353,7 +1337,7 @@ public class FrontPage extends javax.swing.JFrame {
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
-        
+
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>

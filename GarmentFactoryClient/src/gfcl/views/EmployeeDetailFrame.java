@@ -6,18 +6,26 @@
 package gfcl.views;
 
 import gfc.controller.EmployeeController;
+import gfc.models.Customer;
 import gfc.models.Employee;
+import gfc.models.User;
+import gfcl.common_classes.GUIitemsValidator;
 import gfcl.common_classes.IdGenerator;
 import gfcl.common_classes.PatternChecker;
 import gfcl.connector.Connector;
+import gfcl.views.user_views.LoginForm;
+import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.net.MalformedURLException;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
+import javax.swing.text.JTextComponent;
 
 /**
  *
@@ -33,15 +41,39 @@ public class EmployeeDetailFrame extends javax.swing.JInternalFrame {
     public EmployeeDetailFrame() {
         try {
             initComponents();
-            
+
             name_text.requestFocus();
             Connector sConnector = Connector.getSConnector();
             employeeController = sConnector.getEmployeeController();
             System.out.println(IdGenerator.generateNextEmployeeID(employeeController.getLastEmpId()));
             regno_text.setText(IdGenerator.generateNextEmployeeID(employeeController.getLastEmpId()));
-            
+
             tel_no_invalid_label.setVisible(false);
             nic_invalid_label.setVisible(false);
+
+            //to autoadd names to combo box
+            this.employee_name_combo.setEditable(true);
+            JTextComponent editCombo = (JTextComponent) employee_name_combo.getEditor().getEditorComponent();
+            editCombo.addKeyListener(new KeyAdapter() {
+
+                @Override
+                public void keyReleased(KeyEvent e) {
+                    try {
+                        String item = (String) employee_name_combo.getEditor().getItem();
+                        ArrayList<Object> list = new ArrayList();
+
+                        ArrayList<Employee> similar = employeeController.getSimilarEmployeeNames(item);
+                        for (int i = 0; i < similar.size(); i++) {
+                            list.add(similar.get(i).getName() + " " + similar.get(i).getEmp_id());
+                        }
+                        GUIitemsValidator.addItemToCombo(list, employee_name_combo);
+                    } catch (ClassNotFoundException | SQLException | RemoteException ex) {
+                        Logger.getLogger(GUIitemsValidator.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+
+                }
+
+            });
         } catch (NotBoundException | MalformedURLException | RemoteException | SQLException | ClassNotFoundException ex) {
             Logger.getLogger(EmployeeDetailFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -62,7 +94,7 @@ public class EmployeeDetailFrame extends javax.swing.JInternalFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTabbedPane1 = new javax.swing.JTabbedPane();
+        tabpane = new javax.swing.JTabbedPane();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jPanel3 = new javax.swing.JPanel();
@@ -87,24 +119,24 @@ public class EmployeeDetailFrame extends javax.swing.JInternalFrame {
         nic_invalid_label = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
         jPanel13 = new javax.swing.JPanel();
-        regno_text1 = new javax.swing.JTextField();
         reg_no_label1 = new javax.swing.JLabel();
-        name_text1 = new javax.swing.JTextField();
+        name_text_e = new javax.swing.JTextField();
         namelabel1 = new javax.swing.JLabel();
-        nic_text1 = new javax.swing.JTextField();
+        nic_text_e = new javax.swing.JTextField();
         niclabel1 = new javax.swing.JLabel();
         addresslabel1 = new javax.swing.JLabel();
-        telephone_text1 = new javax.swing.JTextField();
+        telephone_text_e = new javax.swing.JTextField();
         telephonelabel1 = new javax.swing.JLabel();
         jScrollPane5 = new javax.swing.JScrollPane();
-        address_text1 = new javax.swing.JTextArea();
+        address_text_e = new javax.swing.JTextArea();
         dutylabel1 = new javax.swing.JLabel();
-        duty_combo1 = new javax.swing.JComboBox<>();
+        duty_combo_e = new javax.swing.JComboBox<>();
         jPanel14 = new javax.swing.JPanel();
-        save_button1 = new javax.swing.JButton();
-        cancel_button1 = new javax.swing.JButton();
+        edit_button = new javax.swing.JButton();
+        cancel_button_e = new javax.swing.JButton();
         tel_no_invalid_label1 = new javax.swing.JLabel();
         nic_invalid_label1 = new javax.swing.JLabel();
+        employee_name_combo = new javax.swing.JComboBox<>();
         jPanel7 = new javax.swing.JPanel();
         jPanel8 = new javax.swing.JPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
@@ -194,7 +226,7 @@ public class EmployeeDetailFrame extends javax.swing.JInternalFrame {
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                .addContainerGap(356, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(save_button)
                 .addGap(18, 18, 18)
                 .addComponent(cancel_button)
@@ -221,42 +253,41 @@ public class EmployeeDetailFrame extends javax.swing.JInternalFrame {
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(47, 47, 47)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(47, 47, 47)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(namelabel)
-                                    .addComponent(niclabel)
-                                    .addComponent(addresslabel)
-                                    .addComponent(telephonelabel))
-                                .addGap(43, 43, 43))
-                            .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addComponent(dutylabel)
-                                .addGap(70, 70, 70)))
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addComponent(nic_text, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(nic_invalid_label))
-                            .addComponent(regno_text, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 372, Short.MAX_VALUE)
-                            .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addComponent(telephone_text, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(34, 34, 34)
-                                .addComponent(tel_no_invalid_label))
-                            .addComponent(duty_combo, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(name_text)))
+                            .addComponent(namelabel)
+                            .addComponent(niclabel)
+                            .addComponent(addresslabel)
+                            .addComponent(telephonelabel))
+                        .addGap(43, 43, 43))
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(dutylabel)
+                        .addGap(70, 70, 70)))
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addComponent(nic_text, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(nic_invalid_label))
+                    .addComponent(regno_text, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 372, Short.MAX_VALUE)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addComponent(telephone_text, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(34, 34, 34)
+                        .addComponent(tel_no_invalid_label))
+                    .addComponent(duty_combo, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(name_text))
+                .addContainerGap(203, Short.MAX_VALUE))
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
             .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel4Layout.createSequentialGroup()
                     .addGap(43, 43, 43)
                     .addComponent(reg_no_label)
-                    .addContainerGap(459, Short.MAX_VALUE)))
+                    .addContainerGap(636, Short.MAX_VALUE)))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -300,8 +331,8 @@ public class EmployeeDetailFrame extends javax.swing.JInternalFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 522, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(162, Short.MAX_VALUE))
+                .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -317,11 +348,11 @@ public class EmployeeDetailFrame extends javax.swing.JInternalFrame {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 733, Short.MAX_VALUE)
+            .addGap(0, 790, Short.MAX_VALUE)
             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel2Layout.createSequentialGroup()
                     .addContainerGap()
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 713, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 770, Short.MAX_VALUE)
                     .addContainerGap()))
         );
         jPanel2Layout.setVerticalGroup(
@@ -334,30 +365,23 @@ public class EmployeeDetailFrame extends javax.swing.JInternalFrame {
                     .addContainerGap(145, Short.MAX_VALUE)))
         );
 
-        jTabbedPane1.addTab("Add New Employee", jPanel2);
+        tabpane.addTab("Add New Employee", jPanel2);
 
         jPanel13.setBorder(javax.swing.BorderFactory.createTitledBorder("Personal Details"));
 
-        regno_text1.setEditable(false);
-        regno_text1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                regno_text1ActionPerformed(evt);
-            }
-        });
+        reg_no_label1.setText("Enter name:");
 
-        reg_no_label1.setText("Reg.No:");
-
-        name_text1.addKeyListener(new java.awt.event.KeyAdapter() {
+        name_text_e.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                name_text1KeyReleased(evt);
+                name_text_eKeyReleased(evt);
             }
         });
 
         namelabel1.setText("Name:");
 
-        nic_text1.addKeyListener(new java.awt.event.KeyAdapter() {
+        nic_text_e.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                nic_text1KeyReleased(evt);
+                nic_text_eKeyReleased(evt);
             }
         });
 
@@ -365,35 +389,35 @@ public class EmployeeDetailFrame extends javax.swing.JInternalFrame {
 
         addresslabel1.setText("Address :");
 
-        telephone_text1.addKeyListener(new java.awt.event.KeyAdapter() {
+        telephone_text_e.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                telephone_text1KeyReleased(evt);
+                telephone_text_eKeyReleased(evt);
             }
         });
 
         telephonelabel1.setText("Telephone:");
 
-        address_text1.setColumns(20);
-        address_text1.setRows(5);
-        address_text1.addKeyListener(new java.awt.event.KeyAdapter() {
+        address_text_e.setColumns(20);
+        address_text_e.setRows(5);
+        address_text_e.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                address_text1KeyReleased(evt);
+                address_text_eKeyReleased(evt);
             }
         });
-        jScrollPane5.setViewportView(address_text1);
+        jScrollPane5.setViewportView(address_text_e);
 
         dutylabel1.setText("Duty:");
 
-        duty_combo1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Store", "Cutting", "Sewing 1 in", "Sewing 1 out", "Waxing in", "Waxing out", "Dyeing", "DryWashing", "Sewing 2", "Finishing", "Sales" }));
+        duty_combo_e.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Store", "Cutting", "Sewing 1 in", "Sewing 1 out", "Waxing in", "Waxing out", "Dyeing", "DryWashing", "Sewing 2", "Finishing", "Sales" }));
 
-        save_button1.setText("Update");
-        save_button1.addActionListener(new java.awt.event.ActionListener() {
+        edit_button.setText("Update");
+        edit_button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                save_button1ActionPerformed(evt);
+                edit_buttonActionPerformed(evt);
             }
         });
 
-        cancel_button1.setText("Cancel");
+        cancel_button_e.setText("Cancel");
 
         javax.swing.GroupLayout jPanel14Layout = new javax.swing.GroupLayout(jPanel14);
         jPanel14.setLayout(jPanel14Layout);
@@ -401,9 +425,9 @@ public class EmployeeDetailFrame extends javax.swing.JInternalFrame {
             jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel14Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(save_button1)
+                .addComponent(edit_button)
                 .addGap(18, 18, 18)
-                .addComponent(cancel_button1)
+                .addComponent(cancel_button_e)
                 .addContainerGap())
         );
         jPanel14Layout.setVerticalGroup(
@@ -411,8 +435,8 @@ public class EmployeeDetailFrame extends javax.swing.JInternalFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel14Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(save_button1)
-                    .addComponent(cancel_button1))
+                    .addComponent(edit_button)
+                    .addComponent(cancel_button_e))
                 .addGap(22, 22, 22))
         );
 
@@ -422,10 +446,20 @@ public class EmployeeDetailFrame extends javax.swing.JInternalFrame {
         nic_invalid_label1.setForeground(new java.awt.Color(255, 0, 0));
         nic_invalid_label1.setText("invalid");
 
+        employee_name_combo.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                employee_name_comboItemStateChanged(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel13Layout = new javax.swing.GroupLayout(jPanel13);
         jPanel13.setLayout(jPanel13Layout);
         jPanel13Layout.setHorizontalGroup(
             jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel13Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
             .addGroup(jPanel13Layout.createSequentialGroup()
                 .addGap(47, 47, 47)
                 .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -441,39 +475,36 @@ public class EmployeeDetailFrame extends javax.swing.JInternalFrame {
                         .addGap(70, 70, 70)))
                 .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel13Layout.createSequentialGroup()
-                        .addComponent(nic_text1, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(nic_text_e, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(nic_invalid_label1))
-                    .addComponent(regno_text1, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(name_text1, javax.swing.GroupLayout.PREFERRED_SIZE, 388, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(name_text_e, javax.swing.GroupLayout.PREFERRED_SIZE, 388, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 372, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel13Layout.createSequentialGroup()
-                        .addComponent(telephone_text1, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(telephone_text_e, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(34, 34, 34)
                         .addComponent(tel_no_invalid_label1))
-                    .addComponent(duty_combo1, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(169, Short.MAX_VALUE))
-            .addGroup(jPanel13Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                    .addComponent(duty_combo_e, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(employee_name_combo, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(226, Short.MAX_VALUE))
             .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel13Layout.createSequentialGroup()
-                    .addGap(43, 43, 43)
-                    .addComponent(reg_no_label1)
-                    .addContainerGap(579, Short.MAX_VALUE)))
+                    .addGap(24, 24, 24)
+                    .addComponent(reg_no_label1, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(656, Short.MAX_VALUE)))
         );
         jPanel13Layout.setVerticalGroup(
             jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel13Layout.createSequentialGroup()
-                .addComponent(regno_text1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                .addContainerGap()
+                .addComponent(employee_name_combo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
                 .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(name_text1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(name_text_e, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(namelabel1))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(nic_text1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(nic_text_e, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(niclabel1)
                     .addComponent(nic_invalid_label1))
                 .addGap(18, 18, 18)
@@ -482,12 +513,12 @@ public class EmployeeDetailFrame extends javax.swing.JInternalFrame {
                     .addComponent(addresslabel1))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(telephone_text1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(telephone_text_e, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(telephonelabel1)
                     .addComponent(tel_no_invalid_label1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(duty_combo1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(duty_combo_e, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(dutylabel1))
                 .addGap(18, 18, 18)
                 .addComponent(jPanel14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -515,7 +546,7 @@ public class EmployeeDetailFrame extends javax.swing.JInternalFrame {
                 .addContainerGap(165, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("Edit employee details", jPanel6);
+        tabpane.addTab("Edit employee details", jPanel6);
 
         jPanel10.setBorder(javax.swing.BorderFactory.createTitledBorder("Employee with wage"));
 
@@ -707,7 +738,7 @@ public class EmployeeDetailFrame extends javax.swing.JInternalFrame {
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 693, Short.MAX_VALUE)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 750, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel8Layout.setVerticalGroup(
@@ -735,19 +766,19 @@ public class EmployeeDetailFrame extends javax.swing.JInternalFrame {
                 .addContainerGap(43, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("Mark Attendance", jPanel7);
+        tabpane.addTab("Mark Attendance", jPanel7);
 
-        jScrollPane1.setViewportView(jTabbedPane1);
+        jScrollPane1.setViewportView(tabpane);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 565, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 814, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 551, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 503, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -817,7 +848,7 @@ public class EmployeeDetailFrame extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_address_textKeyReleased
 
     private void save_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_save_buttonActionPerformed
-        
+
         try {
             String emp_id = regno_text.getText();
             String name = name_text.getText();
@@ -837,34 +868,76 @@ public class EmployeeDetailFrame extends javax.swing.JInternalFrame {
         } catch (RemoteException | SQLException | ClassNotFoundException ex) {
             Logger.getLogger(EmployeeDetailFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
 
     }//GEN-LAST:event_save_buttonActionPerformed
 
-    private void regno_text1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_regno_text1ActionPerformed
+    private void name_text_eKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_name_text_eKeyReleased
         // TODO add your handling code here:
-    }//GEN-LAST:event_regno_text1ActionPerformed
+    }//GEN-LAST:event_name_text_eKeyReleased
 
-    private void name_text1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_name_text1KeyReleased
+    private void nic_text_eKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nic_text_eKeyReleased
         // TODO add your handling code here:
-    }//GEN-LAST:event_name_text1KeyReleased
+    }//GEN-LAST:event_nic_text_eKeyReleased
 
-    private void nic_text1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nic_text1KeyReleased
+    private void telephone_text_eKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_telephone_text_eKeyReleased
         // TODO add your handling code here:
-    }//GEN-LAST:event_nic_text1KeyReleased
+    }//GEN-LAST:event_telephone_text_eKeyReleased
 
-    private void telephone_text1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_telephone_text1KeyReleased
+    private void address_text_eKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_address_text_eKeyReleased
         // TODO add your handling code here:
-    }//GEN-LAST:event_telephone_text1KeyReleased
+    }//GEN-LAST:event_address_text_eKeyReleased
 
-    private void address_text1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_address_text1KeyReleased
-        // TODO add your handling code here:
-    }//GEN-LAST:event_address_text1KeyReleased
+    private void edit_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_edit_buttonActionPerformed
+        try {
+            String text = employee_name_combo.getSelectedItem().toString();
+            String emp_id = text.substring(text.length() - 4, text.length());
+            String name = name_text_e.getText();
+            String address = address_text_e.getText();
+            String telephone = telephone_text_e.getText();
+            String nic = nic_text_e.getText();
+            String duty = duty_combo_e.getSelectedItem().toString();
+            Employee employee = new Employee(emp_id, name, address, telephone, nic, duty);
+            int updateEmployee = employeeController.updateEmployee(employee);
+            if (updateEmployee > 0) {
+                JOptionPane.showMessageDialog(this, "Employee updated");
+            } else {
+                JOptionPane.showMessageDialog(this, "Employee not updated");
+            }
+            showEmployeeDetails();
+        } catch (RemoteException | SQLException | ClassNotFoundException ex) {
+            Logger.getLogger(EmployeeDetailFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_edit_buttonActionPerformed
 
-    private void save_button1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_save_button1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_save_button1ActionPerformed
-
+    private void employee_name_comboItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_employee_name_comboItemStateChanged
+        try {
+            showEmployeeDetails();
+        } catch (RemoteException | SQLException | ClassNotFoundException ex) {
+            Logger.getLogger(EmployeeDetailFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_employee_name_comboItemStateChanged
+    //private method to auto update details of selected Employee
+    private void showEmployeeDetails() throws RemoteException, SQLException, ClassNotFoundException {
+        if (employee_name_combo.getSelectedItem() != null) {
+            String text = employee_name_combo.getSelectedItem().toString();
+            String id = text.substring(text.length() - 4, text.length());
+            Employee searchEmployee = employeeController.searchEmployee(id);
+            if (searchEmployee != null) {
+                name_text_e.setText(searchEmployee.getName());
+                address_text_e.setText(searchEmployee.getAddress());
+                nic_text_e.setText(searchEmployee.getNic());
+                telephone_text_e.setText(searchEmployee.getTelephone());
+                duty_combo_e.setSelectedItem(searchEmployee.getDuty());
+            } else {
+                name_text_e.setText("");
+                address_text_e.setText("");
+                nic_text_e.setText("");
+                telephone_text_e.setText("");
+                duty_combo_e.setSelectedItem("");
+            }
+        }
+    }
 
     private void createNewForm() throws RemoteException, SQLException, ClassNotFoundException {
         name_text.setText("");
@@ -874,21 +947,23 @@ public class EmployeeDetailFrame extends javax.swing.JInternalFrame {
         duty_combo.setSelectedIndex(0);
         regno_text.setText(IdGenerator.generateNextEmployeeID(employeeController.getLastEmpId()));
     }
-    
+
     public void requestFoucsForm() {
         name_text.requestFocus();
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextArea address_text;
-    private javax.swing.JTextArea address_text1;
+    private javax.swing.JTextArea address_text_e;
     private javax.swing.JLabel addresslabel;
     private javax.swing.JLabel addresslabel1;
     private javax.swing.JButton cancel_button;
-    private javax.swing.JButton cancel_button1;
+    private javax.swing.JButton cancel_button_e;
     private javax.swing.JComboBox<String> duty_combo;
-    private javax.swing.JComboBox<String> duty_combo1;
+    private javax.swing.JComboBox<String> duty_combo_e;
     private javax.swing.JLabel dutylabel;
     private javax.swing.JLabel dutylabel1;
+    private javax.swing.JButton edit_button;
+    private javax.swing.JComboBox<String> employee_name_combo;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
@@ -922,35 +997,33 @@ public class EmployeeDetailFrame extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
-    private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField name_text;
-    private javax.swing.JTextField name_text1;
+    private javax.swing.JTextField name_text_e;
     private javax.swing.JLabel namelabel;
     private javax.swing.JLabel namelabel1;
     private javax.swing.JLabel nic_invalid_label;
     private javax.swing.JLabel nic_invalid_label1;
     private javax.swing.JTextField nic_text;
-    private javax.swing.JTextField nic_text1;
+    private javax.swing.JTextField nic_text_e;
     private javax.swing.JLabel niclabel;
     private javax.swing.JLabel niclabel1;
     private javax.swing.JLabel reg_no_label;
     private javax.swing.JLabel reg_no_label1;
     private javax.swing.JTextField regno_text;
-    private javax.swing.JTextField regno_text1;
     private javax.swing.JButton save_button;
-    private javax.swing.JButton save_button1;
+    private javax.swing.JTabbedPane tabpane;
     private javax.swing.JLabel tel_no_invalid_label;
     private javax.swing.JLabel tel_no_invalid_label1;
     private javax.swing.JTextField telephone_text;
-    private javax.swing.JTextField telephone_text1;
+    private javax.swing.JTextField telephone_text_e;
     private javax.swing.JLabel telephonelabel;
     private javax.swing.JLabel telephonelabel1;
     // End of variables declaration//GEN-END:variables
 
     void focustabbedpane(int num) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        tabpane.setSelectedIndex(num);
     }
 }

@@ -45,3 +45,6 @@ $RECYCLE.BIN/
 Network Trash Folder
 Temporary Items
 .apdisk
+/GarmentFactoryCommon/dist/
+/GarmentFactoryServer/dist/
+/GarmentFactoryClient/dist/

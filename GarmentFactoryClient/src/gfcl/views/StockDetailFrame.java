@@ -17,7 +17,7 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author Nuwantha
+ * @author Gimhani Uthpala
  */
 public class StockDetailFrame extends javax.swing.JInternalFrame {
 
@@ -49,7 +49,7 @@ public class StockDetailFrame extends javax.swing.JInternalFrame {
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jPanel2 = new javax.swing.JPanel();
-        jTabbedPane1 = new javax.swing.JTabbedPane();
+        tabpane = new javax.swing.JTabbedPane();
         add_stock_entry_panel = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jPanel3 = new javax.swing.JPanel();
@@ -233,7 +233,7 @@ public class StockDetailFrame extends javax.swing.JInternalFrame {
                 .addContainerGap())
         );
 
-        jTabbedPane1.addTab("Add stock entry", add_stock_entry_panel);
+        tabpane.addTab("Add stock entry", add_stock_entry_panel);
 
         jPanel6.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
@@ -356,7 +356,7 @@ public class StockDetailFrame extends javax.swing.JInternalFrame {
                 .addContainerGap(139, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("Add daily usage", add_daily_usage_panel);
+        tabpane.addTab("Add daily usage", add_daily_usage_panel);
 
         material_id_label.setText("Material ID:");
 
@@ -518,7 +518,7 @@ public class StockDetailFrame extends javax.swing.JInternalFrame {
                 .addContainerGap(20, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("Add new material type", add_new_panel);
+        tabpane.addTab("Add new material type", add_new_panel);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -526,14 +526,14 @@ public class StockDetailFrame extends javax.swing.JInternalFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTabbedPane1)
+                .addComponent(tabpane)
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTabbedPane1)
+                .addComponent(tabpane)
                 .addContainerGap())
         );
 
@@ -573,11 +573,11 @@ public class StockDetailFrame extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_cancelbuttonActionPerformed
 
     void focustabbedpane(int num) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        tabpane.setSelectedIndex(num);
     }
 
     void requestFoucsForm() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        materialtypecombo.requestFocus();
     }
 
 
@@ -623,7 +623,6 @@ public class StockDetailFrame extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTextField mat_id_text;
     private javax.swing.JLabel mat_name_label;
     private javax.swing.JTextField mat_name_text;
@@ -634,6 +633,7 @@ public class StockDetailFrame extends javax.swing.JInternalFrame {
     private javax.swing.JComboBox<String> materialtypecombo;
     private javax.swing.JLabel previous_stock_label;
     private javax.swing.JTextField previous_stock_text;
+    private javax.swing.JTabbedPane tabpane;
     private javax.swing.JLabel unit_price_label;
     private javax.swing.JTextField unitprice_text;
     // End of variables declaration//GEN-END:variables

@@ -10,6 +10,7 @@ import java.rmi.server.UnicastRemoteObject;
 import java.sql.SQLException;
 import gfc.models.Employee;
 import gfs.controllers.EmployeeController;
+import java.util.ArrayList;
 
 /**
  *
@@ -31,6 +32,21 @@ public class EmployeeControllerImple extends UnicastRemoteObject implements gfc.
     @Override
     public String getLastEmpId() throws RemoteException, SQLException, ClassNotFoundException {
         return employeeController.getLastEmpId();
+    }
+
+    @Override
+    public ArrayList<Employee> getSimilarEmployeeNames(String item) throws RemoteException, SQLException, ClassNotFoundException {
+        return employeeController.getSimilarEmployeeNames(item);
+    }
+
+    @Override
+    public Employee searchEmployee(String id) throws RemoteException, SQLException, ClassNotFoundException {
+        return employeeController.searchEmployee(id);
+    }
+
+    @Override
+    public int updateEmployee(Employee employee) throws RemoteException, SQLException, ClassNotFoundException {
+        return employeeController.updateEmployee(employee);
     }
     
 }

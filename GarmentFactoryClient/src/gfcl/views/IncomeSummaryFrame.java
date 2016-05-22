@@ -7,7 +7,7 @@ package gfcl.views;
 
 /**
  *
- * @author Nuwantha
+ * @author Gimhani Uthpala
  */
 public class IncomeSummaryFrame extends javax.swing.JInternalFrame {
 

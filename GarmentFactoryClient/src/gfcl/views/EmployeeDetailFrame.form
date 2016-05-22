@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
-<Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JInternalFrameFormInfo">
+<Form version="1.5" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JInternalFrameFormInfo">
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
   </SyntheticProperties>
@@ -34,12 +34,12 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Component id="jScrollPane1" alignment="0" pref="565" max="32767" attributes="0"/>
+              <Component id="jScrollPane1" alignment="0" pref="814" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Component id="jScrollPane1" alignment="0" pref="551" max="32767" attributes="0"/>
+              <Component id="jScrollPane1" alignment="0" pref="503" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
       </Layout>
@@ -48,7 +48,7 @@
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
           <SubComponents>
-            <Container class="javax.swing.JTabbedPane" name="jTabbedPane1">
+            <Container class="javax.swing.JTabbedPane" name="tabpane">
 
               <Layout class="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout"/>
               <SubComponents>
@@ -64,11 +64,11 @@
                   <Layout>
                     <DimensionLayout dim="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <EmptySpace min="0" pref="733" max="32767" attributes="0"/>
+                          <EmptySpace min="0" pref="790" max="32767" attributes="0"/>
                           <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="jScrollPane2" pref="713" max="32767" attributes="0"/>
+                                  <Component id="jScrollPane2" pref="770" max="32767" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                               </Group>
                           </Group>
@@ -99,8 +99,8 @@
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" alignment="0" attributes="0">
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="jPanel4" min="-2" pref="522" max="-2" attributes="0"/>
-                                      <EmptySpace pref="162" max="32767" attributes="0"/>
+                                      <Component id="jPanel4" max="32767" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                             </DimensionLayout>
@@ -128,53 +128,50 @@
                                 <DimensionLayout dim="0">
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Group type="102" attributes="0">
+                                          <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="0" attributes="0">
-                                              <Group type="102" alignment="0" attributes="0">
-                                                  <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
+                                              <Group type="102" alignment="1" attributes="0">
                                                   <Group type="103" groupAlignment="0" attributes="0">
-                                                      <Group type="102" alignment="1" attributes="0">
-                                                          <Group type="103" groupAlignment="0" attributes="0">
-                                                              <Component id="namelabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                                                              <Component id="niclabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                                                              <Component id="addresslabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                                                              <Component id="telephonelabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                                                          </Group>
-                                                          <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
-                                                      </Group>
-                                                      <Group type="102" alignment="0" attributes="0">
-                                                          <Component id="dutylabel" min="-2" max="-2" attributes="0"/>
-                                                          <EmptySpace min="-2" pref="70" max="-2" attributes="0"/>
-                                                      </Group>
+                                                      <Component id="namelabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                      <Component id="niclabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                      <Component id="addresslabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                      <Component id="telephonelabel" alignment="0" min="-2" max="-2" attributes="0"/>
                                                   </Group>
-                                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                                      <Group type="102" alignment="0" attributes="0">
-                                                          <Component id="nic_text" min="-2" pref="154" max="-2" attributes="0"/>
-                                                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                                                          <Component id="nic_invalid_label" min="-2" max="-2" attributes="0"/>
-                                                      </Group>
-                                                      <Component id="regno_text" alignment="0" min="-2" pref="117" max="-2" attributes="0"/>
-                                                      <Component id="jScrollPane3" alignment="0" pref="372" max="32767" attributes="0"/>
-                                                      <Group type="102" alignment="0" attributes="0">
-                                                          <Component id="telephone_text" min="-2" pref="167" max="-2" attributes="0"/>
-                                                          <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
-                                                          <Component id="tel_no_invalid_label" min="-2" max="-2" attributes="0"/>
-                                                      </Group>
-                                                      <Component id="duty_combo" alignment="0" min="-2" pref="243" max="-2" attributes="0"/>
-                                                      <Component id="name_text" alignment="0" max="32767" attributes="0"/>
-                                                  </Group>
+                                                  <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
                                               </Group>
                                               <Group type="102" alignment="0" attributes="0">
-                                                  <EmptySpace max="-2" attributes="0"/>
-                                                  <Component id="jPanel5" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="dutylabel" min="-2" max="-2" attributes="0"/>
+                                                  <EmptySpace min="-2" pref="70" max="-2" attributes="0"/>
                                               </Group>
                                           </Group>
-                                          <EmptySpace max="32767" attributes="0"/>
+                                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                              <Group type="102" alignment="0" attributes="0">
+                                                  <Component id="nic_text" min="-2" pref="154" max="-2" attributes="0"/>
+                                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                                  <Component id="nic_invalid_label" min="-2" max="-2" attributes="0"/>
+                                              </Group>
+                                              <Component id="regno_text" alignment="0" min="-2" pref="117" max="-2" attributes="0"/>
+                                              <Component id="jScrollPane3" alignment="0" pref="372" max="32767" attributes="0"/>
+                                              <Group type="102" alignment="0" attributes="0">
+                                                  <Component id="telephone_text" min="-2" pref="167" max="-2" attributes="0"/>
+                                                  <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
+                                                  <Component id="tel_no_invalid_label" min="-2" max="-2" attributes="0"/>
+                                              </Group>
+                                              <Component id="duty_combo" alignment="0" min="-2" pref="243" max="-2" attributes="0"/>
+                                              <Component id="name_text" alignment="0" max="32767" attributes="0"/>
+                                          </Group>
+                                          <EmptySpace pref="203" max="32767" attributes="0"/>
+                                      </Group>
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Component id="jPanel5" max="32767" attributes="0"/>
+                                          <EmptySpace max="-2" attributes="0"/>
                                       </Group>
                                       <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
                                           <Group type="102" alignment="0" attributes="0">
                                               <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
                                               <Component id="reg_no_label" min="-2" max="-2" attributes="0"/>
-                                              <EmptySpace pref="459" max="32767" attributes="0"/>
+                                              <EmptySpace pref="636" max="32767" attributes="0"/>
                                           </Group>
                                       </Group>
                                   </Group>
@@ -324,7 +321,7 @@
                                     <DimensionLayout dim="0">
                                       <Group type="103" groupAlignment="0" attributes="0">
                                           <Group type="102" alignment="1" attributes="0">
-                                              <EmptySpace pref="356" max="32767" attributes="0"/>
+                                              <EmptySpace max="32767" attributes="0"/>
                                               <Component id="save_button" min="-2" max="-2" attributes="0"/>
                                               <EmptySpace type="separate" max="-2" attributes="0"/>
                                               <Component id="cancel_button" min="-2" max="-2" attributes="0"/>
@@ -428,6 +425,11 @@
                         <DimensionLayout dim="0">
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="jPanel14" max="32767" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Group type="102" alignment="1" attributes="0">
@@ -446,32 +448,27 @@
                                   </Group>
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Group type="102" alignment="0" attributes="0">
-                                          <Component id="nic_text1" min="-2" pref="154" max="-2" attributes="0"/>
+                                          <Component id="nic_text_e" min="-2" pref="154" max="-2" attributes="0"/>
                                           <EmptySpace type="separate" max="-2" attributes="0"/>
                                           <Component id="nic_invalid_label1" min="-2" max="-2" attributes="0"/>
                                       </Group>
-                                      <Component id="regno_text1" alignment="0" min="-2" pref="117" max="-2" attributes="0"/>
-                                      <Component id="name_text1" alignment="0" min="-2" pref="388" max="-2" attributes="0"/>
+                                      <Component id="name_text_e" alignment="0" min="-2" pref="388" max="-2" attributes="0"/>
                                       <Component id="jScrollPane5" alignment="0" min="-2" pref="372" max="-2" attributes="0"/>
                                       <Group type="102" alignment="0" attributes="0">
-                                          <Component id="telephone_text1" min="-2" pref="167" max="-2" attributes="0"/>
+                                          <Component id="telephone_text_e" min="-2" pref="167" max="-2" attributes="0"/>
                                           <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
                                           <Component id="tel_no_invalid_label1" min="-2" max="-2" attributes="0"/>
                                       </Group>
-                                      <Component id="duty_combo1" alignment="0" min="-2" pref="243" max="-2" attributes="0"/>
+                                      <Component id="duty_combo_e" alignment="0" min="-2" pref="243" max="-2" attributes="0"/>
+                                      <Component id="employee_name_combo" alignment="0" min="-2" pref="151" max="-2" attributes="0"/>
                                   </Group>
-                                  <EmptySpace pref="169" max="32767" attributes="0"/>
-                              </Group>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="jPanel14" max="32767" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
+                                  <EmptySpace pref="226" max="32767" attributes="0"/>
                               </Group>
                               <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
                                   <Group type="102" alignment="0" attributes="0">
-                                      <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
-                                      <Component id="reg_no_label1" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace pref="579" max="32767" attributes="0"/>
+                                      <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
+                                      <Component id="reg_no_label1" min="-2" pref="78" max="-2" attributes="0"/>
+                                      <EmptySpace pref="656" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>
@@ -479,15 +476,16 @@
                         <DimensionLayout dim="1">
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="1" attributes="0">
-                                  <Component id="regno_text1" min="-2" pref="30" max="-2" attributes="0"/>
-                                  <EmptySpace pref="31" max="32767" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="employee_name_combo" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace pref="30" max="32767" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
-                                      <Component id="name_text1" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                                      <Component id="name_text_e" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                                       <Component id="namelabel1" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
-                                      <Component id="nic_text1" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                                      <Component id="nic_text_e" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                                       <Component id="niclabel1" alignment="3" min="-2" max="-2" attributes="0"/>
                                       <Component id="nic_invalid_label1" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
@@ -498,13 +496,13 @@
                                   </Group>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
-                                      <Component id="telephone_text1" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
+                                      <Component id="telephone_text_e" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
                                       <Component id="telephonelabel1" alignment="3" min="-2" max="-2" attributes="0"/>
                                       <Component id="tel_no_invalid_label1" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
-                                      <Component id="duty_combo1" alignment="3" min="-2" pref="28" max="-2" attributes="0"/>
+                                      <Component id="duty_combo_e" alignment="3" min="-2" pref="28" max="-2" attributes="0"/>
                                       <Component id="dutylabel1" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -521,22 +519,14 @@
                         </DimensionLayout>
                       </Layout>
                       <SubComponents>
-                        <Component class="javax.swing.JTextField" name="regno_text1">
-                          <Properties>
-                            <Property name="editable" type="boolean" value="false"/>
-                          </Properties>
-                          <Events>
-                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="regno_text1ActionPerformed"/>
-                          </Events>
-                        </Component>
                         <Component class="javax.swing.JLabel" name="reg_no_label1">
                           <Properties>
-                            <Property name="text" type="java.lang.String" value="Reg.No:"/>
+                            <Property name="text" type="java.lang.String" value="Enter name:"/>
                           </Properties>
                         </Component>
-                        <Component class="javax.swing.JTextField" name="name_text1">
+                        <Component class="javax.swing.JTextField" name="name_text_e">
                           <Events>
-                            <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="name_text1KeyReleased"/>
+                            <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="name_text_eKeyReleased"/>
                           </Events>
                         </Component>
                         <Component class="javax.swing.JLabel" name="namelabel1">
@@ -544,9 +534,9 @@
                             <Property name="text" type="java.lang.String" value="Name:"/>
                           </Properties>
                         </Component>
-                        <Component class="javax.swing.JTextField" name="nic_text1">
+                        <Component class="javax.swing.JTextField" name="nic_text_e">
                           <Events>
-                            <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="nic_text1KeyReleased"/>
+                            <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="nic_text_eKeyReleased"/>
                           </Events>
                         </Component>
                         <Component class="javax.swing.JLabel" name="niclabel1">
@@ -559,9 +549,9 @@
                             <Property name="text" type="java.lang.String" value="Address :"/>
                           </Properties>
                         </Component>
-                        <Component class="javax.swing.JTextField" name="telephone_text1">
+                        <Component class="javax.swing.JTextField" name="telephone_text_e">
                           <Events>
-                            <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="telephone_text1KeyReleased"/>
+                            <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="telephone_text_eKeyReleased"/>
                           </Events>
                         </Component>
                         <Component class="javax.swing.JLabel" name="telephonelabel1">
@@ -576,13 +566,13 @@
 
                           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
                           <SubComponents>
-                            <Component class="javax.swing.JTextArea" name="address_text1">
+                            <Component class="javax.swing.JTextArea" name="address_text_e">
                               <Properties>
                                 <Property name="columns" type="int" value="20"/>
                                 <Property name="rows" type="int" value="5"/>
                               </Properties>
                               <Events>
-                                <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="address_text1KeyReleased"/>
+                                <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="address_text_eKeyReleased"/>
                               </Events>
                             </Component>
                           </SubComponents>
@@ -592,7 +582,7 @@
                             <Property name="text" type="java.lang.String" value="Duty:"/>
                           </Properties>
                         </Component>
-                        <Component class="javax.swing.JComboBox" name="duty_combo1">
+                        <Component class="javax.swing.JComboBox" name="duty_combo_e">
                           <Properties>
                             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                               <StringArray count="11">
@@ -621,9 +611,9 @@
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" alignment="1" attributes="0">
                                       <EmptySpace max="32767" attributes="0"/>
-                                      <Component id="save_button1" min="-2" max="-2" attributes="0"/>
+                                      <Component id="edit_button" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Component id="cancel_button1" min="-2" max="-2" attributes="0"/>
+                                      <Component id="cancel_button_e" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
                                   </Group>
                               </Group>
@@ -633,8 +623,8 @@
                                   <Group type="102" alignment="1" attributes="0">
                                       <EmptySpace max="32767" attributes="0"/>
                                       <Group type="103" groupAlignment="3" attributes="0">
-                                          <Component id="save_button1" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="cancel_button1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="edit_button" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="cancel_button_e" alignment="3" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                       <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
                                   </Group>
@@ -642,15 +632,15 @@
                             </DimensionLayout>
                           </Layout>
                           <SubComponents>
-                            <Component class="javax.swing.JButton" name="save_button1">
+                            <Component class="javax.swing.JButton" name="edit_button">
                               <Properties>
                                 <Property name="text" type="java.lang.String" value="Update"/>
                               </Properties>
                               <Events>
-                                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="save_button1ActionPerformed"/>
+                                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="edit_buttonActionPerformed"/>
                               </Events>
                             </Component>
-                            <Component class="javax.swing.JButton" name="cancel_button1">
+                            <Component class="javax.swing.JButton" name="cancel_button_e">
                               <Properties>
                                 <Property name="text" type="java.lang.String" value="Cancel"/>
                               </Properties>
@@ -672,6 +662,19 @@
                             </Property>
                             <Property name="text" type="java.lang.String" value="invalid"/>
                           </Properties>
+                        </Component>
+                        <Component class="javax.swing.JComboBox" name="employee_name_combo">
+                          <Properties>
+                            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                              <StringArray count="0"/>
+                            </Property>
+                          </Properties>
+                          <Events>
+                            <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="employee_name_comboItemStateChanged"/>
+                          </Events>
+                          <AuxValues>
+                            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+                          </AuxValues>
                         </Component>
                       </SubComponents>
                     </Container>
@@ -714,7 +717,7 @@
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="1" attributes="0">
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="jScrollPane4" pref="693" max="32767" attributes="0"/>
+                                  <Component id="jScrollPane4" pref="750" max="32767" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                               </Group>
                           </Group>

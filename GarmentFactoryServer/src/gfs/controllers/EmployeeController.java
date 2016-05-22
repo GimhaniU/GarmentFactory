@@ -12,6 +12,7 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
 import gfc.models.Employee;
 import gfs.db_utilities.DBConnection;
 import gfs.db_utilities.DBHandler;
+import java.util.ArrayList;
 
 /**
  *
@@ -35,7 +36,6 @@ public class EmployeeController {
     }
 
     public String getLastEmpId() throws ClassNotFoundException, SQLException {
-
         try {
             readWriteLock.readLock().lock();
             Connection conn = DBConnection.getDBConnection().getConnection();
@@ -51,5 +51,52 @@ public class EmployeeController {
         }
     }
 
+    public ArrayList<Employee> getSimilarEmployeeNames(String name) throws ClassNotFoundException, SQLException {
+        try {
+            readWriteLock.readLock().lock();
 
+            Connection conn = DBConnection.getDBConnection().getConnection();
+            String sql = "Select * From employee where name like '" + name + "%'  order by name limit 10";
+            ResultSet rst = DBHandler.getData(conn, sql);
+            ArrayList<Employee> list = new ArrayList<>();
+            while (rst.next()) {
+                Employee employee = new Employee(rst.getString("emp_id"), rst.getString("Name"), rst.getString("address"), rst.getString("telephone"), rst.getString("nic"), rst.getString("duty"));
+                list.add(employee);
+            }
+            return list;
+
+        } finally {
+            readWriteLock.readLock().unlock();
+        }
+    }
+
+    public Employee searchEmployee(String id) throws ClassNotFoundException, SQLException {
+        try {
+            readWriteLock.readLock().lock();
+
+            Connection conn = DBConnection.getDBConnection().getConnection();
+            String sql = "Select * From employee where emp_id='" + id + "'";
+            ResultSet rst = DBHandler.getData(conn, sql);
+            Employee employee = null;
+            if (rst.next()) {
+                employee = new Employee(rst.getString("emp_id"), rst.getString("Name"), rst.getString("address"), rst.getString("telephone"), rst.getString("nic"), rst.getString("duty"));
+            }
+            return employee;
+        } finally {
+            readWriteLock.readLock().unlock();
+        }
+    }
+
+    public int updateEmployee(Employee employee) throws ClassNotFoundException, SQLException {
+        try {
+            readWriteLock.writeLock().lock();
+            DBConnection dbconn = DBConnection.getDBConnection();
+            Connection conn = dbconn.getConnection();
+            String sql = "Update Employee set  name='" + employee.getName() + "',address='" + employee.getAddress() + "',telephone='" + employee.getTelephone() + "',nic='" + employee.getNic() + "',duty='" + employee.getDuty() + "' where emp_id='" + employee.getEmp_id() + "';";
+            int res = DBHandler.setData(conn, sql);
+            return res;
+        } finally {
+            readWriteLock.writeLock().unlock();
+        }
+    }
 }
