@@ -20,6 +20,6 @@ public interface CustomerController extends Remote {
 
     public String getLastCustId()  throws RemoteException, SQLException,ClassNotFoundException;
     
-    public ArrayList<Customer> getSilimarCustomerNames(String name)  throws RemoteException, SQLException,ClassNotFoundException;
+    public ArrayList<Customer> getSimilarCustomerNames(String name)  throws RemoteException, SQLException,ClassNotFoundException;
 
 }

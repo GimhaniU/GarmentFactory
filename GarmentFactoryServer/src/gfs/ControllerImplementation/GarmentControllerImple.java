@@ -7,17 +7,25 @@ package gfs.ControllerImplementation;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
-import gfc.controller.GarmentController;
+import gfs.controllers.GarmentController;
+import gfc.models.Garment;
+import java.sql.SQLException;
+import java.util.ArrayList;
 
 /**
  *
  * @author Gimhani Uthpala
  */
-public class GarmentControllerImple extends UnicastRemoteObject implements GarmentController{
+public class GarmentControllerImple extends UnicastRemoteObject implements gfc.controller.GarmentController{
     private final GarmentController garmentController;
 
     public GarmentControllerImple() throws RemoteException {
         super();
-        this.garmentController = new GarmentController() {} ;
+        this.garmentController = new GarmentController();
+    }
+
+    @Override
+    public ArrayList<Garment> getSimilarGarmentNames(String item) throws RemoteException, SQLException, ClassNotFoundException {
+        return garmentController.getSimilarGarmentNames(item);
     }
 }

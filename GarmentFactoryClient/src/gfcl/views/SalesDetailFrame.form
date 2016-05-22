@@ -454,6 +454,7 @@
                                           <Component id="niclabel" alignment="0" min="-2" max="-2" attributes="0"/>
                                           <Component id="addresslabel" alignment="0" min="-2" max="-2" attributes="0"/>
                                           <Component id="telephonelabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="reg_no_label" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                       <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
@@ -470,21 +471,16 @@
                                       <Component id="jPanel10" max="32767" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
                                   </Group>
-                                  <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
-                                      <Group type="102" alignment="0" attributes="0">
-                                          <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
-                                          <Component id="reg_no_label" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace pref="579" max="32767" attributes="0"/>
-                                      </Group>
-                                  </Group>
                               </Group>
                             </DimensionLayout>
                             <DimensionLayout dim="1">
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" alignment="1" attributes="0">
-                                      <EmptySpace pref="22" max="32767" attributes="0"/>
-                                      <Component id="regno_text" min="-2" pref="30" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="3" attributes="0">
+                                          <Component id="regno_text" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                                          <Component id="reg_no_label" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace pref="31" max="32767" attributes="0"/>
                                       <Group type="103" groupAlignment="3" attributes="0">
                                           <Component id="name_text" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                                           <Component id="namelabel" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -506,13 +502,6 @@
                                       </Group>
                                       <EmptySpace min="-2" pref="57" max="-2" attributes="0"/>
                                       <Component id="jPanel10" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
-                                      <Group type="102" alignment="0" attributes="0">
-                                          <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="reg_no_label" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace pref="384" max="32767" attributes="0"/>
-                                      </Group>
                                   </Group>
                               </Group>
                             </DimensionLayout>

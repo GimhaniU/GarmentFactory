@@ -50,7 +50,7 @@ public class CustomerController {
         }
     }
 
-    public ArrayList<Customer> getSilimarCustomerNames(String name) throws ClassNotFoundException, SQLException {
+    public ArrayList<Customer> getSimilarCustomerNames(String name) throws ClassNotFoundException, SQLException {
         try {
             readWriteLock.readLock().lock();
 

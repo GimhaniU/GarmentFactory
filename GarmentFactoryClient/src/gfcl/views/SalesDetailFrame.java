@@ -7,10 +7,14 @@ package gfcl.views;
 
 import gfc.controller.CustomerController;
 import gfc.models.Customer;
+import gfc.models.Garment;
 import gfcl.common_classes.GUIitemsValidator;
 import gfcl.common_classes.IdGenerator;
+import gfcl.connector.Connector;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.net.MalformedURLException;
+import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -18,6 +22,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
+import javax.swing.text.JTextComponent;
 
 /**
  *
@@ -30,7 +35,38 @@ public class SalesDetailFrame extends javax.swing.JInternalFrame {
      * Creates new form SalesDetailFrame
      */
     public SalesDetailFrame() {
-        initComponents();
+        try {
+            initComponents();
+            
+            Connector sConnector = Connector.getSConnector();
+            customerController = sConnector.getCustomerController();
+            
+            regno_text.setText(customerController.getLastCustId());
+            this.customerCombo.setEditable(true);
+            JTextComponent custCombo = (JTextComponent) customerCombo.getEditor().getEditorComponent();
+            custCombo.addKeyListener(new KeyAdapter() {
+
+                @Override
+                public void keyReleased(KeyEvent e) {
+                    try {
+                        String item = (String) customerCombo.getEditor().getItem();
+                        ArrayList<Object> list = new ArrayList();
+                        
+                        ArrayList<Customer> simmilar = customerController.getSimilarCustomerNames(item);
+                        for (int i = 0; i < simmilar.size(); i++) {
+                            list.add(simmilar.get(i).getName());
+                        }
+                        GUIitemsValidator.addItemToCombo(list, customerCombo);
+                    } catch (ClassNotFoundException | SQLException | RemoteException ex) {
+                        Logger.getLogger(GUIitemsValidator.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                    
+                }
+
+            });
+        } catch (RemoteException | SQLException | ClassNotFoundException | NotBoundException | MalformedURLException ex) {
+            Logger.getLogger(SalesDetailFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -343,7 +379,8 @@ public class SalesDetailFrame extends javax.swing.JInternalFrame {
                     .addComponent(namelabel)
                     .addComponent(niclabel)
                     .addComponent(addresslabel)
-                    .addComponent(telephonelabel))
+                    .addComponent(telephonelabel)
+                    .addComponent(reg_no_label))
                 .addGap(43, 43, 43)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(nic_text, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -356,18 +393,14 @@ public class SalesDetailFrame extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addComponent(jPanel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
-            .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel5Layout.createSequentialGroup()
-                    .addGap(43, 43, 43)
-                    .addComponent(reg_no_label)
-                    .addContainerGap(579, Short.MAX_VALUE)))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                .addContainerGap(22, Short.MAX_VALUE)
-                .addComponent(regno_text, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(9, 9, 9)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(regno_text, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(reg_no_label))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(name_text, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(namelabel))
@@ -385,11 +418,6 @@ public class SalesDetailFrame extends javax.swing.JInternalFrame {
                     .addComponent(telephonelabel))
                 .addGap(57, 57, 57)
                 .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel5Layout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(reg_no_label)
-                    .addContainerGap(384, Short.MAX_VALUE)))
         );
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
@@ -505,33 +533,6 @@ public class SalesDetailFrame extends javax.swing.JInternalFrame {
 
     void requestFoucsForm() {
         customerCombo.requestFocus();
-    }
-
-    class KeyClass extends KeyAdapter {
-
-        JComboBox combo;
-
-        KeyClass(JComboBox combo) {
-            this.combo = combo;
-        }
-
-        @Override
-        public void keyReleased(KeyEvent e) {
-            try {
-                String item = (String) combo.getEditor().getItem();
-                ArrayList<Object> list = new ArrayList();
-              
-                ArrayList<Customer> simmilar = customerController.getSilimarCustomerNames(item);
-                for (int i = 0; i < simmilar.size(); i++) {
-                    list.add(simmilar.get(i).getName());
-                }
-                GUIitemsValidator.addItemToCombo(list, combo);
-            } catch (ClassNotFoundException | SQLException | RemoteException ex) {
-                Logger.getLogger(GUIitemsValidator.class.getName()).log(Level.SEVERE, null, ex);
-            }
-
-        }
-
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

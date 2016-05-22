@@ -5,12 +5,19 @@
  */
 package gfc.controller;
 
+import gfc.models.Garment;
 import java.rmi.Remote;
+import java.rmi.RemoteException;
+import java.sql.SQLException;
+import java.util.ArrayList;
 
 /**
  *
  * @author Gimhani Uthpala
  */
 public interface GarmentController extends Remote {
+
+    public ArrayList<Garment> getSimilarGarmentNames(String item) throws RemoteException, SQLException,ClassNotFoundException;
+    
     
 }

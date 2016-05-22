@@ -170,6 +170,13 @@ INSERT INTO Employee values('E003','Gunasena','Matara','0712345678','112333676V'
 INSERT INTO Employee values('E004','Amarapala','Galle','0712345678','125666665V','Waxing out');
 INSERT INTO Employee values('E005','Siridasa','Deniyaya','0712345678','54333676V','DryWashing');
 
+INSERT INTO Garment values('G001','Frock-small',23,10.00,14.00);
+INSERT INTO Garment values('G002','Frock-medium',13,12.00,15.00);
+INSERT INTO Garment values('G003','Lungi',43,10.00,14.00);
+INSERT INTO Garment values('G004','BedSheet',20,15.00,19.00);
+INSERT INTO Garment values('G005','Sarong',25,10.00,14.00);
+INSERT INTO Garment values('G006','Blouse-small',33,8.00,10.00);
+
 INSERT INTO USER values('Lekha',(select password('1234')),1);
 INSERT INTO USER values('Stock',(select password('1234')),2);
 INSERT INTO USER values('Production',(select password('1234')),2);
