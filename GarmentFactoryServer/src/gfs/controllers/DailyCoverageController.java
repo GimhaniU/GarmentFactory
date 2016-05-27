@@ -54,7 +54,7 @@ public class DailyCoverageController {
                     }
 
                 }
-                if(ret>0){
+                if (ret > 0) {
                     conn.commit();
                 }
             } catch (SQLException e) {
@@ -92,6 +92,120 @@ public class DailyCoverageController {
             DBConnection dbconn = DBConnection.getDBConnection();
             Connection conn = dbconn.getConnection();
             String sql = "Update daily_coverage set no_of_cut='" + dailyCoverage.getNo_of_cut() + "',no_of_sewn='" + dailyCoverage.getNo_of_sewn() + "',no_of_dyed='" + dailyCoverage.getNo_of_dyed() + "',no_of_washdry='" + dailyCoverage.getNo_of_washdry() + "',no_of_sewfinish='" + dailyCoverage.getNo_of_sewfinish() + "',no_of_finish='" + dailyCoverage.getNo_of_finish() + "' where dateofcover='" + dailyCoverage.getDateOfCover() + "' and garment_id='" + dailyCoverage.getGarment_id() + "';";
+            int res = DBHandler.setData(conn, sql);
+            return res;
+        } finally {
+            readWriteLock.writeLock().unlock();
+        }
+    }
+
+    public int updateDailyCoverageCut(DailyCoverage dailyCoverage) throws ClassNotFoundException, SQLException {
+        try {
+            readWriteLock.writeLock().lock();
+            DBConnection dbconn = DBConnection.getDBConnection();
+            Connection conn = dbconn.getConnection();
+
+            String sql;
+            if (searchDailyCoverage(dailyCoverage.getDateOfCover(), dailyCoverage.getGarment_id()) != null) {
+                sql = "Update daily_coverage set no_of_cut='" + dailyCoverage.getNo_spec() + "' where dateofcover='" + dailyCoverage.getDateOfCover() + "' and garment_id='" + dailyCoverage.getGarment_id() + "';";
+            } else {
+                sql = "Insert into daily_coverage Values('" + dailyCoverage.getGarment_id() + "','" + dailyCoverage.getDateOfCover() + "','" + dailyCoverage.getNo_spec()+ "','0','0','0','0','0')";
+            }
+            int res = DBHandler.setData(conn, sql);
+            return res;
+        } finally {
+            readWriteLock.writeLock().unlock();
+        }
+    }
+
+    public int updateDailyCoverageSewn(DailyCoverage dailyCoverage) throws ClassNotFoundException, SQLException {
+        try {
+            readWriteLock.writeLock().lock();
+            DBConnection dbconn = DBConnection.getDBConnection();
+            Connection conn = dbconn.getConnection();
+
+            String sql;
+            if (searchDailyCoverage(dailyCoverage.getDateOfCover(), dailyCoverage.getGarment_id()) != null) {
+                sql = "Update daily_coverage set no_of_sewn='" + dailyCoverage.getNo_spec() + "' where dateofcover='" + dailyCoverage.getDateOfCover() + "' and garment_id='" + dailyCoverage.getGarment_id() + "';";
+            } else {
+                sql = "Insert into daily_coverage Values('" + dailyCoverage.getGarment_id() + "','" + dailyCoverage.getDateOfCover() + "','0','"+dailyCoverage.getNo_spec()+"','0','0','0','0')";
+            }
+            int res = DBHandler.setData(conn, sql);
+            return res;
+        } finally {
+            readWriteLock.writeLock().unlock();
+        }
+    }
+
+    public int updateDailyCoverageDyed(DailyCoverage dailyCoverage) throws ClassNotFoundException, SQLException {
+        try {
+            readWriteLock.writeLock().lock();
+            DBConnection dbconn = DBConnection.getDBConnection();
+            Connection conn = dbconn.getConnection();
+
+            String sql;
+            if (searchDailyCoverage(dailyCoverage.getDateOfCover(), dailyCoverage.getGarment_id()) != null) {
+                sql = "Update daily_coverage set no_of_dyed='" + dailyCoverage.getNo_spec() + "' where dateofcover='" + dailyCoverage.getDateOfCover() + "' and garment_id='" + dailyCoverage.getGarment_id() + "';";
+            } else {
+                sql = "Insert into daily_coverage Values('" + dailyCoverage.getGarment_id() + "','" + dailyCoverage.getDateOfCover() + "','0','0','"+dailyCoverage.getNo_spec()+"','0','0','0')";
+            }
+            int res = DBHandler.setData(conn, sql);
+            return res;
+        } finally {
+            readWriteLock.writeLock().unlock();
+        }
+    }
+
+    public int updateDailyCoverageWashDry(DailyCoverage dailyCoverage) throws ClassNotFoundException, SQLException {
+        try {
+            readWriteLock.writeLock().lock();
+            DBConnection dbconn = DBConnection.getDBConnection();
+            Connection conn = dbconn.getConnection();
+
+            String sql;
+            if (searchDailyCoverage(dailyCoverage.getDateOfCover(), dailyCoverage.getGarment_id()) != null) {
+                sql = "Update daily_coverage set no_of_washdry='" + dailyCoverage.getNo_spec() + "' where dateofcover='" + dailyCoverage.getDateOfCover() + "' and garment_id='" + dailyCoverage.getGarment_id() + "';";
+            } else {
+                sql = "Insert into daily_coverage Values('" + dailyCoverage.getGarment_id() + "','" + dailyCoverage.getDateOfCover() + "','0','0','0','"+dailyCoverage.getNo_spec()+"','0','0')";
+            }
+            int res = DBHandler.setData(conn, sql);
+            return res;
+        } finally {
+            readWriteLock.writeLock().unlock();
+        }
+    }
+
+    public int updateDailyCoverageSewfinish(DailyCoverage dailyCoverage) throws ClassNotFoundException, SQLException {
+        try {
+            readWriteLock.writeLock().lock();
+            DBConnection dbconn = DBConnection.getDBConnection();
+            Connection conn = dbconn.getConnection();
+
+            String sql;
+            if (searchDailyCoverage(dailyCoverage.getDateOfCover(), dailyCoverage.getGarment_id()) != null) {
+                sql = "Update daily_coverage set no_of_sewfinish='" + dailyCoverage.getNo_spec() + "' where dateofcover='" + dailyCoverage.getDateOfCover() + "' and garment_id='" + dailyCoverage.getGarment_id() + "';";
+            } else {
+                sql = "Insert into daily_coverage Values('" + dailyCoverage.getGarment_id() + "','" + dailyCoverage.getDateOfCover() + "','0','0','0','0','"+dailyCoverage.getNo_spec()+"','0')";
+            }
+            int res = DBHandler.setData(conn, sql);
+            return res;
+        } finally {
+            readWriteLock.writeLock().unlock();
+        }
+    }
+
+    public int updateDailyCoverageFinish(DailyCoverage dailyCoverage) throws ClassNotFoundException, SQLException {
+        try {
+            readWriteLock.writeLock().lock();
+            DBConnection dbconn = DBConnection.getDBConnection();
+            Connection conn = dbconn.getConnection();
+
+            String sql;
+            if (searchDailyCoverage(dailyCoverage.getDateOfCover(), dailyCoverage.getGarment_id()) != null) {
+                sql = "Update daily_coverage set no_of_finish='" + dailyCoverage.getNo_spec() + "' where dateofcover='" + dailyCoverage.getDateOfCover() + "' and garment_id='" + dailyCoverage.getGarment_id() + "';";
+            } else {
+                sql = "Insert into daily_coverage Values('" + dailyCoverage.getGarment_id() + "','" + dailyCoverage.getDateOfCover() + "','0','0','0','0','0','"+dailyCoverage.getNo_spec()+"')";
+            }
             int res = DBHandler.setData(conn, sql);
             return res;
         } finally {

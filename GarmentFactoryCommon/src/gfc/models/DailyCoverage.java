@@ -20,7 +20,8 @@ public class DailyCoverage implements Serializable {
     private int	no_of_washdry;
     private int	no_of_sewfinish;
     private int	no_of_finish;
-
+    private int no_spec; //to be used in 3 tuples
+    
     public DailyCoverage() {
     }
 
@@ -35,6 +36,20 @@ public class DailyCoverage implements Serializable {
         this.no_of_washdry = no_of_washdry;
         this.no_of_sewfinish = no_of_sewfinish;
         this.no_of_finish = no_of_finish;
+    }
+
+    public DailyCoverage(String garment_id, String dateOfCover, int no_spec) {
+        this.garment_id = garment_id;
+        this.dateOfCover = dateOfCover;
+        this.no_spec=no_spec;
+    }
+
+    public int getNo_spec() {
+        return no_spec;
+    }
+
+    public void setNo_spec(int no_spec) {
+        this.no_spec = no_spec;
     }
     
     

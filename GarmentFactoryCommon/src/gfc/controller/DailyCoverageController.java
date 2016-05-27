@@ -21,6 +21,19 @@ public interface DailyCoverageController extends Remote {
     public int addDailyCoverage(DailyCoverage dailyCoverage) throws RemoteException, SQLException,ClassNotFoundException;
 
     public int updateDailyCoverage(DailyCoverage dailyCoverage) throws RemoteException, SQLException,ClassNotFoundException;
+    
+    public int updateDailyCoverageCut(DailyCoverage dailyCoverage) throws RemoteException, SQLException,ClassNotFoundException;
+    
+    public int updateDailyCoverageSewn(DailyCoverage dailyCoverage) throws RemoteException, SQLException,ClassNotFoundException;
+    
+    public int updateDailyCoverageDyed(DailyCoverage dailyCoverage) throws RemoteException, SQLException,ClassNotFoundException;
+    
+    public int updateDailyCoverageWashDry(DailyCoverage dailyCoverage) throws RemoteException, SQLException,ClassNotFoundException;
+    
+    public int updateDailyCoverageSewfinish(DailyCoverage dailyCoverage) throws RemoteException, SQLException,ClassNotFoundException;
+    
+    public int updateDailyCoverageFinish(DailyCoverage dailyCoverage) throws RemoteException, SQLException,ClassNotFoundException;
+    
 
     public DailyCoverage searchDailyCoverage(String date, String garment_id) throws RemoteException, SQLException,ClassNotFoundException;
 

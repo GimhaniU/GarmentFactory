@@ -24,6 +24,7 @@ import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.text.JTextComponent;
 
 /**
@@ -44,11 +45,13 @@ public class ProductionDetailFrame extends javax.swing.JInternalFrame {
 
             Connector sConnector = Connector.getSConnector();
             garmentController = sConnector.getGarmentController();
-            dailyCoverageController=sConnector.getDailyCoverageController();
-            
+            dailyCoverageController = sConnector.getDailyCoverageController();
+
             DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
             Date date = new Date();
             date_text.setText(dateFormat.format(date));
+
+            add_to_table_button.setEnabled(false);
 
             this.garment_combo.setEditable(true);
             JTextComponent garmentCombo = (JTextComponent) garment_combo.getEditor().getEditorComponent();
@@ -72,6 +75,29 @@ public class ProductionDetailFrame extends javax.swing.JInternalFrame {
                 }
 
             });
+
+            this.garment_inpro_combo.setEditable(true);
+            JTextComponent garmentInCombo = (JTextComponent) garment_inpro_combo.getEditor().getEditorComponent();
+            garmentInCombo.addKeyListener(new KeyAdapter() {
+
+                @Override
+                public void keyReleased(KeyEvent e) {
+                    try {
+                        String item = (String) garment_inpro_combo.getEditor().getItem();
+                        ArrayList<Object> list = new ArrayList();
+
+                        ArrayList<Garment> similar = garmentController.getSimilarGarmentNames(item);
+                        for (int i = 0; i < similar.size(); i++) {
+                            list.add(similar.get(i).getGarment_name() + " " + similar.get(i).getGarment_id());
+                        }
+                        GUIitemsValidator.addItemToCombo(list, garment_inpro_combo);
+                    } catch (ClassNotFoundException | SQLException | RemoteException ex) {
+                        Logger.getLogger(GUIitemsValidator.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+
+                }
+
+            });
         } catch (NotBoundException | MalformedURLException | RemoteException | SQLException | ClassNotFoundException ex) {
             Logger.getLogger(ProductionDetailFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -87,7 +113,7 @@ public class ProductionDetailFrame extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jTabbedPane1 = new javax.swing.JTabbedPane();
+        tab_pane_out = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -96,7 +122,7 @@ public class ProductionDetailFrame extends javax.swing.JInternalFrame {
         jLabel1 = new javax.swing.JLabel();
         date_text = new javax.swing.JTextField();
         jPanel6 = new javax.swing.JPanel();
-        jTabbedPane2 = new javax.swing.JTabbedPane();
+        tabpane_in = new javax.swing.JTabbedPane();
         jPanel8 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jPanel10 = new javax.swing.JPanel();
@@ -165,6 +191,12 @@ public class ProductionDetailFrame extends javax.swing.JInternalFrame {
 
         jLabel2.setText("Select garment:");
 
+        garment_combo.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                garment_comboItemStateChanged(evt);
+            }
+        });
+
         jLabel3.setText("Cuttings:");
 
         jLabel5.setText("Sewings:");
@@ -177,6 +209,42 @@ public class ProductionDetailFrame extends javax.swing.JInternalFrame {
 
         jLabel11.setText("Completions:");
 
+        cutting_spinner.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                cutting_spinnerStateChanged(evt);
+            }
+        });
+
+        sewing_spinner.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                sewing_spinnerStateChanged(evt);
+            }
+        });
+
+        dyeing_spinner.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                dyeing_spinnerStateChanged(evt);
+            }
+        });
+
+        washing_spinner.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                washing_spinnerStateChanged(evt);
+            }
+        });
+
+        completing_spinner.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                completing_spinnerStateChanged(evt);
+            }
+        });
+
+        sewing_finish_spinner.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                sewing_finish_spinnerStateChanged(evt);
+            }
+        });
+
         jPanel11.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         save_by_garment_button.setText("Save");
@@ -187,6 +255,11 @@ public class ProductionDetailFrame extends javax.swing.JInternalFrame {
         });
 
         cancel_button.setText("Cancel");
+        cancel_button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancel_buttonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
         jPanel11.setLayout(jPanel11Layout);
@@ -298,17 +371,36 @@ public class ProductionDetailFrame extends javax.swing.JInternalFrame {
             .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 621, Short.MAX_VALUE)
         );
 
-        jTabbedPane2.addTab("By Garment", jPanel8);
+        tabpane_in.addTab("By Garment", jPanel8);
 
         jLabel4.setText("Select process:");
+
+        processes_combo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cutting", "Sewing", "Dyeing", "Washing and Drying", "Finish sewing", "Finishing" }));
 
         jPanel12.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         jLabel7.setText("Select Garment:");
 
+        garment_inpro_combo.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                garment_inpro_comboItemStateChanged(evt);
+            }
+        });
+
         jLabel10.setText("No.Of Garments:");
 
+        no_of_garments_spinner.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                no_of_garments_spinnerStateChanged(evt);
+            }
+        });
+
         add_to_table_button.setText("Add");
+        add_to_table_button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                add_to_table_buttonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel12Layout = new javax.swing.GroupLayout(jPanel12);
         jPanel12.setLayout(jPanel12Layout);
@@ -375,8 +467,18 @@ public class ProductionDetailFrame extends javax.swing.JInternalFrame {
         jPanel14.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         cancel_button2.setText("Cancel");
+        cancel_button2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancel_button2ActionPerformed(evt);
+            }
+        });
 
         save_by_process_button.setText("Save");
+        save_by_process_button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                save_by_process_buttonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel14Layout = new javax.swing.GroupLayout(jPanel14);
         jPanel14.setLayout(jPanel14Layout);
@@ -453,7 +555,7 @@ public class ProductionDetailFrame extends javax.swing.JInternalFrame {
                 .addContainerGap(134, Short.MAX_VALUE))
         );
 
-        jTabbedPane2.addTab("By Process", jPanel7);
+        tabpane_in.addTab("By Process", jPanel7);
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -461,13 +563,13 @@ public class ProductionDetailFrame extends javax.swing.JInternalFrame {
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTabbedPane2)
+                .addComponent(tabpane_in)
                 .addContainerGap())
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
-                .addComponent(jTabbedPane2)
+                .addComponent(tabpane_in)
                 .addGap(0, 0, 0))
         );
 
@@ -521,7 +623,7 @@ public class ProductionDetailFrame extends javax.swing.JInternalFrame {
                 .addGap(0, 16, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("Add Daily Coverage", jPanel1);
+        tab_pane_out.addTab("Add Daily Coverage", jPanel1);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -534,17 +636,17 @@ public class ProductionDetailFrame extends javax.swing.JInternalFrame {
             .addGap(0, 657, Short.MAX_VALUE)
         );
 
-        jTabbedPane1.addTab("View Production", jPanel2);
+        tab_pane_out.addTab("View Production", jPanel2);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1)
+            .addComponent(tab_pane_out)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1)
+            .addComponent(tab_pane_out)
         );
 
         pack();
@@ -552,38 +654,207 @@ public class ProductionDetailFrame extends javax.swing.JInternalFrame {
 
     private void save_by_garment_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_save_by_garment_buttonActionPerformed
         try {
-            String date=date_text.getText();
-            String garment=garment_combo.getSelectedItem().toString();
-            String garment_id=garment.substring(garment.length()-4,garment.length());
-            int no_of_cut= Integer.valueOf(cutting_spinner.getValue().toString());
-            int no_of_sewn= Integer.valueOf(sewing_spinner.getValue().toString());
-            int no_of_dyed= Integer.valueOf(dyeing_spinner.getValue().toString());
-            int no_of_washdry= Integer.valueOf(washing_spinner.getValue().toString());
-            int no_of_sewfinish= Integer.valueOf(sewing_finish_spinner.getValue().toString());
-            int no_of_finish= Integer.valueOf(completing_spinner.getValue().toString());
-            DailyCoverage dc=new DailyCoverage(garment_id, date, no_of_cut, no_of_sewn, no_of_dyed, no_of_washdry, no_of_sewfinish, no_of_finish);
-            int addDailyCoverage=0;
-            if(dailyCoverageController.searchDailyCoverage(date, garment_id)!=null){
+            String date = date_text.getText();
+            String garment = garment_combo.getSelectedItem().toString();
+            String garment_id = garment.substring(garment.length() - 4, garment.length());
+            int no_of_cut = Integer.valueOf(cutting_spinner.getValue().toString());
+            int no_of_sewn = Integer.valueOf(sewing_spinner.getValue().toString());
+            int no_of_dyed = Integer.valueOf(dyeing_spinner.getValue().toString());
+            int no_of_washdry = Integer.valueOf(washing_spinner.getValue().toString());
+            int no_of_sewfinish = Integer.valueOf(sewing_finish_spinner.getValue().toString());
+            int no_of_finish = Integer.valueOf(completing_spinner.getValue().toString());
+            DailyCoverage dc = new DailyCoverage(garment_id, date, no_of_cut, no_of_sewn, no_of_dyed, no_of_washdry, no_of_sewfinish, no_of_finish);
+            int addDailyCoverage = 0;
+            if (dailyCoverageController.searchDailyCoverage(date, garment_id) != null) {
                 addDailyCoverage = dailyCoverageController.updateDailyCoverage(dc);
-            }else{
+            } else {
                 addDailyCoverage = dailyCoverageController.addDailyCoverage(dc);
             }
-            if(addDailyCoverage>0){
-                JOptionPane.showMessageDialog(this,"Daily coverage added!");
-            }else{
-                JOptionPane.showMessageDialog(this,"Daily coverage update was failed!");
+            if (addDailyCoverage > 0) {
+                JOptionPane.showMessageDialog(this, "Daily coverage added!");
+            } else {
+                JOptionPane.showMessageDialog(this, "Daily coverage update was failed!");
             }
+            garment_combo.setSelectedItem("");
         } catch (RemoteException | SQLException | ClassNotFoundException ex) {
             Logger.getLogger(ProductionDetailFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_save_by_garment_buttonActionPerformed
 
+    private void garment_comboItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_garment_comboItemStateChanged
+        try {
+            String date = date_text.getText();
+            String garment = garment_combo.getSelectedItem().toString();
+            String garment_id = "";
+            if (garment.length() > 5) {
+                garment_id = garment.substring(garment.length() - 4, garment.length());
+            }
+            DailyCoverage searchDailyCoverage = dailyCoverageController.searchDailyCoverage(date, garment_id);
+            if (searchDailyCoverage != null) {
+                cutting_spinner.setValue(searchDailyCoverage.getNo_of_cut());
+                sewing_spinner.setValue(searchDailyCoverage.getNo_of_sewn());
+                dyeing_spinner.setValue(searchDailyCoverage.getNo_of_dyed());
+                washing_spinner.setValue(searchDailyCoverage.getNo_of_washdry());
+                sewing_finish_spinner.setValue(searchDailyCoverage.getNo_of_sewfinish());
+                completing_spinner.setValue(searchDailyCoverage.getNo_of_finish());
+            } else {
+                cutting_spinner.setValue(0);
+                sewing_spinner.setValue(0);
+                dyeing_spinner.setValue(0);
+                washing_spinner.setValue(0);
+                sewing_finish_spinner.setValue(0);
+                completing_spinner.setValue(0);
+            }
+        } catch (RemoteException | SQLException | ClassNotFoundException ex) {
+            Logger.getLogger(ProductionDetailFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+
+    }//GEN-LAST:event_garment_comboItemStateChanged
+
+    private void cancel_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancel_buttonActionPerformed
+        garment_combo.setSelectedItem(null);
+    }//GEN-LAST:event_cancel_buttonActionPerformed
+
+    private void cancel_button2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancel_button2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cancel_button2ActionPerformed
+
+    private void save_by_process_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_save_by_process_buttonActionPerformed
+
+        String date = date_text.getText();
+        DefaultTableModel dtm = (DefaultTableModel) process_table.getModel();
+        int res=1;
+        for (int i = 0; i < dtm.getRowCount(); i++) {
+            String garment_id = dtm.getValueAt(i, 1).toString();
+
+            try {
+                String process = dtm.getValueAt(i, 0).toString();
+                int no_of_cut;
+                int no_of_sewn;
+                int no_of_dyed;
+                int no_of_wash_dry;
+                int no_of_sewfinish;
+                int no_of_finish;
+                DailyCoverage dc;
+                switch (process) {
+                    case "Cutting":
+                        no_of_cut = Integer.valueOf(dtm.getValueAt(i, 3).toString());
+                        dc = new DailyCoverage(garment_id, date, no_of_cut);
+                        res=dailyCoverageController.updateDailyCoverageCut(dc);
+                        break;
+                    case "Sewing":
+                        no_of_sewn = Integer.valueOf(dtm.getValueAt(i, 3).toString());
+                        dc = new DailyCoverage(garment_id, date, no_of_sewn);
+                        res=dailyCoverageController.updateDailyCoverageSewn(dc);
+                        break;
+                    case "Dyeing":
+                        no_of_dyed = Integer.valueOf(dtm.getValueAt(i, 3).toString());
+                        dc = new DailyCoverage(garment_id, date, no_of_dyed);
+                        res=dailyCoverageController.updateDailyCoverageDyed(dc);
+                        break;
+                    case "Washing and Drying":
+                        no_of_wash_dry = Integer.valueOf(dtm.getValueAt(i, 3).toString());
+                        dc = new DailyCoverage(garment_id, date, no_of_wash_dry);
+                        res=dailyCoverageController.updateDailyCoverageWashDry(dc);
+                        break;
+                    case "Finish sewing":
+                        no_of_sewfinish = Integer.valueOf(dtm.getValueAt(i, 3).toString());
+                        dc = new DailyCoverage(garment_id, date, no_of_sewfinish);
+                        res=dailyCoverageController.updateDailyCoverageSewfinish(dc);
+                        break;
+                    case "Finishing":
+                        no_of_finish = Integer.valueOf(dtm.getValueAt(i, 3).toString());
+                        dc = new DailyCoverage(garment_id, date, no_of_finish);
+                        res=dailyCoverageController.updateDailyCoverageFinish(dc);
+                        break;
+                }
+                if(res<=0){
+                    JOptionPane.showMessageDialog(this, "Daily Coverages failed!");
+                    break;
+                }
+            } catch (RemoteException | SQLException | ClassNotFoundException ex) {
+                Logger.getLogger(ProductionDetailFrame.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+        }
+        if(res>0){
+            JOptionPane.showMessageDialog(this, "Daily Coverages successfully added!");
+        }
+    }//GEN-LAST:event_save_by_process_buttonActionPerformed
+
+    private void add_to_table_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_add_to_table_buttonActionPerformed
+        String process = processes_combo.getSelectedItem().toString();
+        String garment = garment_inpro_combo.getSelectedItem().toString();
+        String garment_id = garment.substring(garment.length() - 4, garment.length());
+        String garment_name = garment.substring(0, garment.length() - 4);
+        int no_of_garments = Integer.valueOf(no_of_garments_spinner.getValue().toString());
+
+        DefaultTableModel tableModel = (DefaultTableModel) process_table.getModel();
+        boolean added = false;
+        //to check if 1 type is adding again
+        for (int i = 0; i < tableModel.getRowCount(); i++) {
+            if (tableModel.getValueAt(i, 0).toString().equals(process) && tableModel.getValueAt(i, 1).equals(garment_id)) {
+                JOptionPane.showMessageDialog(this, "Already Added! Edit in table.");
+                added = true;
+                break;
+            }
+        }
+        if (!added) {
+            Object[] rawdata = {process, garment_id, garment_name, no_of_garments};
+            tableModel.addRow(rawdata);
+        }
+
+        no_of_garments_spinner.setValue(0);
+        garment_inpro_combo.setSelectedItem(null);
+        add_to_table_button.setEnabled(false);
+    }//GEN-LAST:event_add_to_table_buttonActionPerformed
+
+    private void no_of_garments_spinnerStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_no_of_garments_spinnerStateChanged
+        GUIitemsValidator.limitminimumSpinnerValue(no_of_garments_spinner, 0);
+        if (garment_inpro_combo.getSelectedItem() != null && no_of_garments_spinner.getValue().toString() != "0") {
+            add_to_table_button.setEnabled(true);
+        }
+    }//GEN-LAST:event_no_of_garments_spinnerStateChanged
+
+    private void garment_inpro_comboItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_garment_inpro_comboItemStateChanged
+        if (garment_inpro_combo.getSelectedItem() != null && no_of_garments_spinner.getValue().toString() != "0") {
+            add_to_table_button.setEnabled(true);
+        }
+    }//GEN-LAST:event_garment_inpro_comboItemStateChanged
+
+    private void cutting_spinnerStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_cutting_spinnerStateChanged
+        GUIitemsValidator.limitminimumSpinnerValue(cutting_spinner, 0);
+    }//GEN-LAST:event_cutting_spinnerStateChanged
+
+    private void sewing_spinnerStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_sewing_spinnerStateChanged
+        GUIitemsValidator.limitminimumSpinnerValue(sewing_spinner, 0);
+    }//GEN-LAST:event_sewing_spinnerStateChanged
+
+    private void dyeing_spinnerStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_dyeing_spinnerStateChanged
+        GUIitemsValidator.limitminimumSpinnerValue(dyeing_spinner, 0);
+    }//GEN-LAST:event_dyeing_spinnerStateChanged
+
+    private void washing_spinnerStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_washing_spinnerStateChanged
+        GUIitemsValidator.limitminimumSpinnerValue(washing_spinner, 0);
+    }//GEN-LAST:event_washing_spinnerStateChanged
+
+    private void sewing_finish_spinnerStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_sewing_finish_spinnerStateChanged
+        GUIitemsValidator.limitminimumSpinnerValue(sewing_finish_spinner, 0);
+    }//GEN-LAST:event_sewing_finish_spinnerStateChanged
+
+    private void completing_spinnerStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_completing_spinnerStateChanged
+        GUIitemsValidator.limitminimumSpinnerValue(completing_spinner, 0);
+    }//GEN-LAST:event_completing_spinnerStateChanged
+
     void focustabbedpane(int num) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+
+        tab_pane_out.setSelectedIndex(num);
+
     }
 
     void requestFoucsForm() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        garment_combo.requestFocus();
     }
 
 
@@ -626,8 +897,6 @@ public class ProductionDetailFrame extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTabbedPane jTabbedPane2;
     private javax.swing.JSpinner no_of_garments_spinner;
     private javax.swing.JTable process_table;
     private javax.swing.JComboBox<String> processes_combo;
@@ -635,6 +904,8 @@ public class ProductionDetailFrame extends javax.swing.JInternalFrame {
     private javax.swing.JButton save_by_process_button;
     private javax.swing.JSpinner sewing_finish_spinner;
     private javax.swing.JSpinner sewing_spinner;
+    private javax.swing.JTabbedPane tab_pane_out;
+    private javax.swing.JTabbedPane tabpane_in;
     private javax.swing.JSpinner washing_spinner;
     // End of variables declaration//GEN-END:variables
 }

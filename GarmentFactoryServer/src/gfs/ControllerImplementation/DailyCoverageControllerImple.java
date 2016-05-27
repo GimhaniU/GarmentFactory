@@ -43,4 +43,34 @@ public class DailyCoverageControllerImple extends UnicastRemoteObject implements
     public DailyCoverage searchDailyCoverage(String date, String garment_id) throws RemoteException, SQLException, ClassNotFoundException {
         return dailyCoverageController.searchDailyCoverage( date,garment_id);
     }
+
+    @Override
+    public int updateDailyCoverageCut(DailyCoverage dailyCoverage) throws RemoteException, SQLException, ClassNotFoundException {
+       return dailyCoverageController.updateDailyCoverageCut( dailyCoverage);
+    }
+
+    @Override
+    public int updateDailyCoverageSewn(DailyCoverage dailyCoverage) throws RemoteException, SQLException, ClassNotFoundException {
+        return dailyCoverageController.updateDailyCoverageSewn( dailyCoverage);
+    }
+
+    @Override
+    public int updateDailyCoverageDyed(DailyCoverage dailyCoverage) throws RemoteException, SQLException, ClassNotFoundException {
+        return dailyCoverageController.updateDailyCoverageDyed( dailyCoverage);
+    }
+
+    @Override
+    public int updateDailyCoverageWashDry(DailyCoverage dailyCoverage) throws RemoteException, SQLException, ClassNotFoundException {
+        return dailyCoverageController.updateDailyCoverageWashDry( dailyCoverage);
+    }
+
+    @Override
+    public int updateDailyCoverageSewfinish(DailyCoverage dailyCoverage) throws RemoteException, SQLException, ClassNotFoundException {
+        return dailyCoverageController.updateDailyCoverageSewfinish( dailyCoverage);
+    }
+
+    @Override
+    public int updateDailyCoverageFinish(DailyCoverage dailyCoverage) throws RemoteException, SQLException, ClassNotFoundException {
+        return dailyCoverageController.updateDailyCoverageFinish( dailyCoverage);
+    }
 }
