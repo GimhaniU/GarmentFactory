@@ -161,6 +161,7 @@ public class ProductionDetailFrame extends javax.swing.JInternalFrame {
         cancel_button2 = new javax.swing.JButton();
         save_by_process_button = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
+        jPanel15 = new javax.swing.JPanel();
 
         jPanel5.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
@@ -620,7 +621,7 @@ public class ProductionDetailFrame extends javax.swing.JInternalFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 16, Short.MAX_VALUE))
+                .addGap(0, 32, Short.MAX_VALUE))
         );
 
         tab_pane_out.addTab("Add Daily Coverage", jPanel1);
@@ -633,10 +634,23 @@ public class ProductionDetailFrame extends javax.swing.JInternalFrame {
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 657, Short.MAX_VALUE)
+            .addGap(0, 673, Short.MAX_VALUE)
         );
 
-        tab_pane_out.addTab("View Production", jPanel2);
+        tab_pane_out.addTab("Add cloth cuttings", jPanel2);
+
+        javax.swing.GroupLayout jPanel15Layout = new javax.swing.GroupLayout(jPanel15);
+        jPanel15.setLayout(jPanel15Layout);
+        jPanel15Layout.setHorizontalGroup(
+            jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 638, Short.MAX_VALUE)
+        );
+        jPanel15Layout.setVerticalGroup(
+            jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 673, Short.MAX_VALUE)
+        );
+
+        tab_pane_out.addTab("View Production", jPanel15);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -781,6 +795,8 @@ public class ProductionDetailFrame extends javax.swing.JInternalFrame {
         if(res>0){
             JOptionPane.showMessageDialog(this, "Daily Coverages successfully added!");
         }
+        process_table.removeAll();
+        
     }//GEN-LAST:event_save_by_process_buttonActionPerformed
 
     private void add_to_table_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_add_to_table_buttonActionPerformed
@@ -885,6 +901,7 @@ public class ProductionDetailFrame extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel12;
     private javax.swing.JPanel jPanel13;
     private javax.swing.JPanel jPanel14;
+    private javax.swing.JPanel jPanel15;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
