@@ -73,4 +73,9 @@ public class RemoteFactoryImple extends UnicastRemoteObject implements RemoteFac
         return new BackUpControllerImple();
     }
 
+    @Override
+    public PieceCoverageController getPieceCoverageController() throws RemoteException, SQLException, ClassNotFoundException {
+        return new PieceCoverageControllerImple();
+    }
+
 }

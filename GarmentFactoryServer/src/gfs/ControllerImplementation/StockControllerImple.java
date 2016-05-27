@@ -5,20 +5,34 @@
  */
 package gfs.ControllerImplementation;
 
+import gfc.models.Stock;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
-import gfc.controller.StockController;
+import gfs.controllers.StockController;
+import java.sql.SQLException;
 
 /**
  *
  * @author Gimhani Uthpala
  */
-public class StockControllerImple extends UnicastRemoteObject implements StockController{
+public class StockControllerImple extends UnicastRemoteObject implements gfc.controller.StockController{
     private final StockController stockController;
 
     public StockControllerImple() throws RemoteException {
         super();
         this.stockController = new StockController() {} ;
     }
+
+    @Override
+    public boolean updateStock(Stock stock) throws RemoteException, SQLException, ClassNotFoundException {
+        return stockController.updateStock(stock);
+    }
+
+    @Override
+    public String getLastStockId() throws RemoteException, SQLException, ClassNotFoundException {
+        return stockController.getLastStockId();
+    }
+
+    
     
 }

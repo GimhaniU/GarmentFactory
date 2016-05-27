@@ -5,15 +5,29 @@
  */
 package gfcl.views;
 
+import gfc.controller.DailyMaterialUsageController;
 import gfc.controller.MaterialController;
+import gfc.controller.StockController;
+import gfc.models.DailyMaterialUsage;
+import gfc.models.Material;
+import gfc.models.Stock;
+import gfcl.common_classes.GUIitemsValidator;
 import gfcl.common_classes.IdGenerator;
 import gfcl.connector.Connector;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.net.MalformedURLException;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import javax.swing.text.JTextComponent;
 
 /**
  *
@@ -22,6 +36,8 @@ import java.util.logging.Logger;
 public class StockDetailFrame extends javax.swing.JInternalFrame {
 
     private MaterialController materialController;
+    private StockController stockController;
+    private DailyMaterialUsageController dailyMaterialUsageController;
 
     /**
      * Creates new form StockDetailFrame
@@ -31,7 +47,64 @@ public class StockDetailFrame extends javax.swing.JInternalFrame {
             initComponents();
             Connector sConnector = Connector.getSConnector();
             materialController = sConnector.getMaterialController();
+            stockController = sConnector.getStockController();
+            dailyMaterialUsageController = sConnector.getDailyMaterialUsageController();
+
             mat_id_text.setText(IdGenerator.generateNextMaterialID(materialController.getLastMaterialId()));
+            stock_id_text.setText(IdGenerator.generateNextStockID(stockController.getLastStockId()));
+
+            DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            Date date = new Date();
+            stock_date_text.setText(dateFormat.format(date));
+            daily_date_text.setText(dateFormat.format(date));
+            new_date_text.setText(dateFormat.format(date));
+
+            add_stock_button.setEnabled(false);
+            this.materialtypecombo.setEditable(true);
+            JTextComponent matCombo = (JTextComponent) materialtypecombo.getEditor().getEditorComponent();
+            matCombo.addKeyListener(new KeyAdapter() {
+
+                @Override
+                public void keyReleased(KeyEvent e) {
+                    try {
+                        String item = (String) materialtypecombo.getEditor().getItem();
+                        ArrayList<Object> list = new ArrayList();
+
+                        ArrayList<Material> similar = materialController.getSimilarMaterials(item);
+                        for (int i = 0; i < similar.size(); i++) {
+                            list.add(similar.get(i).getMat_name() + "-" + similar.get(i).getMat_type() + "-" + similar.get(i).getMat_id());
+                        }
+                        GUIitemsValidator.addItemToCombo(list, materialtypecombo);
+                    } catch (ClassNotFoundException | SQLException | RemoteException ex) {
+                        Logger.getLogger(GUIitemsValidator.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+
+                }
+
+            });
+
+            this.daily_materialtypecombo.setEditable(true);
+            JTextComponent d_matCombo = (JTextComponent) daily_materialtypecombo.getEditor().getEditorComponent();
+            d_matCombo.addKeyListener(new KeyAdapter() {
+
+                @Override
+                public void keyReleased(KeyEvent e) {
+                    try {
+                        String item = (String) daily_materialtypecombo.getEditor().getItem();
+                        ArrayList<Object> list = new ArrayList();
+
+                        ArrayList<Material> similar = materialController.getSimilarMaterials(item);
+                        for (int i = 0; i < similar.size(); i++) {
+                            list.add(similar.get(i).getMat_name() + "-" + similar.get(i).getMat_type() + "-" + similar.get(i).getMat_id());
+                        }
+                        GUIitemsValidator.addItemToCombo(list, daily_materialtypecombo);
+                    } catch (ClassNotFoundException | SQLException | RemoteException ex) {
+                        Logger.getLogger(GUIitemsValidator.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+
+                }
+
+            });
         } catch (NotBoundException | MalformedURLException | RemoteException | SQLException | ClassNotFoundException ex) {
             Logger.getLogger(StockDetailFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -61,42 +134,56 @@ public class StockDetailFrame extends javax.swing.JInternalFrame {
         unitprice_text = new javax.swing.JTextField();
         add_stock_button = new javax.swing.JButton();
         amount_text = new javax.swing.JTextField();
+        amount_unit_label_2 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         previous_stock_label = new javax.swing.JLabel();
         current_stock_label = new javax.swing.JLabel();
         current_stock_text = new javax.swing.JTextField();
         previous_stock_text = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        mat_type_text = new javax.swing.JTextField();
+        jPanel8 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        stock_date_text = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        stock_id_text = new javax.swing.JTextField();
         add_daily_usage_panel = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
         daily_prev_stock_label = new javax.swing.JLabel();
         daily_curr_stock_label = new javax.swing.JLabel();
-        daliy_current_stock_text = new javax.swing.JTextField();
+        daily_current_stock_text = new javax.swing.JTextField();
         daily_pre_stock_text = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        daily_material_type_text = new javax.swing.JTextField();
         jPanel7 = new javax.swing.JPanel();
-        daily_mat_type_text = new javax.swing.JLabel();
+        daily_mat_type_label = new javax.swing.JLabel();
         daily_materialtypecombo = new javax.swing.JComboBox<>();
         daily_amount_label = new javax.swing.JLabel();
-        daily_unitprice_label = new javax.swing.JLabel();
-        daily_unitprice_text = new javax.swing.JTextField();
         daily_addbutton = new javax.swing.JButton();
         daily_amount_text = new javax.swing.JTextField();
         date_label = new javax.swing.JLabel();
-        date_text = new javax.swing.JTextField();
+        daily_date_text = new javax.swing.JTextField();
+        jSeparator1 = new javax.swing.JSeparator();
+        amount_unit_label_1 = new javax.swing.JLabel();
         add_new_panel = new javax.swing.JPanel();
         jPanel9 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         jPanel10 = new javax.swing.JPanel();
+        intial_stock_panel = new javax.swing.JPanel();
+        initial_stock_amount_label = new javax.swing.JLabel();
+        initial_stock_amount_text = new javax.swing.JTextField();
+        intialstock_unit_price_label = new javax.swing.JLabel();
+        initial_stock_unitprice_text = new javax.swing.JTextField();
+        amount_unit_label = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        new_date_text = new javax.swing.JTextField();
+        jPanel11 = new javax.swing.JPanel();
         material_id_label = new javax.swing.JLabel();
         mat_id_text = new javax.swing.JTextField();
         mat_name_label = new javax.swing.JLabel();
         mat_name_text = new javax.swing.JTextField();
         material_type_label = new javax.swing.JLabel();
         mat_type_combo = new javax.swing.JComboBox<>();
-        intial_stock_panel = new javax.swing.JPanel();
-        initial_stock_amount_label = new javax.swing.JLabel();
-        initial_stock_amount_text = new javax.swing.JTextField();
-        intialstock_unit_price_label = new javax.swing.JLabel();
-        initial_stock_unitprice_text = new javax.swing.JTextField();
         jPanel12 = new javax.swing.JPanel();
         addnew_mat_button = new javax.swing.JButton();
         cancelbutton = new javax.swing.JButton();
@@ -105,11 +192,39 @@ public class StockDetailFrame extends javax.swing.JInternalFrame {
 
         mat_type_label.setText("Material type:");
 
+        materialtypecombo.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                materialtypecomboItemStateChanged(evt);
+            }
+        });
+        materialtypecombo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                materialtypecomboActionPerformed(evt);
+            }
+        });
+
         amount_label.setText("Amount: ");
 
         unit_price_label.setText("Unit price:");
 
-        add_stock_button.setText("Add");
+        unitprice_text.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                unitprice_textKeyReleased(evt);
+            }
+        });
+
+        add_stock_button.setText("Add to stock");
+        add_stock_button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                add_stock_buttonActionPerformed(evt);
+            }
+        });
+
+        amount_text.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                amount_textKeyReleased(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -130,23 +245,29 @@ public class StockDetailFrame extends javax.swing.JInternalFrame {
                         .addGap(23, 23, 23)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(unitprice_text)
-                            .addComponent(amount_text, javax.swing.GroupLayout.DEFAULT_SIZE, 135, Short.MAX_VALUE)))
+                            .addComponent(amount_text, javax.swing.GroupLayout.DEFAULT_SIZE, 135, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(amount_unit_label_2, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGap(261, 261, 261)
                         .addComponent(add_stock_button, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(260, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(mat_type_label)
-                    .addComponent(materialtypecombo, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(mat_type_label))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(materialtypecombo, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(amount_label)
-                    .addComponent(amount_text, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(amount_text, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(amount_unit_label_2, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(unit_price_label)
@@ -156,41 +277,94 @@ public class StockDetailFrame extends javax.swing.JInternalFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jPanel5.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder("Last added"));
 
         previous_stock_label.setText("Previous Stock:");
 
         current_stock_label.setText("Current Stock:");
+
+        current_stock_text.setEditable(false);
+
+        previous_stock_text.setEditable(false);
+
+        jLabel2.setText("Material type:");
+
+        mat_type_text.setEditable(false);
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
-                .addGap(41, 41, 41)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addGap(51, 51, 51)
                         .addComponent(current_stock_label)
-                        .addGap(28, 28, 28)
+                        .addGap(18, 18, 18)
                         .addComponent(current_stock_text, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel5Layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
                         .addComponent(previous_stock_label)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
                         .addComponent(previous_stock_text, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(mat_type_text, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(182, 182, 182))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(mat_type_text, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(previous_stock_text, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(previous_stock_label))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(previous_stock_label)
-                    .addComponent(previous_stock_text, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(current_stock_text, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(current_stock_label))
+                .addGap(25, 25, 25))
+        );
+
+        jPanel8.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        jLabel1.setText("Date:");
+
+        jLabel3.setText("Stock ID:");
+
+        stock_id_text.setEditable(false);
+
+        javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
+        jPanel8.setLayout(jPanel8Layout);
+        jPanel8Layout.setHorizontalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel3)
                 .addGap(18, 18, 18)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(current_stock_label)
-                    .addComponent(current_stock_text, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(33, Short.MAX_VALUE))
+                .addComponent(stock_id_text, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(18, 18, 18)
+                .addComponent(stock_date_text, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(19, 19, 19))
+        );
+        jPanel8Layout.setVerticalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel8Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(stock_date_text, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3)
+                    .addComponent(stock_id_text, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(44, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -200,18 +374,21 @@ public class StockDetailFrame extends javax.swing.JInternalFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(43, Short.MAX_VALUE))
+                    .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(201, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
+                .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(188, Short.MAX_VALUE))
+                .addContainerGap(121, Short.MAX_VALUE))
         );
 
         jScrollPane2.setViewportView(jPanel3);
@@ -222,24 +399,32 @@ public class StockDetailFrame extends javax.swing.JInternalFrame {
             add_stock_entry_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(add_stock_entry_panelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 718, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 590, Short.MAX_VALUE)
                 .addContainerGap())
         );
         add_stock_entry_panelLayout.setVerticalGroup(
             add_stock_entry_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(add_stock_entry_panelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 457, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 549, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
         tabpane.addTab("Add stock entry", add_stock_entry_panel);
 
-        jPanel6.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder("Last updated"));
 
         daily_prev_stock_label.setText("Previous Stock:");
 
         daily_curr_stock_label.setText("Current Stock:");
+
+        daily_current_stock_text.setEditable(false);
+
+        daily_pre_stock_text.setEditable(false);
+
+        jLabel4.setText("Material :");
+
+        daily_material_type_text.setEditable(false);
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -247,40 +432,59 @@ public class StockDetailFrame extends javax.swing.JInternalFrame {
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addGap(41, 41, 41)
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addComponent(daily_curr_stock_label)
-                        .addGap(28, 28, 28)
-                        .addComponent(daliy_current_stock_text, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addComponent(daily_prev_stock_label)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(daily_pre_stock_text, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(daily_prev_stock_label)
+                    .addComponent(jLabel4)
+                    .addComponent(daily_curr_stock_label))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(daily_current_stock_text, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(daily_pre_stock_text, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(daily_material_type_text, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
-                .addGap(18, 18, 18)
+                .addGap(4, 4, 4)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(daily_material_type_text, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(daily_prev_stock_label)
                     .addComponent(daily_pre_stock_text, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(daily_curr_stock_label)
-                    .addComponent(daliy_current_stock_text, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(33, Short.MAX_VALUE))
+                    .addComponent(daily_current_stock_text, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(29, Short.MAX_VALUE))
         );
 
         jPanel7.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        daily_mat_type_text.setText("Material type:");
+        daily_mat_type_label.setText("Material type:");
+
+        daily_materialtypecombo.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                daily_materialtypecomboItemStateChanged(evt);
+            }
+        });
 
         daily_amount_label.setText("Amount: ");
 
-        daily_unitprice_label.setText("Unit price:");
-
         daily_addbutton.setText("Add");
+        daily_addbutton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                daily_addbuttonActionPerformed(evt);
+            }
+        });
+
+        daily_amount_text.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                daily_amount_textKeyReleased(evt);
+            }
+        });
 
         date_label.setText("Date:");
 
@@ -291,48 +495,52 @@ public class StockDetailFrame extends javax.swing.JInternalFrame {
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel7Layout.createSequentialGroup()
-                        .addGap(265, 265, 265)
-                        .addComponent(daily_addbutton, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel7Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(daily_mat_type_text)
-                        .addGap(23, 23, 23)
-                        .addComponent(daily_materialtypecombo, javax.swing.GroupLayout.PREFERRED_SIZE, 318, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel7Layout.createSequentialGroup()
-                        .addGap(221, 221, 221)
                         .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(daily_amount_label)
-                            .addComponent(daily_unitprice_label)
-                            .addComponent(date_label))
-                        .addGap(23, 23, 23)
-                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(daily_unitprice_text)
-                            .addComponent(daily_amount_text, javax.swing.GroupLayout.DEFAULT_SIZE, 135, Short.MAX_VALUE)
-                            .addComponent(date_text))))
-                .addContainerGap(286, Short.MAX_VALUE))
+                            .addGroup(jPanel7Layout.createSequentialGroup()
+                                .addGap(265, 265, 265)
+                                .addComponent(daily_addbutton, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel7Layout.createSequentialGroup()
+                                .addGap(14, 14, 14)
+                                .addComponent(date_label)
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(daily_date_text, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(jPanel7Layout.createSequentialGroup()
+                                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(daily_mat_type_label)
+                                            .addComponent(daily_amount_label))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(jPanel7Layout.createSequentialGroup()
+                                                .addComponent(daily_amount_text, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                .addComponent(amount_unit_label_1, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addComponent(daily_materialtypecombo, javax.swing.GroupLayout.PREFERRED_SIZE, 318, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                        .addGap(0, 122, Short.MAX_VALUE))
+                    .addComponent(jSeparator1))
+                .addContainerGap())
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(daily_mat_type_text)
-                    .addComponent(daily_materialtypecombo, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
+                    .addComponent(daily_date_text, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(date_label))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(date_label)
-                    .addComponent(date_text, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(daily_mat_type_label)
+                    .addComponent(daily_materialtypecombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(daily_amount_label)
-                    .addComponent(daily_amount_text, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(daily_unitprice_label)
-                    .addComponent(daily_unitprice_text, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(daily_addbutton, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                    .addComponent(daily_amount_text, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(amount_unit_label_1, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(31, 31, 31)
+                .addComponent(daily_addbutton)
+                .addGap(22, 22, 22))
         );
 
         javax.swing.GroupLayout add_daily_usage_panelLayout = new javax.swing.GroupLayout(add_daily_usage_panel);
@@ -353,22 +561,12 @@ public class StockDetailFrame extends javax.swing.JInternalFrame {
                 .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(139, Short.MAX_VALUE))
+                .addContainerGap(206, Short.MAX_VALUE))
         );
 
         tabpane.addTab("Add daily usage", add_daily_usage_panel);
 
-        material_id_label.setText("Material ID:");
-
-        mat_id_text.setEditable(false);
-
-        mat_name_label.setText("Material Name:");
-
-        material_type_label.setText("Material type:");
-
-        mat_type_combo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cloth", "Dye", "Wax", "Thread" }));
-
-        intial_stock_panel.setBorder(javax.swing.BorderFactory.createTitledBorder("Initial Stcok"));
+        intial_stock_panel.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Initial Stcok"));
 
         initial_stock_amount_label.setText("Amount: ");
 
@@ -387,20 +585,86 @@ public class StockDetailFrame extends javax.swing.JInternalFrame {
                 .addGroup(intial_stock_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(initial_stock_amount_text, javax.swing.GroupLayout.DEFAULT_SIZE, 236, Short.MAX_VALUE)
                     .addComponent(initial_stock_unitprice_text))
-                .addContainerGap(331, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(amount_unit_label, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         intial_stock_panelLayout.setVerticalGroup(
             intial_stock_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(intial_stock_panelLayout.createSequentialGroup()
-                .addGroup(intial_stock_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(initial_stock_amount_text, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(initial_stock_amount_label))
+                .addGroup(intial_stock_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(intial_stock_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(initial_stock_amount_text, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(initial_stock_amount_label))
+                    .addGroup(intial_stock_panelLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(amount_unit_label, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(intial_stock_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(intialstock_unit_price_label)
                     .addComponent(initial_stock_unitprice_text, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(50, 50, 50))
         );
+
+        jLabel5.setText("Date:");
+
+        jPanel11.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        material_id_label.setText("Material ID:");
+
+        mat_id_text.setEditable(false);
+
+        mat_name_label.setText("Material Name:");
+
+        material_type_label.setText("Material type:");
+
+        mat_type_combo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cloth", "Dye", "Wax", "Thread" }));
+        mat_type_combo.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                mat_type_comboItemStateChanged(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
+        jPanel11.setLayout(jPanel11Layout);
+        jPanel11Layout.setHorizontalGroup(
+            jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel11Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel11Layout.createSequentialGroup()
+                        .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(mat_name_label)
+                            .addComponent(material_id_label))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(mat_id_text, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(mat_name_text, javax.swing.GroupLayout.PREFERRED_SIZE, 381, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel11Layout.createSequentialGroup()
+                        .addComponent(material_type_label)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(mat_type_combo, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(27, Short.MAX_VALUE))
+        );
+        jPanel11Layout.setVerticalGroup(
+            jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel11Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(material_id_label)
+                    .addComponent(mat_id_text, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(6, 6, 6)
+                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(mat_name_label)
+                    .addComponent(mat_name_text, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
+                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(material_type_label)
+                    .addComponent(mat_type_combo, javax.swing.GroupLayout.DEFAULT_SIZE, 27, Short.MAX_VALUE))
+                .addGap(24, 24, 24))
+        );
+
+        jPanel12.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         addnew_mat_button.setText("Save");
         addnew_mat_button.addActionListener(new java.awt.event.ActionListener() {
@@ -421,20 +685,20 @@ public class StockDetailFrame extends javax.swing.JInternalFrame {
         jPanel12Layout.setHorizontalGroup(
             jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel12Layout.createSequentialGroup()
-                .addContainerGap(387, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(addnew_mat_button, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addComponent(cancelbutton, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(29, 29, 29))
+                .addContainerGap())
         );
         jPanel12Layout.setVerticalGroup(
             jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel12Layout.createSequentialGroup()
-                .addContainerGap()
+                .addContainerGap(15, Short.MAX_VALUE)
                 .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(addnew_mat_button, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cancelbutton, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(24, Short.MAX_VALUE))
+                    .addComponent(cancelbutton, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(addnew_mat_button, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
@@ -443,43 +707,30 @@ public class StockDetailFrame extends javax.swing.JInternalFrame {
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel10Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel10Layout.createSequentialGroup()
-                        .addComponent(material_id_label)
+                        .addComponent(jLabel5)
                         .addGap(18, 18, 18)
-                        .addComponent(mat_id_text, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel10Layout.createSequentialGroup()
-                        .addComponent(mat_name_label)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(mat_name_text, javax.swing.GroupLayout.PREFERRED_SIZE, 412, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel10Layout.createSequentialGroup()
-                        .addComponent(material_type_label)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(mat_type_combo, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(intial_stock_panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(58, Short.MAX_VALUE))
+                        .addComponent(new_date_text, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jPanel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(intial_stock_panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(524, Short.MAX_VALUE))
         );
         jPanel10Layout.setVerticalGroup(
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel10Layout.createSequentialGroup()
-                .addGap(17, 17, 17)
+                .addContainerGap()
                 .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(mat_id_text, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(material_id_label))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(mat_name_text, javax.swing.GroupLayout.DEFAULT_SIZE, 27, Short.MAX_VALUE)
-                    .addComponent(mat_name_label))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(mat_type_combo, javax.swing.GroupLayout.DEFAULT_SIZE, 27, Short.MAX_VALUE)
-                    .addComponent(material_type_label))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(intial_stock_panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5)
+                    .addComponent(new_date_text, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
+                .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(intial_stock_panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(118, 118, 118))
+                .addContainerGap(313, Short.MAX_VALUE))
         );
 
         jScrollPane3.setViewportView(jPanel10);
@@ -488,17 +739,17 @@ public class StockDetailFrame extends javax.swing.JInternalFrame {
         jPanel9.setLayout(jPanel9Layout);
         jPanel9Layout.setHorizontalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
+            .addGroup(jPanel9Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 698, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 607, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel9Layout.setVerticalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel9Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 426, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 522, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout add_new_panelLayout = new javax.swing.GroupLayout(add_new_panel);
@@ -507,15 +758,15 @@ public class StockDetailFrame extends javax.swing.JInternalFrame {
             add_new_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(add_new_panelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, 536, Short.MAX_VALUE)
+                .addGap(64, 64, 64))
         );
         add_new_panelLayout.setVerticalGroup(
             add_new_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(add_new_panelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, 448, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(112, Short.MAX_VALUE))
         );
 
         tabpane.addTab("Add new material type", add_new_panel);
@@ -526,8 +777,8 @@ public class StockDetailFrame extends javax.swing.JInternalFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(tabpane)
-                .addContainerGap())
+                .addComponent(tabpane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(138, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -543,11 +794,13 @@ public class StockDetailFrame extends javax.swing.JInternalFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 593, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 667, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 542, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 569, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -565,12 +818,213 @@ public class StockDetailFrame extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void addnew_mat_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addnew_mat_buttonActionPerformed
-
+        try {
+            String mat_id = mat_id_text.getText();
+            String mat_name = mat_name_text.getText();
+            String mat_type = mat_type_combo.getSelectedItem().toString();
+            String date = new_date_text.getText();
+            double new_stock = Double.valueOf(initial_stock_amount_text.getText());
+            double unit_price = Double.valueOf(initial_stock_unitprice_text.getText());
+            Material material = new Material(mat_id, mat_name, mat_type, new_stock);
+            int addNewMaterial = materialController.addNewMaterial(material);
+            if (addNewMaterial > 0) {
+                if (!"".equals(initial_stock_amount_text.getText()) && !"".equals(initial_stock_unitprice_text.getText())) {
+                    Stock stock = new Stock(IdGenerator.generateNextStockID(stockController.getLastStockId()), mat_id, date, new_stock, unit_price);
+                    boolean updateStock = stockController.updateStock(stock);
+                    if (updateStock) {
+                        JOptionPane.showMessageDialog(this, "New Material type was added!");
+                    } else {
+                        JOptionPane.showMessageDialog(this, "New Material type was not added!");
+                    }
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "New Material type was not added!");
+            }
+        } catch (RemoteException | SQLException | ClassNotFoundException ex) {
+            Logger.getLogger(StockDetailFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_addnew_mat_buttonActionPerformed
 
     private void cancelbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelbuttonActionPerformed
         this.dispose();
     }//GEN-LAST:event_cancelbuttonActionPerformed
+
+    private void amount_textKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_amount_textKeyReleased
+        if (amount_text.getText().trim().length() != 0 && unitprice_text.getText().trim().length() != 0) {
+            add_stock_button.setEnabled(true);
+        } else {
+            add_stock_button.setEnabled(false);
+        }
+    }//GEN-LAST:event_amount_textKeyReleased
+
+    private void unitprice_textKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_unitprice_textKeyReleased
+        if (amount_text.getText().trim().length() != 0 && unitprice_text.getText().trim().length() != 0) {
+            add_stock_button.setEnabled(true);
+        } else {
+            add_stock_button.setEnabled(false);
+        }
+    }//GEN-LAST:event_unitprice_textKeyReleased
+
+    private void materialtypecomboItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_materialtypecomboItemStateChanged
+        try {
+            if (materialtypecombo.getSelectedItem() != null) {
+                String selected = materialtypecombo.getSelectedItem().toString();
+                String[] sel = selected.split("-");
+                String mat_id = sel[2];
+                switch (sel[1]) {
+                    case "Cloth":
+                        amount_unit_label_2.setText("meters");
+                        break;
+                    case "Dye":
+                        amount_unit_label_2.setText("kg");
+                        break;
+                    case "Wax":
+                        amount_unit_label_2.setText("litres");
+                        break;
+                    case "Thread":
+                        amount_unit_label_2.setText("meters");
+                        break;
+
+                }
+                Material mat = materialController.searchMaterial(mat_id);
+                previous_stock_text.setText(String.valueOf(mat.getIn_stock()));
+                mat_type_text.setText(selected);
+                current_stock_text.setText("");
+            }
+        } catch (RemoteException | SQLException | ClassNotFoundException ex) {
+            Logger.getLogger(StockDetailFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_materialtypecomboItemStateChanged
+
+    private void add_stock_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_add_stock_buttonActionPerformed
+        try {
+            double amount = Double.valueOf(amount_text.getText());
+            double unit_price = Double.valueOf(unitprice_text.getText());
+            String selected[] = materialtypecombo.getSelectedItem().toString().split("-");
+            String mat_id = selected[2];
+            String date = stock_date_text.getText();
+            String stock_id = stock_id_text.getText();
+            Stock stock = new Stock(stock_id, mat_id, date, amount, unit_price);
+            boolean updateStock = stockController.updateStock(stock);
+            current_stock_text.setText(String.valueOf(materialController.searchMaterial(mat_id).getIn_stock()));
+            if (updateStock) {
+                JOptionPane.showMessageDialog(this, "Stock updated");
+            } else {
+                JOptionPane.showMessageDialog(this, "Failed to update stock");
+
+            }
+            stock_id_text.setText(IdGenerator.generateNextStockID(stockController.getLastStockId()));
+            add_stock_button.setEnabled(false);
+            materialtypecombo.setSelectedItem(null);
+            amount_text.setText("");
+            unitprice_text.setText("");
+        } catch (RemoteException | SQLException | ClassNotFoundException ex) {
+            Logger.getLogger(StockDetailFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+
+    }//GEN-LAST:event_add_stock_buttonActionPerformed
+
+    private void materialtypecomboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_materialtypecomboActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_materialtypecomboActionPerformed
+
+    private void daily_addbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_daily_addbuttonActionPerformed
+        try {
+            double amount = Double.valueOf(daily_amount_text.getText());
+            String text = daily_materialtypecombo.getSelectedItem().toString();
+            String selected[] = text.split("-");
+            String mat_id = selected[2];
+            String date = daily_date_text.getText();
+            DailyMaterialUsage dmu = new DailyMaterialUsage(mat_id, date, amount);
+            Material searchMaterial = materialController.searchMaterial(mat_id);
+            Double new_stock = searchMaterial.getIn_stock() - dmu.getAmount();
+            if (new_stock >= 0 && !dailyMaterialUsageController.isDateAdded(mat_id, date)) {
+                boolean addDailyUsage = dailyMaterialUsageController.addDailyUsage(dmu);
+                if (addDailyUsage) {
+                    JOptionPane.showMessageDialog(this, "Daily usage added!");
+                } else {
+                    JOptionPane.showMessageDialog(this, "Daily usage updating failed!");
+                }
+            } else if (new_stock < 0) {
+                JOptionPane.showMessageDialog(this, "Used amount exceeded stored amount.");
+            } else {
+                JOptionPane.showMessageDialog(this, "Already added");
+            }
+            daily_current_stock_text.setText(String.valueOf(materialController.searchMaterial(mat_id).getIn_stock()));
+            daily_addbutton.setEnabled(false);
+            daily_materialtypecombo.setSelectedItem(null);
+            daily_amount_text.setText("");
+            daily_material_type_text.setText(text);
+
+        } catch (RemoteException | ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(StockDetailFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_daily_addbuttonActionPerformed
+
+    private void daily_materialtypecomboItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_daily_materialtypecomboItemStateChanged
+        try {
+            if (daily_materialtypecombo.getSelectedItem() != null) {
+                String selected = daily_materialtypecombo.getSelectedItem().toString();
+                String[] sel = selected.split("-");
+                String mat_id = sel[2];
+                switch (sel[1]) {
+                    case "Cloth":
+                        amount_unit_label_1.setText("meters");
+                        break;
+                    case "Dye":
+                        amount_unit_label_1.setText("kg");
+                        break;
+                    case "Wax":
+                        amount_unit_label_1.setText("litres");
+                        break;
+                    case "Thread":
+                        amount_unit_label_1.setText("meters");
+                        break;
+
+                }
+                Material mat = materialController.searchMaterial(mat_id);
+                daily_pre_stock_text.setText(String.valueOf(mat.getIn_stock()));
+                daily_material_type_text.setText(selected);
+                daily_current_stock_text.setText("");
+                if (daily_amount_text.getText().trim().length() != 0) {
+                    daily_addbutton.setEnabled(true);
+                } else {
+                    daily_addbutton.setEnabled(false);
+                }
+            } else {
+                daily_addbutton.setEnabled(false);
+            }
+        } catch (RemoteException | SQLException | ClassNotFoundException ex) {
+            Logger.getLogger(StockDetailFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_daily_materialtypecomboItemStateChanged
+
+    private void daily_amount_textKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_daily_amount_textKeyReleased
+        if (daily_materialtypecombo.getSelectedItem() != null && daily_amount_text.getText().trim().length() != 0) {
+            daily_addbutton.setEnabled(true);
+        } else {
+            daily_addbutton.setEnabled(false);
+        }
+    }//GEN-LAST:event_daily_amount_textKeyReleased
+
+    private void mat_type_comboItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_mat_type_comboItemStateChanged
+        switch (mat_type_combo.getSelectedItem().toString()) {
+            case "Cloth":
+                amount_unit_label.setText("meters");
+                break;
+            case "Dye":
+                amount_unit_label.setText("kg");
+                break;
+            case "Wax":
+                amount_unit_label.setText("litres");
+                break;
+            case "Thread":
+                amount_unit_label.setText("meters");
+                break;
+
+        }
+    }//GEN-LAST:event_mat_type_comboItemStateChanged
 
     void focustabbedpane(int num) {
         tabpane.setSelectedIndex(num);
@@ -589,6 +1043,9 @@ public class StockDetailFrame extends javax.swing.JInternalFrame {
     private javax.swing.JButton addnew_mat_button;
     private javax.swing.JLabel amount_label;
     private javax.swing.JTextField amount_text;
+    private javax.swing.JLabel amount_unit_label;
+    private javax.swing.JLabel amount_unit_label_1;
+    private javax.swing.JLabel amount_unit_label_2;
     private javax.swing.JButton cancelbutton;
     private javax.swing.JLabel current_stock_label;
     private javax.swing.JTextField current_stock_text;
@@ -596,22 +1053,27 @@ public class StockDetailFrame extends javax.swing.JInternalFrame {
     private javax.swing.JLabel daily_amount_label;
     private javax.swing.JTextField daily_amount_text;
     private javax.swing.JLabel daily_curr_stock_label;
-    private javax.swing.JLabel daily_mat_type_text;
+    private javax.swing.JTextField daily_current_stock_text;
+    private javax.swing.JTextField daily_date_text;
+    private javax.swing.JLabel daily_mat_type_label;
+    private javax.swing.JTextField daily_material_type_text;
     private javax.swing.JComboBox<String> daily_materialtypecombo;
     private javax.swing.JTextField daily_pre_stock_text;
     private javax.swing.JLabel daily_prev_stock_label;
-    private javax.swing.JLabel daily_unitprice_label;
-    private javax.swing.JTextField daily_unitprice_text;
-    private javax.swing.JTextField daliy_current_stock_text;
     private javax.swing.JLabel date_label;
-    private javax.swing.JTextField date_text;
     private javax.swing.JLabel initial_stock_amount_label;
     private javax.swing.JTextField initial_stock_amount_text;
     private javax.swing.JTextField initial_stock_unitprice_text;
     private javax.swing.JPanel intial_stock_panel;
     private javax.swing.JLabel intialstock_unit_price_label;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
+    private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel12;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -619,20 +1081,26 @@ public class StockDetailFrame extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
+    private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTextField mat_id_text;
     private javax.swing.JLabel mat_name_label;
     private javax.swing.JTextField mat_name_text;
     private javax.swing.JComboBox<String> mat_type_combo;
     private javax.swing.JLabel mat_type_label;
+    private javax.swing.JTextField mat_type_text;
     private javax.swing.JLabel material_id_label;
     private javax.swing.JLabel material_type_label;
     private javax.swing.JComboBox<String> materialtypecombo;
+    private javax.swing.JTextField new_date_text;
     private javax.swing.JLabel previous_stock_label;
     private javax.swing.JTextField previous_stock_text;
+    private javax.swing.JTextField stock_date_text;
+    private javax.swing.JTextField stock_id_text;
     private javax.swing.JTabbedPane tabpane;
     private javax.swing.JLabel unit_price_label;
     private javax.swing.JTextField unitprice_text;

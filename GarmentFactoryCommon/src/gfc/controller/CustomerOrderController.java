@@ -5,12 +5,19 @@
  */
 package gfc.controller;
 
+import gfc.models.CustomerOrder;
 import java.rmi.Remote;
+import java.rmi.RemoteException;
+import java.sql.SQLException;
+import java.util.ArrayList;
 
 /**
  *
  * @author Gimhani Uthpala
  */
 public interface CustomerOrderController extends Remote {
+
+    public boolean addSale(ArrayList<CustomerOrder> sale_order) throws RemoteException, SQLException,ClassNotFoundException;
     
+    public String getLastOrderId() throws RemoteException, SQLException,ClassNotFoundException;
 }

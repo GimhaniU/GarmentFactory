@@ -99,4 +99,39 @@ public class EmployeeController {
             readWriteLock.writeLock().unlock();
         }
     }
+
+    public static Employee getEmployeeAttendance(String emp_id, int month, int year) throws ClassNotFoundException, SQLException {
+        try {
+            readWriteLock.readLock().lock();
+
+            Connection conn = DBConnection.getDBConnection().getConnection();
+            String sql = "Select * From empwage where emp_id='" + emp_id + "' and month='" + month + "' and year='" + year + "'";
+            ResultSet rst = DBHandler.getData(conn, sql);
+            Employee employee = null;
+            if (rst.next()) {
+                employee = new Employee(rst.getString("emp_id"), rst.getInt("month"), rst.getInt("year"), rst.getInt("no_of_days"), rst.getInt("ot_hours"));
+            }
+            return employee;
+        } finally {
+            readWriteLock.readLock().unlock();
+        }
+    }
+
+    public int addEmployeeAttendance(Employee new_employee) throws ClassNotFoundException, SQLException {
+        try {
+            readWriteLock.writeLock().lock();
+            DBConnection dbconn = DBConnection.getDBConnection();
+            Connection conn = dbconn.getConnection();
+            String sql;
+            if (getEmployeeAttendance(new_employee.getEmp_id(), new_employee.getMonth(), new_employee.getYear()) != null) {
+                sql = "Update empwage set  no_of_days='" + new_employee.getNo_of_days() + "',ot_hours='" + new_employee.getOt_hours() + "' where emp_id='" + new_employee.getEmp_id() + "' and month='" + new_employee.getMonth() + "' and year='" + new_employee.getYear() + "';";
+            } else {
+                sql = "Insert into empwage values('"+new_employee.getEmp_id()+"','"+new_employee.getMonth()+"','"+new_employee.getYear()+"','"+new_employee.getNo_of_days()+"','"+new_employee.getOt_hours()+"','0') ;";
+            }
+            int res = DBHandler.setData(conn, sql);
+            return res;
+        } finally {
+            readWriteLock.writeLock().unlock();
+        }
+    }
 }

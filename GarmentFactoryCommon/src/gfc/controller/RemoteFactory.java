@@ -36,4 +36,6 @@ public interface RemoteFactory extends Remote {
     public UserController getUserController() throws RemoteException, SQLException, ClassNotFoundException;
 
     public BackUP getBackUP() throws RemoteException,SQLException,InterruptedException,ClassNotFoundException;
+
+    public PieceCoverageController getPieceCoverageController() throws RemoteException,SQLException,ClassNotFoundException;
 }

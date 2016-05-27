@@ -39,4 +39,20 @@ public class GarmentController {
             readWriteLock.readLock().unlock();
         }
     }
+    
+    public static int getStockInHand(String garment_id) throws SQLException, ClassNotFoundException {
+        try {
+            readWriteLock.readLock().lock();
+            Connection conn = DBConnection.getDBConnection().getConnection();
+            String sql = "Select in_stock From Garment where garment_id='"+garment_id+"';";
+            ResultSet rst = DBHandler.getData(conn, sql);
+            if (rst.next()) {
+                return rst.getInt("in_stock");
+            } else {
+                return 0;
+            }
+        } finally {
+            readWriteLock.readLock().unlock();
+        }
+    }
 }

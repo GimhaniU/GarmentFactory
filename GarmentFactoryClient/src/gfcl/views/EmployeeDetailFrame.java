@@ -7,8 +7,10 @@ package gfcl.views;
 
 import gfc.controller.EmployeeController;
 import gfc.controller.GarmentController;
+import gfc.controller.PieceCoverageController;
 import gfc.models.Employee;
 import gfc.models.Garment;
+import gfc.models.PieceCoverage;
 import gfcl.common_classes.GUIitemsValidator;
 import gfcl.common_classes.IdGenerator;
 import gfcl.common_classes.PatternChecker;
@@ -31,12 +33,13 @@ import javax.swing.text.JTextComponent;
 
 /**
  *
- * @author Nuwantha
+ * @author Gimhani Uthpala
  */
 public class EmployeeDetailFrame extends javax.swing.JInternalFrame {
 
     private EmployeeController employeeController;
     private GarmentController garmentController;
+    private PieceCoverageController pieceCoverageController;
 
     /**
      * Creates new form EmployeeDetailFrame
@@ -49,7 +52,8 @@ public class EmployeeDetailFrame extends javax.swing.JInternalFrame {
             Connector sConnector = Connector.getSConnector();
             employeeController = sConnector.getEmployeeController();
             garmentController = sConnector.getGarmentController();
-            
+            pieceCoverageController = sConnector.getPieceCoverageController();
+
             System.out.println(IdGenerator.generateNextEmployeeID(employeeController.getLastEmpId()));
             regno_text.setText(IdGenerator.generateNextEmployeeID(employeeController.getLastEmpId()));
 
@@ -117,7 +121,7 @@ public class EmployeeDetailFrame extends javax.swing.JInternalFrame {
 
                         ArrayList<Garment> similar = garmentController.getSimilarGarmentNames(item);
                         for (int i = 0; i < similar.size(); i++) {
-                            list.add(similar.get(i).getGarment_name()+" "+similar.get(i).getGarment_id());
+                            list.add(similar.get(i).getGarment_name() + " " + similar.get(i).getGarment_id());
                         }
                         GUIitemsValidator.addItemToCombo(list, garment_type_combo);
                     } catch (ClassNotFoundException | SQLException | RemoteException ex) {
@@ -792,6 +796,11 @@ public class EmployeeDetailFrame extends javax.swing.JInternalFrame {
         });
 
         cancel_button3.setText("Cancel");
+        cancel_button3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancel_button3ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel15Layout = new javax.swing.GroupLayout(jPanel15);
         jPanel15.setLayout(jPanel15Layout);
@@ -1039,13 +1048,13 @@ public class EmployeeDetailFrame extends javax.swing.JInternalFrame {
                 String id = text.substring(text.length() - 4, text.length());
                 Employee searchEmployee = employeeController.searchEmployee(id);
                 duty_text.setText(searchEmployee.getDuty());
-                
-                if ("Waxing in".equals(searchEmployee.getDuty()) | "Waxing out".equals(searchEmployee.getDuty())|"Sewing 1 in".equals(searchEmployee.getDuty()) | "Sewing 1 out".equals(searchEmployee.getDuty())) {
+
+                if ("Waxing in".equals(searchEmployee.getDuty()) | "Waxing out".equals(searchEmployee.getDuty()) | "Sewing 1 in".equals(searchEmployee.getDuty()) | "Sewing 1 out".equals(searchEmployee.getDuty())) {
                     salarypanel.setEnabled(false);
                     present_radio.setEnabled(false);
                     absent_radio.setEnabled(false);
                     ot_hour_spinner.setEnabled(false);
-                    
+
                     wagepanel.setEnabled(true);
                     garment_type_combo.setEnabled(true);
                     no_of_pieces_text.setEnabled(true);
@@ -1057,12 +1066,12 @@ public class EmployeeDetailFrame extends javax.swing.JInternalFrame {
                     no_of_pieces_text.setEnabled(false);
                     no_of_pieces_text.setEnabled(false);
                     add_pieces_button.setEnabled(false);
-                    
+
                     salarypanel.setEnabled(true);
                     present_radio.setEnabled(true);
                     absent_radio.setEnabled(true);
                     ot_hour_spinner.setEnabled(true);
-                    
+
                 }
             } catch (RemoteException | SQLException | ClassNotFoundException ex) {
                 Logger.getLogger(EmployeeDetailFrame.class.getName()).log(Level.SEVERE, null, ex);
@@ -1071,60 +1080,110 @@ public class EmployeeDetailFrame extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_employee_attend_name_comboItemStateChanged
 
     private void add_pieces_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_add_pieces_buttonActionPerformed
-        String text=garment_type_combo.getSelectedItem().toString();
-        String[] two=text.split(" ");
-        String type=two[0];
-        String type_id=two[1];
-        int no_of_pieces=Integer.valueOf(no_of_pieces_text.getText());
-        
-        
+        String text = garment_type_combo.getSelectedItem().toString();
+        String[] two = text.split(" ");
+        String type = two[0];
+        String type_id = two[1];
+        int no_of_pieces = Integer.valueOf(no_of_pieces_text.getText());
+
         DefaultTableModel tableModel = (DefaultTableModel) no_of_pieces_table.getModel();
-        boolean added=false;
+        boolean added = false;
         //to check if 1 type is adding again
-        for(int i=0;i<tableModel.getRowCount();i++){
-            if(tableModel.getValueAt(i, 0).toString().equals(type_id)){
+        for (int i = 0; i < tableModel.getRowCount(); i++) {
+            if (tableModel.getValueAt(i, 0).toString().equals(type_id)) {
                 JOptionPane.showMessageDialog(this, "Already Added! Edit in table.");
-                added=true;
+                added = true;
                 break;
             }
         }
-        if(!added){
-        Object[] rawdata = {type_id, type, no_of_pieces};
-        tableModel.addRow(rawdata);
+        if (!added) {
+            Object[] rawdata = {type_id, type, no_of_pieces};
+            tableModel.addRow(rawdata);
         }
         no_of_pieces_text.setText("");
         add_pieces_button.setEnabled(false);
-        
+
     }//GEN-LAST:event_add_pieces_buttonActionPerformed
 
     private void no_of_pieces_textKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_no_of_pieces_textKeyReleased
         String newtext = PatternChecker.checkInteger(no_of_pieces_text.getText());
         no_of_pieces_text.setText(newtext);
-        if(no_of_pieces_text.getText().trim().length()!=0 && garment_type_combo.getSelectedItem()!=""){
+        if (no_of_pieces_text.getText().trim().length() != 0 && garment_type_combo.getSelectedItem() != "") {
             add_pieces_button.setEnabled(true);
-        }else{
+        } else {
             add_pieces_button.setEnabled(false);
         }
-        
+
     }//GEN-LAST:event_no_of_pieces_textKeyReleased
 
     private void save_attend_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_save_attend_buttonActionPerformed
         try {
-            String text=employee_attend_name_combo.getSelectedItem().toString();
-            String emp_id=text.substring(text.length()-4, text.length());
-            Employee searchEmployee=employeeController.searchEmployee(emp_id);
-            if ("Waxing in".equals(searchEmployee.getDuty()) | "Waxing out".equals(searchEmployee.getDuty())|"Sewing 1 in".equals(searchEmployee.getDuty()) | "Sewing 1 out".equals(searchEmployee.getDuty())) {
-            
+            String text = employee_attend_name_combo.getSelectedItem().toString();
+            String emp_id = text.substring(text.length() - 4, text.length());
+            String date = date_text.getText();
+            DefaultTableModel dtm=(DefaultTableModel) no_of_pieces_table.getModel();
+            Employee searchEmployee = employeeController.searchEmployee(emp_id);
+            if ("Waxing in".equals(searchEmployee.getDuty()) | "Waxing out".equals(searchEmployee.getDuty()) | "Sewing 1 in".equals(searchEmployee.getDuty()) | "Sewing 1 out".equals(searchEmployee.getDuty())) {
+                ArrayList<PieceCoverage> pcs=new ArrayList<>();
+                for(int i=0;i<no_of_pieces_table.getRowCount();i++){
+                    String garment_id =dtm.getValueAt(i, 0).toString();
+                    int no_ofpieces = Integer.valueOf(dtm.getValueAt(i, 2).toString());
+                    PieceCoverage pc = new PieceCoverage(emp_id, garment_id, date, no_ofpieces);
+                    pcs.add(pc);
+                }
+                int addPieceCoverage = pieceCoverageController.addPieceCoverage(pcs);
+
+                if (addPieceCoverage > 0) {
+                    JOptionPane.showMessageDialog(this, "Marked successfully");
+                } else {
+                    JOptionPane.showMessageDialog(this, "Marked failed!");
+                }
+
+            } else {
+                int presence = 0;
+                if (present_radio.isSelected()) {
+                    presence = 1;
+                }
+                int ot_hours = Integer.valueOf(ot_hour_spinner.getValue().toString());
+                String day[] = date.split("-");
+                int dat[] = new int[3];
+                for (int i = 0; i < 3; i++) {
+                    dat[i] = Integer.valueOf(day[i]);
+                }
+                Employee employee = employeeController.getEmployeeAttendance(emp_id, dat[1], dat[0]);
+                Employee new_employee;
+                if (employee != null) {
+                    new_employee = new Employee(emp_id, dat[1], dat[0], employee.getNo_of_days() + presence, employee.getOt_hours() + ot_hours);
+                } else {
+                    new_employee = new Employee(emp_id, dat[1], dat[0], presence, ot_hours);
+                }
+
+                int addEmployeeAttendance = employeeController.addEmployeeAttendance(new_employee);
+                if (addEmployeeAttendance > 0) {
+                    JOptionPane.showMessageDialog(this, "Marked successfully");
+                } else {
+                    JOptionPane.showMessageDialog(this, "Marked failed!");
+                }
             }
-        } catch (RemoteException ex) {
-            Logger.getLogger(EmployeeDetailFrame.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
-            Logger.getLogger(EmployeeDetailFrame.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ClassNotFoundException ex) {
+            
+            //clearing the form
+            employee_attend_name_combo.setSelectedItem(null);
+            duty_text.setText("");
+            garment_type_combo.setSelectedItem(null);
+            no_of_pieces_text.setText("");
+            no_of_pieces_table.removeAll();
+            present_radio.setSelected(false);
+            absent_radio.setSelected(false);
+            ot_hour_spinner.setValue(0);
+        } catch (RemoteException | SQLException | ClassNotFoundException ex) {
             Logger.getLogger(EmployeeDetailFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
     }//GEN-LAST:event_save_attend_buttonActionPerformed
+
+    private void cancel_button3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancel_button3ActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_cancel_button3ActionPerformed
     //private method to auto update details of selected Employee
     private void showEmployeeDetails() throws RemoteException, SQLException, ClassNotFoundException {
         if (employee_name_combo.getSelectedItem() != null) {

@@ -12,13 +12,15 @@ import java.io.Serializable;
  * @author Gimhani Uthpala
  */
 public class CustomerOrder implements Serializable{
+    private String order_id;
     private String cust_id;
     private String garment_id;
     private String dateOfOrder;
     private int	amount ;
     private double unit_price;
 
-    public CustomerOrder(String cust_id, String garment_id, String dateOfOrder, int amount, double unit_price) {
+    public CustomerOrder(String order_id,String cust_id, String garment_id, String dateOfOrder, int amount, double unit_price) {
+        this.order_id=order_id;
         this.cust_id = cust_id;
         this.garment_id = garment_id;
         this.dateOfOrder = dateOfOrder;
@@ -28,9 +30,17 @@ public class CustomerOrder implements Serializable{
 
     public CustomerOrder() {
     }
-    
-    
 
+    public String getOrder_id() {
+        return order_id;
+    }
+
+    public void setOrder_id(String order_id) {
+        this.order_id = order_id;
+    }
+    
+    
+    
     public String getCust_id() {
         return cust_id;
     }

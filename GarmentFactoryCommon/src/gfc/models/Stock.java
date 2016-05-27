@@ -12,6 +12,7 @@ import java.io.Serializable;
  * @author Gimhani Uthpala
  */
 public class Stock implements Serializable{
+    private String stock_id;
     private String mat_id;
     private String dateOfBuy;
     private double amountOfBuy;
@@ -20,11 +21,20 @@ public class Stock implements Serializable{
     public Stock() {
     }
     
-    public Stock(String mat_id, String dateOfBuy, double amountOfBuy, double unit_price) {
+    public Stock(String stock_id,String mat_id, String dateOfBuy, double amountOfBuy, double unit_price) {
+        this.stock_id=stock_id;
         this.mat_id = mat_id;
         this.dateOfBuy = dateOfBuy;
         this.amountOfBuy = amountOfBuy;
         this.unit_price = unit_price;
+    }
+
+    public String getStock_id() {
+        return stock_id;
+    }
+
+    public void setStock_id(String stock_id) {
+        this.stock_id = stock_id;
     }
     
     public String getMat_id() {

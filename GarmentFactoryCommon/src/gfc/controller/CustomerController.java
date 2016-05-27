@@ -6,6 +6,7 @@
 package gfc.controller;
 
 import gfc.models.Customer;
+import gfc.models.CustomerOrder;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.sql.SQLException;

@@ -29,6 +29,25 @@ public class IdGenerator {
         }
         return nextCustID;
     }
+    
+    public static String generateNextStockID(String lastStockID) {
+        if(lastStockID==null){
+            return "S001";
+        }
+        String nextStockID = "S";
+        String substring = lastStockID.substring(1);
+        int parseInt = Integer.parseInt(substring);
+        parseInt++;
+        String valueOf = String.valueOf(parseInt);
+        if (parseInt > 10 && parseInt < 100) {
+            nextStockID += "0" + valueOf;
+        } else if (parseInt > 100) {
+            nextStockID += valueOf;
+        } else {
+            nextStockID += "00" + valueOf;
+        }
+        return nextStockID;
+    }
 
     public static String generateNextMaterialID(String lastMatID) {
         if(lastMatID==null){
@@ -67,7 +86,24 @@ public class IdGenerator {
         }
         return nextEmpID;
     }
-    
+    public static String generateNextOrderID(String lastOrderID) {
+        if(lastOrderID==null){
+            return "Q001";
+        }
+        String nextOrderID = "Q";
+        String substring = lastOrderID.substring(1);
+        int parseInt = Integer.parseInt(substring);
+        parseInt++;
+        String valueOf = String.valueOf(parseInt);
+        if (parseInt > 10 && parseInt < 100) {
+            nextOrderID += "0" + valueOf;
+        } else if (parseInt > 100) {
+            nextOrderID += valueOf;
+        } else {
+            nextOrderID += "00" + valueOf;
+        }
+        return nextOrderID;
+    }
     
     
     

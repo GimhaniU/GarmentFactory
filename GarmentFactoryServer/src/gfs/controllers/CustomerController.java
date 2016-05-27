@@ -55,7 +55,7 @@ public class CustomerController {
             readWriteLock.readLock().lock();
 
             Connection conn = DBConnection.getDBConnection().getConnection();
-            String sql = "Select * From customer where c_name like '" + name + "%'  order by name limit 10";
+            String sql = "Select * From customer where c_name like '" + name + "%'  order by c_name limit 10";
             ResultSet rst = DBHandler.getData(conn, sql);
             ArrayList<Customer> c_List = new ArrayList<>();
             while (rst.next()) {

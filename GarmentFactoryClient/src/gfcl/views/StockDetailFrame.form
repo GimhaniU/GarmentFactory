@@ -34,12 +34,15 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Component id="jScrollPane1" alignment="0" pref="593" max="32767" attributes="0"/>
+              <Component id="jScrollPane1" alignment="0" pref="667" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Component id="jScrollPane1" alignment="0" pref="542" max="32767" attributes="0"/>
+              <Group type="102" alignment="0" attributes="0">
+                  <Component id="jScrollPane1" min="-2" pref="569" max="-2" attributes="0"/>
+                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+              </Group>
           </Group>
         </DimensionLayout>
       </Layout>
@@ -55,8 +58,8 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="tabpane" max="32767" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="tabpane" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace pref="138" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -89,7 +92,7 @@
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="jScrollPane2" pref="718" max="32767" attributes="0"/>
+                                  <Component id="jScrollPane2" pref="590" max="32767" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                               </Group>
                           </Group>
@@ -98,7 +101,7 @@
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="jScrollPane2" pref="457" max="32767" attributes="0"/>
+                                  <Component id="jScrollPane2" pref="549" max="32767" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                               </Group>
                           </Group>
@@ -114,13 +117,14 @@
                               <Layout>
                                 <DimensionLayout dim="0">
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Group type="102" alignment="0" attributes="0">
+                                      <Group type="102" attributes="0">
                                           <EmptySpace max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                              <Component id="jPanel5" max="32767" attributes="0"/>
                                               <Component id="jPanel4" alignment="0" max="32767" attributes="0"/>
-                                              <Component id="jPanel5" alignment="0" max="32767" attributes="0"/>
+                                              <Component id="jPanel8" alignment="0" max="32767" attributes="0"/>
                                           </Group>
-                                          <EmptySpace pref="43" max="32767" attributes="0"/>
+                                          <EmptySpace pref="201" max="32767" attributes="0"/>
                                       </Group>
                                   </Group>
                                 </DimensionLayout>
@@ -128,10 +132,12 @@
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Group type="102" alignment="0" attributes="0">
                                           <EmptySpace max="-2" attributes="0"/>
+                                          <Component id="jPanel8" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                           <Component id="jPanel4" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                           <Component id="jPanel5" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace pref="188" max="32767" attributes="0"/>
+                                          <EmptySpace pref="121" max="32767" attributes="0"/>
                                       </Group>
                                   </Group>
                                 </DimensionLayout>
@@ -168,28 +174,36 @@
                                                           <Component id="unitprice_text" alignment="0" max="32767" attributes="0"/>
                                                           <Component id="amount_text" alignment="0" pref="135" max="32767" attributes="0"/>
                                                       </Group>
+                                                      <EmptySpace max="-2" attributes="0"/>
+                                                      <Component id="amount_unit_label_2" min="-2" pref="71" max="-2" attributes="0"/>
                                                   </Group>
                                                   <Group type="102" alignment="0" attributes="0">
                                                       <EmptySpace min="-2" pref="261" max="-2" attributes="0"/>
                                                       <Component id="add_stock_button" min="-2" pref="113" max="-2" attributes="0"/>
                                                   </Group>
                                               </Group>
-                                              <EmptySpace pref="260" max="32767" attributes="0"/>
+                                              <EmptySpace max="32767" attributes="0"/>
                                           </Group>
                                       </Group>
                                     </DimensionLayout>
                                     <DimensionLayout dim="1">
                                       <Group type="103" groupAlignment="0" attributes="0">
                                           <Group type="102" alignment="0" attributes="0">
-                                              <EmptySpace max="-2" attributes="0"/>
-                                              <Group type="103" groupAlignment="3" attributes="0">
-                                                  <Component id="mat_type_label" alignment="3" min="-2" max="-2" attributes="0"/>
-                                                  <Component id="materialtypecombo" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
+                                              <Group type="103" groupAlignment="0" attributes="0">
+                                                  <Group type="102" attributes="0">
+                                                      <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
+                                                      <Component id="mat_type_label" min="-2" max="-2" attributes="0"/>
+                                                  </Group>
+                                                  <Group type="102" attributes="0">
+                                                      <EmptySpace max="-2" attributes="0"/>
+                                                      <Component id="materialtypecombo" min="-2" pref="23" max="-2" attributes="0"/>
+                                                  </Group>
                                               </Group>
                                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                               <Group type="103" groupAlignment="3" attributes="0">
                                                   <Component id="amount_label" alignment="3" min="-2" max="-2" attributes="0"/>
                                                   <Component id="amount_text" alignment="3" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="amount_unit_label_2" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
                                               </Group>
                                               <EmptySpace type="separate" max="-2" attributes="0"/>
                                               <Group type="103" groupAlignment="1" attributes="0">
@@ -215,6 +229,10 @@
                                           <StringArray count="0"/>
                                         </Property>
                                       </Properties>
+                                      <Events>
+                                        <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="materialtypecomboItemStateChanged"/>
+                                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="materialtypecomboActionPerformed"/>
+                                      </Events>
                                       <AuxValues>
                                         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
                                       </AuxValues>
@@ -230,21 +248,32 @@
                                       </Properties>
                                     </Component>
                                     <Component class="javax.swing.JTextField" name="unitprice_text">
+                                      <Events>
+                                        <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="unitprice_textKeyReleased"/>
+                                      </Events>
                                     </Component>
                                     <Component class="javax.swing.JButton" name="add_stock_button">
                                       <Properties>
-                                        <Property name="text" type="java.lang.String" value="Add"/>
+                                        <Property name="text" type="java.lang.String" value="Add to stock"/>
                                       </Properties>
+                                      <Events>
+                                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="add_stock_buttonActionPerformed"/>
+                                      </Events>
                                     </Component>
                                     <Component class="javax.swing.JTextField" name="amount_text">
+                                      <Events>
+                                        <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="amount_textKeyReleased"/>
+                                      </Events>
+                                    </Component>
+                                    <Component class="javax.swing.JLabel" name="amount_unit_label_2">
                                     </Component>
                                   </SubComponents>
                                 </Container>
                                 <Container class="javax.swing.JPanel" name="jPanel5">
                                   <Properties>
                                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-                                      <Border info="org.netbeans.modules.form.compat2.border.EtchedBorderInfo">
-                                        <EtchetBorder/>
+                                      <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
+                                        <TitledBorder title="Last added"/>
                                       </Border>
                                     </Property>
                                   </Properties>
@@ -252,38 +281,50 @@
                                   <Layout>
                                     <DimensionLayout dim="0">
                                       <Group type="103" groupAlignment="0" attributes="0">
-                                          <Group type="102" alignment="0" attributes="0">
-                                              <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
-                                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                          <Group type="102" attributes="0">
+                                              <Group type="103" groupAlignment="0" attributes="0">
                                                   <Group type="102" alignment="0" attributes="0">
+                                                      <EmptySpace min="-2" pref="51" max="-2" attributes="0"/>
                                                       <Component id="current_stock_label" min="-2" max="-2" attributes="0"/>
-                                                      <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
+                                                      <EmptySpace type="separate" max="-2" attributes="0"/>
                                                       <Component id="current_stock_text" min="-2" pref="185" max="-2" attributes="0"/>
                                                   </Group>
-                                                  <Group type="102" alignment="0" attributes="0">
+                                                  <Group type="102" alignment="1" attributes="0">
                                                       <Component id="previous_stock_label" min="-2" max="-2" attributes="0"/>
-                                                      <EmptySpace max="32767" attributes="0"/>
+                                                      <EmptySpace type="separate" max="-2" attributes="0"/>
                                                       <Component id="previous_stock_text" min="-2" pref="185" max="-2" attributes="0"/>
                                                   </Group>
                                               </Group>
                                               <EmptySpace max="32767" attributes="0"/>
+                                          </Group>
+                                          <Group type="102" alignment="1" attributes="0">
+                                              <EmptySpace max="-2" attributes="0"/>
+                                              <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace max="-2" attributes="0"/>
+                                              <Component id="mat_type_text" min="-2" pref="267" max="-2" attributes="0"/>
+                                              <EmptySpace min="-2" pref="182" max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
                                     </DimensionLayout>
                                     <DimensionLayout dim="1">
                                       <Group type="103" groupAlignment="0" attributes="0">
                                           <Group type="102" alignment="0" attributes="0">
-                                              <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                                              <EmptySpace max="-2" attributes="0"/>
                                               <Group type="103" groupAlignment="3" attributes="0">
-                                                  <Component id="previous_stock_label" alignment="3" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="mat_type_text" alignment="3" min="-2" max="-2" attributes="0"/>
+                                              </Group>
+                                              <EmptySpace pref="31" max="32767" attributes="0"/>
+                                              <Group type="103" groupAlignment="3" attributes="0">
                                                   <Component id="previous_stock_text" alignment="3" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="previous_stock_label" alignment="3" min="-2" max="-2" attributes="0"/>
                                               </Group>
                                               <EmptySpace type="separate" max="-2" attributes="0"/>
                                               <Group type="103" groupAlignment="3" attributes="0">
-                                                  <Component id="current_stock_label" alignment="3" min="-2" max="-2" attributes="0"/>
                                                   <Component id="current_stock_text" alignment="3" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="current_stock_label" alignment="3" min="-2" max="-2" attributes="0"/>
                                               </Group>
-                                              <EmptySpace pref="33" max="32767" attributes="0"/>
+                                              <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
                                     </DimensionLayout>
@@ -300,8 +341,84 @@
                                       </Properties>
                                     </Component>
                                     <Component class="javax.swing.JTextField" name="current_stock_text">
+                                      <Properties>
+                                        <Property name="editable" type="boolean" value="false"/>
+                                      </Properties>
                                     </Component>
                                     <Component class="javax.swing.JTextField" name="previous_stock_text">
+                                      <Properties>
+                                        <Property name="editable" type="boolean" value="false"/>
+                                      </Properties>
+                                    </Component>
+                                    <Component class="javax.swing.JLabel" name="jLabel2">
+                                      <Properties>
+                                        <Property name="text" type="java.lang.String" value="Material type:"/>
+                                      </Properties>
+                                    </Component>
+                                    <Component class="javax.swing.JTextField" name="mat_type_text">
+                                      <Properties>
+                                        <Property name="editable" type="boolean" value="false"/>
+                                      </Properties>
+                                    </Component>
+                                  </SubComponents>
+                                </Container>
+                                <Container class="javax.swing.JPanel" name="jPanel8">
+                                  <Properties>
+                                    <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                                      <Border info="org.netbeans.modules.form.compat2.border.EtchedBorderInfo">
+                                        <EtchetBorder/>
+                                      </Border>
+                                    </Property>
+                                  </Properties>
+
+                                  <Layout>
+                                    <DimensionLayout dim="0">
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Group type="102" alignment="1" attributes="0">
+                                              <EmptySpace max="-2" attributes="0"/>
+                                              <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                                              <Component id="stock_id_text" min="-2" pref="81" max="-2" attributes="0"/>
+                                              <EmptySpace max="32767" attributes="0"/>
+                                              <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                                              <Component id="stock_date_text" min="-2" pref="113" max="-2" attributes="0"/>
+                                              <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
+                                          </Group>
+                                      </Group>
+                                    </DimensionLayout>
+                                    <DimensionLayout dim="1">
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Group type="102" alignment="0" attributes="0">
+                                              <EmptySpace max="-2" attributes="0"/>
+                                              <Group type="103" groupAlignment="3" attributes="0">
+                                                  <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="stock_date_text" alignment="3" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="stock_id_text" alignment="3" min="-2" max="-2" attributes="0"/>
+                                              </Group>
+                                              <EmptySpace pref="44" max="32767" attributes="0"/>
+                                          </Group>
+                                      </Group>
+                                    </DimensionLayout>
+                                  </Layout>
+                                  <SubComponents>
+                                    <Component class="javax.swing.JLabel" name="jLabel1">
+                                      <Properties>
+                                        <Property name="text" type="java.lang.String" value="Date:"/>
+                                      </Properties>
+                                    </Component>
+                                    <Component class="javax.swing.JTextField" name="stock_date_text">
+                                    </Component>
+                                    <Component class="javax.swing.JLabel" name="jLabel3">
+                                      <Properties>
+                                        <Property name="text" type="java.lang.String" value="Stock ID:"/>
+                                      </Properties>
+                                    </Component>
+                                    <Component class="javax.swing.JTextField" name="stock_id_text">
+                                      <Properties>
+                                        <Property name="editable" type="boolean" value="false"/>
+                                      </Properties>
                                     </Component>
                                   </SubComponents>
                                 </Container>
@@ -340,7 +457,7 @@
                                   <Component id="jPanel7" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="jPanel6" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace pref="139" max="32767" attributes="0"/>
+                                  <EmptySpace pref="206" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                         </DimensionLayout>
@@ -349,8 +466,8 @@
                         <Container class="javax.swing.JPanel" name="jPanel6">
                           <Properties>
                             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-                              <Border info="org.netbeans.modules.form.compat2.border.EtchedBorderInfo">
-                                <EtchetBorder/>
+                              <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
+                                <TitledBorder title="Last updated"/>
                               </Border>
                             </Property>
                           </Properties>
@@ -360,17 +477,16 @@
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" alignment="0" attributes="0">
                                       <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                          <Group type="102" alignment="0" attributes="0">
-                                              <Component id="daily_curr_stock_label" min="-2" max="-2" attributes="0"/>
-                                              <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
-                                              <Component id="daliy_current_stock_text" min="-2" pref="185" max="-2" attributes="0"/>
-                                          </Group>
-                                          <Group type="102" alignment="0" attributes="0">
-                                              <Component id="daily_prev_stock_label" min="-2" max="-2" attributes="0"/>
-                                              <EmptySpace max="32767" attributes="0"/>
-                                              <Component id="daily_pre_stock_text" min="-2" pref="185" max="-2" attributes="0"/>
-                                          </Group>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="daily_prev_stock_label" min="-2" max="-2" attributes="0"/>
+                                          <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
+                                          <Component id="daily_curr_stock_label" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace max="32767" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="daily_current_stock_text" min="-2" pref="185" max="-2" attributes="0"/>
+                                          <Component id="daily_pre_stock_text" alignment="0" min="-2" pref="185" max="-2" attributes="0"/>
+                                          <Component id="daily_material_type_text" alignment="0" min="-2" pref="306" max="-2" attributes="0"/>
                                       </Group>
                                       <EmptySpace max="32767" attributes="0"/>
                                   </Group>
@@ -379,17 +495,22 @@
                             <DimensionLayout dim="1">
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" alignment="0" attributes="0">
-                                      <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="3" attributes="0">
+                                          <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="daily_material_type_text" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="3" attributes="0">
                                           <Component id="daily_prev_stock_label" alignment="3" min="-2" max="-2" attributes="0"/>
                                           <Component id="daily_pre_stock_text" alignment="3" min="-2" max="-2" attributes="0"/>
                                       </Group>
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="3" attributes="0">
-                                          <Component id="daily_curr_stock_label" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="daliy_current_stock_text" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="daily_curr_stock_label" min="-2" max="-2" attributes="0"/>
+                                          <Component id="daily_current_stock_text" alignment="0" min="-2" max="-2" attributes="0"/>
                                       </Group>
-                                      <EmptySpace pref="33" max="32767" attributes="0"/>
+                                      <EmptySpace pref="29" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
                             </DimensionLayout>
@@ -405,9 +526,25 @@
                                 <Property name="text" type="java.lang.String" value="Current Stock:"/>
                               </Properties>
                             </Component>
-                            <Component class="javax.swing.JTextField" name="daliy_current_stock_text">
+                            <Component class="javax.swing.JTextField" name="daily_current_stock_text">
+                              <Properties>
+                                <Property name="editable" type="boolean" value="false"/>
+                              </Properties>
                             </Component>
                             <Component class="javax.swing.JTextField" name="daily_pre_stock_text">
+                              <Properties>
+                                <Property name="editable" type="boolean" value="false"/>
+                              </Properties>
+                            </Component>
+                            <Component class="javax.swing.JLabel" name="jLabel4">
+                              <Properties>
+                                <Property name="text" type="java.lang.String" value="Material :"/>
+                              </Properties>
+                            </Component>
+                            <Component class="javax.swing.JTextField" name="daily_material_type_text">
+                              <Properties>
+                                <Property name="editable" type="boolean" value="false"/>
+                              </Properties>
                             </Component>
                           </SubComponents>
                         </Container>
@@ -423,34 +560,43 @@
                           <Layout>
                             <DimensionLayout dim="0">
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" alignment="0" attributes="0">
+                                  <Group type="102" attributes="0">
                                       <Group type="103" groupAlignment="0" attributes="0">
-                                          <Group type="102" alignment="0" attributes="0">
-                                              <EmptySpace min="-2" pref="265" max="-2" attributes="0"/>
-                                              <Component id="daily_addbutton" min="-2" pref="113" max="-2" attributes="0"/>
-                                          </Group>
-                                          <Group type="102" alignment="0" attributes="0">
-                                              <EmptySpace max="-2" attributes="0"/>
-                                              <Component id="daily_mat_type_text" min="-2" max="-2" attributes="0"/>
-                                              <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
-                                              <Component id="daily_materialtypecombo" min="-2" pref="318" max="-2" attributes="0"/>
-                                          </Group>
-                                          <Group type="102" alignment="0" attributes="0">
-                                              <EmptySpace min="-2" pref="221" max="-2" attributes="0"/>
+                                          <Group type="102" attributes="0">
                                               <Group type="103" groupAlignment="0" attributes="0">
-                                                  <Component id="daily_amount_label" alignment="0" min="-2" max="-2" attributes="0"/>
-                                                  <Component id="daily_unitprice_label" alignment="0" min="-2" max="-2" attributes="0"/>
-                                                  <Component id="date_label" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                  <Group type="102" alignment="0" attributes="0">
+                                                      <EmptySpace min="-2" pref="265" max="-2" attributes="0"/>
+                                                      <Component id="daily_addbutton" min="-2" pref="113" max="-2" attributes="0"/>
+                                                  </Group>
+                                                  <Group type="102" alignment="0" attributes="0">
+                                                      <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
+                                                      <Component id="date_label" min="-2" max="-2" attributes="0"/>
+                                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                                      <Group type="103" groupAlignment="0" attributes="0">
+                                                          <Component id="daily_date_text" min="-2" pref="135" max="-2" attributes="0"/>
+                                                          <Group type="102" alignment="0" attributes="0">
+                                                              <Group type="103" groupAlignment="0" attributes="0">
+                                                                  <Component id="daily_mat_type_label" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                                  <Component id="daily_amount_label" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                              </Group>
+                                                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                                              <Group type="103" groupAlignment="0" attributes="0">
+                                                                  <Group type="102" attributes="0">
+                                                                      <Component id="daily_amount_text" min="-2" pref="135" max="-2" attributes="0"/>
+                                                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                                                      <Component id="amount_unit_label_1" min="-2" pref="66" max="-2" attributes="0"/>
+                                                                  </Group>
+                                                                  <Component id="daily_materialtypecombo" min="-2" pref="318" max="-2" attributes="0"/>
+                                                              </Group>
+                                                          </Group>
+                                                      </Group>
+                                                  </Group>
                                               </Group>
-                                              <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
-                                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                                  <Component id="daily_unitprice_text" alignment="0" max="32767" attributes="0"/>
-                                                  <Component id="daily_amount_text" alignment="0" pref="135" max="32767" attributes="0"/>
-                                                  <Component id="date_text" alignment="0" max="32767" attributes="0"/>
-                                              </Group>
+                                              <EmptySpace min="0" pref="122" max="32767" attributes="0"/>
                                           </Group>
+                                          <Component id="jSeparator1" max="32767" attributes="0"/>
                                       </Group>
-                                      <EmptySpace pref="286" max="32767" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                             </DimensionLayout>
@@ -459,33 +605,31 @@
                                   <Group type="102" alignment="0" attributes="0">
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="3" attributes="0">
-                                          <Component id="daily_mat_type_text" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="daily_materialtypecombo" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace pref="9" max="32767" attributes="0"/>
-                                      <Group type="103" groupAlignment="3" attributes="0">
+                                          <Component id="daily_date_text" alignment="3" min="-2" max="-2" attributes="0"/>
                                           <Component id="date_label" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="date_text" alignment="3" min="-2" max="-2" attributes="0"/>
                                       </Group>
-                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="jSeparator1" min="-2" pref="10" max="-2" attributes="0"/>
+                                      <EmptySpace pref="25" max="32767" attributes="0"/>
+                                      <Group type="103" groupAlignment="3" attributes="0">
+                                          <Component id="daily_mat_type_label" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="daily_materialtypecombo" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace type="separate" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="3" attributes="0">
                                           <Component id="daily_amount_label" alignment="3" min="-2" max="-2" attributes="0"/>
                                           <Component id="daily_amount_text" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="amount_unit_label_1" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
                                       </Group>
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="1" attributes="0">
-                                          <Component id="daily_unitprice_label" alignment="1" min="-2" max="-2" attributes="0"/>
-                                          <Component id="daily_unitprice_text" alignment="1" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Component id="daily_addbutton" min="-2" pref="34" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
+                                      <Component id="daily_addbutton" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                             </DimensionLayout>
                           </Layout>
                           <SubComponents>
-                            <Component class="javax.swing.JLabel" name="daily_mat_type_text">
+                            <Component class="javax.swing.JLabel" name="daily_mat_type_label">
                               <Properties>
                                 <Property name="text" type="java.lang.String" value="Material type:"/>
                               </Properties>
@@ -496,6 +640,9 @@
                                   <StringArray count="0"/>
                                 </Property>
                               </Properties>
+                              <Events>
+                                <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="daily_materialtypecomboItemStateChanged"/>
+                              </Events>
                               <AuxValues>
                                 <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
                               </AuxValues>
@@ -505,26 +652,29 @@
                                 <Property name="text" type="java.lang.String" value="Amount: "/>
                               </Properties>
                             </Component>
-                            <Component class="javax.swing.JLabel" name="daily_unitprice_label">
-                              <Properties>
-                                <Property name="text" type="java.lang.String" value="Unit price:"/>
-                              </Properties>
-                            </Component>
-                            <Component class="javax.swing.JTextField" name="daily_unitprice_text">
-                            </Component>
                             <Component class="javax.swing.JButton" name="daily_addbutton">
                               <Properties>
                                 <Property name="text" type="java.lang.String" value="Add"/>
                               </Properties>
+                              <Events>
+                                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="daily_addbuttonActionPerformed"/>
+                              </Events>
                             </Component>
                             <Component class="javax.swing.JTextField" name="daily_amount_text">
+                              <Events>
+                                <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="daily_amount_textKeyReleased"/>
+                              </Events>
                             </Component>
                             <Component class="javax.swing.JLabel" name="date_label">
                               <Properties>
                                 <Property name="text" type="java.lang.String" value="Date:"/>
                               </Properties>
                             </Component>
-                            <Component class="javax.swing.JTextField" name="date_text">
+                            <Component class="javax.swing.JTextField" name="daily_date_text">
+                            </Component>
+                            <Component class="javax.swing.JSeparator" name="jSeparator1">
+                            </Component>
+                            <Component class="javax.swing.JLabel" name="amount_unit_label_1">
                             </Component>
                           </SubComponents>
                         </Container>
@@ -544,8 +694,8 @@
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="jPanel9" max="32767" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="jPanel9" pref="536" max="32767" attributes="0"/>
+                                  <EmptySpace min="-2" pref="64" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                         </DimensionLayout>
@@ -553,8 +703,8 @@
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="jPanel9" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace pref="20" max="32767" attributes="0"/>
+                                  <Component id="jPanel9" min="-2" pref="448" max="-2" attributes="0"/>
+                                  <EmptySpace pref="112" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                         </DimensionLayout>
@@ -565,10 +715,10 @@
                           <Layout>
                             <DimensionLayout dim="0">
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" alignment="1" attributes="0">
+                                  <Group type="102" alignment="0" attributes="0">
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="jScrollPane3" pref="698" max="32767" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="jScrollPane3" min="-2" pref="607" max="-2" attributes="0"/>
+                                      <EmptySpace max="32767" attributes="0"/>
                                   </Group>
                               </Group>
                             </DimensionLayout>
@@ -576,8 +726,8 @@
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" alignment="0" attributes="0">
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="jScrollPane3" pref="426" max="32767" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="jScrollPane3" min="-2" pref="522" max="-2" attributes="0"/>
+                                      <EmptySpace max="32767" attributes="0"/>
                                   </Group>
                               </Group>
                             </DimensionLayout>
@@ -592,101 +742,51 @@
                                   <Layout>
                                     <DimensionLayout dim="0">
                                       <Group type="103" groupAlignment="0" attributes="0">
-                                          <Group type="102" alignment="0" attributes="0">
+                                          <Group type="102" attributes="0">
                                               <EmptySpace max="-2" attributes="0"/>
-                                              <Group type="103" groupAlignment="0" attributes="0">
+                                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                                   <Group type="102" alignment="0" attributes="0">
-                                                      <Component id="material_id_label" min="-2" max="-2" attributes="0"/>
+                                                      <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
                                                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                                                      <Component id="mat_id_text" min="-2" pref="144" max="-2" attributes="0"/>
+                                                      <Component id="new_date_text" min="-2" pref="158" max="-2" attributes="0"/>
                                                   </Group>
-                                                  <Group type="102" alignment="0" attributes="0">
-                                                      <Component id="mat_name_label" min="-2" max="-2" attributes="0"/>
-                                                      <EmptySpace max="-2" attributes="0"/>
-                                                      <Component id="mat_name_text" min="-2" pref="412" max="-2" attributes="0"/>
-                                                  </Group>
-                                                  <Group type="102" alignment="0" attributes="0">
-                                                      <Component id="material_type_label" min="-2" max="-2" attributes="0"/>
-                                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                                      <Component id="mat_type_combo" min="-2" pref="148" max="-2" attributes="0"/>
-                                                  </Group>
-                                                  <Component id="intial_stock_panel" alignment="0" min="-2" max="-2" attributes="0"/>
-                                                  <Component id="jPanel12" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="jPanel11" alignment="0" max="32767" attributes="0"/>
+                                                  <Component id="intial_stock_panel" alignment="0" max="32767" attributes="0"/>
+                                                  <Component id="jPanel12" max="32767" attributes="0"/>
                                               </Group>
-                                              <EmptySpace pref="58" max="32767" attributes="0"/>
+                                              <EmptySpace pref="524" max="32767" attributes="0"/>
                                           </Group>
                                       </Group>
                                     </DimensionLayout>
                                     <DimensionLayout dim="1">
                                       <Group type="103" groupAlignment="0" attributes="0">
                                           <Group type="102" alignment="0" attributes="0">
-                                              <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
+                                              <EmptySpace max="-2" attributes="0"/>
                                               <Group type="103" groupAlignment="3" attributes="0">
-                                                  <Component id="mat_id_text" alignment="3" min="-2" pref="27" max="-2" attributes="0"/>
-                                                  <Component id="material_id_label" alignment="3" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="new_date_text" alignment="3" min="-2" max="-2" attributes="0"/>
                                               </Group>
-                                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                              <Group type="103" groupAlignment="3" attributes="0">
-                                                  <Component id="mat_name_text" alignment="3" pref="27" max="32767" attributes="0"/>
-                                                  <Component id="mat_name_label" alignment="3" min="-2" max="-2" attributes="0"/>
-                                              </Group>
-                                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                              <Group type="103" groupAlignment="3" attributes="0">
-                                                  <Component id="mat_type_combo" alignment="3" pref="27" max="32767" attributes="0"/>
-                                                  <Component id="material_type_label" alignment="3" min="-2" max="-2" attributes="0"/>
-                                              </Group>
-                                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                              <Component id="intial_stock_panel" min="-2" max="-2" attributes="0"/>
                                               <EmptySpace type="separate" max="-2" attributes="0"/>
+                                              <Component id="jPanel11" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace max="-2" attributes="0"/>
+                                              <Component id="intial_stock_panel" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                               <Component id="jPanel12" min="-2" max="-2" attributes="0"/>
-                                              <EmptySpace min="-2" pref="118" max="-2" attributes="0"/>
+                                              <EmptySpace pref="313" max="32767" attributes="0"/>
                                           </Group>
                                       </Group>
                                     </DimensionLayout>
                                   </Layout>
                                   <SubComponents>
-                                    <Component class="javax.swing.JLabel" name="material_id_label">
-                                      <Properties>
-                                        <Property name="text" type="java.lang.String" value="Material ID:"/>
-                                      </Properties>
-                                    </Component>
-                                    <Component class="javax.swing.JTextField" name="mat_id_text">
-                                      <Properties>
-                                        <Property name="editable" type="boolean" value="false"/>
-                                      </Properties>
-                                    </Component>
-                                    <Component class="javax.swing.JLabel" name="mat_name_label">
-                                      <Properties>
-                                        <Property name="text" type="java.lang.String" value="Material Name:"/>
-                                      </Properties>
-                                    </Component>
-                                    <Component class="javax.swing.JTextField" name="mat_name_text">
-                                    </Component>
-                                    <Component class="javax.swing.JLabel" name="material_type_label">
-                                      <Properties>
-                                        <Property name="text" type="java.lang.String" value="Material type:"/>
-                                      </Properties>
-                                    </Component>
-                                    <Component class="javax.swing.JComboBox" name="mat_type_combo">
-                                      <Properties>
-                                        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                                          <StringArray count="4">
-                                            <StringItem index="0" value="Cloth"/>
-                                            <StringItem index="1" value="Dye"/>
-                                            <StringItem index="2" value="Wax"/>
-                                            <StringItem index="3" value="Thread"/>
-                                          </StringArray>
-                                        </Property>
-                                      </Properties>
-                                      <AuxValues>
-                                        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
-                                      </AuxValues>
-                                    </Component>
                                     <Container class="javax.swing.JPanel" name="intial_stock_panel">
                                       <Properties>
                                         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                                           <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-                                            <TitledBorder title="Initial Stcok"/>
+                                            <TitledBorder title="Initial Stcok">
+                                              <Border PropertyName="innerBorder" info="org.netbeans.modules.form.compat2.border.EtchedBorderInfo">
+                                                <EtchetBorder/>
+                                              </Border>
+                                            </TitledBorder>
                                           </Border>
                                         </Property>
                                       </Properties>
@@ -705,16 +805,24 @@
                                                       <Component id="initial_stock_amount_text" alignment="0" pref="236" max="32767" attributes="0"/>
                                                       <Component id="initial_stock_unitprice_text" alignment="0" max="32767" attributes="0"/>
                                                   </Group>
-                                                  <EmptySpace pref="331" max="32767" attributes="0"/>
+                                                  <EmptySpace max="-2" attributes="0"/>
+                                                  <Component id="amount_unit_label" min="-2" pref="73" max="-2" attributes="0"/>
+                                                  <EmptySpace max="32767" attributes="0"/>
                                               </Group>
                                           </Group>
                                         </DimensionLayout>
                                         <DimensionLayout dim="1">
                                           <Group type="103" groupAlignment="0" attributes="0">
                                               <Group type="102" alignment="0" attributes="0">
-                                                  <Group type="103" groupAlignment="3" attributes="0">
-                                                      <Component id="initial_stock_amount_text" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
-                                                      <Component id="initial_stock_amount_label" alignment="3" min="-2" max="-2" attributes="0"/>
+                                                  <Group type="103" groupAlignment="0" attributes="0">
+                                                      <Group type="103" groupAlignment="3" attributes="0">
+                                                          <Component id="initial_stock_amount_text" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
+                                                          <Component id="initial_stock_amount_label" alignment="3" min="-2" max="-2" attributes="0"/>
+                                                      </Group>
+                                                      <Group type="102" alignment="0" attributes="0">
+                                                          <EmptySpace max="-2" attributes="0"/>
+                                                          <Component id="amount_unit_label" min="-2" pref="18" max="-2" attributes="0"/>
+                                                      </Group>
                                                   </Group>
                                                   <EmptySpace max="32767" attributes="0"/>
                                                   <Group type="103" groupAlignment="3" attributes="0">
@@ -741,19 +849,50 @@
                                         </Component>
                                         <Component class="javax.swing.JTextField" name="initial_stock_unitprice_text">
                                         </Component>
+                                        <Component class="javax.swing.JLabel" name="amount_unit_label">
+                                        </Component>
                                       </SubComponents>
                                     </Container>
-                                    <Container class="javax.swing.JPanel" name="jPanel12">
+                                    <Component class="javax.swing.JLabel" name="jLabel5">
+                                      <Properties>
+                                        <Property name="text" type="java.lang.String" value="Date:"/>
+                                      </Properties>
+                                    </Component>
+                                    <Component class="javax.swing.JTextField" name="new_date_text">
+                                    </Component>
+                                    <Container class="javax.swing.JPanel" name="jPanel11">
+                                      <Properties>
+                                        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                                          <Border info="org.netbeans.modules.form.compat2.border.EtchedBorderInfo">
+                                            <EtchetBorder/>
+                                          </Border>
+                                        </Property>
+                                      </Properties>
 
                                       <Layout>
                                         <DimensionLayout dim="0">
                                           <Group type="103" groupAlignment="0" attributes="0">
-                                              <Group type="102" alignment="1" attributes="0">
-                                                  <EmptySpace pref="387" max="32767" attributes="0"/>
-                                                  <Component id="addnew_mat_button" min="-2" pref="113" max="-2" attributes="0"/>
+                                              <Group type="102" attributes="0">
                                                   <EmptySpace max="-2" attributes="0"/>
-                                                  <Component id="cancelbutton" min="-2" pref="113" max="-2" attributes="0"/>
-                                                  <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
+                                                  <Group type="103" groupAlignment="0" attributes="0">
+                                                      <Group type="102" attributes="0">
+                                                          <Group type="103" groupAlignment="0" attributes="0">
+                                                              <Component id="mat_name_label" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                              <Component id="material_id_label" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                          </Group>
+                                                          <EmptySpace max="-2" attributes="0"/>
+                                                          <Group type="103" groupAlignment="0" attributes="0">
+                                                              <Component id="mat_id_text" min="-2" pref="144" max="-2" attributes="0"/>
+                                                              <Component id="mat_name_text" min="-2" pref="381" max="-2" attributes="0"/>
+                                                          </Group>
+                                                      </Group>
+                                                      <Group type="102" alignment="0" attributes="0">
+                                                          <Component id="material_type_label" min="-2" max="-2" attributes="0"/>
+                                                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                                          <Component id="mat_type_combo" min="-2" pref="148" max="-2" attributes="0"/>
+                                                      </Group>
+                                                  </Group>
+                                                  <EmptySpace pref="27" max="32767" attributes="0"/>
                                               </Group>
                                           </Group>
                                         </DimensionLayout>
@@ -762,10 +901,97 @@
                                               <Group type="102" alignment="0" attributes="0">
                                                   <EmptySpace max="-2" attributes="0"/>
                                                   <Group type="103" groupAlignment="3" attributes="0">
-                                                      <Component id="addnew_mat_button" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
-                                                      <Component id="cancelbutton" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
+                                                      <Component id="material_id_label" alignment="3" min="-2" max="-2" attributes="0"/>
+                                                      <Component id="mat_id_text" alignment="3" min="-2" pref="27" max="-2" attributes="0"/>
                                                   </Group>
-                                                  <EmptySpace pref="24" max="32767" attributes="0"/>
+                                                  <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
+                                                  <Group type="103" groupAlignment="0" attributes="0">
+                                                      <Component id="mat_name_label" min="-2" max="-2" attributes="0"/>
+                                                      <Component id="mat_name_text" min="-2" pref="30" max="-2" attributes="0"/>
+                                                  </Group>
+                                                  <EmptySpace pref="17" max="32767" attributes="0"/>
+                                                  <Group type="103" groupAlignment="3" attributes="0">
+                                                      <Component id="material_type_label" alignment="3" min="-2" max="-2" attributes="0"/>
+                                                      <Component id="mat_type_combo" alignment="3" pref="27" max="32767" attributes="0"/>
+                                                  </Group>
+                                                  <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
+                                              </Group>
+                                          </Group>
+                                        </DimensionLayout>
+                                      </Layout>
+                                      <SubComponents>
+                                        <Component class="javax.swing.JLabel" name="material_id_label">
+                                          <Properties>
+                                            <Property name="text" type="java.lang.String" value="Material ID:"/>
+                                          </Properties>
+                                        </Component>
+                                        <Component class="javax.swing.JTextField" name="mat_id_text">
+                                          <Properties>
+                                            <Property name="editable" type="boolean" value="false"/>
+                                          </Properties>
+                                        </Component>
+                                        <Component class="javax.swing.JLabel" name="mat_name_label">
+                                          <Properties>
+                                            <Property name="text" type="java.lang.String" value="Material Name:"/>
+                                          </Properties>
+                                        </Component>
+                                        <Component class="javax.swing.JTextField" name="mat_name_text">
+                                        </Component>
+                                        <Component class="javax.swing.JLabel" name="material_type_label">
+                                          <Properties>
+                                            <Property name="text" type="java.lang.String" value="Material type:"/>
+                                          </Properties>
+                                        </Component>
+                                        <Component class="javax.swing.JComboBox" name="mat_type_combo">
+                                          <Properties>
+                                            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                                              <StringArray count="4">
+                                                <StringItem index="0" value="Cloth"/>
+                                                <StringItem index="1" value="Dye"/>
+                                                <StringItem index="2" value="Wax"/>
+                                                <StringItem index="3" value="Thread"/>
+                                              </StringArray>
+                                            </Property>
+                                          </Properties>
+                                          <Events>
+                                            <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="mat_type_comboItemStateChanged"/>
+                                          </Events>
+                                          <AuxValues>
+                                            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+                                          </AuxValues>
+                                        </Component>
+                                      </SubComponents>
+                                    </Container>
+                                    <Container class="javax.swing.JPanel" name="jPanel12">
+                                      <Properties>
+                                        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                                          <Border info="org.netbeans.modules.form.compat2.border.EtchedBorderInfo">
+                                            <EtchetBorder/>
+                                          </Border>
+                                        </Property>
+                                      </Properties>
+
+                                      <Layout>
+                                        <DimensionLayout dim="0">
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Group type="102" alignment="1" attributes="0">
+                                                  <EmptySpace max="32767" attributes="0"/>
+                                                  <Component id="addnew_mat_button" min="-2" pref="113" max="-2" attributes="0"/>
+                                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                                  <Component id="cancelbutton" min="-2" pref="113" max="-2" attributes="0"/>
+                                                  <EmptySpace max="-2" attributes="0"/>
+                                              </Group>
+                                          </Group>
+                                        </DimensionLayout>
+                                        <DimensionLayout dim="1">
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Group type="102" attributes="0">
+                                                  <EmptySpace pref="15" max="32767" attributes="0"/>
+                                                  <Group type="103" groupAlignment="3" attributes="0">
+                                                      <Component id="cancelbutton" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
+                                                      <Component id="addnew_mat_button" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
+                                                  </Group>
+                                                  <EmptySpace max="-2" attributes="0"/>
                                               </Group>
                                           </Group>
                                         </DimensionLayout>

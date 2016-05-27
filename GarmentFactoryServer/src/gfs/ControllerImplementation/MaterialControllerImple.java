@@ -5,11 +5,13 @@
  */
 package gfs.ControllerImplementation;
 
+import gfc.models.Customer;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import gfs.controllers.MaterialController;
 import gfc.models.Material;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 /**
  *
@@ -32,5 +34,15 @@ public class MaterialControllerImple extends UnicastRemoteObject implements gfc.
     @Override
     public int addNewMaterial(Material material) throws RemoteException, SQLException, ClassNotFoundException {
         return materialController.addNewMaterial(material);
+    }
+
+    @Override
+    public ArrayList<Material> getSimilarMaterials(String item) throws RemoteException, SQLException, ClassNotFoundException {
+        return materialController.getSimilarMaterials(item);
+    }
+
+    @Override
+    public Material searchMaterial(String mat_id) throws RemoteException, SQLException, ClassNotFoundException {
+        return materialController.searchMaterial(mat_id);
     }
 }

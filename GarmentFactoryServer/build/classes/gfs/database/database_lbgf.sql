@@ -73,12 +73,13 @@ CREATE TABLE Piece_coverage(
 );
 
 CREATE TABLE CustomerOrder(
-	Cust_id VARCHAR(10) NOT NULL,
+        order_id VARCHAR(10) NOT NULL,
+        Cust_id VARCHAR(10) NOT NULL,
 	Garment_id VARCHAR(10) NOT NULL,
 	DateOfOrder DATE NOT NULL,
 	amount INT(10),
 	unit_price NUMERIC(10,2),
-	CONSTRAINT PRIMARY KEY (Cust_id,Garment_id,DateOfOrder),
+	CONSTRAINT PRIMARY KEY (order_id,cust_id,garment_id),
 	CONSTRAINT FOREIGN KEY(Cust_id) REFERENCES Customer(Cust_id)
 	ON DELETE CASCADE ON UPDATE CASCADE,
 	CONSTRAINT FOREIGN KEY(Garment_id) REFERENCES Garment(Garment_id)
@@ -122,11 +123,12 @@ CREATE TABLE DailyMaterialUsage(
 );
 
 CREATE TABLE Stock(
+        Stock_id VARCHAR(10) NOT NULL,
 	Mat_id VARCHAR(10) NOT NULL,
 	DateOfBuy DATE NOT NULL,
 	amountOfBuy NUMERIC(10,2),
 	unit_price NUMERIC(10,2),
-	CONSTRAINT PRIMARY KEY (Mat_id,DateOfBuy),
+	CONSTRAINT PRIMARY KEY (Stock_id),
 	CONSTRAINT FOREIGN KEY(Mat_id) REFERENCES Material(Mat_id)
 	ON DELETE CASCADE ON UPDATE CASCADE
 );

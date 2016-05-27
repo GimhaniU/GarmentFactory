@@ -19,5 +19,5 @@ public interface GarmentController extends Remote {
 
     public ArrayList<Garment> getSimilarGarmentNames(String item) throws RemoteException, SQLException,ClassNotFoundException;
     
-    
+    public int getStockInHand(String garment_id)  throws RemoteException, SQLException,ClassNotFoundException;
 }
