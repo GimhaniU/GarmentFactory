@@ -19,12 +19,19 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="tab_pane_out" alignment="0" max="32767" attributes="0"/>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="tab_pane_out" max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+          </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="tab_pane_out" alignment="0" max="32767" attributes="0"/>
+          <Group type="102" alignment="0" attributes="0">
+              <Component id="tab_pane_out" min="-2" pref="518" max="-2" attributes="0"/>
+              <EmptySpace min="0" pref="22" max="32767" attributes="0"/>
+          </Group>
       </Group>
     </DimensionLayout>
   </Layout>
@@ -52,7 +59,7 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="jPanel3" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="0" pref="32" max="32767" attributes="0"/>
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -63,7 +70,7 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jScrollPane1" alignment="0" pref="638" max="32767" attributes="0"/>
+                      <Component id="jScrollPane1" alignment="0" pref="642" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
@@ -800,15 +807,318 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <EmptySpace min="0" pref="638" max="32767" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jPanel16" pref="622" max="32767" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                  </Group>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <EmptySpace min="0" pref="673" max="32767" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jPanel16" max="32767" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                  </Group>
               </Group>
             </DimensionLayout>
           </Layout>
+          <SubComponents>
+            <Container class="javax.swing.JPanel" name="jPanel16">
+
+              <Layout>
+                <DimensionLayout dim="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" attributes="0">
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="jPanel17" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="1" attributes="0">
+                          <EmptySpace max="32767" attributes="0"/>
+                          <Component id="jPanel18" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                </DimensionLayout>
+                <DimensionLayout dim="1">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="jPanel17" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="jPanel18" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
+                      </Group>
+                  </Group>
+                </DimensionLayout>
+              </Layout>
+              <SubComponents>
+                <Container class="javax.swing.JPanel" name="jPanel17">
+                  <Properties>
+                    <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                      <Border info="org.netbeans.modules.form.compat2.border.EtchedBorderInfo">
+                        <EtchetBorder/>
+                      </Border>
+                    </Property>
+                  </Properties>
+
+                  <Layout>
+                    <DimensionLayout dim="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jLabel12" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="date_text_cloth" min="-2" pref="156" max="-2" attributes="0"/>
+                              <EmptySpace pref="394" max="32767" attributes="0"/>
+                          </Group>
+                      </Group>
+                    </DimensionLayout>
+                    <DimensionLayout dim="1">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="jLabel12" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="date_text_cloth" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace max="32767" attributes="0"/>
+                          </Group>
+                      </Group>
+                    </DimensionLayout>
+                  </Layout>
+                  <SubComponents>
+                    <Component class="javax.swing.JLabel" name="jLabel12">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" value="Date:"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JTextField" name="date_text_cloth">
+                    </Component>
+                  </SubComponents>
+                </Container>
+                <Container class="javax.swing.JPanel" name="jPanel18">
+                  <Properties>
+                    <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                      <Border info="org.netbeans.modules.form.compat2.border.EtchedBorderInfo">
+                        <EtchetBorder/>
+                      </Border>
+                    </Property>
+                  </Properties>
+
+                  <Layout>
+                    <DimensionLayout dim="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="jSeparator1" max="32767" attributes="0"/>
+                                          <Group type="102" attributes="0">
+                                              <Component id="jLabel13" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                                              <Component id="cloth_type_combo" min="-2" pref="206" max="-2" attributes="0"/>
+                                              <EmptySpace min="-2" pref="67" max="-2" attributes="0"/>
+                                              <Component id="jLabel15" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                                              <Component id="stock_text" min="-2" pref="59" max="-2" attributes="0"/>
+                                              <EmptySpace max="-2" attributes="0"/>
+                                              <Component id="unit_label" pref="42" max="32767" attributes="0"/>
+                                              <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+                                          </Group>
+                                      </Group>
+                                  </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="jPanel19" max="32767" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" attributes="0">
+                                      <EmptySpace min="-2" pref="81" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="jLabel14" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="jLabel16" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="jLabel17" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="garment_type_combo" min="-2" pref="160" max="-2" attributes="0"/>
+                                          <Component id="amount_of_cloth_text" min="-2" pref="109" max="-2" attributes="0"/>
+                                          <Component id="cloth_cutting_spinner" alignment="0" min="-2" pref="43" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                  </Group>
+                              </Group>
+                              <EmptySpace max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                    </DimensionLayout>
+                    <DimensionLayout dim="1">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="jLabel13" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="cloth_type_combo" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel15" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="stock_text" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="unit_label" alignment="0" max="32767" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="jSeparator1" min="-2" pref="10" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="jLabel14" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="garment_type_combo" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="jLabel17" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="amount_of_cloth_text" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="jLabel16" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="cloth_cutting_spinner" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
+                              <Component id="jPanel19" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                    </DimensionLayout>
+                  </Layout>
+                  <SubComponents>
+                    <Component class="javax.swing.JLabel" name="jLabel13">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" value="Select cloth type:"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JComboBox" name="cloth_type_combo">
+                      <Properties>
+                        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                          <StringArray count="0"/>
+                        </Property>
+                      </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cloth_type_comboActionPerformed"/>
+                      </Events>
+                      <AuxValues>
+                        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+                      </AuxValues>
+                    </Component>
+                    <Component class="javax.swing.JSeparator" name="jSeparator1">
+                    </Component>
+                    <Component class="javax.swing.JLabel" name="jLabel14">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" value="Select garment:"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JLabel" name="jLabel15">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" value="Available stock:"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JTextField" name="stock_text">
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="stock_textActionPerformed"/>
+                      </Events>
+                    </Component>
+                    <Component class="javax.swing.JLabel" name="unit_label">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" value="meters"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JComboBox" name="garment_type_combo">
+                      <Properties>
+                        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                          <StringArray count="0"/>
+                        </Property>
+                      </Properties>
+                      <Events>
+                        <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="garment_type_comboItemStateChanged"/>
+                      </Events>
+                      <AuxValues>
+                        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+                      </AuxValues>
+                    </Component>
+                    <Component class="javax.swing.JLabel" name="jLabel16">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" value="No of Cuttings:"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JSpinner" name="cloth_cutting_spinner">
+                      <Events>
+                        <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="cloth_cutting_spinnerStateChanged"/>
+                      </Events>
+                    </Component>
+                    <Container class="javax.swing.JPanel" name="jPanel19">
+                      <Properties>
+                        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                          <Border info="org.netbeans.modules.form.compat2.border.EtchedBorderInfo">
+                            <EtchetBorder/>
+                          </Border>
+                        </Property>
+                      </Properties>
+
+                      <Layout>
+                        <DimensionLayout dim="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" alignment="1" attributes="0">
+                                  <EmptySpace max="32767" attributes="0"/>
+                                  <Component id="save_button" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="cancel_button3" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                        </DimensionLayout>
+                        <DimensionLayout dim="1">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" attributes="0">
+                                  <EmptySpace pref="13" max="32767" attributes="0"/>
+                                  <Group type="103" groupAlignment="3" attributes="0">
+                                      <Component id="save_button" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="cancel_button3" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                        </DimensionLayout>
+                      </Layout>
+                      <SubComponents>
+                        <Component class="javax.swing.JButton" name="cancel_button3">
+                          <Properties>
+                            <Property name="text" type="java.lang.String" value="Cancel"/>
+                          </Properties>
+                        </Component>
+                        <Component class="javax.swing.JButton" name="save_button">
+                          <Properties>
+                            <Property name="text" type="java.lang.String" value="Save"/>
+                          </Properties>
+                          <Events>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="save_buttonActionPerformed"/>
+                          </Events>
+                        </Component>
+                      </SubComponents>
+                    </Container>
+                    <Component class="javax.swing.JLabel" name="jLabel17">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" value="Amount of Cloth:"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JTextField" name="amount_of_cloth_text">
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="amount_of_cloth_textActionPerformed"/>
+                      </Events>
+                    </Component>
+                  </SubComponents>
+                </Container>
+              </SubComponents>
+            </Container>
+          </SubComponents>
         </Container>
         <Container class="javax.swing.JPanel" name="jPanel15">
           <Constraints>
@@ -822,15 +1132,280 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <EmptySpace min="0" pref="638" max="32767" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jPanel20" max="32767" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                  </Group>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <EmptySpace min="0" pref="673" max="32767" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jPanel20" max="32767" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                  </Group>
               </Group>
             </DimensionLayout>
           </Layout>
+          <SubComponents>
+            <Container class="javax.swing.JPanel" name="jPanel20">
+
+              <Layout>
+                <DimensionLayout dim="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="1" attributes="0">
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="jScrollPane5" pref="612" max="32767" attributes="0"/>
+                      </Group>
+                  </Group>
+                </DimensionLayout>
+                <DimensionLayout dim="1">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="1" attributes="0">
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="jScrollPane5" pref="457" max="32767" attributes="0"/>
+                      </Group>
+                  </Group>
+                </DimensionLayout>
+              </Layout>
+              <SubComponents>
+                <Container class="javax.swing.JScrollPane" name="jScrollPane5">
+
+                  <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+                  <SubComponents>
+                    <Container class="javax.swing.JPanel" name="jPanel21">
+
+                      <Layout>
+                        <DimensionLayout dim="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="jTabbedPane1" max="32767" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                        </DimensionLayout>
+                        <DimensionLayout dim="1">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="jTabbedPane1" max="32767" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                        </DimensionLayout>
+                      </Layout>
+                      <SubComponents>
+                        <Container class="javax.swing.JTabbedPane" name="jTabbedPane1">
+
+                          <Layout class="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout"/>
+                          <SubComponents>
+                            <Container class="javax.swing.JPanel" name="jPanel22">
+                              <Constraints>
+                                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
+                                  <JTabbedPaneConstraints tabName="By Date:">
+                                    <Property name="tabTitle" type="java.lang.String" value="By Date:"/>
+                                  </JTabbedPaneConstraints>
+                                </Constraint>
+                              </Constraints>
+
+                              <Layout>
+                                <DimensionLayout dim="0">
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Component id="jPanel25" max="32767" attributes="0"/>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                                </DimensionLayout>
+                                <DimensionLayout dim="1">
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Component id="jPanel25" max="32767" attributes="0"/>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                                </DimensionLayout>
+                              </Layout>
+                              <SubComponents>
+                                <Container class="javax.swing.JPanel" name="jPanel25">
+
+                                  <Layout>
+                                    <DimensionLayout dim="0">
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Group type="102" attributes="0">
+                                              <EmptySpace max="-2" attributes="0"/>
+                                              <Group type="103" groupAlignment="0" attributes="0">
+                                                  <Component id="jPanel26" max="32767" attributes="0"/>
+                                                  <Component id="jPanel27" max="32767" attributes="0"/>
+                                              </Group>
+                                              <EmptySpace max="-2" attributes="0"/>
+                                          </Group>
+                                      </Group>
+                                    </DimensionLayout>
+                                    <DimensionLayout dim="1">
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Group type="102" alignment="0" attributes="0">
+                                              <EmptySpace max="-2" attributes="0"/>
+                                              <Component id="jPanel26" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace max="-2" attributes="0"/>
+                                              <Component id="jPanel27" max="32767" attributes="0"/>
+                                              <EmptySpace max="-2" attributes="0"/>
+                                          </Group>
+                                      </Group>
+                                    </DimensionLayout>
+                                  </Layout>
+                                  <SubComponents>
+                                    <Container class="javax.swing.JPanel" name="jPanel26">
+                                      <Properties>
+                                        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                                          <Border info="org.netbeans.modules.form.compat2.border.EtchedBorderInfo">
+                                            <EtchetBorder/>
+                                          </Border>
+                                        </Property>
+                                      </Properties>
+
+                                      <Layout>
+                                        <DimensionLayout dim="0">
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Group type="102" alignment="0" attributes="0">
+                                                  <EmptySpace max="-2" attributes="0"/>
+                                                  <Component id="jLabel18" min="-2" max="-2" attributes="0"/>
+                                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                                  <Component id="date_spinner" min="-2" max="-2" attributes="0"/>
+                                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                                  <Component id="month_combo" min="-2" pref="83" max="-2" attributes="0"/>
+                                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                                  <Component id="year_spinner" min="-2" pref="58" max="-2" attributes="0"/>
+                                                  <EmptySpace pref="287" max="32767" attributes="0"/>
+                                              </Group>
+                                          </Group>
+                                        </DimensionLayout>
+                                        <DimensionLayout dim="1">
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Group type="102" alignment="0" attributes="0">
+                                                  <EmptySpace max="-2" attributes="0"/>
+                                                  <Group type="103" groupAlignment="3" attributes="0">
+                                                      <Component id="jLabel18" alignment="3" min="-2" max="-2" attributes="0"/>
+                                                      <Component id="date_spinner" alignment="3" min="-2" max="-2" attributes="0"/>
+                                                      <Component id="month_combo" alignment="3" min="-2" max="-2" attributes="0"/>
+                                                      <Component id="year_spinner" alignment="3" min="-2" max="-2" attributes="0"/>
+                                                  </Group>
+                                                  <EmptySpace pref="27" max="32767" attributes="0"/>
+                                              </Group>
+                                          </Group>
+                                        </DimensionLayout>
+                                      </Layout>
+                                      <SubComponents>
+                                        <Component class="javax.swing.JLabel" name="jLabel18">
+                                          <Properties>
+                                            <Property name="text" type="java.lang.String" value="Select date:"/>
+                                          </Properties>
+                                        </Component>
+                                        <Component class="javax.swing.JSpinner" name="date_spinner">
+                                        </Component>
+                                        <Component class="javax.swing.JComboBox" name="month_combo">
+                                          <Properties>
+                                            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                                              <StringArray count="4">
+                                                <StringItem index="0" value="Item 1"/>
+                                                <StringItem index="1" value="Item 2"/>
+                                                <StringItem index="2" value="Item 3"/>
+                                                <StringItem index="3" value="Item 4"/>
+                                              </StringArray>
+                                            </Property>
+                                          </Properties>
+                                          <AuxValues>
+                                            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+                                          </AuxValues>
+                                        </Component>
+                                        <Component class="javax.swing.JSpinner" name="year_spinner">
+                                        </Component>
+                                      </SubComponents>
+                                    </Container>
+                                    <Container class="javax.swing.JPanel" name="jPanel27">
+                                      <Properties>
+                                        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                                          <Border info="org.netbeans.modules.form.compat2.border.EtchedBorderInfo">
+                                            <EtchetBorder/>
+                                          </Border>
+                                        </Property>
+                                      </Properties>
+
+                                      <Layout>
+                                        <DimensionLayout dim="0">
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                          </Group>
+                                        </DimensionLayout>
+                                        <DimensionLayout dim="1">
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <EmptySpace min="0" pref="303" max="32767" attributes="0"/>
+                                          </Group>
+                                        </DimensionLayout>
+                                      </Layout>
+                                    </Container>
+                                  </SubComponents>
+                                </Container>
+                              </SubComponents>
+                            </Container>
+                            <Container class="javax.swing.JPanel" name="jPanel24">
+                              <Constraints>
+                                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
+                                  <JTabbedPaneConstraints tabName="By Month:">
+                                    <Property name="tabTitle" type="java.lang.String" value="By Month:"/>
+                                  </JTabbedPaneConstraints>
+                                </Constraint>
+                              </Constraints>
+
+                              <Layout>
+                                <DimensionLayout dim="0">
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <EmptySpace min="0" pref="607" max="32767" attributes="0"/>
+                                  </Group>
+                                </DimensionLayout>
+                                <DimensionLayout dim="1">
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <EmptySpace min="0" pref="419" max="32767" attributes="0"/>
+                                  </Group>
+                                </DimensionLayout>
+                              </Layout>
+                            </Container>
+                            <Container class="javax.swing.JPanel" name="jPanel23">
+                              <Constraints>
+                                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
+                                  <JTabbedPaneConstraints tabName="By Garment:">
+                                    <Property name="tabTitle" type="java.lang.String" value="By Garment:"/>
+                                  </JTabbedPaneConstraints>
+                                </Constraint>
+                              </Constraints>
+
+                              <Layout>
+                                <DimensionLayout dim="0">
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <EmptySpace min="0" pref="607" max="32767" attributes="0"/>
+                                  </Group>
+                                </DimensionLayout>
+                                <DimensionLayout dim="1">
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <EmptySpace min="0" pref="419" max="32767" attributes="0"/>
+                                  </Group>
+                                </DimensionLayout>
+                              </Layout>
+                            </Container>
+                          </SubComponents>
+                        </Container>
+                      </SubComponents>
+                    </Container>
+                  </SubComponents>
+                </Container>
+              </SubComponents>
+            </Container>
+          </SubComponents>
         </Container>
       </SubComponents>
     </Container>

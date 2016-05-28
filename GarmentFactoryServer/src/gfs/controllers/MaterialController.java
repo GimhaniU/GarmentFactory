@@ -89,4 +89,42 @@ public class MaterialController {
         }
     }
 
+    public ArrayList<Material> getSimilarCloths(String item) throws ClassNotFoundException, SQLException {
+        try {
+            readWriteLock.readLock().lock();
+
+            Connection conn = DBConnection.getDBConnection().getConnection();
+            String sql = "Select * From material where mat_name like '" + item + "%' and mat_type='Cloth' order by mat_name limit 10";
+            ResultSet rst = DBHandler.getData(conn, sql);
+            ArrayList<Material> list = new ArrayList<>();
+            while (rst.next()) {
+                Material material=new Material(rst.getString("mat_id"),rst.getString("mat_name"), rst.getString("mat_type"),rst.getDouble("in_stock"));
+                list.add(material);
+            }
+            return list;
+
+        } finally {
+            readWriteLock.readLock().unlock();
+        }
+    }
+
+    public ArrayList<Material> getSimilarOtherMaterials(String item) throws ClassNotFoundException, SQLException {
+        try {
+            readWriteLock.readLock().lock();
+
+            Connection conn = DBConnection.getDBConnection().getConnection();
+            String sql = "Select * From material where mat_name like '" + item + "%' and mat_type!='Cloth' order by mat_name limit 10";
+            ResultSet rst = DBHandler.getData(conn, sql);
+            ArrayList<Material> list = new ArrayList<>();
+            while (rst.next()) {
+                Material material=new Material(rst.getString("mat_id"),rst.getString("mat_name"), rst.getString("mat_type"),rst.getDouble("in_stock"));
+                list.add(material);
+            }
+            return list;
+
+        } finally {
+            readWriteLock.readLock().unlock();
+        }
+    }
+
 }

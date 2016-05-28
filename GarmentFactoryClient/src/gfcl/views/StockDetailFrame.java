@@ -11,6 +11,7 @@ import gfc.controller.StockController;
 import gfc.models.DailyMaterialUsage;
 import gfc.models.Material;
 import gfc.models.Stock;
+import gfcl.common_classes.ComboItemsAdder;
 import gfcl.common_classes.GUIitemsValidator;
 import gfcl.common_classes.IdGenerator;
 import gfcl.connector.Connector;
@@ -38,6 +39,7 @@ public class StockDetailFrame extends javax.swing.JInternalFrame {
     private MaterialController materialController;
     private StockController stockController;
     private DailyMaterialUsageController dailyMaterialUsageController;
+    private ComboItemsAdder cia;
 
     /**
      * Creates new form StockDetailFrame
@@ -49,7 +51,8 @@ public class StockDetailFrame extends javax.swing.JInternalFrame {
             materialController = sConnector.getMaterialController();
             stockController = sConnector.getStockController();
             dailyMaterialUsageController = sConnector.getDailyMaterialUsageController();
-
+            cia=new ComboItemsAdder();
+            
             mat_id_text.setText(IdGenerator.generateNextMaterialID(materialController.getLastMaterialId()));
             stock_id_text.setText(IdGenerator.generateNextStockID(stockController.getLastStockId()));
 
@@ -60,51 +63,12 @@ public class StockDetailFrame extends javax.swing.JInternalFrame {
             new_date_text.setText(dateFormat.format(date));
 
             add_stock_button.setEnabled(false);
+            
             this.materialtypecombo.setEditable(true);
-            JTextComponent matCombo = (JTextComponent) materialtypecombo.getEditor().getEditorComponent();
-            matCombo.addKeyListener(new KeyAdapter() {
-
-                @Override
-                public void keyReleased(KeyEvent e) {
-                    try {
-                        String item = (String) materialtypecombo.getEditor().getItem();
-                        ArrayList<Object> list = new ArrayList();
-
-                        ArrayList<Material> similar = materialController.getSimilarMaterials(item);
-                        for (int i = 0; i < similar.size(); i++) {
-                            list.add(similar.get(i).getMat_name() + "-" + similar.get(i).getMat_type() + "-" + similar.get(i).getMat_id());
-                        }
-                        GUIitemsValidator.addItemToCombo(list, materialtypecombo);
-                    } catch (ClassNotFoundException | SQLException | RemoteException ex) {
-                        Logger.getLogger(GUIitemsValidator.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-
-                }
-
-            });
+            cia.addSimilarMaterialnames(materialtypecombo);
 
             this.daily_materialtypecombo.setEditable(true);
-            JTextComponent d_matCombo = (JTextComponent) daily_materialtypecombo.getEditor().getEditorComponent();
-            d_matCombo.addKeyListener(new KeyAdapter() {
-
-                @Override
-                public void keyReleased(KeyEvent e) {
-                    try {
-                        String item = (String) daily_materialtypecombo.getEditor().getItem();
-                        ArrayList<Object> list = new ArrayList();
-
-                        ArrayList<Material> similar = materialController.getSimilarMaterials(item);
-                        for (int i = 0; i < similar.size(); i++) {
-                            list.add(similar.get(i).getMat_name() + "-" + similar.get(i).getMat_type() + "-" + similar.get(i).getMat_id());
-                        }
-                        GUIitemsValidator.addItemToCombo(list, daily_materialtypecombo);
-                    } catch (ClassNotFoundException | SQLException | RemoteException ex) {
-                        Logger.getLogger(GUIitemsValidator.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-
-                }
-
-            });
+            cia.addSimilarOtherMaterialnames(daily_materialtypecombo);
         } catch (NotBoundException | MalformedURLException | RemoteException | SQLException | ClassNotFoundException ex) {
             Logger.getLogger(StockDetailFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -165,6 +129,8 @@ public class StockDetailFrame extends javax.swing.JInternalFrame {
         daily_date_text = new javax.swing.JTextField();
         jSeparator1 = new javax.swing.JSeparator();
         amount_unit_label_1 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
         add_new_panel = new javax.swing.JPanel();
         jPanel9 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
@@ -406,7 +372,7 @@ public class StockDetailFrame extends javax.swing.JInternalFrame {
             add_stock_entry_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(add_stock_entry_panelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 549, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 554, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -488,6 +454,17 @@ public class StockDetailFrame extends javax.swing.JInternalFrame {
 
         date_label.setText("Date:");
 
+        jButton1.setText("Add Cloth Usages");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        jLabel6.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(153, 0, 0));
+        jLabel6.setText("This is to add daily usages of Dyes, Threads and Waxes. Use above button to add cloth usages.");
+
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
         jPanel7Layout.setHorizontalGroup(
@@ -504,7 +481,6 @@ public class StockDetailFrame extends javax.swing.JInternalFrame {
                                 .addComponent(date_label)
                                 .addGap(18, 18, 18)
                                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(daily_date_text, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(jPanel7Layout.createSequentialGroup()
                                         .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(daily_mat_type_label)
@@ -515,10 +491,18 @@ public class StockDetailFrame extends javax.swing.JInternalFrame {
                                                 .addComponent(daily_amount_text, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                                 .addComponent(amount_unit_label_1, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addComponent(daily_materialtypecombo, javax.swing.GroupLayout.PREFERRED_SIZE, 318, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                        .addGap(0, 122, Short.MAX_VALUE))
+                                            .addComponent(daily_materialtypecombo, javax.swing.GroupLayout.PREFERRED_SIZE, 318, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addGroup(jPanel7Layout.createSequentialGroup()
+                                        .addComponent(daily_date_text, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addGap(14, 14, 14))
                     .addComponent(jSeparator1))
                 .addContainerGap())
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 544, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(22, Short.MAX_VALUE))
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -526,10 +510,13 @@ public class StockDetailFrame extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(daily_date_text, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(date_label))
+                    .addComponent(date_label)
+                    .addComponent(jButton1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel6)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(daily_mat_type_label)
                     .addComponent(daily_materialtypecombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -766,7 +753,7 @@ public class StockDetailFrame extends javax.swing.JInternalFrame {
             .addGroup(add_new_panelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, 448, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(112, Short.MAX_VALUE))
+                .addContainerGap(117, Short.MAX_VALUE))
         );
 
         tabpane.addTab("Add new material type", add_new_panel);
@@ -1026,6 +1013,12 @@ public class StockDetailFrame extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_mat_type_comboItemStateChanged
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        FrontPage frontPage=FrontPage.getInstance();
+        ProductionDetailFrame pdf=new ProductionDetailFrame();
+        frontPage.setDesktopPaneForProduction(pdf,1);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     void focustabbedpane(int num) {
         tabpane.setSelectedIndex(num);
     }
@@ -1066,11 +1059,13 @@ public class StockDetailFrame extends javax.swing.JInternalFrame {
     private javax.swing.JTextField initial_stock_unitprice_text;
     private javax.swing.JPanel intial_stock_panel;
     private javax.swing.JLabel intialstock_unit_price_label;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;

@@ -20,10 +20,12 @@ public interface MaterialController extends Remote {
 
     public int addNewMaterial(Material material) throws RemoteException, SQLException,ClassNotFoundException;
     
-    
+    public ArrayList<Material> getSimilarCloths(String item) throws RemoteException, SQLException,ClassNotFoundException;
     
     public String getLastMaterialId() throws RemoteException, SQLException,ClassNotFoundException;
 
+    public ArrayList<Material> getSimilarOtherMaterials(String item) throws RemoteException, SQLException,ClassNotFoundException;
+    
     public ArrayList<Material> getSimilarMaterials(String item) throws RemoteException, SQLException,ClassNotFoundException;
 
     public Material searchMaterial(String mat_id) throws RemoteException, SQLException,ClassNotFoundException;

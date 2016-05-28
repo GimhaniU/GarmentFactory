@@ -8,14 +8,10 @@ package gfcl.views;
 import gfc.controller.CustomerController;
 import gfc.controller.CustomerOrderController;
 import gfc.controller.GarmentController;
-import gfc.models.Customer;
 import gfc.models.CustomerOrder;
-import gfc.models.Garment;
-import gfcl.common_classes.GUIitemsValidator;
+import gfcl.common_classes.ComboItemsAdder;
 import gfcl.common_classes.IdGenerator;
 import gfcl.connector.Connector;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
 import java.net.MalformedURLException;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
@@ -26,10 +22,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.text.JTextComponent;
 
 /**
  *
@@ -41,6 +35,7 @@ public class SalesDetailFrame extends javax.swing.JInternalFrame {
     private GarmentController garmentController;
     private CustomerOrderController customerOrderController;
     DefaultTableModel tableModel;
+    private ComboItemsAdder cia;
 
     /**
      * Creates new form SalesDetailFrame
@@ -55,7 +50,8 @@ public class SalesDetailFrame extends javax.swing.JInternalFrame {
             customerController = sConnector.getCustomerController();
             garmentController = sConnector.getGarmentController();
             customerOrderController = sConnector.getCustomerOrderController();
-
+            cia=new ComboItemsAdder();
+                    
             DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
             Date date = new Date();
             date_text.setText(dateFormat.format(date));
@@ -65,49 +61,10 @@ public class SalesDetailFrame extends javax.swing.JInternalFrame {
             add_to_list_button.setEnabled(false);
 
             this.customerCombo.setEditable(true);
-            JTextComponent custCombo = (JTextComponent) customerCombo.getEditor().getEditorComponent();
-            custCombo.addKeyListener(new KeyAdapter() {
-
-                @Override
-                public void keyReleased(KeyEvent e) {
-                    try {
-                        String item = (String) customerCombo.getEditor().getItem();
-                        ArrayList<Object> list = new ArrayList();
-
-                        ArrayList<Customer> similar = customerController.getSimilarCustomerNames(item);
-                        for (int i = 0; i < similar.size(); i++) {
-                            list.add(similar.get(i).getName() + " " + similar.get(i).getCust_id());
-                        }
-                        GUIitemsValidator.addItemToCombo(list, customerCombo);
-                    } catch (ClassNotFoundException | SQLException | RemoteException ex) {
-                        Logger.getLogger(GUIitemsValidator.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-
-                }
-
-            });
+            cia.addSimilarCustomernames(customerCombo);
+            
             this.garment_type_combo.setEditable(true);
-            JTextComponent garmentCombo = (JTextComponent) garment_type_combo.getEditor().getEditorComponent();
-            garmentCombo.addKeyListener(new KeyAdapter() {
-
-                @Override
-                public void keyReleased(KeyEvent e) {
-                    try {
-                        String item = (String) garment_type_combo.getEditor().getItem();
-                        ArrayList<Object> list = new ArrayList();
-
-                        ArrayList<Garment> similar = garmentController.getSimilarGarmentNames(item);
-                        for (int i = 0; i < similar.size(); i++) {
-                            list.add(similar.get(i).getGarment_name() + " " + similar.get(i).getGarment_id());
-                        }
-                        GUIitemsValidator.addItemToCombo(list, garment_type_combo);
-                    } catch (ClassNotFoundException | SQLException | RemoteException ex) {
-                        Logger.getLogger(GUIitemsValidator.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-
-                }
-
-            });
+            cia.addSimilarGarmentNames(garment_type_combo);
 
         } catch (RemoteException | SQLException | ClassNotFoundException | NotBoundException | MalformedURLException ex) {
             Logger.getLogger(SalesDetailFrame.class.getName()).log(Level.SEVERE, null, ex);

@@ -5,20 +5,35 @@
  */
 package gfs.ControllerImplementation;
 
+import gfc.models.DailyClothUsage;
+import gfc.models.DailyCoverage;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
-import gfc.controller.DailyClothUsageController;
+import gfs.controllers.DailyClothUsageController;
+import java.sql.SQLException;
 
 /**
  *
  * @author Gimhani Uthpala
  */
-public class DailyClothUsageControllerImple extends UnicastRemoteObject implements DailyClothUsageController{
+public class DailyClothUsageControllerImple extends UnicastRemoteObject implements gfc.controller.DailyClothUsageController{
     private final DailyClothUsageController dailyClothUsageController;
 
     public DailyClothUsageControllerImple() throws RemoteException {
         super();
         this.dailyClothUsageController = new DailyClothUsageController() {} ;
     }
+
+    @Override
+    public int addDailyClothUsage(DailyClothUsage dailyClothUsage) throws RemoteException, SQLException, ClassNotFoundException {
+        return dailyClothUsageController.addDailyClothUsage(dailyClothUsage);
+    }
+
+    @Override
+    public DailyClothUsage searchDailyClothUsage(String date, String garment_id, String mat_id) throws RemoteException, SQLException, ClassNotFoundException {
+        return dailyClothUsageController.searchDailyClothUsage(date,garment_id, mat_id);
+    }
+
+    
     
 }

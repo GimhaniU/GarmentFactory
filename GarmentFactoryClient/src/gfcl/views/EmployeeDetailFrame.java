@@ -11,6 +11,7 @@ import gfc.controller.PieceCoverageController;
 import gfc.models.Employee;
 import gfc.models.Garment;
 import gfc.models.PieceCoverage;
+import gfcl.common_classes.ComboItemsAdder;
 import gfcl.common_classes.GUIitemsValidator;
 import gfcl.common_classes.IdGenerator;
 import gfcl.common_classes.PatternChecker;
@@ -41,6 +42,7 @@ public class EmployeeDetailFrame extends javax.swing.JInternalFrame {
     private GarmentController garmentController;
     private PieceCoverageController pieceCoverageController;
 
+    private ComboItemsAdder cia;
     /**
      * Creates new form EmployeeDetailFrame
      */
@@ -53,7 +55,8 @@ public class EmployeeDetailFrame extends javax.swing.JInternalFrame {
             employeeController = sConnector.getEmployeeController();
             garmentController = sConnector.getGarmentController();
             pieceCoverageController = sConnector.getPieceCoverageController();
-
+            cia=new ComboItemsAdder();
+            
             System.out.println(IdGenerator.generateNextEmployeeID(employeeController.getLastEmpId()));
             regno_text.setText(IdGenerator.generateNextEmployeeID(employeeController.getLastEmpId()));
 
@@ -66,71 +69,13 @@ public class EmployeeDetailFrame extends javax.swing.JInternalFrame {
 
             //to autoadd names to combo box
             this.employee_name_combo.setEditable(true);
-            JTextComponent editCombo = (JTextComponent) employee_name_combo.getEditor().getEditorComponent();
-            editCombo.addKeyListener(new KeyAdapter() {
-
-                @Override
-                public void keyReleased(KeyEvent e) {
-                    try {
-                        String item = (String) employee_name_combo.getEditor().getItem();
-                        ArrayList<Object> list = new ArrayList();
-
-                        ArrayList<Employee> similar = employeeController.getSimilarEmployeeNames(item);
-                        for (int i = 0; i < similar.size(); i++) {
-                            list.add(similar.get(i).getName() + " " + similar.get(i).getEmp_id());
-                        }
-                        GUIitemsValidator.addItemToCombo(list, employee_name_combo);
-                    } catch (ClassNotFoundException | SQLException | RemoteException ex) {
-                        Logger.getLogger(GUIitemsValidator.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-
-                }
-
-            });
+            cia.addSimilarEmployeenames(employee_name_combo);
+            
             this.employee_attend_name_combo.setEditable(true);
-            JTextComponent editAttendCombo = (JTextComponent) employee_attend_name_combo.getEditor().getEditorComponent();
-            editAttendCombo.addKeyListener(new KeyAdapter() {
-
-                @Override
-                public void keyReleased(KeyEvent e) {
-                    try {
-                        String item = (String) employee_attend_name_combo.getEditor().getItem();
-                        ArrayList<Object> list = new ArrayList();
-
-                        ArrayList<Employee> similar = employeeController.getSimilarEmployeeNames(item);
-                        for (int i = 0; i < similar.size(); i++) {
-                            list.add(similar.get(i).getName() + " " + similar.get(i).getEmp_id());
-                        }
-                        GUIitemsValidator.addItemToCombo(list, employee_attend_name_combo);
-                    } catch (ClassNotFoundException | SQLException | RemoteException ex) {
-                        Logger.getLogger(GUIitemsValidator.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-
-                }
-
-            });
+            cia.addSimilarEmployeenames(employee_attend_name_combo);
+            
             this.garment_type_combo.setEditable(true);
-            JTextComponent garmentCombo = (JTextComponent) garment_type_combo.getEditor().getEditorComponent();
-            garmentCombo.addKeyListener(new KeyAdapter() {
-
-                @Override
-                public void keyReleased(KeyEvent e) {
-                    try {
-                        String item = (String) garment_type_combo.getEditor().getItem();
-                        ArrayList<Object> list = new ArrayList();
-
-                        ArrayList<Garment> similar = garmentController.getSimilarGarmentNames(item);
-                        for (int i = 0; i < similar.size(); i++) {
-                            list.add(similar.get(i).getGarment_name() + " " + similar.get(i).getGarment_id());
-                        }
-                        GUIitemsValidator.addItemToCombo(list, garment_type_combo);
-                    } catch (ClassNotFoundException | SQLException | RemoteException ex) {
-                        Logger.getLogger(GUIitemsValidator.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-
-                }
-
-            });
+            cia.addSimilarGarmentNames(garment_type_combo);
         } catch (NotBoundException | MalformedURLException | RemoteException | SQLException | ClassNotFoundException ex) {
             Logger.getLogger(EmployeeDetailFrame.class.getName()).log(Level.SEVERE, null, ex);
         }

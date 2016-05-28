@@ -5,10 +5,15 @@
  */
 package gfcl.views;
 
+import gfc.controller.DailyClothUsageController;
 import gfc.controller.DailyCoverageController;
 import gfc.controller.GarmentController;
+import gfc.controller.MaterialController;
+import gfc.models.DailyClothUsage;
 import gfc.models.DailyCoverage;
 import gfc.models.Garment;
+import gfc.models.Material;
+import gfcl.common_classes.ComboItemsAdder;
 import gfcl.common_classes.GUIitemsValidator;
 import gfcl.connector.Connector;
 import java.awt.event.KeyAdapter;
@@ -23,6 +28,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.text.JTextComponent;
@@ -35,6 +41,9 @@ public class ProductionDetailFrame extends javax.swing.JInternalFrame {
 
     private GarmentController garmentController;
     private DailyCoverageController dailyCoverageController;
+    private MaterialController materialController;
+    private DailyClothUsageController dailyClothUsageController;
+    private ComboItemsAdder cia;
 
     /**
      * Creates new form ProductionDetailFrame
@@ -43,61 +52,31 @@ public class ProductionDetailFrame extends javax.swing.JInternalFrame {
         try {
             initComponents();
 
+            cia = new ComboItemsAdder();
             Connector sConnector = Connector.getSConnector();
             garmentController = sConnector.getGarmentController();
             dailyCoverageController = sConnector.getDailyCoverageController();
+            materialController = sConnector.getMaterialController();
+            dailyClothUsageController = sConnector.getDailyClothUsageController();
 
             DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
             Date date = new Date();
             date_text.setText(dateFormat.format(date));
+            date_text_cloth.setText(dateFormat.format(date));
 
             add_to_table_button.setEnabled(false);
 
             this.garment_combo.setEditable(true);
-            JTextComponent garmentCombo = (JTextComponent) garment_combo.getEditor().getEditorComponent();
-            garmentCombo.addKeyListener(new KeyAdapter() {
-
-                @Override
-                public void keyReleased(KeyEvent e) {
-                    try {
-                        String item = (String) garment_combo.getEditor().getItem();
-                        ArrayList<Object> list = new ArrayList();
-
-                        ArrayList<Garment> similar = garmentController.getSimilarGarmentNames(item);
-                        for (int i = 0; i < similar.size(); i++) {
-                            list.add(similar.get(i).getGarment_name() + " " + similar.get(i).getGarment_id());
-                        }
-                        GUIitemsValidator.addItemToCombo(list, garment_combo);
-                    } catch (ClassNotFoundException | SQLException | RemoteException ex) {
-                        Logger.getLogger(GUIitemsValidator.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-
-                }
-
-            });
+            cia.addSimilarGarmentNames(garment_combo);
 
             this.garment_inpro_combo.setEditable(true);
-            JTextComponent garmentInCombo = (JTextComponent) garment_inpro_combo.getEditor().getEditorComponent();
-            garmentInCombo.addKeyListener(new KeyAdapter() {
+            cia.addSimilarGarmentNames(garment_inpro_combo);
 
-                @Override
-                public void keyReleased(KeyEvent e) {
-                    try {
-                        String item = (String) garment_inpro_combo.getEditor().getItem();
-                        ArrayList<Object> list = new ArrayList();
+            this.garment_type_combo.setEditable(true);
+            cia.addSimilarGarmentNames(garment_type_combo);
 
-                        ArrayList<Garment> similar = garmentController.getSimilarGarmentNames(item);
-                        for (int i = 0; i < similar.size(); i++) {
-                            list.add(similar.get(i).getGarment_name() + " " + similar.get(i).getGarment_id());
-                        }
-                        GUIitemsValidator.addItemToCombo(list, garment_inpro_combo);
-                    } catch (ClassNotFoundException | SQLException | RemoteException ex) {
-                        Logger.getLogger(GUIitemsValidator.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-
-                }
-
-            });
+            this.cloth_type_combo.setEditable(true);
+            cia.addSimilarClothnames(cloth_type_combo);
         } catch (NotBoundException | MalformedURLException | RemoteException | SQLException | ClassNotFoundException ex) {
             Logger.getLogger(ProductionDetailFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -161,7 +140,41 @@ public class ProductionDetailFrame extends javax.swing.JInternalFrame {
         cancel_button2 = new javax.swing.JButton();
         save_by_process_button = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
+        jPanel16 = new javax.swing.JPanel();
+        jPanel17 = new javax.swing.JPanel();
+        jLabel12 = new javax.swing.JLabel();
+        date_text_cloth = new javax.swing.JTextField();
+        jPanel18 = new javax.swing.JPanel();
+        jLabel13 = new javax.swing.JLabel();
+        cloth_type_combo = new javax.swing.JComboBox<>();
+        jSeparator1 = new javax.swing.JSeparator();
+        jLabel14 = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
+        stock_text = new javax.swing.JTextField();
+        unit_label = new javax.swing.JLabel();
+        garment_type_combo = new javax.swing.JComboBox<>();
+        jLabel16 = new javax.swing.JLabel();
+        cloth_cutting_spinner = new javax.swing.JSpinner();
+        jPanel19 = new javax.swing.JPanel();
+        cancel_button3 = new javax.swing.JButton();
+        save_button = new javax.swing.JButton();
+        jLabel17 = new javax.swing.JLabel();
+        amount_of_cloth_text = new javax.swing.JTextField();
         jPanel15 = new javax.swing.JPanel();
+        jPanel20 = new javax.swing.JPanel();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        jPanel21 = new javax.swing.JPanel();
+        jTabbedPane1 = new javax.swing.JTabbedPane();
+        jPanel22 = new javax.swing.JPanel();
+        jPanel25 = new javax.swing.JPanel();
+        jPanel26 = new javax.swing.JPanel();
+        jLabel18 = new javax.swing.JLabel();
+        date_spinner = new javax.swing.JSpinner();
+        month_combo = new javax.swing.JComboBox<>();
+        year_spinner = new javax.swing.JSpinner();
+        jPanel27 = new javax.swing.JPanel();
+        jPanel24 = new javax.swing.JPanel();
+        jPanel23 = new javax.swing.JPanel();
 
         jPanel5.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
@@ -601,7 +614,7 @@ public class ProductionDetailFrame extends javax.swing.JInternalFrame {
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 638, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 642, Short.MAX_VALUE)
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -621,33 +634,382 @@ public class ProductionDetailFrame extends javax.swing.JInternalFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 32, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         tab_pane_out.addTab("Add Daily Coverage", jPanel1);
+
+        jPanel17.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        jLabel12.setText("Date:");
+
+        javax.swing.GroupLayout jPanel17Layout = new javax.swing.GroupLayout(jPanel17);
+        jPanel17.setLayout(jPanel17Layout);
+        jPanel17Layout.setHorizontalGroup(
+            jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel17Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel12)
+                .addGap(18, 18, 18)
+                .addComponent(date_text_cloth, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(394, Short.MAX_VALUE))
+        );
+        jPanel17Layout.setVerticalGroup(
+            jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel17Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel12)
+                    .addComponent(date_text_cloth, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jPanel18.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        jLabel13.setText("Select cloth type:");
+
+        cloth_type_combo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cloth_type_comboActionPerformed(evt);
+            }
+        });
+
+        jLabel14.setText("Select garment:");
+
+        jLabel15.setText("Available stock:");
+
+        stock_text.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                stock_textActionPerformed(evt);
+            }
+        });
+
+        unit_label.setText("meters");
+
+        garment_type_combo.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                garment_type_comboItemStateChanged(evt);
+            }
+        });
+
+        jLabel16.setText("No of Cuttings:");
+
+        cloth_cutting_spinner.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                cloth_cutting_spinnerStateChanged(evt);
+            }
+        });
+
+        jPanel19.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        cancel_button3.setText("Cancel");
+
+        save_button.setText("Save");
+        save_button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                save_buttonActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel19Layout = new javax.swing.GroupLayout(jPanel19);
+        jPanel19.setLayout(jPanel19Layout);
+        jPanel19Layout.setHorizontalGroup(
+            jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel19Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(save_button)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(cancel_button3)
+                .addContainerGap())
+        );
+        jPanel19Layout.setVerticalGroup(
+            jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel19Layout.createSequentialGroup()
+                .addContainerGap(13, Short.MAX_VALUE)
+                .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(save_button)
+                    .addComponent(cancel_button3))
+                .addContainerGap())
+        );
+
+        jLabel17.setText("Amount of Cloth:");
+
+        amount_of_cloth_text.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                amount_of_cloth_textActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel18Layout = new javax.swing.GroupLayout(jPanel18);
+        jPanel18.setLayout(jPanel18Layout);
+        jPanel18Layout.setHorizontalGroup(
+            jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel18Layout.createSequentialGroup()
+                .addGroup(jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel18Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jSeparator1)
+                            .addGroup(jPanel18Layout.createSequentialGroup()
+                                .addComponent(jLabel13)
+                                .addGap(18, 18, 18)
+                                .addComponent(cloth_type_combo, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(67, 67, 67)
+                                .addComponent(jLabel15)
+                                .addGap(18, 18, 18)
+                                .addComponent(stock_text, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(unit_label, javax.swing.GroupLayout.DEFAULT_SIZE, 42, Short.MAX_VALUE)
+                                .addGap(12, 12, 12))))
+                    .addGroup(jPanel18Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jPanel19, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel18Layout.createSequentialGroup()
+                        .addGap(81, 81, 81)
+                        .addGroup(jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel14)
+                            .addComponent(jLabel16)
+                            .addComponent(jLabel17))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(garment_type_combo, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(amount_of_cloth_text, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cloth_cutting_spinner, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
+        jPanel18Layout.setVerticalGroup(
+            jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel18Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel13)
+                    .addComponent(cloth_type_combo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel15)
+                    .addComponent(stock_text, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(unit_label, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel14)
+                    .addComponent(garment_type_combo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel17)
+                    .addComponent(amount_of_cloth_text, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel16)
+                    .addComponent(cloth_cutting_spinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(30, 30, 30)
+                .addComponent(jPanel19, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
+        javax.swing.GroupLayout jPanel16Layout = new javax.swing.GroupLayout(jPanel16);
+        jPanel16.setLayout(jPanel16Layout);
+        jPanel16Layout.setHorizontalGroup(
+            jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel16Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel16Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel18, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        jPanel16Layout.setVerticalGroup(
+            jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel16Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel18, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 638, Short.MAX_VALUE)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel16, javax.swing.GroupLayout.PREFERRED_SIZE, 622, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 673, Short.MAX_VALUE)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel16, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         tab_pane_out.addTab("Add cloth cuttings", jPanel2);
+
+        jPanel26.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        jLabel18.setText("Select date:");
+
+        month_combo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        javax.swing.GroupLayout jPanel26Layout = new javax.swing.GroupLayout(jPanel26);
+        jPanel26.setLayout(jPanel26Layout);
+        jPanel26Layout.setHorizontalGroup(
+            jPanel26Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel26Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel18)
+                .addGap(18, 18, 18)
+                .addComponent(date_spinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(month_combo, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(year_spinner, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(287, Short.MAX_VALUE))
+        );
+        jPanel26Layout.setVerticalGroup(
+            jPanel26Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel26Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel26Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel18)
+                    .addComponent(date_spinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(month_combo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(year_spinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(27, Short.MAX_VALUE))
+        );
+
+        jPanel27.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        javax.swing.GroupLayout jPanel27Layout = new javax.swing.GroupLayout(jPanel27);
+        jPanel27.setLayout(jPanel27Layout);
+        jPanel27Layout.setHorizontalGroup(
+            jPanel27Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        jPanel27Layout.setVerticalGroup(
+            jPanel27Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 303, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout jPanel25Layout = new javax.swing.GroupLayout(jPanel25);
+        jPanel25.setLayout(jPanel25Layout);
+        jPanel25Layout.setHorizontalGroup(
+            jPanel25Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel25Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel25Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel26, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel27, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        jPanel25Layout.setVerticalGroup(
+            jPanel25Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel25Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel26, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel27, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        javax.swing.GroupLayout jPanel22Layout = new javax.swing.GroupLayout(jPanel22);
+        jPanel22.setLayout(jPanel22Layout);
+        jPanel22Layout.setHorizontalGroup(
+            jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel22Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel25, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jPanel22Layout.setVerticalGroup(
+            jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel22Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel25, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        jTabbedPane1.addTab("By Date:", jPanel22);
+
+        javax.swing.GroupLayout jPanel24Layout = new javax.swing.GroupLayout(jPanel24);
+        jPanel24.setLayout(jPanel24Layout);
+        jPanel24Layout.setHorizontalGroup(
+            jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 607, Short.MAX_VALUE)
+        );
+        jPanel24Layout.setVerticalGroup(
+            jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 419, Short.MAX_VALUE)
+        );
+
+        jTabbedPane1.addTab("By Month:", jPanel24);
+
+        javax.swing.GroupLayout jPanel23Layout = new javax.swing.GroupLayout(jPanel23);
+        jPanel23.setLayout(jPanel23Layout);
+        jPanel23Layout.setHorizontalGroup(
+            jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 607, Short.MAX_VALUE)
+        );
+        jPanel23Layout.setVerticalGroup(
+            jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 419, Short.MAX_VALUE)
+        );
+
+        jTabbedPane1.addTab("By Garment:", jPanel23);
+
+        javax.swing.GroupLayout jPanel21Layout = new javax.swing.GroupLayout(jPanel21);
+        jPanel21.setLayout(jPanel21Layout);
+        jPanel21Layout.setHorizontalGroup(
+            jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel21Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jTabbedPane1)
+                .addContainerGap())
+        );
+        jPanel21Layout.setVerticalGroup(
+            jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel21Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jTabbedPane1)
+                .addContainerGap())
+        );
+
+        jScrollPane5.setViewportView(jPanel21);
+
+        javax.swing.GroupLayout jPanel20Layout = new javax.swing.GroupLayout(jPanel20);
+        jPanel20.setLayout(jPanel20Layout);
+        jPanel20Layout.setHorizontalGroup(
+            jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel20Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 612, Short.MAX_VALUE))
+        );
+        jPanel20Layout.setVerticalGroup(
+            jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel20Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 457, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout jPanel15Layout = new javax.swing.GroupLayout(jPanel15);
         jPanel15.setLayout(jPanel15Layout);
         jPanel15Layout.setHorizontalGroup(
             jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 638, Short.MAX_VALUE)
+            .addGroup(jPanel15Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel20, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jPanel15Layout.setVerticalGroup(
             jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 673, Short.MAX_VALUE)
+            .addGroup(jPanel15Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel20, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         tab_pane_out.addTab("View Production", jPanel15);
@@ -656,11 +1018,16 @@ public class ProductionDetailFrame extends javax.swing.JInternalFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(tab_pane_out)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(tab_pane_out)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(tab_pane_out)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(tab_pane_out, javax.swing.GroupLayout.PREFERRED_SIZE, 518, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 22, Short.MAX_VALUE))
         );
 
         pack();
@@ -698,26 +1065,28 @@ public class ProductionDetailFrame extends javax.swing.JInternalFrame {
     private void garment_comboItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_garment_comboItemStateChanged
         try {
             String date = date_text.getText();
-            String garment = garment_combo.getSelectedItem().toString();
-            String garment_id = "";
-            if (garment.length() > 5) {
-                garment_id = garment.substring(garment.length() - 4, garment.length());
-            }
-            DailyCoverage searchDailyCoverage = dailyCoverageController.searchDailyCoverage(date, garment_id);
-            if (searchDailyCoverage != null) {
-                cutting_spinner.setValue(searchDailyCoverage.getNo_of_cut());
-                sewing_spinner.setValue(searchDailyCoverage.getNo_of_sewn());
-                dyeing_spinner.setValue(searchDailyCoverage.getNo_of_dyed());
-                washing_spinner.setValue(searchDailyCoverage.getNo_of_washdry());
-                sewing_finish_spinner.setValue(searchDailyCoverage.getNo_of_sewfinish());
-                completing_spinner.setValue(searchDailyCoverage.getNo_of_finish());
-            } else {
-                cutting_spinner.setValue(0);
-                sewing_spinner.setValue(0);
-                dyeing_spinner.setValue(0);
-                washing_spinner.setValue(0);
-                sewing_finish_spinner.setValue(0);
-                completing_spinner.setValue(0);
+            if (garment_combo.getSelectedItem() != null) {
+                String garment = garment_combo.getSelectedItem().toString();
+                String garment_id = "";
+                if (garment.length() > 5) {
+                    garment_id = garment.substring(garment.length() - 4, garment.length());
+                }
+                DailyCoverage searchDailyCoverage = dailyCoverageController.searchDailyCoverage(date, garment_id);
+                if (searchDailyCoverage != null) {
+                    cutting_spinner.setValue(searchDailyCoverage.getNo_of_cut());
+                    sewing_spinner.setValue(searchDailyCoverage.getNo_of_sewn());
+                    dyeing_spinner.setValue(searchDailyCoverage.getNo_of_dyed());
+                    washing_spinner.setValue(searchDailyCoverage.getNo_of_washdry());
+                    sewing_finish_spinner.setValue(searchDailyCoverage.getNo_of_sewfinish());
+                    completing_spinner.setValue(searchDailyCoverage.getNo_of_finish());
+                } else {
+                    cutting_spinner.setValue(0);
+                    sewing_spinner.setValue(0);
+                    dyeing_spinner.setValue(0);
+                    washing_spinner.setValue(0);
+                    sewing_finish_spinner.setValue(0);
+                    completing_spinner.setValue(0);
+                }
             }
         } catch (RemoteException | SQLException | ClassNotFoundException ex) {
             Logger.getLogger(ProductionDetailFrame.class.getName()).log(Level.SEVERE, null, ex);
@@ -738,7 +1107,7 @@ public class ProductionDetailFrame extends javax.swing.JInternalFrame {
 
         String date = date_text.getText();
         DefaultTableModel dtm = (DefaultTableModel) process_table.getModel();
-        int res=1;
+        int res = 1;
         for (int i = 0; i < dtm.getRowCount(); i++) {
             String garment_id = dtm.getValueAt(i, 1).toString();
 
@@ -755,48 +1124,48 @@ public class ProductionDetailFrame extends javax.swing.JInternalFrame {
                     case "Cutting":
                         no_of_cut = Integer.valueOf(dtm.getValueAt(i, 3).toString());
                         dc = new DailyCoverage(garment_id, date, no_of_cut);
-                        res=dailyCoverageController.updateDailyCoverageCut(dc);
+                        res = dailyCoverageController.updateDailyCoverageCut(dc);
                         break;
                     case "Sewing":
                         no_of_sewn = Integer.valueOf(dtm.getValueAt(i, 3).toString());
                         dc = new DailyCoverage(garment_id, date, no_of_sewn);
-                        res=dailyCoverageController.updateDailyCoverageSewn(dc);
+                        res = dailyCoverageController.updateDailyCoverageSewn(dc);
                         break;
                     case "Dyeing":
                         no_of_dyed = Integer.valueOf(dtm.getValueAt(i, 3).toString());
                         dc = new DailyCoverage(garment_id, date, no_of_dyed);
-                        res=dailyCoverageController.updateDailyCoverageDyed(dc);
+                        res = dailyCoverageController.updateDailyCoverageDyed(dc);
                         break;
                     case "Washing and Drying":
                         no_of_wash_dry = Integer.valueOf(dtm.getValueAt(i, 3).toString());
                         dc = new DailyCoverage(garment_id, date, no_of_wash_dry);
-                        res=dailyCoverageController.updateDailyCoverageWashDry(dc);
+                        res = dailyCoverageController.updateDailyCoverageWashDry(dc);
                         break;
                     case "Finish sewing":
                         no_of_sewfinish = Integer.valueOf(dtm.getValueAt(i, 3).toString());
                         dc = new DailyCoverage(garment_id, date, no_of_sewfinish);
-                        res=dailyCoverageController.updateDailyCoverageSewfinish(dc);
+                        res = dailyCoverageController.updateDailyCoverageSewfinish(dc);
                         break;
                     case "Finishing":
                         no_of_finish = Integer.valueOf(dtm.getValueAt(i, 3).toString());
                         dc = new DailyCoverage(garment_id, date, no_of_finish);
-                        res=dailyCoverageController.updateDailyCoverageFinish(dc);
+                        res = dailyCoverageController.updateDailyCoverageFinish(dc);
                         break;
                 }
-                if(res<=0){
+                if (res <= 0) {
                     JOptionPane.showMessageDialog(this, "Daily Coverages failed!");
                     break;
                 }
             } catch (RemoteException | SQLException | ClassNotFoundException ex) {
                 Logger.getLogger(ProductionDetailFrame.class.getName()).log(Level.SEVERE, null, ex);
             }
-            
+
         }
-        if(res>0){
+        if (res > 0) {
             JOptionPane.showMessageDialog(this, "Daily Coverages successfully added!");
         }
         process_table.removeAll();
-        
+
     }//GEN-LAST:event_save_by_process_buttonActionPerformed
 
     private void add_to_table_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_add_to_table_buttonActionPerformed
@@ -863,6 +1232,72 @@ public class ProductionDetailFrame extends javax.swing.JInternalFrame {
         GUIitemsValidator.limitminimumSpinnerValue(completing_spinner, 0);
     }//GEN-LAST:event_completing_spinnerStateChanged
 
+    private void cloth_type_comboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cloth_type_comboActionPerformed
+        date_text_cloth.setEditable(false);
+        if (cloth_type_combo.getSelectedItem() != null) {
+            try {
+                String selected = cloth_type_combo.getSelectedItem().toString();
+                String mat_id = selected.substring(selected.length() - 4, selected.length());
+                Material searchMaterial = materialController.searchMaterial(mat_id);
+                if (searchMaterial != null) {
+                    stock_text.setText(String.valueOf(searchMaterial.getIn_stock()));
+
+                }
+            } catch (RemoteException | SQLException | ClassNotFoundException ex) {
+                Logger.getLogger(ProductionDetailFrame.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }//GEN-LAST:event_cloth_type_comboActionPerformed
+
+    private void stock_textActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_stock_textActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_stock_textActionPerformed
+
+    private void cloth_cutting_spinnerStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_cloth_cutting_spinnerStateChanged
+        GUIitemsValidator.limitminimumSpinnerValue(cloth_cutting_spinner, 0);
+    }//GEN-LAST:event_cloth_cutting_spinnerStateChanged
+
+    private void garment_type_comboItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_garment_type_comboItemStateChanged
+
+    }//GEN-LAST:event_garment_type_comboItemStateChanged
+
+    private void save_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_save_buttonActionPerformed
+        try {
+            String cloth_selected = cloth_type_combo.getSelectedItem().toString();
+            String garment_selected = garment_type_combo.getSelectedItem().toString();
+            String mat_id = cloth_selected.substring(cloth_selected.length() - 4);
+            String cloth_name = cloth_selected.substring(0, cloth_selected.length() - 4);
+            String garment_id = garment_selected.substring(garment_selected.length() - 4);
+            String garment_name = garment_selected.substring(0, garment_selected.length() - 4);
+            double amount_of_cloth_used = Double.valueOf(amount_of_cloth_text.getText());
+            if (amount_of_cloth_used > Double.valueOf(stock_text.getText())) {
+                JOptionPane.showMessageDialog(this, "No such stock available");
+            } else {
+                int no_of_cuttings = Integer.valueOf(cloth_cutting_spinner.getValue().toString());
+                String date = date_text_cloth.getText();
+
+                DailyClothUsage dailyClothUsage = new DailyClothUsage(mat_id, garment_id, date, amount_of_cloth_used, no_of_cuttings);
+                int addDailyClothUsage = dailyClothUsageController.addDailyClothUsage(dailyClothUsage);
+                if (addDailyClothUsage > 0) {
+                    JOptionPane.showMessageDialog(this, "Added successfully!");
+                } else {
+                    JOptionPane.showMessageDialog(this, "Added failed!");
+                }
+                garment_type_combo.setSelectedItem(null);
+                cloth_cutting_spinner.setValue(0);
+                amount_of_cloth_text.setText("");
+                save_button.setEnabled(false);
+            }
+
+        } catch (RemoteException | SQLException | ClassNotFoundException ex) {
+            Logger.getLogger(ProductionDetailFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_save_buttonActionPerformed
+
+    private void amount_of_cloth_textActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_amount_of_cloth_textActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_amount_of_cloth_textActionPerformed
+
     void focustabbedpane(int num) {
 
         tab_pane_out.setSelectedIndex(num);
@@ -876,17 +1311,31 @@ public class ProductionDetailFrame extends javax.swing.JInternalFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton add_to_table_button;
+    private javax.swing.JTextField amount_of_cloth_text;
     private javax.swing.JButton cancel_button;
     private javax.swing.JButton cancel_button2;
+    private javax.swing.JButton cancel_button3;
+    private javax.swing.JSpinner cloth_cutting_spinner;
+    private javax.swing.JComboBox<String> cloth_type_combo;
     private javax.swing.JSpinner completing_spinner;
     private javax.swing.JSpinner cutting_spinner;
+    private javax.swing.JSpinner date_spinner;
     private javax.swing.JTextField date_text;
+    private javax.swing.JTextField date_text_cloth;
     private javax.swing.JSpinner dyeing_spinner;
     private javax.swing.JComboBox<String> garment_combo;
     private javax.swing.JComboBox<String> garment_inpro_combo;
+    private javax.swing.JComboBox<String> garment_type_combo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -902,7 +1351,19 @@ public class ProductionDetailFrame extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel13;
     private javax.swing.JPanel jPanel14;
     private javax.swing.JPanel jPanel15;
+    private javax.swing.JPanel jPanel16;
+    private javax.swing.JPanel jPanel17;
+    private javax.swing.JPanel jPanel18;
+    private javax.swing.JPanel jPanel19;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel20;
+    private javax.swing.JPanel jPanel21;
+    private javax.swing.JPanel jPanel22;
+    private javax.swing.JPanel jPanel23;
+    private javax.swing.JPanel jPanel24;
+    private javax.swing.JPanel jPanel25;
+    private javax.swing.JPanel jPanel26;
+    private javax.swing.JPanel jPanel27;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
@@ -914,15 +1375,23 @@ public class ProductionDetailFrame extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JComboBox<String> month_combo;
     private javax.swing.JSpinner no_of_garments_spinner;
     private javax.swing.JTable process_table;
     private javax.swing.JComboBox<String> processes_combo;
+    private javax.swing.JButton save_button;
     private javax.swing.JButton save_by_garment_button;
     private javax.swing.JButton save_by_process_button;
     private javax.swing.JSpinner sewing_finish_spinner;
     private javax.swing.JSpinner sewing_spinner;
+    private javax.swing.JTextField stock_text;
     private javax.swing.JTabbedPane tab_pane_out;
     private javax.swing.JTabbedPane tabpane_in;
+    private javax.swing.JLabel unit_label;
     private javax.swing.JSpinner washing_spinner;
+    private javax.swing.JSpinner year_spinner;
     // End of variables declaration//GEN-END:variables
 }
