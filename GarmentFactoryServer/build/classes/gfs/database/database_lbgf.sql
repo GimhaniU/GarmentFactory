@@ -133,6 +133,14 @@ CREATE TABLE Stock(
 	ON DELETE CASCADE ON UPDATE CASCADE
 );
 
+CREATE TABLE Expense(
+        Expense_id VARCHAR(10) NOT NULL,
+        Expense VARCHAR(100) NOT NULL,
+        DateOfExp DATE NOT NULL,
+        Amount NUMERIC(10,2),
+        CONSTRAINT PRIMARY KEY (Expense_id)
+); 
+
 create table User (
         username VARCHAR(100) not null,
         password VARCHAR(400) not null,
