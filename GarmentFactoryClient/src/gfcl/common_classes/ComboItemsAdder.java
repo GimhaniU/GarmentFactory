@@ -7,10 +7,12 @@ package gfcl.common_classes;
 
 import gfc.controller.CustomerController;
 import gfc.controller.EmployeeController;
+import gfc.controller.ExpenseController;
 import gfc.controller.GarmentController;
 import gfc.controller.MaterialController;
 import gfc.models.Customer;
 import gfc.models.Employee;
+import gfc.models.Expense;
 import gfc.models.Garment;
 import gfc.models.Material;
 import gfcl.connector.Connector;
@@ -36,6 +38,7 @@ public class ComboItemsAdder {
     private MaterialController materialController;
     private EmployeeController employeeController;
     private CustomerController customerController;
+    private ExpenseController expenseController;
 
     public ComboItemsAdder() {
         try {
@@ -44,6 +47,7 @@ public class ComboItemsAdder {
             materialController = sConnector.getMaterialController();
             employeeController = sConnector.getEmployeeController();
             customerController = sConnector.getCustomerController();
+            expenseController = sConnector.getExpenseController();
         } catch (NotBoundException | MalformedURLException | RemoteException | SQLException | ClassNotFoundException ex) {
             Logger.getLogger(ComboItemsAdder.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -156,6 +160,31 @@ public class ComboItemsAdder {
                         list.add(similar.get(i).getMat_name() + "-" + similar.get(i).getMat_type() + "-" + similar.get(i).getMat_id());
                     }
                     GUIitemsValidator.addItemToCombo(list, combo);
+                } catch (ClassNotFoundException | SQLException | RemoteException ex) {
+                    Logger.getLogger(GUIitemsValidator.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
+            }
+
+        });
+    }
+
+    public void addSimilarExpensenames(JComboBox combo) {
+        JTextComponent matCombo = (JTextComponent) combo.getEditor().getEditorComponent();
+        matCombo.addKeyListener(new KeyAdapter() {
+
+            @Override
+            public void keyReleased(KeyEvent e) {
+                try {
+                    String item = (String) combo.getEditor().getItem();
+                    ArrayList<Object> list = new ArrayList();
+                    ArrayList<Expense> similar = expenseController.getSimilarExpenseNames(item);
+                    if (similar != null) {
+                        for (int i = 0; i < similar.size(); i++) {
+                            list.add(similar.get(i).getExpense());
+                        }
+                        GUIitemsValidator.addItemToCombo(list, combo);
+                    }
                 } catch (ClassNotFoundException | SQLException | RemoteException ex) {
                     Logger.getLogger(GUIitemsValidator.class.getName()).log(Level.SEVERE, null, ex);
                 }

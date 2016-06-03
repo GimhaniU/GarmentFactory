@@ -9,14 +9,11 @@ import gfc.controller.EmployeeController;
 import gfc.controller.GarmentController;
 import gfc.controller.PieceCoverageController;
 import gfc.models.Employee;
-import gfc.models.Garment;
 import gfc.models.PieceCoverage;
 import gfcl.common_classes.ComboItemsAdder;
-import gfcl.common_classes.GUIitemsValidator;
 import gfcl.common_classes.IdGenerator;
 import gfcl.common_classes.PatternChecker;
 import gfcl.connector.Connector;
-import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.net.MalformedURLException;
 import java.rmi.NotBoundException;
@@ -30,7 +27,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.text.JTextComponent;
 
 /**
  *

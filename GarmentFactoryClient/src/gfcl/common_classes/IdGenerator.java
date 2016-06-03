@@ -30,6 +30,25 @@ public class IdGenerator {
         return nextCustID;
     }
     
+    public static String generateNextExpenseID(String lastExpenseID) {
+        if(lastExpenseID==null){
+            return "P001";
+        }
+        String nextExpenseID = "P";
+        String substring = lastExpenseID.substring(1);
+        int parseInt = Integer.parseInt(substring);
+        parseInt++;
+        String valueOf = String.valueOf(parseInt);
+        if (parseInt > 10 && parseInt < 100) {
+            nextExpenseID += "0" + valueOf;
+        } else if (parseInt > 100) {
+            nextExpenseID += valueOf;
+        } else {
+            nextExpenseID += "00" + valueOf;
+        }
+        return nextExpenseID;
+    }
+    
     public static String generateNextStockID(String lastStockID) {
         if(lastStockID==null){
             return "S001";

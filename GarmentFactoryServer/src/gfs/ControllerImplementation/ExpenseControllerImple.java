@@ -5,9 +5,12 @@
  */
 package gfs.ControllerImplementation;
 
+import gfc.models.Expense;
 import gfs.controllers.ExpenseController;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+import java.sql.SQLException;
+import java.util.ArrayList;
 
 /**
  *
@@ -19,5 +22,20 @@ public class ExpenseControllerImple extends UnicastRemoteObject implements gfc.c
     public ExpenseControllerImple() throws RemoteException {
         super();
         this.expenseController = new ExpenseController() ;
+    }
+
+    @Override
+    public ArrayList<Expense> getSimilarExpenseNames(String item) throws RemoteException, SQLException, ClassNotFoundException {
+        return expenseController.getSimilarExpenseNames(item);
+    }
+
+    @Override
+    public String getLastExpId() throws RemoteException, SQLException, ClassNotFoundException {
+        return expenseController.getLastExpId();
+    }
+
+    @Override
+    public int addNewExpense(Expense expense) throws RemoteException, SQLException, ClassNotFoundException {
+        return expenseController.addNewExpense(expense);
     }
 }
