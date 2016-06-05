@@ -860,6 +860,11 @@ public class FrontPage extends javax.swing.JFrame {
         employeeMenu.add(jSeparator2);
 
         markEmployeeAttendanceMenu.setText("Mark attendance");
+        markEmployeeAttendanceMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                markEmployeeAttendanceMenuActionPerformed(evt);
+            }
+        });
         employeeMenu.add(markEmployeeAttendanceMenu);
 
         paySalaryMenu.setText("Pay Salary");
@@ -886,6 +891,11 @@ public class FrontPage extends javax.swing.JFrame {
         materialMenu.add(addNewStockMenu);
 
         addDailyUsageMenu.setText("Add daily usage");
+        addDailyUsageMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addDailyUsageMenuActionPerformed(evt);
+            }
+        });
         materialMenu.add(addDailyUsageMenu);
 
         viewStocksMenu.setText("View stocks");
@@ -925,6 +935,11 @@ public class FrontPage extends javax.swing.JFrame {
         salesMenu.add(viewCustHistoryMenu);
 
         addSaleMenu.setText("Add a sale");
+        addSaleMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addSaleMenuActionPerformed(evt);
+            }
+        });
         salesMenu.add(addSaleMenu);
 
         jMenuBar1.add(salesMenu);
@@ -952,12 +967,27 @@ public class FrontPage extends javax.swing.JFrame {
         incomeSummaryMenu.setText("Income-summary");
 
         addExpenseMenu.setText("Add an expense");
+        addExpenseMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addExpenseMenuActionPerformed(evt);
+            }
+        });
         incomeSummaryMenu.add(addExpenseMenu);
 
         viewAllExpensesMenu.setText("View all expenses");
+        viewAllExpensesMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewAllExpensesMenuActionPerformed(evt);
+            }
+        });
         incomeSummaryMenu.add(viewAllExpensesMenu);
 
         viewIncomeSummaryMenu.setText("View summary");
+        viewIncomeSummaryMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewIncomeSummaryMenuActionPerformed(evt);
+            }
+        });
         incomeSummaryMenu.add(viewIncomeSummaryMenu);
 
         jMenuBar1.add(incomeSummaryMenu);
@@ -1169,11 +1199,11 @@ public class FrontPage extends javax.swing.JFrame {
     }//GEN-LAST:event_viewStocksMenuActionPerformed
 
     private void viewCustHistoryMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewCustHistoryMenuActionPerformed
-        setDesktopPaneForSales(new SalesDetailFrame(), 0);
+        setDesktopPaneForSales(new SalesDetailFrame(), 3);
     }//GEN-LAST:event_viewCustHistoryMenuActionPerformed
 
     private void editCustomerMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editCustomerMenuActionPerformed
-        setDesktopPaneForSales(new SalesDetailFrame(), 0);
+        setDesktopPaneForSales(new SalesDetailFrame(), 2);
     }//GEN-LAST:event_editCustomerMenuActionPerformed
 
     private void backUpMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backUpMenuActionPerformed
@@ -1232,7 +1262,7 @@ public class FrontPage extends javax.swing.JFrame {
 
     private void addCustomerMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addCustomerMenuActionPerformed
         SalesDetailFrame form = new SalesDetailFrame();
-        setDesktopPaneForSales(form, 0);
+        setDesktopPaneForSales(form, 1);
     }//GEN-LAST:event_addCustomerMenuActionPerformed
 
     private void addDailyProdMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addDailyProdMenuActionPerformed
@@ -1244,15 +1274,15 @@ public class FrontPage extends javax.swing.JFrame {
     }//GEN-LAST:event_addEmployeeMenuActionPerformed
 
     private void editEmployeeMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editEmployeeMenuActionPerformed
-        setDesktopPaneForEmployee(new EmployeeDetailFrame(), 0);
+        setDesktopPaneForEmployee(new EmployeeDetailFrame(), 1);
     }//GEN-LAST:event_editEmployeeMenuActionPerformed
 
     private void searchEmployeeMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchEmployeeMenuActionPerformed
-        setDesktopPaneForEmployee(new EmployeeDetailFrame(), 0);
+        setDesktopPaneForEmployee(new EmployeeDetailFrame(), 1);
     }//GEN-LAST:event_searchEmployeeMenuActionPerformed
 
     private void addNewMatMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addNewMatMenuActionPerformed
-        setDesktopPaneForStock(new StockDetailFrame(), 0);
+        setDesktopPaneForStock(new StockDetailFrame(), 2);
     }//GEN-LAST:event_addNewMatMenuActionPerformed
 
     private void viewProdStatMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewProdStatMenuActionPerformed
@@ -1309,6 +1339,30 @@ public class FrontPage extends javax.swing.JFrame {
     private void paySalaryButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_paySalaryButtonActionPerformed
         setDesktopPaneForEmployee(new EmployeeDetailFrame(), 3);
     }//GEN-LAST:event_paySalaryButtonActionPerformed
+
+    private void markEmployeeAttendanceMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_markEmployeeAttendanceMenuActionPerformed
+        setDesktopPaneForEmployee(new EmployeeDetailFrame(), 2);
+    }//GEN-LAST:event_markEmployeeAttendanceMenuActionPerformed
+
+    private void addDailyUsageMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addDailyUsageMenuActionPerformed
+        setDesktopPaneForStock(new StockDetailFrame(), 1);
+    }//GEN-LAST:event_addDailyUsageMenuActionPerformed
+
+    private void addSaleMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addSaleMenuActionPerformed
+        setDesktopPaneForSales(new SalesDetailFrame(), 0);
+    }//GEN-LAST:event_addSaleMenuActionPerformed
+
+    private void addExpenseMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addExpenseMenuActionPerformed
+        setDesktopPaneForIncome(new IncomeSummaryFrame(), 0);
+    }//GEN-LAST:event_addExpenseMenuActionPerformed
+
+    private void viewAllExpensesMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewAllExpensesMenuActionPerformed
+        
+    }//GEN-LAST:event_viewAllExpensesMenuActionPerformed
+
+    private void viewIncomeSummaryMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewIncomeSummaryMenuActionPerformed
+        setDesktopPaneForIncome(new IncomeSummaryFrame(),1 );
+    }//GEN-LAST:event_viewIncomeSummaryMenuActionPerformed
 
     /**
      * @param args the command line arguments

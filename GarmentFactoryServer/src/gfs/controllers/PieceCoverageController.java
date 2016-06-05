@@ -61,7 +61,7 @@ public class PieceCoverageController {
             readWriteLock.readLock().lock();
 
             Connection conn = DBConnection.getDBConnection().getConnection();
-            String sql = "Select * From piece_coverage left join garment using(garment_id) where emp_id= '" + emp_id+ "' and dateOfWork like '"+year+"-"+month+"-%' order by dateOfWork";
+            String sql = "Select * From piece_coverage left join garment using(garment_id) where emp_id= '" + emp_id+ "' and dateOfWork like '"+year+"-"+month+"-%' or dateOfWork like '"+year+"-0"+month+"-%' order by dateOfWork";
             ResultSet rst = DBHandler.getData(conn, sql);
             ArrayList<PieceCoverage> list = new ArrayList<>();
             while (rst.next()) {

@@ -38,4 +38,9 @@ public class CustomerControllerImple extends UnicastRemoteObject implements gfc.
     public ArrayList<Customer> getSimilarCustomerNames(String name) throws RemoteException, SQLException, ClassNotFoundException {
         return customerController.getSimilarCustomerNames(name);
     }
+
+    @Override
+    public int updateCustomer(Customer customer) throws RemoteException, SQLException, ClassNotFoundException {
+        return customerController.updateCustomer(customer);
+    }
 }

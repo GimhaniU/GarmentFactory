@@ -18,6 +18,8 @@ import java.util.ArrayList;
  */
 public interface CustomerController extends Remote {
     public int addNewCustomer(Customer customer) throws RemoteException, SQLException,ClassNotFoundException;
+    
+    public int updateCustomer(Customer customer) throws RemoteException, SQLException,ClassNotFoundException;
 
     public String getLastCustId()  throws RemoteException, SQLException,ClassNotFoundException;
     

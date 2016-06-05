@@ -201,3 +201,4 @@ INSERT INTO USER values('Nimalasena',(select password('1234')),3);
 INSERT INTO USER values('Sunila',(select password('1234')),3);
 INSERT INTO USER values('Nalaka',(select password('1234')),3);
 INSERT INTO USER values('Gayan',(select password('1234')),3);
+

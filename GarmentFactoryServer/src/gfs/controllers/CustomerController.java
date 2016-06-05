@@ -69,4 +69,17 @@ public class CustomerController {
         }
     }
 
+    public int updateCustomer(Customer customer) throws ClassNotFoundException, SQLException {
+        try {
+            readWriteLock.writeLock().lock();
+            DBConnection dbconn = DBConnection.getDBConnection();
+            Connection conn = dbconn.getConnection();
+            String sql = "Update Customer set c_name='" + customer.getName() + "',c_address='" + customer.getAddress() + "',c_telephone='" + customer.getTelephone() + "',c_nic='" + customer.getNic() + "' where cust_id='"+customer.getCust_id()+"' ";
+            int res = DBHandler.setData(conn, sql);
+            return res;
+        } finally {
+            readWriteLock.writeLock().unlock();
+        }
+    }
+
 }

@@ -12,23 +12,18 @@ import gfc.models.DailyMaterialUsage;
 import gfc.models.Material;
 import gfc.models.Stock;
 import gfcl.common_classes.ComboItemsAdder;
-import gfcl.common_classes.GUIitemsValidator;
 import gfcl.common_classes.IdGenerator;
 import gfcl.connector.Connector;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
 import java.net.MalformedURLException;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-import javax.swing.text.JTextComponent;
 
 /**
  *

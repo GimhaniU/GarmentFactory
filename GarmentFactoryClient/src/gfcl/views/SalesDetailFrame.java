@@ -8,6 +8,7 @@ package gfcl.views;
 import gfc.controller.CustomerController;
 import gfc.controller.CustomerOrderController;
 import gfc.controller.GarmentController;
+import gfc.models.Customer;
 import gfc.models.CustomerOrder;
 import gfcl.common_classes.ComboItemsAdder;
 import gfcl.common_classes.IdGenerator;
@@ -50,8 +51,8 @@ public class SalesDetailFrame extends javax.swing.JInternalFrame {
             customerController = sConnector.getCustomerController();
             garmentController = sConnector.getGarmentController();
             customerOrderController = sConnector.getCustomerOrderController();
-            cia=new ComboItemsAdder();
-                    
+            cia = new ComboItemsAdder();
+
             DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
             Date date = new Date();
             date_text.setText(dateFormat.format(date));
@@ -62,9 +63,12 @@ public class SalesDetailFrame extends javax.swing.JInternalFrame {
 
             this.customerCombo.setEditable(true);
             cia.addSimilarCustomernames(customerCombo);
-            
+
             this.garment_type_combo.setEditable(true);
             cia.addSimilarGarmentNames(garment_type_combo);
+
+            this.edit_customer_combo.setEditable(true);
+            cia.addSimilarCustomernames(edit_customer_combo);
 
         } catch (RemoteException | SQLException | ClassNotFoundException | NotBoundException | MalformedURLException ex) {
             Logger.getLogger(SalesDetailFrame.class.getName()).log(Level.SEVERE, null, ex);
@@ -128,6 +132,24 @@ public class SalesDetailFrame extends javax.swing.JInternalFrame {
         jPanel22 = new javax.swing.JPanel();
         save_button = new javax.swing.JButton();
         cancel_button = new javax.swing.JButton();
+        jPanel3 = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jPanel23 = new javax.swing.JPanel();
+        reg_no_label2 = new javax.swing.JLabel();
+        name_text1 = new javax.swing.JTextField();
+        namelabel2 = new javax.swing.JLabel();
+        nic_text1 = new javax.swing.JTextField();
+        niclabel2 = new javax.swing.JLabel();
+        addresslabel2 = new javax.swing.JLabel();
+        telephone_text1 = new javax.swing.JTextField();
+        telephonelabel2 = new javax.swing.JLabel();
+        jScrollPane11 = new javax.swing.JScrollPane();
+        address_text1 = new javax.swing.JTextArea();
+        jPanel24 = new javax.swing.JPanel();
+        save_button1 = new javax.swing.JButton();
+        cancel_button1 = new javax.swing.JButton();
+        edit_customer_combo = new javax.swing.JComboBox<>();
+        jPanel4 = new javax.swing.JPanel();
 
         jLabel7.setText("Customer:");
 
@@ -514,6 +536,143 @@ public class SalesDetailFrame extends javax.swing.JInternalFrame {
 
         tabpane.addTab("Add new customer", jPanel19);
 
+        jPanel23.setBorder(javax.swing.BorderFactory.createTitledBorder("Personal Details"));
+
+        reg_no_label2.setText("Select customer:");
+
+        namelabel2.setText("Name:");
+
+        niclabel2.setText("NIC :");
+
+        addresslabel2.setText("Address :");
+
+        telephonelabel2.setText("Telephone:");
+
+        address_text1.setColumns(20);
+        address_text1.setRows(5);
+        jScrollPane11.setViewportView(address_text1);
+
+        jPanel24.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        save_button1.setText("Save");
+        save_button1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                save_button1ActionPerformed(evt);
+            }
+        });
+
+        cancel_button1.setText("Cancel");
+        cancel_button1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancel_button1ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel24Layout = new javax.swing.GroupLayout(jPanel24);
+        jPanel24.setLayout(jPanel24Layout);
+        jPanel24Layout.setHorizontalGroup(
+            jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel24Layout.createSequentialGroup()
+                .addContainerGap(398, Short.MAX_VALUE)
+                .addComponent(save_button1)
+                .addGap(18, 18, 18)
+                .addComponent(cancel_button1)
+                .addContainerGap())
+        );
+        jPanel24Layout.setVerticalGroup(
+            jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel24Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(save_button1)
+                    .addComponent(cancel_button1))
+                .addGap(22, 22, 22))
+        );
+
+        javax.swing.GroupLayout jPanel23Layout = new javax.swing.GroupLayout(jPanel23);
+        jPanel23.setLayout(jPanel23Layout);
+        jPanel23Layout.setHorizontalGroup(
+            jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel23Layout.createSequentialGroup()
+                .addGroup(jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel23Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jPanel24, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel23Layout.createSequentialGroup()
+                        .addGap(47, 47, 47)
+                        .addGroup(jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(namelabel2)
+                            .addComponent(niclabel2)
+                            .addComponent(addresslabel2)
+                            .addComponent(telephonelabel2)
+                            .addComponent(reg_no_label2))
+                        .addGap(43, 43, 43)
+                        .addGroup(jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(nic_text1, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(name_text1, javax.swing.GroupLayout.PREFERRED_SIZE, 388, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane11, javax.swing.GroupLayout.PREFERRED_SIZE, 372, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(telephone_text1, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(edit_customer_combo, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(245, Short.MAX_VALUE))
+        );
+        jPanel23Layout.setVerticalGroup(
+            jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel23Layout.createSequentialGroup()
+                .addGroup(jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(reg_no_label2)
+                    .addComponent(edit_customer_combo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel23Layout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addComponent(namelabel2))
+                    .addGroup(jPanel23Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(name_text1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(niclabel2)
+                    .addComponent(nic_text1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(addresslabel2)
+                    .addComponent(jScrollPane11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(telephone_text1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(telephonelabel2))
+                .addGap(18, 18, 18)
+                .addComponent(jPanel24, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(171, Short.MAX_VALUE))
+        );
+
+        jScrollPane1.setViewportView(jPanel23);
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane1)
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 513, Short.MAX_VALUE)
+        );
+
+        tabpane.addTab("Edit Customer Details", jPanel3);
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 817, Short.MAX_VALUE)
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 513, Short.MAX_VALUE)
+        );
+
+        tabpane.addTab("View Customer History", jPanel4);
+
         javax.swing.GroupLayout jPanel12Layout = new javax.swing.GroupLayout(jPanel12);
         jPanel12.setLayout(jPanel12Layout);
         jPanel12Layout.setHorizontalGroup(
@@ -609,12 +768,12 @@ public class SalesDetailFrame extends javax.swing.JInternalFrame {
                     tableModel.setValueAt(new_no, i, 2);
                     double new_price = Double.valueOf(tableModel.getValueAt(i, 4).toString()) + (no_of_garments * unit_price);
                     tableModel.setValueAt(new_price, i, 4);
-                    
+
                 } else {
                     JOptionPane.showMessageDialog(this, "Different unit prices for same garment");
                 }
                 added = true;
-                    break;
+                break;
             }
 
         }
@@ -647,9 +806,9 @@ public class SalesDetailFrame extends javax.swing.JInternalFrame {
                 sale_order.add(order);
             }
             boolean saleAdded = customerOrderController.addSale(sale_order);
-            if(saleAdded){
+            if (saleAdded) {
                 System.out.println("Order added successfully");
-            }else{
+            } else {
                 System.out.println("Order failed to add");
             }
             //rearrange the form
@@ -657,7 +816,8 @@ public class SalesDetailFrame extends javax.swing.JInternalFrame {
             garment_type_combo.setSelectedItem(null);
             order_id_text.setText(IdGenerator.generateNextOrderID(customerOrderController.getLastOrderId()));
             add_to_list_button.setEnabled(false);
-            sales_table.removeAll();
+            ((DefaultTableModel) sales_table.getModel()).setRowCount(0);
+
         } catch (RemoteException | SQLException | ClassNotFoundException ex) {
             Logger.getLogger(SalesDetailFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -672,8 +832,50 @@ public class SalesDetailFrame extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_save_buttonActionPerformed
 
     private void cancel_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancel_buttonActionPerformed
-        // TODO add your handling code here:
+        try {
+            createNewForm();
+        } catch (RemoteException | SQLException | ClassNotFoundException ex) {
+            Logger.getLogger(SalesDetailFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_cancel_buttonActionPerformed
+
+    private void save_button1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_save_button1ActionPerformed
+        String selected = edit_customer_combo.getSelectedItem().toString();
+        if (selected.length() > 4) {
+            try {
+                String cust_id = selected.substring(selected.length() - 4);
+                String c_name = name_text1.getText();
+                String c_address = address_text1.getText();
+                String c_nic = nic_text1.getText();
+                String c_telephone = telephone_text1.getText();
+                Customer customer = new Customer(cust_id, c_name, c_address, c_telephone, c_nic);
+                int updateCustomer = customerController.updateCustomer(customer);
+                if (updateCustomer > 0) {
+                    JOptionPane.showMessageDialog(this, "Customer updated successfully");
+                    createNewEditForm();
+                } else {
+                    JOptionPane.showMessageDialog(this, "Customer update failed!");
+                }
+
+            } catch (RemoteException | SQLException | ClassNotFoundException ex) {
+                Logger.getLogger(SalesDetailFrame.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "A valid customer is not selected!");
+            createNewEditForm();
+        }
+    }//GEN-LAST:event_save_button1ActionPerformed
+
+    private void createNewEditForm() {
+        edit_customer_combo.setSelectedItem(null);
+        name_text1.setText("");
+        address_text1.setText("");
+        nic_text1.setText("");
+        telephone_text1.setText("");
+    }
+    private void cancel_button1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancel_button1ActionPerformed
+        createNewEditForm();
+    }//GEN-LAST:event_cancel_button1ActionPerformed
 
     private void enableAddButton() {
         if (garment_type_combo.getSelectedItem().toString().trim().length() != 0 && Integer.valueOf(no_of_garment_spinner.getValue().toString()) > 0 && unit_price_text.getText().trim().length() != 0) {
@@ -702,11 +904,15 @@ public class SalesDetailFrame extends javax.swing.JInternalFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton add_to_list_button;
     private javax.swing.JTextArea address_text;
+    private javax.swing.JTextArea address_text1;
     private javax.swing.JLabel addresslabel1;
+    private javax.swing.JLabel addresslabel2;
     private javax.swing.JButton cancel_button;
+    private javax.swing.JButton cancel_button1;
     private javax.swing.JButton cancel_sale_button;
     private javax.swing.JComboBox<String> customerCombo;
     private javax.swing.JTextField date_text;
+    private javax.swing.JComboBox<String> edit_customer_combo;
     private javax.swing.JComboBox<String> garment_type_combo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -728,24 +934,38 @@ public class SalesDetailFrame extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel20;
     private javax.swing.JPanel jPanel21;
     private javax.swing.JPanel jPanel22;
+    private javax.swing.JPanel jPanel23;
+    private javax.swing.JPanel jPanel24;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane10;
+    private javax.swing.JScrollPane jScrollPane11;
     private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JScrollPane jScrollPane8;
     private javax.swing.JScrollPane jScrollPane9;
     private javax.swing.JTextField name_text;
+    private javax.swing.JTextField name_text1;
     private javax.swing.JLabel namelabel1;
+    private javax.swing.JLabel namelabel2;
     private javax.swing.JTextField nic_text;
+    private javax.swing.JTextField nic_text1;
     private javax.swing.JLabel niclabel1;
+    private javax.swing.JLabel niclabel2;
     private javax.swing.JSpinner no_of_garment_spinner;
     private javax.swing.JTextField order_id_text;
     private javax.swing.JLabel reg_no_label1;
+    private javax.swing.JLabel reg_no_label2;
     private javax.swing.JTextField regno_text;
     private javax.swing.JTable sales_table;
     private javax.swing.JButton save_button;
+    private javax.swing.JButton save_button1;
     private javax.swing.JButton save_sale_button;
     private javax.swing.JTabbedPane tabpane;
     private javax.swing.JTextField telephone_text;
+    private javax.swing.JTextField telephone_text1;
     private javax.swing.JLabel telephonelabel1;
+    private javax.swing.JLabel telephonelabel2;
     private javax.swing.JTextField total_payement_text;
     private javax.swing.JTextField unit_price_text;
     // End of variables declaration//GEN-END:variables
