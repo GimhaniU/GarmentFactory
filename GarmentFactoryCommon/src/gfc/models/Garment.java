@@ -16,7 +16,7 @@ public class Garment implements Serializable{
     private String garment_name;
     private int	in_stock;
     private double sewing_stipend;
-    private double cutting_stipend;
+    private double waxing_stipend;
 
     public Garment() {
     }
@@ -29,12 +29,12 @@ public class Garment implements Serializable{
 
     
     
-    public Garment(String garment_id, String garment_name, int in_stock, double sewing_stipend, double cutting_stipend) {
+    public Garment(String garment_id, String garment_name, int in_stock, double sewing_stipend, double waxing_stipend) {
         this.garment_id = garment_id;
         this.garment_name = garment_name;
         this.in_stock = in_stock;
         this.sewing_stipend = sewing_stipend;
-        this.cutting_stipend = cutting_stipend;
+        this.waxing_stipend = waxing_stipend;
     }
 
     
@@ -71,12 +71,12 @@ public class Garment implements Serializable{
         this.sewing_stipend = sewing_stipend;
     }
 
-    public double getCutting_stipend() {
-        return cutting_stipend;
+    public double getWaxing_stipend() {
+        return waxing_stipend;
     }
 
-    public void setCutting_stipend(double cutting_stipend) {
-        this.cutting_stipend = cutting_stipend;
+    public void setWaxing_stipend(double waxing_stipend) {
+        this.waxing_stipend = waxing_stipend;
     }
     
     

@@ -17,7 +17,7 @@ CREATE TABLE Garment(
 	garment_name VARCHAR(200),
 	in_stock INT(10),
 	sewing_stipend NUMERIC(10,2) ,
-	cutting_stipend NUMERIC(10,2) ,
+	waxing_stipend NUMERIC(10,2) ,
 	CONSTRAINT PRIMARY KEY (Garment_id)
 );
 
@@ -44,7 +44,10 @@ CREATE TABLE EmpWage(
 	Year INT(4),
 	no_of_days INT(2),
 	ot_hours INT(4),
-	salary NUMERIC(10,2),
+        dailywage NUMERIC(10,2),
+        ot_rate NUMERIC(10,2),
+        additions NUMERIC(10,2),
+        deductions NUMERIC(10,2),
 	CONSTRAINT PRIMARY KEY (Emp_id,Month,Year),
 	CONSTRAINT FOREIGN KEY(Emp_id) REFERENCES Employee(Emp_id)
 	ON DELETE CASCADE ON UPDATE CASCADE 
@@ -54,7 +57,9 @@ CREATE TABLE EmpSalary(
 	Emp_id VARCHAR(10) NOT NULL,
 	Month INT(2) ,
 	Year INT(4),
-	salary NUMERIC(10,2),
+	total_stipend NUMERIC(10,2),
+        additions NUMERIC(10,2),
+        deductions NUMERIC(10,2),
 	CONSTRAINT PRIMARY KEY (Emp_id,Month,Year),
 	CONSTRAINT FOREIGN KEY(Emp_id) REFERENCES Employee(Emp_id)
 	ON DELETE CASCADE ON UPDATE CASCADE 

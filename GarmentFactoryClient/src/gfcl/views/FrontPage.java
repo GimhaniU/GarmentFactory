@@ -1307,7 +1307,7 @@ public class FrontPage extends javax.swing.JFrame {
     }//GEN-LAST:event_CalenderButtonActionPerformed
 
     private void paySalaryButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_paySalaryButtonActionPerformed
-        setDesktopPaneForEmployee(new EmployeeDetailFrame(), 0);
+        setDesktopPaneForEmployee(new EmployeeDetailFrame(), 3);
     }//GEN-LAST:event_paySalaryButtonActionPerformed
 
     /**

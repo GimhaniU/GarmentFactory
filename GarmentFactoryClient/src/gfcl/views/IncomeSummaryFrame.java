@@ -236,7 +236,9 @@ public class IncomeSummaryFrame extends javax.swing.JInternalFrame {
             double amount = Double.valueOf(amount_text.getText());
             String date = date_text.getText();
             Expense expense = new Expense(expense_id, expense_name, date, amount);
-            int addNewExpense = expenseController.addNewExpense(expense);
+            System.out.println(expense_name);
+            int addNewExpense =0;
+            addNewExpense= expenseController.addNewExpense(expense);
             if (addNewExpense > 0) {
                 JOptionPane.showMessageDialog(this, "Expense added successfully");
                 createNewForm();

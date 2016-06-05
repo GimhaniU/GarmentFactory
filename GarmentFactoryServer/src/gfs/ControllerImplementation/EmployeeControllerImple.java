@@ -49,14 +49,6 @@ public class EmployeeControllerImple extends UnicastRemoteObject implements gfc.
         return employeeController.updateEmployee(employee);
     }
 
-    @Override
-    public Employee getEmployeeAttendance(String emp_id, int month, int year) throws RemoteException, SQLException, ClassNotFoundException {
-        return employeeController.getEmployeeAttendance(emp_id, month,year);
-    }
-
-    @Override
-    public int addEmployeeAttendance(Employee new_employee) throws RemoteException, SQLException, ClassNotFoundException {
-        return employeeController.addEmployeeAttendance(new_employee);
-    }
+    
     
 }

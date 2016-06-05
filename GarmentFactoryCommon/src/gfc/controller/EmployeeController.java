@@ -28,7 +28,5 @@ public interface EmployeeController extends Remote {
 
     public int updateEmployee(Employee employee) throws RemoteException, SQLException,ClassNotFoundException;
 
-    public Employee getEmployeeAttendance(String emp_id, int month, int year) throws RemoteException, SQLException,ClassNotFoundException;
-
-    public int addEmployeeAttendance(Employee new_employee) throws RemoteException, SQLException,ClassNotFoundException;;
+    
 }

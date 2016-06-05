@@ -25,7 +25,13 @@ public class PieceCoverageControllerImple extends UnicastRemoteObject implements
     }
     @Override
     public int addPieceCoverage(ArrayList<PieceCoverage> pc) throws RemoteException, SQLException, ClassNotFoundException {
+        System.out.println("ENTER");
         return pieceCoverageController.addPieceCoverage(pc);
+    }
+
+    @Override
+    public ArrayList<PieceCoverage> getPieceCoverage(String emp_id, int month, int year) throws RemoteException, SQLException, ClassNotFoundException {
+        return pieceCoverageController.getPieceCoverage(emp_id, month, year);
     }
     
 }

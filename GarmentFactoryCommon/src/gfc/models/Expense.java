@@ -5,11 +5,13 @@
  */
 package gfc.models;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Gimhani Uthpala
  */
-public class Expense {
+public class Expense implements Serializable {
 
     private String expense_id;
     private String expense;

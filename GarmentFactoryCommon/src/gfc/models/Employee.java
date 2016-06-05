@@ -6,8 +6,6 @@
 package gfc.models;
 
 import java.io.Serializable;
-import java.util.Date;
-import java.util.HashMap;
 
 /**
  *
@@ -26,26 +24,9 @@ public class Employee implements Serializable {
     private int year;
     private int no_of_days;
     private int ot_hours;
-    private int salary;
+    private double salary;
 
-    //to increase no of days and ot hours
-    public Employee(String emp_id, int month, int year, int no_of_days, int ot_hours) {
-        this.emp_id = emp_id;
-
-        this.month = month;
-        this.year = year;
-        this.no_of_days = no_of_days;
-        this.ot_hours = ot_hours;
-    }
-
-    //to add salary
-    public Employee(String emp_id, int month, int year, int salary) {
-        this.emp_id = emp_id;
-        this.month = month;
-        this.year = year;
-        this.salary = salary;
-    }
-
+    
     public Employee() {
     }
 
@@ -106,44 +87,5 @@ public class Employee implements Serializable {
         this.duty = duty;
     }
 
-    public int getMonth() {
-        return month;
-    }
-
-    public void setMonth(int month) {
-        this.month = month;
-    }
-
-    public int getYear() {
-        return year;
-    }
-
-    public void setYear(int year) {
-        this.year = year;
-    }
-
-    public int getNo_of_days() {
-        return no_of_days;
-    }
-
-    public void setNo_of_days(int no_of_days) {
-        this.no_of_days = no_of_days;
-    }
-
-    public int getOt_hours() {
-        return ot_hours;
-    }
-
-    public void setOt_hours(int ot_hours) {
-        this.ot_hours = ot_hours;
-    }
-
-    public int getSalary() {
-        return salary;
-    }
-
-    public void setSalary(int salary) {
-        this.salary = salary;
-    }
-
+    
 }

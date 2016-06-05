@@ -61,7 +61,7 @@ public class ExpenseController {
             readWriteLock.writeLock().lock();
             DBConnection dbconn = DBConnection.getDBConnection();
             Connection conn = dbconn.getConnection();
-            String sql = "Insert into Expense Values('" + expense.getExpense_id() + "','" + expense.getExpense() + "','" + expense.getDateOfExp() + "','" + expense.getAmount() + "')";
+            String sql = "Insert into Expense Values('" + expense.getExpense_id() + "','" + expense.getExpense() + "','" + expense.getDateOfExp() + "','" + expense.getAmount() + "');";
             int res = DBHandler.setData(conn, sql);
             return res;
         } finally {

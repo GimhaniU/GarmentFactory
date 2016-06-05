@@ -18,4 +18,6 @@ import java.util.ArrayList;
  */
 public interface PieceCoverageController extends Remote{
     public int addPieceCoverage(ArrayList<PieceCoverage> pc) throws RemoteException, SQLException,ClassNotFoundException;
+
+    public ArrayList<PieceCoverage> getPieceCoverage(String emp_id,int month,int year) throws RemoteException, SQLException,ClassNotFoundException;
 }
