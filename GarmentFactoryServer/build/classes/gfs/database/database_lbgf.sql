@@ -34,7 +34,7 @@ CREATE TABLE Material(
 	Mat_id VARCHAR(10) NOT NULL,
 	Mat_name VARCHAR(200),
 	Mat_type VARCHAR(30) check (Mat_type in('Dye','Wax','Thread','Cloth')),
-	in_stock NUMERIC(10,2),
+	Mat_in_stock NUMERIC(10,2),
 	CONSTRAINT PRIMARY KEY (Mat_id)
 );
 

@@ -6,12 +6,12 @@
 package gfs.controllers;
 
 import gfc.models.DailyClothUsage;
-import gfc.models.DailyCoverage;
 import gfs.db_utilities.DBConnection;
 import gfs.db_utilities.DBHandler;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 /**
@@ -49,9 +49,47 @@ public class DailyClothUsageController {
             ResultSet rst = DBHandler.getData(conn, sql);
             DailyClothUsage dailyClothUsage=null;
             if (rst.next()) {
-                dailyClothUsage=new DailyClothUsage(mat_id, garment_id, date, dailyClothUsage.getAmount(), dailyClothUsage.getNo_of_pieces());
+                dailyClothUsage=new DailyClothUsage(mat_id, garment_id, date,rst.getDouble("amount"),rst.getInt("no_of_pieces") );
             }
             return dailyClothUsage;
+        } finally {
+            readWriteLock.readLock().unlock();
+        }
+    }
+
+    public ArrayList<DailyClothUsage> searchDailyClothUsage(int year,int month,int date) throws ClassNotFoundException, SQLException {
+        try {
+            readWriteLock.readLock().lock();
+
+            Connection conn = DBConnection.getDBConnection().getConnection();
+            String sql = "Select * From dailyclothusage  left join garment  using(garment_id) left join material  using(mat_id) where  dateofuse='"+year+"-"+month+"-" + date + "' or dateofuse='"+year+"-0"+month+"-" + date + "' or dateofuse='"+year+"-"+month+"-0" + date + "' or dateofuse='"+year+"-0"+month+"-0" + date + "';";
+            ResultSet rst = DBHandler.getData(conn, sql);
+            ArrayList<DailyClothUsage> clothUsages=new ArrayList<>();
+            
+            while(rst.next()) {
+                DailyClothUsage dailyClothUsage=new DailyClothUsage(rst.getString("mat_id"),rst.getString("mat_name"),rst.getString("garment_id"),rst.getString("garment_name") ,rst.getString("dateofuse"),rst.getDouble("amount"),rst.getInt("no_of_pieces"));
+                clothUsages.add(dailyClothUsage);
+            }
+            return clothUsages;
+        } finally {
+            readWriteLock.readLock().unlock();
+        }
+    }
+
+    public ArrayList<DailyClothUsage> searchDailyClothUsageOfMonth(int year, int month) throws SQLException, ClassNotFoundException {
+        try {
+            readWriteLock.readLock().lock();
+
+            Connection conn = DBConnection.getDBConnection().getConnection();
+            String sql = "Select mat_id,mat_name,garment_id,garment_name,sum(amount) as s_amount,sum(no_of_pieces) as s_pieces From dailyclothusage  left join garment  using(garment_id) left join material  using(mat_id) where  dateofuse='"+year+"-"+month+"-%' or dateofuse='"+year+"-0"+month+"-%' group by garment_id;";
+            ResultSet rst = DBHandler.getData(conn, sql);
+            ArrayList<DailyClothUsage> clothUsages=new ArrayList<>();
+            
+            while(rst.next()) {
+                DailyClothUsage dailyClothUsage=new DailyClothUsage(rst.getString("mat_id"),rst.getString("mat_name"),rst.getString("garment_id"),rst.getString("garment_name") ,year,month,rst.getDouble("s_amount"),rst.getInt("s_pieces"));
+                clothUsages.add(dailyClothUsage);
+            }
+            return clothUsages;
         } finally {
             readWriteLock.readLock().unlock();
         }

@@ -11,6 +11,7 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import gfs.controllers.DailyClothUsageController;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 /**
  *
@@ -32,6 +33,16 @@ public class DailyClothUsageControllerImple extends UnicastRemoteObject implemen
     @Override
     public DailyClothUsage searchDailyClothUsage(String date, String garment_id, String mat_id) throws RemoteException, SQLException, ClassNotFoundException {
         return dailyClothUsageController.searchDailyClothUsage(date,garment_id, mat_id);
+    }
+
+    @Override
+    public ArrayList<DailyClothUsage> searchDailyClothUsage(int year,int month,int date) throws RemoteException, SQLException, ClassNotFoundException {
+        return dailyClothUsageController.searchDailyClothUsage(year,month,date);
+    }
+
+    @Override
+    public ArrayList<DailyClothUsage> searchDailyClothUsageOfMonth(int year, int month) throws RemoteException, SQLException, ClassNotFoundException {
+        return dailyClothUsageController.searchDailyClothUsageOfMonth(year,month);
     }
 
     

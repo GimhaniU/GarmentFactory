@@ -212,4 +212,42 @@ public class DailyCoverageController {
             readWriteLock.writeLock().unlock();
         }
     }
+
+    public ArrayList<DailyCoverage> searchDailyCoverageForDate(int year, int month, int date) throws SQLException, ClassNotFoundException {
+        try {
+            readWriteLock.readLock().lock();
+
+            Connection conn = DBConnection.getDBConnection().getConnection();
+            String sql = "Select * From daily_coverage  left join garment  using(garment_id) where  dateofcover='"+year+"-"+month+"-" + date + "' or dateofcover='"+year+"-0"+month+"-" + date + "' or dateofcover='"+year+"-"+month+"-0" + date + "' or dateofcover='"+year+"-0"+month+"-0" + date + "';";
+            ResultSet rst = DBHandler.getData(conn, sql);
+            ArrayList<DailyCoverage> dailyCoverages=new ArrayList<>();
+            
+            while(rst.next()) {
+                DailyCoverage dailyCoverage=new DailyCoverage(rst.getString("garment_id"), rst.getString("garment_name"),rst.getString("dateofcover"), rst.getInt("no_of_cut"), rst.getInt("no_of_sewn"), rst.getInt("no_of_dyed"), rst.getInt("no_of_washdry"), rst.getInt("no_of_sewfinish"), rst.getInt("no_of_finish"));
+                dailyCoverages.add(dailyCoverage);
+            }
+            return dailyCoverages;
+        } finally {
+            readWriteLock.readLock().unlock();
+        }
+    }
+
+    public ArrayList<DailyCoverage> searchDailyCoverageForMonth(int year, int month) throws SQLException, ClassNotFoundException {
+        try {
+            readWriteLock.readLock().lock();
+
+            Connection conn = DBConnection.getDBConnection().getConnection();
+            String sql = "Select garment_id,garment_name,sum(no_of_cut) as s_cut,sum(no_of_sewn) as s_sewn,sum(no_of_dyed) as s_dyed,sum(no_of_washdry) as s_washdry,sum(no_of_sewfinish) as s_sewfinish,sum(no_of_finish) as s_finish From daily_coverage  left join garment  using(garment_id) where  dateofcover like '"+year+"-"+month+"-%' or dateofcover like '"+year+"-0"+month+"-%' group by garment_id;";
+            ResultSet rst = DBHandler.getData(conn, sql);
+            ArrayList<DailyCoverage> dailyCoverages=new ArrayList<>();
+            
+            while(rst.next()) {
+                DailyCoverage dailyCoverage=new DailyCoverage(rst.getString("garment_id"), rst.getString("garment_name"),year,month, rst.getInt("s_cut"), rst.getInt("s_sewn"), rst.getInt("s_dyed"), rst.getInt("s_washdry"), rst.getInt("s_sewfinish"), rst.getInt("s_finish"));
+                dailyCoverages.add(dailyCoverage);
+            }
+            return dailyCoverages;
+        } finally {
+            readWriteLock.readLock().unlock();
+        }
+    }
 }

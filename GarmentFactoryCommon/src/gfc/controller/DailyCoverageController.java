@@ -6,7 +6,6 @@
 package gfc.controller;
 
 import gfc.models.DailyCoverage;
-import gfc.models.Employee;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.sql.SQLException;
@@ -36,6 +35,11 @@ public interface DailyCoverageController extends Remote {
     
 
     public DailyCoverage searchDailyCoverage(String date, String garment_id) throws RemoteException, SQLException,ClassNotFoundException;
+    
+    public ArrayList<DailyCoverage> searchDailyCoverageForDate(int year,int month,int date) throws RemoteException, SQLException,ClassNotFoundException;
 
     public int addDailyCoverageSet(ArrayList<DailyCoverage> dailyCoverages) throws RemoteException,ClassNotFoundException, SQLException ;
+
+    public ArrayList<DailyCoverage> searchDailyCoverageForMonth(int year, int month) throws RemoteException,ClassNotFoundException, SQLException ;
+
 }

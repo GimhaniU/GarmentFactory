@@ -13,6 +13,7 @@ import java.io.Serializable;
  */
 public class DailyCoverage implements Serializable {
     private String garment_id;
+    private String garment_name;
     private String dateOfCover;
     private int	no_of_cut;
     private int	no_of_sewn;
@@ -22,14 +23,41 @@ public class DailyCoverage implements Serializable {
     private int	no_of_finish;
     private int no_spec; //to be used in 3 tuples
     
+    //to be used for monthly coverage
+    private int year;
+    private int month;
+    
     public DailyCoverage() {
     }
-
-    
     
     public DailyCoverage(String garment_id, String dateOfCover, int no_of_cut, int no_of_sewn, int no_of_dyed, int no_of_washdry, int no_of_sewfinish, int no_of_finish) {
         this.garment_id = garment_id;
         this.dateOfCover = dateOfCover;
+        this.no_of_cut = no_of_cut;
+        this.no_of_sewn = no_of_sewn;
+        this.no_of_dyed = no_of_dyed;
+        this.no_of_washdry = no_of_washdry;
+        this.no_of_sewfinish = no_of_sewfinish;
+        this.no_of_finish = no_of_finish;
+    }
+    
+    public DailyCoverage(String garment_id,String garment_name, String dateOfCover, int no_of_cut, int no_of_sewn, int no_of_dyed, int no_of_washdry, int no_of_sewfinish, int no_of_finish) {
+        this.garment_id = garment_id;
+        this.garment_name=garment_name;
+        this.dateOfCover = dateOfCover;
+        this.no_of_cut = no_of_cut;
+        this.no_of_sewn = no_of_sewn;
+        this.no_of_dyed = no_of_dyed;
+        this.no_of_washdry = no_of_washdry;
+        this.no_of_sewfinish = no_of_sewfinish;
+        this.no_of_finish = no_of_finish;
+    }
+    
+    public DailyCoverage(String garment_id,String garment_name, int year,int month, int no_of_cut, int no_of_sewn, int no_of_dyed, int no_of_washdry, int no_of_sewfinish, int no_of_finish) {
+        this.garment_id = garment_id;
+        this.garment_name=garment_name;
+        this.year=year;
+        this.month=month;
         this.no_of_cut = no_of_cut;
         this.no_of_sewn = no_of_sewn;
         this.no_of_dyed = no_of_dyed;
@@ -44,16 +72,23 @@ public class DailyCoverage implements Serializable {
         this.no_spec=no_spec;
     }
 
+    public String getGarment_name() {
+        return garment_name;
+    }
+
+    public void setGarment_name(String garment_name) {
+        this.garment_name = garment_name;
+    }
+    
     public int getNo_spec() {
         return no_spec;
     }
 
+    
     public void setNo_spec(int no_spec) {
         this.no_spec = no_spec;
     }
     
-    
-
     public String getGarment_id() {
         return garment_id;
     }
@@ -116,6 +151,22 @@ public class DailyCoverage implements Serializable {
 
     public void setNo_of_finish(int no_of_finish) {
         this.no_of_finish = no_of_finish;
+    }
+
+    public int getYear() {
+        return year;
+    }
+
+    public void setYear(int year) {
+        this.year = year;
+    }
+
+    public int getMonth() {
+        return month;
+    }
+
+    public void setMonth(int month) {
+        this.month = month;
     }
     
     

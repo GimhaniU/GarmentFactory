@@ -73,4 +73,14 @@ public class DailyCoverageControllerImple extends UnicastRemoteObject implements
     public int updateDailyCoverageFinish(DailyCoverage dailyCoverage) throws RemoteException, SQLException, ClassNotFoundException {
         return dailyCoverageController.updateDailyCoverageFinish( dailyCoverage);
     }
+
+    @Override
+    public ArrayList<DailyCoverage> searchDailyCoverageForDate(int year, int month, int date) throws RemoteException, SQLException, ClassNotFoundException {
+        return dailyCoverageController.searchDailyCoverageForDate(year, month,date);
+    }
+
+    @Override
+    public ArrayList<DailyCoverage> searchDailyCoverageForMonth(int year, int month) throws RemoteException, SQLException, ClassNotFoundException{
+        return dailyCoverageController.searchDailyCoverageForMonth(year, month);
+    }
 }

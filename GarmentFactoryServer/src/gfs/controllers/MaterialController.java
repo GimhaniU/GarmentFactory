@@ -5,8 +5,6 @@
  */
 package gfs.controllers;
 
-import gfc.models.Customer;
-import gfc.models.Employee;
 import gfc.models.Material;
 import gfs.db_utilities.DBConnection;
 import gfs.db_utilities.DBHandler;
@@ -62,7 +60,7 @@ public class MaterialController {
             ResultSet rst = DBHandler.getData(conn, sql);
             ArrayList<Material> list = new ArrayList<>();
             while (rst.next()) {
-                Material material=new Material(rst.getString("mat_id"),rst.getString("mat_name"), rst.getString("mat_type"),rst.getDouble("in_stock"));
+                Material material=new Material(rst.getString("mat_id"),rst.getString("mat_name"), rst.getString("mat_type"),rst.getDouble("mat_in_stock"));
                 list.add(material);
             }
             return list;
@@ -81,7 +79,7 @@ public class MaterialController {
             ResultSet rst = DBHandler.getData(conn, sql);
            Material material = null;
             if (rst.next()) {
-                material=new Material(mat_id, rst.getString("mat_name"), rst.getString("mat_type"), rst.getDouble("in_stock"));
+                material=new Material(mat_id, rst.getString("mat_name"), rst.getString("mat_type"), rst.getDouble("mat_in_stock"));
             }
             return material;
         } finally {
@@ -98,7 +96,7 @@ public class MaterialController {
             ResultSet rst = DBHandler.getData(conn, sql);
             ArrayList<Material> list = new ArrayList<>();
             while (rst.next()) {
-                Material material=new Material(rst.getString("mat_id"),rst.getString("mat_name"), rst.getString("mat_type"),rst.getDouble("in_stock"));
+                Material material=new Material(rst.getString("mat_id"),rst.getString("mat_name"), rst.getString("mat_type"),rst.getDouble("mat_in_stock"));
                 list.add(material);
             }
             return list;
@@ -117,7 +115,7 @@ public class MaterialController {
             ResultSet rst = DBHandler.getData(conn, sql);
             ArrayList<Material> list = new ArrayList<>();
             while (rst.next()) {
-                Material material=new Material(rst.getString("mat_id"),rst.getString("mat_name"), rst.getString("mat_type"),rst.getDouble("in_stock"));
+                Material material=new Material(rst.getString("mat_id"),rst.getString("mat_name"), rst.getString("mat_type"),rst.getDouble("mat_in_stock"));
                 list.add(material);
             }
             return list;
