@@ -21,6 +21,7 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 import javax.swing.text.JTextComponent;
 
 /**
@@ -43,7 +44,9 @@ public class LoginForm extends javax.swing.JFrame {
             Connector sConnector = Connector.getSConnector();
             UserController = sConnector.getUserController();
         } catch (NotBoundException | MalformedURLException | RemoteException | SQLException | ClassNotFoundException ex) {
+            JOptionPane.showMessageDialog(this, "Please start your server 1st and rerun the software!");
             Logger.getLogger(LoginForm.class.getName()).log(Level.SEVERE, null, ex);
+            System.exit(0);
         }
         logInFailedLabel.setVisible(false);
         userCombo.setEditable(true);

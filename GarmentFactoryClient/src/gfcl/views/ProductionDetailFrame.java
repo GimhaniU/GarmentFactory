@@ -25,6 +25,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JDialog;
@@ -81,7 +82,11 @@ public class ProductionDetailFrame extends javax.swing.JInternalFrame {
             }
 
             add_to_table_button.setEnabled(false);
-            details_not_available_label.setVisible(false);
+            details_not_available_top_label.setVisible(false);
+            details_not_available_bottom_label.setVisible(false);
+            details_not_available_top_label1.setVisible(false);
+            details_not_available_bottom_label1.setVisible(false);
+
             this.garment_combo.setEditable(true);
             cia.addSimilarGarmentNames(garment_combo);
 
@@ -190,14 +195,16 @@ public class ProductionDetailFrame extends javax.swing.JInternalFrame {
         year_combo = new javax.swing.JComboBox<>();
         view_production_button = new javax.swing.JButton();
         jPanel27 = new javax.swing.JPanel();
-        details_not_available_label = new javax.swing.JLabel();
         jPanel28 = new javax.swing.JPanel();
         jScrollPane7 = new javax.swing.JScrollPane();
         by_date_coverage_table = new javax.swing.JTable();
+        details_not_available_bottom_label = new javax.swing.JLabel();
+        date_coverage_viewreport_button = new javax.swing.JButton();
         jPanel29 = new javax.swing.JPanel();
         jScrollPane6 = new javax.swing.JScrollPane();
         by_date_table = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
+        date_clothusage_viewreport_button = new javax.swing.JButton();
+        details_not_available_top_label = new javax.swing.JLabel();
         jPanel24 = new javax.swing.JPanel();
         jPanel30 = new javax.swing.JPanel();
         jPanel31 = new javax.swing.JPanel();
@@ -206,28 +213,16 @@ public class ProductionDetailFrame extends javax.swing.JInternalFrame {
         year_combo1 = new javax.swing.JComboBox<>();
         view_production_button1 = new javax.swing.JButton();
         jPanel32 = new javax.swing.JPanel();
-        details_not_available_label1 = new javax.swing.JLabel();
         jPanel33 = new javax.swing.JPanel();
         jScrollPane8 = new javax.swing.JScrollPane();
         by_month_coverage_table = new javax.swing.JTable();
+        month_coverage_viewreport_button = new javax.swing.JButton();
+        details_not_available_bottom_label1 = new javax.swing.JLabel();
         jPanel34 = new javax.swing.JPanel();
         jScrollPane9 = new javax.swing.JScrollPane();
         by_month_table = new javax.swing.JTable();
-        jPanel23 = new javax.swing.JPanel();
-        jPanel35 = new javax.swing.JPanel();
-        jPanel36 = new javax.swing.JPanel();
-        jPanel37 = new javax.swing.JPanel();
-        jLabel20 = new javax.swing.JLabel();
-        garment_sel_combo = new javax.swing.JComboBox<>();
-        view_production_button2 = new javax.swing.JButton();
-        jPanel38 = new javax.swing.JPanel();
-        details_not_available_label2 = new javax.swing.JLabel();
-        jPanel39 = new javax.swing.JPanel();
-        jScrollPane10 = new javax.swing.JScrollPane();
-        by_month_coverage_table1 = new javax.swing.JTable();
-        jPanel40 = new javax.swing.JPanel();
-        jScrollPane11 = new javax.swing.JScrollPane();
-        by_month_table1 = new javax.swing.JTable();
+        details_not_available_top_label1 = new javax.swing.JLabel();
+        month_clothusage_viewreport_button = new javax.swing.JButton();
 
         jPanel5.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
@@ -957,9 +952,6 @@ public class ProductionDetailFrame extends javax.swing.JInternalFrame {
 
         jPanel27.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        details_not_available_label.setText("No Production Details available for this date");
-        details_not_available_label.setOpaque(true);
-
         jPanel28.setBorder(javax.swing.BorderFactory.createTitledBorder("Daily Coverage Details"));
 
         by_date_coverage_table.setModel(new javax.swing.table.DefaultTableModel(
@@ -967,12 +959,19 @@ public class ProductionDetailFrame extends javax.swing.JInternalFrame {
 
             },
             new String [] {
-                "Garment", "Cut", "SewStarted", "Dyed", "Washdry", "SewFinish", "Finished"
+                "Garment", "Cut", "SewStarted", "Dyed", "WashDry", "SewFinish", "Finished"
             }
         ) {
+            Class[] types = new Class [] {
+                java.lang.Object.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class
+            };
             boolean[] canEdit = new boolean [] {
                 false, false, false, false, false, true, false
             };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
@@ -981,13 +980,28 @@ public class ProductionDetailFrame extends javax.swing.JInternalFrame {
         by_date_coverage_table.getTableHeader().setReorderingAllowed(false);
         jScrollPane7.setViewportView(by_date_coverage_table);
 
+        details_not_available_bottom_label.setText("No Daily coverage Details available for this date");
+        details_not_available_bottom_label.setOpaque(true);
+
+        date_coverage_viewreport_button.setText("View Report");
+        date_coverage_viewreport_button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                date_coverage_viewreport_buttonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel28Layout = new javax.swing.GroupLayout(jPanel28);
         jPanel28.setLayout(jPanel28Layout);
         jPanel28Layout.setHorizontalGroup(
             jPanel28Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel28Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane7)
+                .addGroup(jPanel28Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 660, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel28Layout.createSequentialGroup()
+                        .addComponent(details_not_available_bottom_label, javax.swing.GroupLayout.PREFERRED_SIZE, 369, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(date_coverage_viewreport_button)))
                 .addContainerGap())
         );
         jPanel28Layout.setVerticalGroup(
@@ -995,7 +1009,10 @@ public class ProductionDetailFrame extends javax.swing.JInternalFrame {
             .addGroup(jPanel28Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
+                .addGroup(jPanel28Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(date_coverage_viewreport_button)
+                    .addComponent(details_not_available_bottom_label)))
         );
 
         jPanel29.setBorder(javax.swing.BorderFactory.createTitledBorder("Pieces cuttings"));
@@ -1005,7 +1022,7 @@ public class ProductionDetailFrame extends javax.swing.JInternalFrame {
 
             },
             new String [] {
-                "Garment", "Material", "Cloth length", "No_of_pieces"
+                "Garment", "Material", "Cloth_length", "No_of_pieces"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -1019,33 +1036,40 @@ public class ProductionDetailFrame extends javax.swing.JInternalFrame {
         by_date_table.getTableHeader().setReorderingAllowed(false);
         jScrollPane6.setViewportView(by_date_table);
 
-        jButton1.setText("View Report");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        date_clothusage_viewreport_button.setText("View Report");
+        date_clothusage_viewreport_button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                date_clothusage_viewreport_buttonActionPerformed(evt);
             }
         });
+
+        details_not_available_top_label.setText("No Pice cuttings Details available for this date");
+        details_not_available_top_label.setOpaque(true);
 
         javax.swing.GroupLayout jPanel29Layout = new javax.swing.GroupLayout(jPanel29);
         jPanel29.setLayout(jPanel29Layout);
         jPanel29Layout.setHorizontalGroup(
             jPanel29Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel29Layout.createSequentialGroup()
+            .addGroup(jPanel29Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel29Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel29Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jButton1))
-                    .addComponent(jScrollPane6))
-                .addGap(2, 2, 2))
+                .addGroup(jPanel29Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel29Layout.createSequentialGroup()
+                        .addComponent(details_not_available_top_label, javax.swing.GroupLayout.PREFERRED_SIZE, 369, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(date_clothusage_viewreport_button)
+                        .addGap(2, 2, 2))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel29Layout.createSequentialGroup()
+                        .addComponent(jScrollPane6)
+                        .addContainerGap())))
         );
         jPanel29Layout.setVerticalGroup(
             jPanel29Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel29Layout.createSequentialGroup()
-                .addContainerGap()
                 .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
-                .addComponent(jButton1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
+                .addGroup(jPanel29Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(date_clothusage_viewreport_button)
+                    .addComponent(details_not_available_top_label)))
         );
 
         javax.swing.GroupLayout jPanel27Layout = new javax.swing.GroupLayout(jPanel27);
@@ -1056,17 +1080,13 @@ public class ProductionDetailFrame extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(jPanel27Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel28, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jPanel27Layout.createSequentialGroup()
-                        .addComponent(details_not_available_label)
-                        .addGap(0, 0, Short.MAX_VALUE))
                     .addComponent(jPanel29, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel27Layout.setVerticalGroup(
             jPanel27Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel27Layout.createSequentialGroup()
-                .addComponent(details_not_available_label)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(20, 20, 20)
                 .addComponent(jPanel29, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel28, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -1090,7 +1110,8 @@ public class ProductionDetailFrame extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addComponent(jPanel26, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel27, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jPanel27, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel22Layout = new javax.swing.GroupLayout(jPanel22);
@@ -1107,7 +1128,7 @@ public class ProductionDetailFrame extends javax.swing.JInternalFrame {
             .addGroup(jPanel22Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel25, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(62, Short.MAX_VALUE))
+                .addContainerGap(97, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("By Date:", jPanel22);
@@ -1154,9 +1175,6 @@ public class ProductionDetailFrame extends javax.swing.JInternalFrame {
 
         jPanel32.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        details_not_available_label1.setText("No Production Details available for this date");
-        details_not_available_label1.setOpaque(true);
-
         jPanel33.setBorder(javax.swing.BorderFactory.createTitledBorder("Daily Coverage Details"));
 
         by_month_coverage_table.setModel(new javax.swing.table.DefaultTableModel(
@@ -1178,13 +1196,28 @@ public class ProductionDetailFrame extends javax.swing.JInternalFrame {
         by_month_coverage_table.getTableHeader().setReorderingAllowed(false);
         jScrollPane8.setViewportView(by_month_coverage_table);
 
+        month_coverage_viewreport_button.setText("View Report");
+        month_coverage_viewreport_button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                month_coverage_viewreport_buttonActionPerformed(evt);
+            }
+        });
+
+        details_not_available_bottom_label1.setText("No Production Details available for this date");
+        details_not_available_bottom_label1.setOpaque(true);
+
         javax.swing.GroupLayout jPanel33Layout = new javax.swing.GroupLayout(jPanel33);
         jPanel33.setLayout(jPanel33Layout);
         jPanel33Layout.setHorizontalGroup(
             jPanel33Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel33Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane8)
+                .addGroup(jPanel33Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane8)
+                    .addGroup(jPanel33Layout.createSequentialGroup()
+                        .addComponent(details_not_available_bottom_label1, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(month_coverage_viewreport_button)))
                 .addContainerGap())
         );
         jPanel33Layout.setVerticalGroup(
@@ -1192,7 +1225,10 @@ public class ProductionDetailFrame extends javax.swing.JInternalFrame {
             .addGroup(jPanel33Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
+                .addGroup(jPanel33Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(details_not_available_bottom_label1)
+                    .addComponent(month_coverage_viewreport_button)))
         );
 
         jPanel34.setBorder(javax.swing.BorderFactory.createTitledBorder("Pieces cuttings"));
@@ -1217,21 +1253,40 @@ public class ProductionDetailFrame extends javax.swing.JInternalFrame {
         by_month_table.getTableHeader().setReorderingAllowed(false);
         jScrollPane9.setViewportView(by_month_table);
 
+        details_not_available_top_label1.setText("No Production Details available for this date");
+        details_not_available_top_label1.setOpaque(true);
+
+        month_clothusage_viewreport_button.setText("View Report");
+        month_clothusage_viewreport_button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                month_clothusage_viewreport_buttonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel34Layout = new javax.swing.GroupLayout(jPanel34);
         jPanel34.setLayout(jPanel34Layout);
         jPanel34Layout.setHorizontalGroup(
             jPanel34Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel34Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane9)
+                .addGroup(jPanel34Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel34Layout.createSequentialGroup()
+                        .addComponent(details_not_available_top_label1, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(month_clothusage_viewreport_button))
+                    .addComponent(jScrollPane9, javax.swing.GroupLayout.DEFAULT_SIZE, 668, Short.MAX_VALUE))
                 .addGap(2, 2, 2))
         );
         jPanel34Layout.setVerticalGroup(
             jPanel34Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel34Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel34Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(details_not_available_top_label1)
+                    .addComponent(month_clothusage_viewreport_button))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout jPanel32Layout = new javax.swing.GroupLayout(jPanel32);
@@ -1242,18 +1297,14 @@ public class ProductionDetailFrame extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(jPanel32Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel33, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jPanel32Layout.createSequentialGroup()
-                        .addComponent(details_not_available_label1)
-                        .addGap(0, 0, Short.MAX_VALUE))
                     .addComponent(jPanel34, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel32Layout.setVerticalGroup(
             jPanel32Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel32Layout.createSequentialGroup()
-                .addComponent(details_not_available_label1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel34, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20)
+                .addComponent(jPanel34, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel33, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
@@ -1276,7 +1327,8 @@ public class ProductionDetailFrame extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addComponent(jPanel31, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel32, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jPanel32, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel24Layout = new javax.swing.GroupLayout(jPanel24);
@@ -1293,212 +1345,10 @@ public class ProductionDetailFrame extends javax.swing.JInternalFrame {
             .addGroup(jPanel24Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel30, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(62, Short.MAX_VALUE))
+                .addContainerGap(104, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("By Month:", jPanel24);
-
-        jPanel37.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-
-        jLabel20.setText("Select garment:");
-
-        view_production_button2.setText("View Production");
-        view_production_button2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                view_production_button2ActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel37Layout = new javax.swing.GroupLayout(jPanel37);
-        jPanel37.setLayout(jPanel37Layout);
-        jPanel37Layout.setHorizontalGroup(
-            jPanel37Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel37Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel20)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(garment_sel_combo, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(82, 82, 82)
-                .addComponent(view_production_button2, javax.swing.GroupLayout.DEFAULT_SIZE, 283, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        jPanel37Layout.setVerticalGroup(
-            jPanel37Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel37Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel37Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel20)
-                    .addComponent(garment_sel_combo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(view_production_button2))
-                .addContainerGap(24, Short.MAX_VALUE))
-        );
-
-        jPanel38.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-
-        details_not_available_label2.setText("No Production Details available for this date");
-        details_not_available_label2.setOpaque(true);
-
-        jPanel39.setBorder(javax.swing.BorderFactory.createTitledBorder("Daily Coverage Details"));
-
-        by_month_coverage_table1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "Garment", "Cut", "SewStarted", "Dyed", "Washdry", "SewFinish", "Finished"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, true, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        by_month_coverage_table1.getTableHeader().setReorderingAllowed(false);
-        jScrollPane10.setViewportView(by_month_coverage_table1);
-
-        javax.swing.GroupLayout jPanel39Layout = new javax.swing.GroupLayout(jPanel39);
-        jPanel39.setLayout(jPanel39Layout);
-        jPanel39Layout.setHorizontalGroup(
-            jPanel39Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel39Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane10)
-                .addContainerGap())
-        );
-        jPanel39Layout.setVerticalGroup(
-            jPanel39Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel39Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        jPanel40.setBorder(javax.swing.BorderFactory.createTitledBorder("Pieces cuttings"));
-
-        by_month_table1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createTitledBorder("Cutting pieces"), "Cutting pieces "));
-        by_month_table1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "Garment", "Material", "Cloth length", "No_of_pieces"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, true, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        by_month_table1.getTableHeader().setReorderingAllowed(false);
-        jScrollPane11.setViewportView(by_month_table1);
-
-        javax.swing.GroupLayout jPanel40Layout = new javax.swing.GroupLayout(jPanel40);
-        jPanel40.setLayout(jPanel40Layout);
-        jPanel40Layout.setHorizontalGroup(
-            jPanel40Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel40Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane11)
-                .addGap(2, 2, 2))
-        );
-        jPanel40Layout.setVerticalGroup(
-            jPanel40Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel40Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane11, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        javax.swing.GroupLayout jPanel38Layout = new javax.swing.GroupLayout(jPanel38);
-        jPanel38.setLayout(jPanel38Layout);
-        jPanel38Layout.setHorizontalGroup(
-            jPanel38Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel38Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel38Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel39, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jPanel38Layout.createSequentialGroup()
-                        .addComponent(details_not_available_label2)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jPanel40, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
-        );
-        jPanel38Layout.setVerticalGroup(
-            jPanel38Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel38Layout.createSequentialGroup()
-                .addComponent(details_not_available_label2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel40, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel39, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-
-        javax.swing.GroupLayout jPanel36Layout = new javax.swing.GroupLayout(jPanel36);
-        jPanel36.setLayout(jPanel36Layout);
-        jPanel36Layout.setHorizontalGroup(
-            jPanel36Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel36Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel36Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel37, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel38, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
-        );
-        jPanel36Layout.setVerticalGroup(
-            jPanel36Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel36Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel37, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel38, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        javax.swing.GroupLayout jPanel35Layout = new javax.swing.GroupLayout(jPanel35);
-        jPanel35.setLayout(jPanel35Layout);
-        jPanel35Layout.setHorizontalGroup(
-            jPanel35Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel35Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel36, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        jPanel35Layout.setVerticalGroup(
-            jPanel35Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel35Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel36, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(62, Short.MAX_VALUE))
-        );
-
-        javax.swing.GroupLayout jPanel23Layout = new javax.swing.GroupLayout(jPanel23);
-        jPanel23.setLayout(jPanel23Layout);
-        jPanel23Layout.setHorizontalGroup(
-            jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 756, Short.MAX_VALUE)
-            .addGroup(jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel23Layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jPanel35, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
-        );
-        jPanel23Layout.setVerticalGroup(
-            jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 645, Short.MAX_VALUE)
-            .addGroup(jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel23Layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jPanel35, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
-        );
-
-        jTabbedPane1.addTab("By Garment:", jPanel23);
 
         javax.swing.GroupLayout jPanel21Layout = new javax.swing.GroupLayout(jPanel21);
         jPanel21.setLayout(jPanel21Layout);
@@ -1531,7 +1381,7 @@ public class ProductionDetailFrame extends javax.swing.JInternalFrame {
             jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel20Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 622, Short.MAX_VALUE)
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 672, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -1640,7 +1490,7 @@ public class ProductionDetailFrame extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_cancel_buttonActionPerformed
 
     private void cancel_button2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancel_button2ActionPerformed
-        
+
     }//GEN-LAST:event_cancel_button2ActionPerformed
 
     private void save_by_process_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_save_by_process_buttonActionPerformed
@@ -1872,8 +1722,9 @@ public class ProductionDetailFrame extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_amount_of_cloth_textKeyReleased
 
     private void view_production_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_view_production_buttonActionPerformed
-        details_not_available_label.setVisible(false);
-        
+        details_not_available_top_label.setVisible(false);
+        details_not_available_bottom_label.setVisible(false);
+
         Calendar now = Calendar.getInstance();
         Calendar date_c = Calendar.getInstance();
         date_c.set(Integer.valueOf(year_combo.getSelectedItem().toString()), PatternChecker.getMonthNumber(month_combo.getSelectedItem().toString()), Integer.valueOf(date_spinner.getValue().toString()));
@@ -1888,18 +1739,18 @@ public class ProductionDetailFrame extends javax.swing.JInternalFrame {
                     dtm.addRow(rawdata);
                 }
             } else {
-                details_not_available_label.setVisible(true);
+                details_not_available_top_label.setVisible(true);
             }
             ArrayList<DailyCoverage> searchDailyCoverageForDate = dailyCoverageController.searchDailyCoverageForDate(Integer.valueOf(year_combo.getSelectedItem().toString()), PatternChecker.getMonthNumber(month_combo.getSelectedItem().toString()), Integer.valueOf(date_spinner.getValue().toString()));
             DefaultTableModel dtm_p = (DefaultTableModel) by_date_coverage_table.getModel();
             dtm_p.setRowCount(0);
             if (searchDailyCoverageForDate.size() > 0) {
                 for (DailyCoverage dc : searchDailyCoverageForDate) {
-                    Object[] rawdata = {dc.getGarment_id() + " " + dc.getGarment_name(), dc.getNo_of_cut(), dc.getNo_of_sewn(), dc.getNo_of_dyed(), dc.getNo_of_washdry(),dc.getNo_of_sewfinish(),dc.getNo_of_finish()};
+                    Object[] rawdata = {dc.getGarment_id() + " " + dc.getGarment_name(), dc.getNo_of_cut(), dc.getNo_of_sewn(), dc.getNo_of_dyed(), dc.getNo_of_washdry(), dc.getNo_of_sewfinish(), dc.getNo_of_finish()};
                     dtm_p.addRow(rawdata);
                 }
             } else {
-                details_not_available_label.setVisible(true);
+                details_not_available_bottom_label.setVisible(true);
             }
         } catch (RemoteException | SQLException | ClassNotFoundException ex) {
             Logger.getLogger(ProductionDetailFrame.class.getName()).log(Level.SEVERE, null, ex);
@@ -1918,7 +1769,9 @@ public class ProductionDetailFrame extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_view_production_buttonActionPerformed
 
     private void view_production_button1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_view_production_button1ActionPerformed
-        details_not_available_label1.setVisible(false);
+        details_not_available_top_label1.setVisible(false);
+        details_not_available_bottom_label1.setVisible(false);
+
         Calendar now = Calendar.getInstance();
         Calendar date_c = Calendar.getInstance();
         date_c.set(Integer.valueOf(year_combo1.getSelectedItem().toString()), PatternChecker.getMonthNumber(month_combo1.getSelectedItem().toString()));
@@ -1932,17 +1785,17 @@ public class ProductionDetailFrame extends javax.swing.JInternalFrame {
                     dtm.addRow(rawdata);
                 }
             } else {
-                details_not_available_label1.setVisible(true);
+                details_not_available_top_label1.setVisible(true);
             }
             ArrayList<DailyCoverage> searchDailyCoverageForMonth = dailyCoverageController.searchDailyCoverageForMonth(Integer.valueOf(year_combo1.getSelectedItem().toString()), PatternChecker.getMonthNumber(month_combo1.getSelectedItem().toString()));
             DefaultTableModel dtm_p = (DefaultTableModel) by_month_coverage_table.getModel();
             if (searchDailyCoverageForMonth.size() > 0) {
                 for (DailyCoverage dc : searchDailyCoverageForMonth) {
-                    Object[] rawdata = {dc.getGarment_id() + " " + dc.getGarment_name(), dc.getNo_of_cut(), dc.getNo_of_sewn(), dc.getNo_of_dyed(), dc.getNo_of_washdry(),dc.getNo_of_sewfinish(),dc.getNo_of_finish()};
+                    Object[] rawdata = {dc.getGarment_id() + " " + dc.getGarment_name(), dc.getNo_of_cut(), dc.getNo_of_sewn(), dc.getNo_of_dyed(), dc.getNo_of_washdry(), dc.getNo_of_sewfinish(), dc.getNo_of_finish()};
                     dtm_p.addRow(rawdata);
                 }
             } else {
-                details_not_available_label1.setVisible(true);
+                details_not_available_bottom_label1.setVisible(true);
             }
         } catch (RemoteException | SQLException | ClassNotFoundException ex) {
             Logger.getLogger(ProductionDetailFrame.class.getName()).log(Level.SEVERE, null, ex);
@@ -1950,15 +1803,15 @@ public class ProductionDetailFrame extends javax.swing.JInternalFrame {
 
     }//GEN-LAST:event_view_production_button1ActionPerformed
 
-    private void view_production_button2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_view_production_button2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_view_production_button2ActionPerformed
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void date_clothusage_viewreport_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_date_clothusage_viewreport_buttonActionPerformed
         try {
-            JasperReport jasperReport = JasperCompileManager.compileReport(getClass().getResourceAsStream("/gfcl/views/reports/report1.jrxml"));
+            JasperReport jasperReport = JasperCompileManager.compileReport(getClass().getResourceAsStream("/gfcl/views/reports/dailyclothusage_report.jrxml"));
             DefaultTableModel model = (DefaultTableModel) by_date_table.getModel();
-            JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport,null, new JRTableModelDataSource(model));
+            HashMap map = new HashMap();
+            String date = year_combo.getSelectedItem().toString() + "-" + String.valueOf(PatternChecker.getMonthNumber(month_combo.getSelectedItem().toString())) + "-" + date_spinner.getValue().toString();
+            map.put("dateReport", date);
+
+            JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, map, new JRTableModelDataSource(model));
             JasperViewer jasperViewer = new JasperViewer(jasperPrint, false);
             JDialog dialog = new JDialog();//the owner
             dialog.setContentPane(jasperViewer.getContentPane());
@@ -1968,8 +1821,68 @@ public class ProductionDetailFrame extends javax.swing.JInternalFrame {
         } catch (JRException ex) {
             Logger.getLogger(ProductionDetailFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-    }//GEN-LAST:event_jButton1ActionPerformed
+
+    }//GEN-LAST:event_date_clothusage_viewreport_buttonActionPerformed
+
+    private void date_coverage_viewreport_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_date_coverage_viewreport_buttonActionPerformed
+        try {
+            JasperReport jasperReport = JasperCompileManager.compileReport(getClass().getResourceAsStream("/gfcl/views/reports/dailycoverage_report.jrxml"));
+            DefaultTableModel model = (DefaultTableModel) by_date_coverage_table.getModel();
+            HashMap map = new HashMap();
+            String date = year_combo.getSelectedItem().toString() + "-" + String.valueOf(PatternChecker.getMonthNumber(month_combo.getSelectedItem().toString())) + "-" + date_spinner.getValue().toString();
+            map.put("dateReport", date);
+
+            JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, map, new JRTableModelDataSource(model));
+            JasperViewer jasperViewer = new JasperViewer(jasperPrint, false);
+            JDialog dialog = new JDialog();//the owner
+            dialog.setContentPane(jasperViewer.getContentPane());
+            dialog.setSize(jasperViewer.getSize());
+            dialog.setLocationRelativeTo(null);
+            dialog.setVisible(true);
+        } catch (JRException ex) {
+            Logger.getLogger(ProductionDetailFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_date_coverage_viewreport_buttonActionPerformed
+
+    private void month_clothusage_viewreport_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_month_clothusage_viewreport_buttonActionPerformed
+        try {
+            JasperReport jasperReport = JasperCompileManager.compileReport(getClass().getResourceAsStream("/gfcl/views/reports/dailyclothusage_report.jrxml"));
+            DefaultTableModel model = (DefaultTableModel) by_month_table.getModel();
+            HashMap map = new HashMap();
+            String date = year_combo1.getSelectedItem().toString() + "-" + month_combo1.getSelectedItem().toString();
+            map.put("dateReport", date);
+
+            JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, map, new JRTableModelDataSource(model));
+            JasperViewer jasperViewer = new JasperViewer(jasperPrint, false);
+            JDialog dialog = new JDialog();//the owner
+            dialog.setContentPane(jasperViewer.getContentPane());
+            dialog.setSize(jasperViewer.getSize());
+            dialog.setLocationRelativeTo(null);
+            dialog.setVisible(true);
+        } catch (JRException ex) {
+            Logger.getLogger(ProductionDetailFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_month_clothusage_viewreport_buttonActionPerformed
+
+    private void month_coverage_viewreport_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_month_coverage_viewreport_buttonActionPerformed
+        try {
+            JasperReport jasperReport = JasperCompileManager.compileReport(getClass().getResourceAsStream("/gfcl/views/reports/dailycoverage_report.jrxml"));
+            DefaultTableModel model = (DefaultTableModel) by_month_coverage_table.getModel();
+            HashMap map = new HashMap();
+            String date = year_combo1.getSelectedItem().toString() + "-" + month_combo1.getSelectedItem().toString();
+            map.put("dateReport", date);
+
+            JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, map, new JRTableModelDataSource(model));
+            JasperViewer jasperViewer = new JasperViewer(jasperPrint, false);
+            JDialog dialog = new JDialog();//the owner
+            dialog.setContentPane(jasperViewer.getContentPane());
+            dialog.setSize(jasperViewer.getSize());
+            dialog.setLocationRelativeTo(null);
+            dialog.setVisible(true);
+        } catch (JRException ex) {
+            Logger.getLogger(ProductionDetailFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_month_coverage_viewreport_buttonActionPerformed
 
     void focustabbedpane(int num) {
 
@@ -1988,9 +1901,7 @@ public class ProductionDetailFrame extends javax.swing.JInternalFrame {
     private javax.swing.JTable by_date_coverage_table;
     private javax.swing.JTable by_date_table;
     private javax.swing.JTable by_month_coverage_table;
-    private javax.swing.JTable by_month_coverage_table1;
     private javax.swing.JTable by_month_table;
-    private javax.swing.JTable by_month_table1;
     private javax.swing.JButton cancel_button;
     private javax.swing.JButton cancel_button2;
     private javax.swing.JButton cancel_button3;
@@ -1998,18 +1909,19 @@ public class ProductionDetailFrame extends javax.swing.JInternalFrame {
     private javax.swing.JComboBox<String> cloth_type_combo;
     private javax.swing.JSpinner completing_spinner;
     private javax.swing.JSpinner cutting_spinner;
+    private javax.swing.JButton date_clothusage_viewreport_button;
+    private javax.swing.JButton date_coverage_viewreport_button;
     private javax.swing.JSpinner date_spinner;
     private javax.swing.JTextField date_text;
     private javax.swing.JTextField date_text_cloth;
-    private javax.swing.JLabel details_not_available_label;
-    private javax.swing.JLabel details_not_available_label1;
-    private javax.swing.JLabel details_not_available_label2;
+    private javax.swing.JLabel details_not_available_bottom_label;
+    private javax.swing.JLabel details_not_available_bottom_label1;
+    private javax.swing.JLabel details_not_available_top_label;
+    private javax.swing.JLabel details_not_available_top_label1;
     private javax.swing.JSpinner dyeing_spinner;
     private javax.swing.JComboBox<String> garment_combo;
     private javax.swing.JComboBox<String> garment_inpro_combo;
-    private javax.swing.JComboBox<String> garment_sel_combo;
     private javax.swing.JComboBox<String> garment_type_combo;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -2022,7 +1934,6 @@ public class ProductionDetailFrame extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -2045,7 +1956,6 @@ public class ProductionDetailFrame extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel20;
     private javax.swing.JPanel jPanel21;
     private javax.swing.JPanel jPanel22;
-    private javax.swing.JPanel jPanel23;
     private javax.swing.JPanel jPanel24;
     private javax.swing.JPanel jPanel25;
     private javax.swing.JPanel jPanel26;
@@ -2058,21 +1968,13 @@ public class ProductionDetailFrame extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel32;
     private javax.swing.JPanel jPanel33;
     private javax.swing.JPanel jPanel34;
-    private javax.swing.JPanel jPanel35;
-    private javax.swing.JPanel jPanel36;
-    private javax.swing.JPanel jPanel37;
-    private javax.swing.JPanel jPanel38;
-    private javax.swing.JPanel jPanel39;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel40;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane10;
-    private javax.swing.JScrollPane jScrollPane11;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
@@ -2083,8 +1985,10 @@ public class ProductionDetailFrame extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane9;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JButton month_clothusage_viewreport_button;
     private javax.swing.JComboBox<String> month_combo;
     private javax.swing.JComboBox<String> month_combo1;
+    private javax.swing.JButton month_coverage_viewreport_button;
     private javax.swing.JSpinner no_of_garments_spinner;
     private javax.swing.JTable process_table;
     private javax.swing.JComboBox<String> processes_combo;
@@ -2099,7 +2003,6 @@ public class ProductionDetailFrame extends javax.swing.JInternalFrame {
     private javax.swing.JLabel unit_label;
     private javax.swing.JButton view_production_button;
     private javax.swing.JButton view_production_button1;
-    private javax.swing.JButton view_production_button2;
     private javax.swing.JSpinner washing_spinner;
     private javax.swing.JComboBox<String> year_combo;
     private javax.swing.JComboBox<String> year_combo1;

@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="dailycoverage_report" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="a6573861-8084-4259-bf6f-57ed77248aee">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="dateReport" class="java.lang.String"/>
+	<field name="Garment" class="java.lang.String"/>
+	<field name="Cut" class="java.lang.Integer"/>
+	<field name="SewStarted" class="java.lang.Integer"/>
+	<field name="Dyed" class="java.lang.Integer"/>
+	<field name="WashDry" class="java.lang.Integer"/>
+	<field name="SewFinish" class="java.lang.Integer"/>
+	<field name="Finished" class="java.lang.Integer"/>
+	<group name="Group1"/>
+	<group name="Group2"/>
+	<group name="Group3"/>
+	<group name="Group4"/>
+	<background>
+		<band/>
+	</background>
+	<title>
+		<band height="72">
+			<frame>
+				<reportElement mode="Opaque" x="-20" y="-20" width="595" height="92" backcolor="#006699" uuid="11137bea-b0c8-49dc-a849-a2fd78e3ef03"/>
+				<staticText>
+					<reportElement x="20" y="0" width="555" height="43" forecolor="#FFFFFF" uuid="5dafa4cd-f77e-47dd-86d0-f0fac67b3cbb"/>
+					<textElement>
+						<font size="34" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Lekha Bathik Garment Factory]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="20" y="43" width="219" height="20" forecolor="#FFFFFF" uuid="7857ca4f-8bca-4e3a-b50f-1d2913433f49"/>
+					<textElement textAlignment="Left">
+						<font size="14" isBold="false"/>
+					</textElement>
+					<text><![CDATA[Daily Coverage in Prodcution on ]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="239" y="43" width="128" height="20" forecolor="#FFFFFF" uuid="ee036607-6804-478b-9251-2a9a8e06e20a"/>
+					<textElement verticalAlignment="Middle">
+						<font size="14"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{dateReport}]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="13"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="27">
+			<line>
+				<reportElement x="-20" y="20" width="595" height="1" forecolor="#666666" uuid="72ce56c2-8c0d-4e97-94fa-13d4a01b153c"/>
+			</line>
+			<staticText>
+				<reportElement x="13" y="0" width="100" height="20" uuid="82c405a3-d469-47cd-972a-201eddc10bd9"/>
+				<text><![CDATA[Garment]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="113" y="1" width="72" height="20" uuid="97f7eb6e-e8c0-4f18-ae47-0932bb6e29a8"/>
+				<text><![CDATA[Cut]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="185" y="0" width="74" height="20" uuid="af6c88dc-6f2c-4bae-8e8f-d90217f16728"/>
+				<text><![CDATA[SewStarted]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="259" y="1" width="67" height="20" uuid="891b9ae6-fe9c-4bfe-8888-ba95c85d2042"/>
+				<text><![CDATA[Dyed]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="326" y="1" width="68" height="20" uuid="61874101-ff63-4873-ae5e-5ea7ddc6fc68"/>
+				<text><![CDATA[WashDry]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="394" y="1" width="72" height="20" uuid="d58404aa-66b9-43a3-980f-27ca410953d4"/>
+				<text><![CDATA[SewFinish]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="466" y="1" width="72" height="20" uuid="bb1c8b2b-d428-4764-90be-ef53dac4ecab"/>
+				<text><![CDATA[Finished]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="24">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="0" width="555" height="1" uuid="633cf693-7b9c-4033-b1a0-674c6486d5f3"/>
+			</line>
+			<textField>
+				<reportElement x="13" y="1" width="100" height="20" uuid="10be6398-83a8-4b9d-9fa7-e5cd54feb567"/>
+				<textFieldExpression><![CDATA[$F{Garment}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="113" y="1" width="72" height="20" uuid="d2cc6348-0cc8-4963-a095-2b648de5059f"/>
+				<textFieldExpression><![CDATA[$F{Cut}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="185" y="0" width="74" height="20" uuid="a5a6ed57-88a3-4558-b494-79cb68734d3e"/>
+				<textFieldExpression><![CDATA[$F{SewStarted}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="259" y="1" width="67" height="20" uuid="53dd140d-8b71-4b0b-bf7e-eef3da6b74bd"/>
+				<textFieldExpression><![CDATA[$F{Dyed}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="326" y="1" width="68" height="20" uuid="95c7de67-1759-4fe0-be3a-e2e796001e2e"/>
+				<textFieldExpression><![CDATA[$F{WashDry}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="394" y="1" width="72" height="20" uuid="18979398-b89f-4eee-9494-09d1ad38f426"/>
+				<textFieldExpression><![CDATA[$F{SewFinish}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="466" y="1" width="72" height="20" uuid="5f88cc00-61ae-4533-8c5f-472f4647d76b"/>
+				<textFieldExpression><![CDATA[$F{Finished}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band/>
+	</columnFooter>
+	<pageFooter>
+		<band height="17">
+			<textField>
+				<reportElement mode="Opaque" x="0" y="4" width="515" height="13" backcolor="#E6E6E6" uuid="2960ece9-8482-4919-a77b-947bd864474b"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement mode="Opaque" x="515" y="4" width="40" height="13" backcolor="#E6E6E6" uuid="3b8f0277-e8d1-4e92-9b69-1e3f5be8f604"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="0" y="4" width="100" height="13" uuid="20b7e0d9-6941-4f69-84fc-c2790f4c81ad"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="362">
+			<barChart>
+				<chart>
+					<reportElement x="0" y="16" width="200" height="100" uuid="24539fc6-0b11-4648-ac62-c5fe455c6609"/>
+					<chartTitle/>
+					<chartSubtitle/>
+					<chartLegend/>
+				</chart>
+				<categoryDataset>
+					<categorySeries>
+						<seriesExpression><![CDATA["Cuttings"]]></seriesExpression>
+						<categoryExpression><![CDATA[$F{Garment}]]></categoryExpression>
+						<valueExpression><![CDATA[$F{Cut}]]></valueExpression>
+					</categorySeries>
+					<categorySeries>
+						<seriesExpression><![CDATA["Starting Sewings"]]></seriesExpression>
+						<categoryExpression><![CDATA[$F{Garment}]]></categoryExpression>
+						<valueExpression><![CDATA[$F{SewStarted}]]></valueExpression>
+					</categorySeries>
+				</categoryDataset>
+				<barPlot>
+					<plot/>
+					<itemLabel/>
+					<categoryAxisFormat>
+						<axisFormat/>
+					</categoryAxisFormat>
+					<valueAxisFormat>
+						<axisFormat/>
+					</valueAxisFormat>
+				</barPlot>
+			</barChart>
+		</band>
+	</summary>
+</jasperReport>
