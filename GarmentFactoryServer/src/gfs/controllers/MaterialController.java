@@ -125,4 +125,23 @@ public class MaterialController {
         }
     }
 
+    public ArrayList<Material> getAllMaterialsOfType(String type) throws ClassNotFoundException, SQLException {
+        try {
+            readWriteLock.readLock().lock();
+
+            Connection conn = DBConnection.getDBConnection().getConnection();
+            String sql = "Select * From material where mat_type='" + type + "' order by mat_name";
+            ResultSet rst = DBHandler.getData(conn, sql);
+            ArrayList<Material> list = new ArrayList<>();
+            while (rst.next()) {
+                Material material=new Material(rst.getString("mat_id"),rst.getString("mat_name"), rst.getString("mat_type"),rst.getDouble("mat_in_stock"));
+                list.add(material);
+            }
+            return list;
+
+        } finally {
+            readWriteLock.readLock().unlock();
+        }
+    }
+
 }

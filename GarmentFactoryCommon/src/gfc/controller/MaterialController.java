@@ -30,5 +30,5 @@ public interface MaterialController extends Remote {
 
     public Material searchMaterial(String mat_id) throws RemoteException, SQLException,ClassNotFoundException;
 
-    
+   public ArrayList<Material> getAllMaterialsOfType(String type) throws RemoteException, SQLException,ClassNotFoundException;
 }

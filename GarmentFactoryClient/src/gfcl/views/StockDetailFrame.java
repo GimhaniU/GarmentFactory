@@ -20,10 +20,13 @@ import java.rmi.RemoteException;
 import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -46,8 +49,8 @@ public class StockDetailFrame extends javax.swing.JInternalFrame {
             materialController = sConnector.getMaterialController();
             stockController = sConnector.getStockController();
             dailyMaterialUsageController = sConnector.getDailyMaterialUsageController();
-            cia=new ComboItemsAdder();
-            
+            cia = new ComboItemsAdder();
+
             mat_id_text.setText(IdGenerator.generateNextMaterialID(materialController.getLastMaterialId()));
             stock_id_text.setText(IdGenerator.generateNextStockID(stockController.getLastStockId()));
 
@@ -58,14 +61,29 @@ public class StockDetailFrame extends javax.swing.JInternalFrame {
             new_date_text.setText(dateFormat.format(date));
 
             add_stock_button.setEnabled(false);
-            
+
             this.materialtypecombo.setEditable(true);
             cia.addSimilarMaterialnames(materialtypecombo);
 
             this.daily_materialtypecombo.setEditable(true);
             cia.addSimilarOtherMaterialnames(daily_materialtypecombo);
+
+            addDataToStockTable(dye_stock_table, "Dye");
+            addDataToStockTable(cloth_stock_table, "Cloth");
+            addDataToStockTable(thread_stock_table, "Thread");
+            addDataToStockTable(wax_stock_table, "Wax");
         } catch (NotBoundException | MalformedURLException | RemoteException | SQLException | ClassNotFoundException ex) {
             Logger.getLogger(StockDetailFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    private void addDataToStockTable(JTable table, String type) throws RemoteException, SQLException, ClassNotFoundException {
+        DefaultTableModel stock_dtm = (DefaultTableModel) table.getModel();
+        ArrayList<Material> list = new ArrayList<>();
+        list = materialController.getAllMaterialsOfType(type);
+        for (Material m : list) {
+            Object[] rawdata = {m.getMat_id(), m.getMat_name(), m.getIn_stock()};
+            stock_dtm.addRow(rawdata);
         }
     }
 
@@ -149,6 +167,21 @@ public class StockDetailFrame extends javax.swing.JInternalFrame {
         addnew_mat_button = new javax.swing.JButton();
         cancelbutton = new javax.swing.JButton();
         jPanel13 = new javax.swing.JPanel();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        jPanel14 = new javax.swing.JPanel();
+        clothstock_panel = new javax.swing.JPanel();
+        jScrollPane7 = new javax.swing.JScrollPane();
+        cloth_stock_table = new javax.swing.JTable();
+        dye_panel = new javax.swing.JPanel();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        dye_stock_table = new javax.swing.JTable();
+        thread_panel = new javax.swing.JPanel();
+        jScrollPane8 = new javax.swing.JScrollPane();
+        thread_stock_table = new javax.swing.JTable();
+        wax_panel = new javax.swing.JPanel();
+        jScrollPane9 = new javax.swing.JScrollPane();
+        wax_stock_table = new javax.swing.JTable();
 
         jPanel4.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
@@ -350,7 +383,7 @@ public class StockDetailFrame extends javax.swing.JInternalFrame {
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(121, Short.MAX_VALUE))
+                .addContainerGap(550, Short.MAX_VALUE))
         );
 
         jScrollPane2.setViewportView(jPanel3);
@@ -361,14 +394,14 @@ public class StockDetailFrame extends javax.swing.JInternalFrame {
             add_stock_entry_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(add_stock_entry_panelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 590, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 625, Short.MAX_VALUE)
                 .addContainerGap())
         );
         add_stock_entry_panelLayout.setVerticalGroup(
             add_stock_entry_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(add_stock_entry_panelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 554, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 1019, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -498,7 +531,7 @@ public class StockDetailFrame extends javax.swing.JInternalFrame {
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 544, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(22, Short.MAX_VALUE))
+                .addContainerGap(57, Short.MAX_VALUE))
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -544,7 +577,7 @@ public class StockDetailFrame extends javax.swing.JInternalFrame {
                 .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(206, Short.MAX_VALUE))
+                .addContainerGap(671, Short.MAX_VALUE))
         );
 
         tabpane.addTab("Add daily usage", add_daily_usage_panel);
@@ -741,7 +774,7 @@ public class StockDetailFrame extends javax.swing.JInternalFrame {
             add_new_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(add_new_panelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, 536, Short.MAX_VALUE)
+                .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, 571, Short.MAX_VALUE)
                 .addGap(64, 64, 64))
         );
         add_new_panelLayout.setVerticalGroup(
@@ -749,20 +782,204 @@ public class StockDetailFrame extends javax.swing.JInternalFrame {
             .addGroup(add_new_panelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, 448, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(117, Short.MAX_VALUE))
+                .addContainerGap(582, Short.MAX_VALUE))
         );
 
         tabpane.addTab("Add new material type", add_new_panel);
+
+        clothstock_panel.setBorder(javax.swing.BorderFactory.createTitledBorder("Cloth Stocks"));
+
+        cloth_stock_table.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Mat_ID", "Name", "Stock(m)"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        cloth_stock_table.getTableHeader().setReorderingAllowed(false);
+        jScrollPane7.setViewportView(cloth_stock_table);
+
+        javax.swing.GroupLayout clothstock_panelLayout = new javax.swing.GroupLayout(clothstock_panel);
+        clothstock_panel.setLayout(clothstock_panelLayout);
+        clothstock_panelLayout.setHorizontalGroup(
+            clothstock_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(clothstock_panelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        clothstock_panelLayout.setVerticalGroup(
+            clothstock_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(clothstock_panelLayout.createSequentialGroup()
+                .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 28, Short.MAX_VALUE))
+        );
+
+        dye_panel.setBorder(javax.swing.BorderFactory.createTitledBorder("Dye stocks"));
+
+        dye_stock_table.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Mat_ID", "Name", "Stock(kg)"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        dye_stock_table.getTableHeader().setReorderingAllowed(false);
+        jScrollPane6.setViewportView(dye_stock_table);
+
+        javax.swing.GroupLayout dye_panelLayout = new javax.swing.GroupLayout(dye_panel);
+        dye_panel.setLayout(dye_panelLayout);
+        dye_panelLayout.setHorizontalGroup(
+            dye_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(dye_panelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 444, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        dye_panelLayout.setVerticalGroup(
+            dye_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(dye_panelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(47, Short.MAX_VALUE))
+        );
+
+        thread_panel.setBorder(javax.swing.BorderFactory.createTitledBorder("Thread Stocks"));
+
+        thread_stock_table.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Mat_ID", "Name", "Stock(thread rolls)"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        thread_stock_table.getTableHeader().setReorderingAllowed(false);
+        jScrollPane8.setViewportView(thread_stock_table);
+
+        javax.swing.GroupLayout thread_panelLayout = new javax.swing.GroupLayout(thread_panel);
+        thread_panel.setLayout(thread_panelLayout);
+        thread_panelLayout.setHorizontalGroup(
+            thread_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(thread_panelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(102, Short.MAX_VALUE))
+        );
+        thread_panelLayout.setVerticalGroup(
+            thread_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(thread_panelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(60, Short.MAX_VALUE))
+        );
+
+        wax_panel.setBorder(javax.swing.BorderFactory.createTitledBorder("Wax stocks"));
+
+        wax_stock_table.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Mat_ID", "Name", "Stock(kg)"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane9.setViewportView(wax_stock_table);
+
+        javax.swing.GroupLayout wax_panelLayout = new javax.swing.GroupLayout(wax_panel);
+        wax_panel.setLayout(wax_panelLayout);
+        wax_panelLayout.setHorizontalGroup(
+            wax_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(wax_panelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(102, Short.MAX_VALUE))
+        );
+        wax_panelLayout.setVerticalGroup(
+            wax_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(wax_panelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(42, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout jPanel14Layout = new javax.swing.GroupLayout(jPanel14);
+        jPanel14.setLayout(jPanel14Layout);
+        jPanel14Layout.setHorizontalGroup(
+            jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel14Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(wax_panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(dye_panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(thread_panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(clothstock_panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addContainerGap(64, Short.MAX_VALUE))
+        );
+        jPanel14Layout.setVerticalGroup(
+            jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel14Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(clothstock_panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(dye_panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(thread_panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(wax_panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(868, Short.MAX_VALUE))
+        );
+
+        jScrollPane5.setViewportView(jPanel14);
+
+        jScrollPane4.setViewportView(jScrollPane5);
 
         javax.swing.GroupLayout jPanel13Layout = new javax.swing.GroupLayout(jPanel13);
         jPanel13.setLayout(jPanel13Layout);
         jPanel13Layout.setHorizontalGroup(
             jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 610, Short.MAX_VALUE)
+            .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 645, Short.MAX_VALUE)
         );
         jPanel13Layout.setVerticalGroup(
             jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 576, Short.MAX_VALUE)
+            .addGroup(jPanel13Layout.createSequentialGroup()
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 896, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 145, Short.MAX_VALUE))
         );
 
         tabpane.addTab("View current stocks", jPanel13);
@@ -773,15 +990,14 @@ public class StockDetailFrame extends javax.swing.JInternalFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(tabpane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(138, Short.MAX_VALUE))
+                .addComponent(tabpane, javax.swing.GroupLayout.PREFERRED_SIZE, 650, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(103, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(tabpane)
-                .addContainerGap())
+                .addComponent(tabpane))
         );
 
         jScrollPane1.setViewportView(jPanel2);
@@ -795,8 +1011,8 @@ public class StockDetailFrame extends javax.swing.JInternalFrame {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 569, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 966, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 11, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -1023,9 +1239,9 @@ public class StockDetailFrame extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_mat_type_comboItemStateChanged
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        FrontPage frontPage=FrontPage.getInstance();
-        ProductionDetailFrame pdf=new ProductionDetailFrame();
-        frontPage.setDesktopPaneForProduction(pdf,1);
+        FrontPage frontPage = FrontPage.getInstance();
+        ProductionDetailFrame pdf = new ProductionDetailFrame();
+        frontPage.setDesktopPaneForProduction(pdf, 1);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     void focustabbedpane(int num) {
@@ -1049,6 +1265,8 @@ public class StockDetailFrame extends javax.swing.JInternalFrame {
     private javax.swing.JLabel amount_unit_label_1;
     private javax.swing.JLabel amount_unit_label_2;
     private javax.swing.JButton cancelbutton;
+    private javax.swing.JTable cloth_stock_table;
+    private javax.swing.JPanel clothstock_panel;
     private javax.swing.JLabel current_stock_label;
     private javax.swing.JTextField current_stock_text;
     private javax.swing.JButton daily_addbutton;
@@ -1063,6 +1281,8 @@ public class StockDetailFrame extends javax.swing.JInternalFrame {
     private javax.swing.JTextField daily_pre_stock_text;
     private javax.swing.JLabel daily_prev_stock_label;
     private javax.swing.JLabel date_label;
+    private javax.swing.JPanel dye_panel;
+    private javax.swing.JTable dye_stock_table;
     private javax.swing.JLabel initial_stock_amount_label;
     private javax.swing.JTextField initial_stock_amount_text;
     private javax.swing.JTextField initial_stock_unitprice_text;
@@ -1080,6 +1300,7 @@ public class StockDetailFrame extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel12;
     private javax.swing.JPanel jPanel13;
+    private javax.swing.JPanel jPanel14;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
@@ -1091,6 +1312,12 @@ public class StockDetailFrame extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JScrollPane jScrollPane6;
+    private javax.swing.JScrollPane jScrollPane7;
+    private javax.swing.JScrollPane jScrollPane8;
+    private javax.swing.JScrollPane jScrollPane9;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTextField mat_id_text;
     private javax.swing.JLabel mat_name_label;
@@ -1107,7 +1334,11 @@ public class StockDetailFrame extends javax.swing.JInternalFrame {
     private javax.swing.JTextField stock_date_text;
     private javax.swing.JTextField stock_id_text;
     private javax.swing.JTabbedPane tabpane;
+    private javax.swing.JPanel thread_panel;
+    private javax.swing.JTable thread_stock_table;
     private javax.swing.JLabel unit_price_label;
     private javax.swing.JTextField unitprice_text;
+    private javax.swing.JPanel wax_panel;
+    private javax.swing.JTable wax_stock_table;
     // End of variables declaration//GEN-END:variables
 }

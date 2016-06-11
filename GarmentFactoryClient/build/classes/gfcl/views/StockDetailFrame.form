@@ -40,8 +40,8 @@
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-                  <Component id="jScrollPane1" min="-2" pref="569" max="-2" attributes="0"/>
-                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                  <Component id="jScrollPane1" min="-2" pref="966" max="-2" attributes="0"/>
+                  <EmptySpace min="0" pref="11" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -58,8 +58,8 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="tabpane" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="138" max="32767" attributes="0"/>
+                          <Component id="tabpane" min="-2" pref="650" max="-2" attributes="0"/>
+                          <EmptySpace pref="103" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -68,7 +68,6 @@
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="tabpane" max="32767" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -92,7 +91,7 @@
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="jScrollPane2" pref="590" max="32767" attributes="0"/>
+                                  <Component id="jScrollPane2" pref="625" max="32767" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                               </Group>
                           </Group>
@@ -101,7 +100,7 @@
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="jScrollPane2" pref="554" max="32767" attributes="0"/>
+                                  <Component id="jScrollPane2" pref="1019" max="32767" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                               </Group>
                           </Group>
@@ -137,7 +136,7 @@
                                           <Component id="jPanel4" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                           <Component id="jPanel5" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace pref="121" max="32767" attributes="0"/>
+                                          <EmptySpace pref="550" max="32767" attributes="0"/>
                                       </Group>
                                   </Group>
                                 </DimensionLayout>
@@ -457,7 +456,7 @@
                                   <Component id="jPanel7" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="jPanel6" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace pref="206" max="32767" attributes="0"/>
+                                  <EmptySpace pref="671" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                         </DimensionLayout>
@@ -605,7 +604,7 @@
                                   <Group type="102" alignment="0" attributes="0">
                                       <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                                       <Component id="jLabel6" min="-2" pref="544" max="-2" attributes="0"/>
-                                      <EmptySpace pref="22" max="32767" attributes="0"/>
+                                      <EmptySpace pref="57" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
                             </DimensionLayout>
@@ -725,7 +724,7 @@
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="jPanel9" pref="536" max="32767" attributes="0"/>
+                                  <Component id="jPanel9" pref="571" max="32767" attributes="0"/>
                                   <EmptySpace min="-2" pref="64" max="-2" attributes="0"/>
                               </Group>
                           </Group>
@@ -735,7 +734,7 @@
                               <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="jPanel9" min="-2" pref="448" max="-2" attributes="0"/>
-                                  <EmptySpace pref="117" max="32767" attributes="0"/>
+                                  <EmptySpace pref="582" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                         </DimensionLayout>
@@ -1066,15 +1065,365 @@
                       <Layout>
                         <DimensionLayout dim="0">
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <EmptySpace min="0" pref="610" max="32767" attributes="0"/>
+                              <Component id="jScrollPane4" alignment="0" pref="645" max="32767" attributes="0"/>
                           </Group>
                         </DimensionLayout>
                         <DimensionLayout dim="1">
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <EmptySpace min="0" pref="576" max="32767" attributes="0"/>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="jScrollPane4" min="-2" pref="896" max="-2" attributes="0"/>
+                                  <EmptySpace min="0" pref="145" max="32767" attributes="0"/>
+                              </Group>
                           </Group>
                         </DimensionLayout>
                       </Layout>
+                      <SubComponents>
+                        <Container class="javax.swing.JScrollPane" name="jScrollPane4">
+
+                          <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+                          <SubComponents>
+                            <Container class="javax.swing.JScrollPane" name="jScrollPane5">
+
+                              <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+                              <SubComponents>
+                                <Container class="javax.swing.JPanel" name="jPanel14">
+
+                                  <Layout>
+                                    <DimensionLayout dim="0">
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Group type="102" alignment="0" attributes="0">
+                                              <EmptySpace max="-2" attributes="0"/>
+                                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                                  <Component id="wax_panel" max="32767" attributes="0"/>
+                                                  <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                                      <Component id="dye_panel" max="32767" attributes="0"/>
+                                                      <Component id="thread_panel" max="32767" attributes="0"/>
+                                                      <Component id="clothstock_panel" max="32767" attributes="0"/>
+                                                  </Group>
+                                              </Group>
+                                              <EmptySpace pref="64" max="32767" attributes="0"/>
+                                          </Group>
+                                      </Group>
+                                    </DimensionLayout>
+                                    <DimensionLayout dim="1">
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Group type="102" alignment="0" attributes="0">
+                                              <EmptySpace max="-2" attributes="0"/>
+                                              <Component id="clothstock_panel" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace max="-2" attributes="0"/>
+                                              <Component id="dye_panel" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace max="-2" attributes="0"/>
+                                              <Component id="thread_panel" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace max="-2" attributes="0"/>
+                                              <Component id="wax_panel" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace pref="868" max="32767" attributes="0"/>
+                                          </Group>
+                                      </Group>
+                                    </DimensionLayout>
+                                  </Layout>
+                                  <SubComponents>
+                                    <Container class="javax.swing.JPanel" name="clothstock_panel">
+                                      <Properties>
+                                        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                                          <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
+                                            <TitledBorder title="Cloth Stocks"/>
+                                          </Border>
+                                        </Property>
+                                      </Properties>
+
+                                      <Layout>
+                                        <DimensionLayout dim="0">
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Group type="102" alignment="0" attributes="0">
+                                                  <EmptySpace max="-2" attributes="0"/>
+                                                  <Component id="jScrollPane7" min="-2" max="-2" attributes="0"/>
+                                                  <EmptySpace max="32767" attributes="0"/>
+                                              </Group>
+                                          </Group>
+                                        </DimensionLayout>
+                                        <DimensionLayout dim="1">
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Group type="102" alignment="0" attributes="0">
+                                                  <Component id="jScrollPane7" min="-2" pref="118" max="-2" attributes="0"/>
+                                                  <EmptySpace min="0" pref="28" max="32767" attributes="0"/>
+                                              </Group>
+                                          </Group>
+                                        </DimensionLayout>
+                                      </Layout>
+                                      <SubComponents>
+                                        <Container class="javax.swing.JScrollPane" name="jScrollPane7">
+                                          <AuxValues>
+                                            <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+                                          </AuxValues>
+
+                                          <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+                                          <SubComponents>
+                                            <Component class="javax.swing.JTable" name="cloth_stock_table">
+                                              <Properties>
+                                                <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
+                                                  <Table columnCount="3" rowCount="0">
+                                                    <Column editable="false" title="Mat_ID" type="java.lang.Object"/>
+                                                    <Column editable="false" title="Name" type="java.lang.Object"/>
+                                                    <Column editable="false" title="Stock(m)" type="java.lang.Object"/>
+                                                  </Table>
+                                                </Property>
+                                                <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
+                                                  <TableColumnModel selectionModel="0">
+                                                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                                      <Title/>
+                                                      <Editor/>
+                                                      <Renderer/>
+                                                    </Column>
+                                                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                                      <Title/>
+                                                      <Editor/>
+                                                      <Renderer/>
+                                                    </Column>
+                                                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                                      <Title/>
+                                                      <Editor/>
+                                                      <Renderer/>
+                                                    </Column>
+                                                  </TableColumnModel>
+                                                </Property>
+                                                <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
+                                                  <TableHeader reorderingAllowed="false" resizingAllowed="true"/>
+                                                </Property>
+                                              </Properties>
+                                            </Component>
+                                          </SubComponents>
+                                        </Container>
+                                      </SubComponents>
+                                    </Container>
+                                    <Container class="javax.swing.JPanel" name="dye_panel">
+                                      <Properties>
+                                        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                                          <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
+                                            <TitledBorder title="Dye stocks"/>
+                                          </Border>
+                                        </Property>
+                                      </Properties>
+
+                                      <Layout>
+                                        <DimensionLayout dim="0">
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Group type="102" alignment="0" attributes="0">
+                                                  <EmptySpace max="-2" attributes="0"/>
+                                                  <Component id="jScrollPane6" min="-2" pref="444" max="-2" attributes="0"/>
+                                                  <EmptySpace max="32767" attributes="0"/>
+                                              </Group>
+                                          </Group>
+                                        </DimensionLayout>
+                                        <DimensionLayout dim="1">
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Group type="102" alignment="0" attributes="0">
+                                                  <EmptySpace max="-2" attributes="0"/>
+                                                  <Component id="jScrollPane6" min="-2" pref="130" max="-2" attributes="0"/>
+                                                  <EmptySpace pref="47" max="32767" attributes="0"/>
+                                              </Group>
+                                          </Group>
+                                        </DimensionLayout>
+                                      </Layout>
+                                      <SubComponents>
+                                        <Container class="javax.swing.JScrollPane" name="jScrollPane6">
+                                          <AuxValues>
+                                            <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+                                          </AuxValues>
+
+                                          <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+                                          <SubComponents>
+                                            <Component class="javax.swing.JTable" name="dye_stock_table">
+                                              <Properties>
+                                                <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
+                                                  <Table columnCount="3" rowCount="0">
+                                                    <Column editable="false" title="Mat_ID" type="java.lang.Object"/>
+                                                    <Column editable="false" title="Name" type="java.lang.Object"/>
+                                                    <Column editable="false" title="Stock(kg)" type="java.lang.Object"/>
+                                                  </Table>
+                                                </Property>
+                                                <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
+                                                  <TableColumnModel selectionModel="0">
+                                                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                                      <Title/>
+                                                      <Editor/>
+                                                      <Renderer/>
+                                                    </Column>
+                                                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                                      <Title/>
+                                                      <Editor/>
+                                                      <Renderer/>
+                                                    </Column>
+                                                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                                      <Title/>
+                                                      <Editor/>
+                                                      <Renderer/>
+                                                    </Column>
+                                                  </TableColumnModel>
+                                                </Property>
+                                                <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
+                                                  <TableHeader reorderingAllowed="false" resizingAllowed="true"/>
+                                                </Property>
+                                              </Properties>
+                                            </Component>
+                                          </SubComponents>
+                                        </Container>
+                                      </SubComponents>
+                                    </Container>
+                                    <Container class="javax.swing.JPanel" name="thread_panel">
+                                      <Properties>
+                                        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                                          <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
+                                            <TitledBorder title="Thread Stocks"/>
+                                          </Border>
+                                        </Property>
+                                      </Properties>
+
+                                      <Layout>
+                                        <DimensionLayout dim="0">
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Group type="102" alignment="0" attributes="0">
+                                                  <EmptySpace max="-2" attributes="0"/>
+                                                  <Component id="jScrollPane8" min="-2" max="-2" attributes="0"/>
+                                                  <EmptySpace pref="102" max="32767" attributes="0"/>
+                                              </Group>
+                                          </Group>
+                                        </DimensionLayout>
+                                        <DimensionLayout dim="1">
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Group type="102" alignment="0" attributes="0">
+                                                  <EmptySpace max="-2" attributes="0"/>
+                                                  <Component id="jScrollPane8" min="-2" pref="100" max="-2" attributes="0"/>
+                                                  <EmptySpace pref="60" max="32767" attributes="0"/>
+                                              </Group>
+                                          </Group>
+                                        </DimensionLayout>
+                                      </Layout>
+                                      <SubComponents>
+                                        <Container class="javax.swing.JScrollPane" name="jScrollPane8">
+                                          <AuxValues>
+                                            <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+                                          </AuxValues>
+
+                                          <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+                                          <SubComponents>
+                                            <Component class="javax.swing.JTable" name="thread_stock_table">
+                                              <Properties>
+                                                <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
+                                                  <Table columnCount="3" rowCount="0">
+                                                    <Column editable="false" title="Mat_ID" type="java.lang.Object"/>
+                                                    <Column editable="false" title="Name" type="java.lang.Object"/>
+                                                    <Column editable="false" title="Stock(thread rolls)" type="java.lang.Object"/>
+                                                  </Table>
+                                                </Property>
+                                                <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
+                                                  <TableColumnModel selectionModel="0">
+                                                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                                      <Title/>
+                                                      <Editor/>
+                                                      <Renderer/>
+                                                    </Column>
+                                                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                                      <Title/>
+                                                      <Editor/>
+                                                      <Renderer/>
+                                                    </Column>
+                                                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                                      <Title/>
+                                                      <Editor/>
+                                                      <Renderer/>
+                                                    </Column>
+                                                  </TableColumnModel>
+                                                </Property>
+                                                <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
+                                                  <TableHeader reorderingAllowed="false" resizingAllowed="true"/>
+                                                </Property>
+                                              </Properties>
+                                            </Component>
+                                          </SubComponents>
+                                        </Container>
+                                      </SubComponents>
+                                    </Container>
+                                    <Container class="javax.swing.JPanel" name="wax_panel">
+                                      <Properties>
+                                        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                                          <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
+                                            <TitledBorder title="Wax stocks"/>
+                                          </Border>
+                                        </Property>
+                                      </Properties>
+
+                                      <Layout>
+                                        <DimensionLayout dim="0">
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Group type="102" alignment="0" attributes="0">
+                                                  <EmptySpace max="-2" attributes="0"/>
+                                                  <Component id="jScrollPane9" min="-2" max="-2" attributes="0"/>
+                                                  <EmptySpace pref="102" max="32767" attributes="0"/>
+                                              </Group>
+                                          </Group>
+                                        </DimensionLayout>
+                                        <DimensionLayout dim="1">
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Group type="102" alignment="0" attributes="0">
+                                                  <EmptySpace max="-2" attributes="0"/>
+                                                  <Component id="jScrollPane9" min="-2" pref="116" max="-2" attributes="0"/>
+                                                  <EmptySpace pref="42" max="32767" attributes="0"/>
+                                              </Group>
+                                          </Group>
+                                        </DimensionLayout>
+                                      </Layout>
+                                      <SubComponents>
+                                        <Container class="javax.swing.JScrollPane" name="jScrollPane9">
+                                          <AuxValues>
+                                            <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+                                          </AuxValues>
+
+                                          <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+                                          <SubComponents>
+                                            <Component class="javax.swing.JTable" name="wax_stock_table">
+                                              <Properties>
+                                                <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
+                                                  <Table columnCount="3" rowCount="0">
+                                                    <Column editable="false" title="Mat_ID" type="java.lang.Object"/>
+                                                    <Column editable="false" title="Name" type="java.lang.Object"/>
+                                                    <Column editable="false" title="Stock(kg)" type="java.lang.Object"/>
+                                                  </Table>
+                                                </Property>
+                                                <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
+                                                  <TableColumnModel selectionModel="0">
+                                                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                                      <Title/>
+                                                      <Editor/>
+                                                      <Renderer/>
+                                                    </Column>
+                                                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                                      <Title/>
+                                                      <Editor/>
+                                                      <Renderer/>
+                                                    </Column>
+                                                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                                      <Title/>
+                                                      <Editor/>
+                                                      <Renderer/>
+                                                    </Column>
+                                                  </TableColumnModel>
+                                                </Property>
+                                                <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
+                                                  <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
+                                                </Property>
+                                              </Properties>
+                                            </Component>
+                                          </SubComponents>
+                                        </Container>
+                                      </SubComponents>
+                                    </Container>
+                                  </SubComponents>
+                                </Container>
+                              </SubComponents>
+                            </Container>
+                          </SubComponents>
+                        </Container>
+                      </SubComponents>
                     </Container>
                   </SubComponents>
                 </Container>

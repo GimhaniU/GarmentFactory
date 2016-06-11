@@ -55,4 +55,9 @@ public class MaterialControllerImple extends UnicastRemoteObject implements gfc.
     public ArrayList<Material> getSimilarOtherMaterials(String item) throws RemoteException, SQLException, ClassNotFoundException {
         return materialController.getSimilarOtherMaterials(item);
     }
+
+    @Override
+    public ArrayList<Material> getAllMaterialsOfType(String type) throws RemoteException, SQLException, ClassNotFoundException {
+        return materialController.getAllMaterialsOfType(type);
+    }
 }
