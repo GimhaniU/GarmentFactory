@@ -13,6 +13,9 @@ import gfc.models.CustomerOrder;
 import gfcl.common_classes.ComboItemsAdder;
 import gfcl.common_classes.IdGenerator;
 import gfcl.connector.Connector;
+import java.awt.Point;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.net.MalformedURLException;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
@@ -23,7 +26,12 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
+import javax.swing.JPopupMenu;
+import javax.swing.SwingUtilities;
+import javax.swing.event.PopupMenuEvent;
+import javax.swing.event.PopupMenuListener;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -31,7 +39,7 @@ import javax.swing.table.DefaultTableModel;
  * @author Gimhani Uthpala
  */
 public class SalesDetailFrame extends javax.swing.JInternalFrame {
-
+    
     private CustomerController customerController;
     private GarmentController garmentController;
     private CustomerOrderController customerOrderController;
@@ -44,38 +52,90 @@ public class SalesDetailFrame extends javax.swing.JInternalFrame {
     public SalesDetailFrame() {
         try {
             initComponents();
-
+            
             tableModel = (DefaultTableModel) sales_table.getModel();
-
+            
             Connector sConnector = Connector.getSConnector();
             customerController = sConnector.getCustomerController();
             garmentController = sConnector.getGarmentController();
             customerOrderController = sConnector.getCustomerOrderController();
             cia = new ComboItemsAdder();
-
+            
             DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
             Date date = new Date();
             date_text.setText(dateFormat.format(date));
-
+            
             regno_text.setText(IdGenerator.generateNextCustomerID(customerController.getLastCustId()));
             order_id_text.setText(IdGenerator.generateNextOrderID(customerOrderController.getLastOrderId()));
             add_to_list_button.setEnabled(false);
-
+            
             this.customerCombo.setEditable(true);
             cia.addSimilarCustomernames(customerCombo);
-
+            
             this.garment_type_combo.setEditable(true);
             cia.addSimilarGarmentNames(garment_type_combo);
-
+            
             this.edit_customer_combo.setEditable(true);
             cia.addSimilarCustomernames(edit_customer_combo);
-
+            
             this.customer_history_combo.setEditable(true);
             cia.addSimilarCustomernames(customer_history_combo);
-
+            
             this.customer_co_combo.setEditable(true);
             cia.addSimilarCustomernames(customer_co_combo);
 
+            //adding right click to customer view table
+            final JPopupMenu popupMenu = new JPopupMenu();
+            JMenuItem viewOrderItem = new JMenuItem("View Order");
+            viewOrderItem.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    int rowAtPoint = customer_history_table.rowAtPoint(SwingUtilities.convertPoint(popupMenu, new Point(0, 0), customer_history_table));
+                    DefaultTableModel dtm = (DefaultTableModel) customer_history_table.getModel();
+                    String order_id = dtm.getValueAt(rowAtPoint+1, 0).toString();
+                    if (customer_history_combo.getSelectedItem() != null) {
+                        String selected = customer_history_combo.getSelectedItem().toString();
+                        if (selected.length() > 4) {
+                            String cust_id = selected.substring(selected.length() - 4);
+                            tabpane.setSelectedIndex(4);
+                            customer_co_combo.setSelectedItem(selected);
+                            cus_order_combo.setSelectedItem(order_id);
+                        }
+                    }
+                    
+                }
+            });
+            popupMenu.add(viewOrderItem);
+            popupMenu.addPopupMenuListener(new PopupMenuListener() {
+                
+                @Override
+                public void popupMenuWillBecomeVisible(PopupMenuEvent e) {
+                    SwingUtilities.invokeLater(new Runnable() {
+                        @Override
+                        public void run() {
+                            int rowAtPoint = customer_history_table.rowAtPoint(SwingUtilities.convertPoint(popupMenu, new Point(0, 0), customer_history_table));
+                            if (rowAtPoint > -1) {
+                                customer_history_table.setRowSelectionInterval(rowAtPoint, rowAtPoint);
+                            }
+                        }
+                    });
+                }
+                
+                @Override
+                public void popupMenuWillBecomeInvisible(PopupMenuEvent e) {
+                    // TODO Auto-generated method stub
+
+                }
+                
+                @Override
+                public void popupMenuCanceled(PopupMenuEvent e) {
+                    // TODO Auto-generated method stub
+
+                }
+                
+            });
+            
+            customer_history_table.setComponentPopupMenu(popupMenu);
         } catch (RemoteException | SQLException | ClassNotFoundException | NotBoundException | MalformedURLException ex) {
             Logger.getLogger(SalesDetailFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -1018,7 +1078,7 @@ public class SalesDetailFrame extends javax.swing.JInternalFrame {
         int no_of_garments = Integer.valueOf(no_of_garment_spinner.getValue().toString());
         double unit_price = Double.valueOf(unit_price_text.getText());
         double price = unit_price * no_of_garments;
-
+        
         DefaultTableModel tableModel = (DefaultTableModel) sales_table.getModel();
         boolean added = false;
         //to check if 1 type is adding again
@@ -1029,16 +1089,16 @@ public class SalesDetailFrame extends javax.swing.JInternalFrame {
                     tableModel.setValueAt(new_no, i, 2);
                     double new_price = Double.valueOf(tableModel.getValueAt(i, 4).toString()) + (no_of_garments * unit_price);
                     tableModel.setValueAt(new_price, i, 4);
-
+                    
                 } else {
                     JOptionPane.showMessageDialog(this, "Different unit prices for same garment");
                 }
                 added = true;
                 break;
             }
-
+            
         }
-
+        
         if (!added) {
             Object[] rawdata = {type_id, type, no_of_garments, unit_price, price};
             tableModel.addRow(rawdata);
@@ -1050,7 +1110,7 @@ public class SalesDetailFrame extends javax.swing.JInternalFrame {
             sum += Double.valueOf(tableModel.getValueAt(i, 4).toString());
         }
         total_payement_text.setText(String.valueOf(sum));
-
+        
         unit_price_text.setText("");
         no_of_garment_spinner.setValue(0);
         add_to_list_button.setEnabled(false);
@@ -1078,9 +1138,10 @@ public class SalesDetailFrame extends javax.swing.JInternalFrame {
             order_id_text.setText(IdGenerator.generateNextOrderID(customerOrderController.getLastOrderId()));
             add_to_list_button.setEnabled(false);
             ((DefaultTableModel) sales_table.getModel()).setRowCount(0);
-
+            
         } catch (RemoteException | SQLException | ClassNotFoundException ex) {
-            Logger.getLogger(SalesDetailFrame.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(SalesDetailFrame.class
+                    .getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_save_sale_buttonActionPerformed
 
@@ -1095,8 +1156,10 @@ public class SalesDetailFrame extends javax.swing.JInternalFrame {
     private void cancel_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancel_buttonActionPerformed
         try {
             createNewForm();
+            
         } catch (RemoteException | SQLException | ClassNotFoundException ex) {
-            Logger.getLogger(SalesDetailFrame.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(SalesDetailFrame.class
+                    .getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_cancel_buttonActionPerformed
 
@@ -1116,17 +1179,19 @@ public class SalesDetailFrame extends javax.swing.JInternalFrame {
                     createNewEditForm();
                 } else {
                     JOptionPane.showMessageDialog(this, "Customer update failed!");
+                    
                 }
-
+                
             } catch (RemoteException | SQLException | ClassNotFoundException ex) {
-                Logger.getLogger(SalesDetailFrame.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(SalesDetailFrame.class
+                        .getName()).log(Level.SEVERE, null, ex);
             }
         } else {
             JOptionPane.showMessageDialog(this, "A valid customer is not selected!");
             createNewEditForm();
         }
     }//GEN-LAST:event_save_button1ActionPerformed
-
+    
     private void createNewEditForm() {
         edit_customer_combo.setSelectedItem(null);
         name_text1.setText("");
@@ -1147,13 +1212,15 @@ public class SalesDetailFrame extends javax.swing.JInternalFrame {
                     if (customerController.searchCustomer(cust_id) != null) {
                         this.cus_order_combo.setEditable(true);
                         cia.addSimilarOrderIDs(cus_order_combo, cust_id);
+                        
                     }
                 } catch (RemoteException | SQLException | ClassNotFoundException ex) {
-                    Logger.getLogger(SalesDetailFrame.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(SalesDetailFrame.class
+                            .getName()).log(Level.SEVERE, null, ex);
                 }
             }
         }
-
+        
 
     }//GEN-LAST:event_customer_co_comboItemStateChanged
 
@@ -1168,46 +1235,50 @@ public class SalesDetailFrame extends javax.swing.JInternalFrame {
                     if (list.size() > 0) {
                         not_found_label.setVisible(false);
                         DefaultTableModel dtm = (DefaultTableModel) view_customer_order_table.getModel();
-                        double sum=0;
+                        double sum = 0;
                         for (CustomerOrder co : list) {
                             String garment_name = garmentController.searchGarment(co.getGarment_id()).getGarment_name();
                             Object[] rawdata = {co.getGarment_id(), garment_name, co.getAmount(), co.getUnit_price(), co.getAmount() * co.getUnit_price()};
                             dtm.addRow(rawdata);
-                            sum+=co.getAmount() * co.getUnit_price();
+                            sum += co.getAmount() * co.getUnit_price();
                         }
                         view_total_payement_text.setText(String.valueOf(sum));
-                    }else{
+                    } else {
                         not_found_label.setVisible(true);
+                        
                     }
                 } catch (RemoteException | SQLException | ClassNotFoundException ex) {
-                    Logger.getLogger(SalesDetailFrame.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(SalesDetailFrame.class
+                            .getName()).log(Level.SEVERE, null, ex);
                 }
             }
         }
-
+        
 
     }//GEN-LAST:event_cus_order_comboItemStateChanged
 
     private void customer_history_comboItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_customer_history_comboItemStateChanged
-        if(customer_history_combo.getSelectedItem()!=null){
-            String selected=customer_history_combo.getSelectedItem().toString();
-            if(selected.length()>4){
+        if (customer_history_combo.getSelectedItem() != null) {
+            String selected = customer_history_combo.getSelectedItem().toString();
+            if (selected.length() > 4) {
                 try {
-                    String cust_id=selected.substring(selected.length()-4);
+                    String cust_id = selected.substring(selected.length() - 4);
                     ArrayList<CustomerOrder> ordersOfCustomer = new ArrayList<>();
-                    ordersOfCustomer=customerOrderController.getOrdersOfCustomer(cust_id);
-                    DefaultTableModel dtm=(DefaultTableModel) customer_history_table.getModel();
-                    for(CustomerOrder co:ordersOfCustomer){
-                        Object[] rawdata = {co.getOrder_id(),co.getDateOfOrder(),co.getOrder_price()};
+                    ordersOfCustomer = customerOrderController.getOrdersOfCustomer(cust_id);
+                    DefaultTableModel dtm = (DefaultTableModel) customer_history_table.getModel();
+                    for (CustomerOrder co : ordersOfCustomer) {
+                        Object[] rawdata = {co.getOrder_id(), co.getDateOfOrder(), co.getOrder_price()};
                         dtm.addRow(rawdata);
+                        
                     }
                 } catch (RemoteException | SQLException | ClassNotFoundException ex) {
-                    Logger.getLogger(SalesDetailFrame.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(SalesDetailFrame.class
+                            .getName()).log(Level.SEVERE, null, ex);
                 }
             }
         }
     }//GEN-LAST:event_customer_history_comboItemStateChanged
-
+    
     private void enableAddButton() {
         if (garment_type_combo.getSelectedItem().toString().trim().length() != 0 && Integer.valueOf(no_of_garment_spinner.getValue().toString()) > 0 && unit_price_text.getText().trim().length() != 0) {
             add_to_list_button.setEnabled(true);
@@ -1215,7 +1286,7 @@ public class SalesDetailFrame extends javax.swing.JInternalFrame {
             add_to_list_button.setEnabled(false);
         }
     }
-
+    
     private void createNewForm() throws RemoteException, SQLException, ClassNotFoundException {
         name_text.setText("");
         address_text.setText("");
@@ -1223,11 +1294,11 @@ public class SalesDetailFrame extends javax.swing.JInternalFrame {
         nic_text.setText("");
         regno_text.setText(IdGenerator.generateNextCustomerID(customerController.getLastCustId()));
     }
-
+    
     void focustabbedpane(int num) {
         tabpane.setSelectedIndex(num);
     }
-
+    
     void requestFoucsForm() {
         customerCombo.requestFocus();
     }
