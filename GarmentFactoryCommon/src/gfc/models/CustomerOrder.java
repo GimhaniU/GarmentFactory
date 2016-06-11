@@ -18,6 +18,8 @@ public class CustomerOrder implements Serializable{
     private String dateOfOrder;
     private int	amount ;
     private double unit_price;
+    
+    private double order_price;
 
     public CustomerOrder(String order_id,String cust_id, String garment_id, String dateOfOrder, int amount, double unit_price) {
         this.order_id=order_id;
@@ -30,6 +32,12 @@ public class CustomerOrder implements Serializable{
 
     public CustomerOrder() {
     }
+    
+    public CustomerOrder(String order_id,String dateOfOrder,double order_price){
+        this.order_id=order_id;
+        this.dateOfOrder = dateOfOrder;
+        this.order_price = order_price;
+    }
 
     public String getOrder_id() {
         return order_id;
@@ -38,8 +46,14 @@ public class CustomerOrder implements Serializable{
     public void setOrder_id(String order_id) {
         this.order_id = order_id;
     }
-    
-    
+
+    public double getOrder_price() {
+        return order_price;
+    }
+
+    public void setOrder_price(double order_price) {
+        this.order_price = order_price;
+    }
     
     public String getCust_id() {
         return cust_id;

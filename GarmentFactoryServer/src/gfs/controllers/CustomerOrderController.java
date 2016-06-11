@@ -110,11 +110,29 @@ public class CustomerOrderController {
             readWriteLock.readLock().lock();
 
             Connection conn = DBConnection.getDBConnection().getConnection();
-            String sql = "Select * From customer_order where order_id='" +order_id + "'";
+            String sql = "Select * From customerorder where order_id='" +order_id + "'";
             ResultSet rst = DBHandler.getData(conn, sql);
             ArrayList<CustomerOrder> list = new ArrayList<>();
             while (rst.next()) {
                 CustomerOrder customerOrder=new CustomerOrder(rst.getString("order_id"), rst.getString("cust_id"), rst.getString("garment_id"),rst.getString("dateOfOrder"),rst.getInt("amount"),rst.getDouble("unit_price"));
+                list.add(customerOrder);
+            }
+            return list;
+        } finally {
+            readWriteLock.readLock().unlock();
+        }
+    }
+
+    public ArrayList<CustomerOrder> getOrdersOfCustomer(String cust_id) throws SQLException, ClassNotFoundException {
+        try {
+            readWriteLock.readLock().lock();
+
+            Connection conn = DBConnection.getDBConnection().getConnection();
+            String sql = "Select order_id,dateoforder,sum(amount*unit_price) as order_price From customerorder where cust_id='" +cust_id + "' group by order_id";
+            ResultSet rst = DBHandler.getData(conn, sql);
+            ArrayList<CustomerOrder> list = new ArrayList<>();
+            while (rst.next()) {
+                CustomerOrder customerOrder=new CustomerOrder(rst.getString("order_id"),rst.getString("dateOfOrder"),rst.getDouble("order_price"));
                 list.add(customerOrder);
             }
             return list;

@@ -65,7 +65,7 @@ public class GarmentController {
             ResultSet rst = DBHandler.getData(conn, sql);
             Garment garment=null;
             if (rst.next()) {
-                garment=new Garment(garment_id,rst.getString("garment_name"),rst.getInt("in_stock") , rst.getDouble("sewing_stipend"), rst.getDouble("cutting_stipend"));
+                garment=new Garment(garment_id,rst.getString("garment_name"),rst.getInt("in_stock") , rst.getDouble("sewing_stipend"), rst.getDouble("waxing_stipend"));
             }
             return garment;
         } finally {

@@ -51,7 +51,7 @@ public class ComboItemsAdder {
             employeeController = sConnector.getEmployeeController();
             customerController = sConnector.getCustomerController();
             expenseController = sConnector.getExpenseController();
-            customerOrderController=sConnector.getCustomerOrderController();
+            customerOrderController = sConnector.getCustomerOrderController();
         } catch (NotBoundException | MalformedURLException | RemoteException | SQLException | ClassNotFoundException ex) {
             Logger.getLogger(ComboItemsAdder.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -221,7 +221,7 @@ public class ComboItemsAdder {
         });
     }
 
-    public void addSimilarOrderIDs(JComboBox combo,String cust_id) {
+    public void addSimilarOrderIDs(JComboBox combo, String cust_id) {
         JTextComponent orderCombo = (JTextComponent) combo.getEditor().getEditorComponent();
         orderCombo.addKeyListener(new KeyAdapter() {
 
@@ -230,9 +230,11 @@ public class ComboItemsAdder {
                 try {
                     String item = (String) combo.getEditor().getItem();
                     ArrayList<Object> list = new ArrayList();
-                    ArrayList<CustomerOrder> similar = customerOrderController.getSimilarOrderIDs(cust_id,item);
+                    ArrayList<CustomerOrder> similar = customerOrderController.getSimilarOrderIDs(cust_id, item);
                     for (int i = 0; i < similar.size(); i++) {
-                        list.add(similar.get(i).getOrder_id());
+                        if (!list.contains(similar.get(i).getOrder_id())) {
+                            list.add(similar.get(i).getOrder_id());
+                        }
                     }
                     GUIitemsValidator.addItemToCombo(list, combo);
                 } catch (ClassNotFoundException | SQLException | RemoteException ex) {
