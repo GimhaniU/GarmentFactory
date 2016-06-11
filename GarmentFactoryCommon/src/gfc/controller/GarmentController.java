@@ -16,7 +16,8 @@ import java.util.ArrayList;
  * @author Gimhani Uthpala
  */
 public interface GarmentController extends Remote {
-
+    public Garment searchGarment(String garment_id) throws RemoteException, SQLException,ClassNotFoundException;
+    
     public ArrayList<Garment> getSimilarGarmentNames(String item) throws RemoteException, SQLException,ClassNotFoundException;
     
     public int getStockInHand(String garment_id)  throws RemoteException, SQLException,ClassNotFoundException;

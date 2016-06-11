@@ -32,4 +32,9 @@ public class GarmentControllerImple extends UnicastRemoteObject implements gfc.c
     public int getStockInHand(String garment_id) throws RemoteException, SQLException, ClassNotFoundException {
         return garmentController.getStockInHand(garment_id);
     }
+
+    @Override
+    public Garment searchGarment(String garment_id) throws RemoteException, SQLException, ClassNotFoundException {
+        return garmentController.searchGarment(garment_id);
+    }
 }

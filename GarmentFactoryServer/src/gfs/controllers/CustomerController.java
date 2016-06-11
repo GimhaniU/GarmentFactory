@@ -6,6 +6,7 @@
 package gfs.controllers;
 
 import gfc.models.Customer;
+import gfc.models.Employee;
 import gfs.db_utilities.DBConnection;
 import gfs.db_utilities.DBHandler;
 import java.sql.Connection;
@@ -79,6 +80,23 @@ public class CustomerController {
             return res;
         } finally {
             readWriteLock.writeLock().unlock();
+        }
+    }
+
+    public Customer searchCustomer(String cust_id) throws SQLException, ClassNotFoundException {
+        try {
+            readWriteLock.readLock().lock();
+
+            Connection conn = DBConnection.getDBConnection().getConnection();
+            String sql = "Select * From customer where cust_id='" + cust_id + "'";
+            ResultSet rst = DBHandler.getData(conn, sql);
+            Customer customer=null;
+            if (rst.next()) {
+                customer=new Customer(cust_id, rst.getString("c_name"),rst.getString("c_address"),rst.getString("c_telephone"), rst.getString("c_nic"));
+            }
+            return customer;
+        } finally {
+            readWriteLock.readLock().unlock();
         }
     }
 

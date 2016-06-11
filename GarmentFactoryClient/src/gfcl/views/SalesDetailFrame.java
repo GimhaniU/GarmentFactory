@@ -69,9 +69,12 @@ public class SalesDetailFrame extends javax.swing.JInternalFrame {
 
             this.edit_customer_combo.setEditable(true);
             cia.addSimilarCustomernames(edit_customer_combo);
-            
+
             this.customer_history_combo.setEditable(true);
             cia.addSimilarCustomernames(customer_history_combo);
+
+            this.customer_co_combo.setEditable(true);
+            cia.addSimilarCustomernames(customer_co_combo);
 
         } catch (RemoteException | SQLException | ClassNotFoundException | NotBoundException | MalformedURLException ex) {
             Logger.getLogger(SalesDetailFrame.class.getName()).log(Level.SEVERE, null, ex);
@@ -160,6 +163,19 @@ public class SalesDetailFrame extends javax.swing.JInternalFrame {
         jLabel2 = new javax.swing.JLabel();
         customer_history_combo = new javax.swing.JComboBox<>();
         jPanel8 = new javax.swing.JPanel();
+        jPanel9 = new javax.swing.JPanel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jPanel10 = new javax.swing.JPanel();
+        jPanel11 = new javax.swing.JPanel();
+        jLabel3 = new javax.swing.JLabel();
+        customer_co_combo = new javax.swing.JComboBox<>();
+        jLabel4 = new javax.swing.JLabel();
+        cus_order_combo = new javax.swing.JComboBox<>();
+        jPanel25 = new javax.swing.JPanel();
+        jScrollPane12 = new javax.swing.JScrollPane();
+        view_customer_order_table = new javax.swing.JTable();
+        view_total_payement_text = new javax.swing.JTextField();
+        jLabel13 = new javax.swing.JLabel();
 
         jLabel7.setText("Customer:");
 
@@ -386,7 +402,7 @@ public class SalesDetailFrame extends javax.swing.JInternalFrame {
             jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel13Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 845, Short.MAX_VALUE)
+                .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 893, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel13Layout.setVerticalGroup(
@@ -534,7 +550,7 @@ public class SalesDetailFrame extends javax.swing.JInternalFrame {
             jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel19Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane9, javax.swing.GroupLayout.DEFAULT_SIZE, 845, Short.MAX_VALUE)
+                .addComponent(jScrollPane9, javax.swing.GroupLayout.DEFAULT_SIZE, 893, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel19Layout.setVerticalGroup(
@@ -623,7 +639,7 @@ public class SalesDetailFrame extends javax.swing.JInternalFrame {
                             .addComponent(jScrollPane11, javax.swing.GroupLayout.PREFERRED_SIZE, 372, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(telephone_text1, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(edit_customer_combo, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(276, Short.MAX_VALUE))
+                .addContainerGap(324, Short.MAX_VALUE))
         );
         jPanel23Layout.setVerticalGroup(
             jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -713,7 +729,7 @@ public class SalesDetailFrame extends javax.swing.JInternalFrame {
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(26, Short.MAX_VALUE))
+                .addContainerGap(57, Short.MAX_VALUE))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -756,6 +772,134 @@ public class SalesDetailFrame extends javax.swing.JInternalFrame {
         );
 
         tabpane.addTab("View Customer History", jPanel4);
+
+        jLabel3.setText("Select Customer:");
+
+        customer_co_combo.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                customer_co_comboItemStateChanged(evt);
+            }
+        });
+
+        jLabel4.setText("Select order:");
+
+        cus_order_combo.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cus_order_comboItemStateChanged(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
+        jPanel11.setLayout(jPanel11Layout);
+        jPanel11Layout.setHorizontalGroup(
+            jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel11Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel4))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(customer_co_combo, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cus_order_combo, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel11Layout.setVerticalGroup(
+            jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel11Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(customer_co_combo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(cus_order_combo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(24, Short.MAX_VALUE))
+        );
+
+        jPanel25.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        view_customer_order_table.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "GID", "Garment", "No.of Garments", "Unit Price", "Price"
+            }
+        ));
+        view_customer_order_table.getTableHeader().setReorderingAllowed(false);
+        jScrollPane12.setViewportView(view_customer_order_table);
+
+        jLabel13.setText("Total payment:");
+
+        javax.swing.GroupLayout jPanel25Layout = new javax.swing.GroupLayout(jPanel25);
+        jPanel25.setLayout(jPanel25Layout);
+        jPanel25Layout.setHorizontalGroup(
+            jPanel25Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel25Layout.createSequentialGroup()
+                .addGroup(jPanel25Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel25Layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel13)
+                        .addGap(18, 18, 18)
+                        .addComponent(view_total_payement_text, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane12, javax.swing.GroupLayout.DEFAULT_SIZE, 857, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        jPanel25Layout.setVerticalGroup(
+            jPanel25Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel25Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane12, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel25Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(view_total_payement_text, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel13))
+                .addContainerGap(77, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
+        jPanel10.setLayout(jPanel10Layout);
+        jPanel10Layout.setHorizontalGroup(
+            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel10Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel25, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        jPanel10Layout.setVerticalGroup(
+            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel10Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jPanel25, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(161, Short.MAX_VALUE))
+        );
+
+        jScrollPane3.setViewportView(jPanel10);
+
+        javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
+        jPanel9.setLayout(jPanel9Layout);
+        jPanel9Layout.setHorizontalGroup(
+            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel9Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane3)
+                .addContainerGap())
+        );
+        jPanel9Layout.setVerticalGroup(
+            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel9Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 491, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        tabpane.addTab("View Customer Order", jPanel9);
 
         javax.swing.GroupLayout jPanel12Layout = new javax.swing.GroupLayout(jPanel12);
         jPanel12.setLayout(jPanel12Layout);
@@ -961,6 +1105,53 @@ public class SalesDetailFrame extends javax.swing.JInternalFrame {
         createNewEditForm();
     }//GEN-LAST:event_cancel_button1ActionPerformed
 
+    private void customer_co_comboItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_customer_co_comboItemStateChanged
+        if (customer_co_combo.getSelectedItem() != null) {
+            String selected = customer_co_combo.getSelectedItem().toString();
+            if (selected.length() > 4) {
+                try {
+                    String cust_id = selected.substring(selected.length() - 4);
+                    if (customerController.searchCustomer(cust_id) != null) {
+                        this.cus_order_combo.setEditable(true);
+                        cia.addSimilarOrderIDs(cus_order_combo, cust_id);
+                    }
+                } catch (RemoteException | SQLException | ClassNotFoundException ex) {
+                    Logger.getLogger(SalesDetailFrame.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+
+
+    }//GEN-LAST:event_customer_co_comboItemStateChanged
+
+    private void cus_order_comboItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cus_order_comboItemStateChanged
+        if (customer_co_combo.getSelectedItem() != null && cus_order_combo.getSelectedItem() != null) {
+            String selected = customer_co_combo.getSelectedItem().toString();
+            String order_id = cus_order_combo.getSelectedItem().toString();
+            if (selected.length() > 4 && order_id.length() == 4) {
+                try {
+                    ArrayList<CustomerOrder> list = new ArrayList<>();
+                    list = customerOrderController.searchOrder(order_id);
+                    if (list.size() > 0) {
+                        DefaultTableModel dtm = (DefaultTableModel) view_customer_order_table.getModel();
+                        double sum=0;
+                        for (CustomerOrder co : list) {
+                            String garment_name = garmentController.searchGarment(co.getGarment_id()).getGarment_name();
+                            Object[] rawdata = {co.getGarment_id(), garment_name, co.getAmount(), co.getUnit_price(), co.getAmount() * co.getUnit_price()};
+                            dtm.addRow(rawdata);
+                            sum+=co.getAmount() * co.getUnit_price();
+                        }
+                        total_payement_text.setText(String.valueOf(sum));
+                    }
+                } catch (RemoteException | SQLException | ClassNotFoundException ex) {
+                    Logger.getLogger(SalesDetailFrame.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+
+
+    }//GEN-LAST:event_cus_order_comboItemStateChanged
+
     private void enableAddButton() {
         if (garment_type_combo.getSelectedItem().toString().trim().length() != 0 && Integer.valueOf(no_of_garment_spinner.getValue().toString()) > 0 && unit_price_text.getText().trim().length() != 0) {
             add_to_list_button.setEnabled(true);
@@ -994,7 +1185,9 @@ public class SalesDetailFrame extends javax.swing.JInternalFrame {
     private javax.swing.JButton cancel_button;
     private javax.swing.JButton cancel_button1;
     private javax.swing.JButton cancel_sale_button;
+    private javax.swing.JComboBox<String> cus_order_combo;
     private javax.swing.JComboBox<String> customerCombo;
+    private javax.swing.JComboBox<String> customer_co_combo;
     private javax.swing.JComboBox<String> customer_history_combo;
     private javax.swing.JTextField date_text;
     private javax.swing.JComboBox<String> edit_customer_combo;
@@ -1003,11 +1196,16 @@ public class SalesDetailFrame extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel10;
+    private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel12;
     private javax.swing.JPanel jPanel13;
     private javax.swing.JPanel jPanel14;
@@ -1022,16 +1220,20 @@ public class SalesDetailFrame extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel22;
     private javax.swing.JPanel jPanel23;
     private javax.swing.JPanel jPanel24;
+    private javax.swing.JPanel jPanel25;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
+    private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane10;
     private javax.swing.JScrollPane jScrollPane11;
+    private javax.swing.JScrollPane jScrollPane12;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JScrollPane jScrollPane8;
     private javax.swing.JScrollPane jScrollPane9;
@@ -1059,5 +1261,7 @@ public class SalesDetailFrame extends javax.swing.JInternalFrame {
     private javax.swing.JLabel telephonelabel2;
     private javax.swing.JTextField total_payement_text;
     private javax.swing.JTextField unit_price_text;
+    private javax.swing.JTable view_customer_order_table;
+    private javax.swing.JTextField view_total_payement_text;
     // End of variables declaration//GEN-END:variables
 }

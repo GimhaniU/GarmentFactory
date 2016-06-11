@@ -6,11 +6,13 @@
 package gfcl.common_classes;
 
 import gfc.controller.CustomerController;
+import gfc.controller.CustomerOrderController;
 import gfc.controller.EmployeeController;
 import gfc.controller.ExpenseController;
 import gfc.controller.GarmentController;
 import gfc.controller.MaterialController;
 import gfc.models.Customer;
+import gfc.models.CustomerOrder;
 import gfc.models.Employee;
 import gfc.models.Expense;
 import gfc.models.Garment;
@@ -39,6 +41,7 @@ public class ComboItemsAdder {
     private EmployeeController employeeController;
     private CustomerController customerController;
     private ExpenseController expenseController;
+    private CustomerOrderController customerOrderController;
 
     public ComboItemsAdder() {
         try {
@@ -48,6 +51,7 @@ public class ComboItemsAdder {
             employeeController = sConnector.getEmployeeController();
             customerController = sConnector.getCustomerController();
             expenseController = sConnector.getExpenseController();
+            customerOrderController=sConnector.getCustomerOrderController();
         } catch (NotBoundException | MalformedURLException | RemoteException | SQLException | ClassNotFoundException ex) {
             Logger.getLogger(ComboItemsAdder.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -206,6 +210,29 @@ public class ComboItemsAdder {
                     ArrayList<Material> similar = materialController.getSimilarOtherMaterials(item);
                     for (int i = 0; i < similar.size(); i++) {
                         list.add(similar.get(i).getMat_name() + "-" + similar.get(i).getMat_type() + "-" + similar.get(i).getMat_id());
+                    }
+                    GUIitemsValidator.addItemToCombo(list, combo);
+                } catch (ClassNotFoundException | SQLException | RemoteException ex) {
+                    Logger.getLogger(GUIitemsValidator.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
+            }
+
+        });
+    }
+
+    public void addSimilarOrderIDs(JComboBox combo,String cust_id) {
+        JTextComponent orderCombo = (JTextComponent) combo.getEditor().getEditorComponent();
+        orderCombo.addKeyListener(new KeyAdapter() {
+
+            @Override
+            public void keyReleased(KeyEvent e) {
+                try {
+                    String item = (String) combo.getEditor().getItem();
+                    ArrayList<Object> list = new ArrayList();
+                    ArrayList<CustomerOrder> similar = customerOrderController.getSimilarOrderIDs(cust_id,item);
+                    for (int i = 0; i < similar.size(); i++) {
+                        list.add(similar.get(i).getOrder_id());
                     }
                     GUIitemsValidator.addItemToCombo(list, combo);
                 } catch (ClassNotFoundException | SQLException | RemoteException ex) {

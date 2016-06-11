@@ -33,4 +33,14 @@ public class CustomerOrderControllerImple extends UnicastRemoteObject implements
     public String getLastOrderId() throws RemoteException, SQLException, ClassNotFoundException {
         return customerOrderController.getLastOrderId();
     }
+
+    @Override
+    public ArrayList<CustomerOrder> getSimilarOrderIDs(String customer,String order_id_part) throws RemoteException, SQLException, ClassNotFoundException {
+        return customerOrderController.getSimilarOrderIDs(customer,order_id_part);
+    }
+
+    @Override
+    public ArrayList<CustomerOrder> searchOrder(String order_id) throws RemoteException, SQLException, ClassNotFoundException {
+        return customerOrderController.searchOrder(order_id);
+    }
 }

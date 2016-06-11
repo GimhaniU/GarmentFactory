@@ -55,4 +55,21 @@ public class GarmentController {
             readWriteLock.readLock().unlock();
         }
     }
+
+    public Garment searchGarment(String garment_id) throws ClassNotFoundException, SQLException {
+        try {
+            readWriteLock.readLock().lock();
+
+            Connection conn = DBConnection.getDBConnection().getConnection();
+            String sql = "Select * From garment where garment_id='" + garment_id + "'";
+            ResultSet rst = DBHandler.getData(conn, sql);
+            Garment garment=null;
+            if (rst.next()) {
+                garment=new Garment(garment_id,rst.getString("garment_name"),rst.getInt("in_stock") , rst.getDouble("sewing_stipend"), rst.getDouble("cutting_stipend"));
+            }
+            return garment;
+        } finally {
+            readWriteLock.readLock().unlock();
+        }
+    }
 }

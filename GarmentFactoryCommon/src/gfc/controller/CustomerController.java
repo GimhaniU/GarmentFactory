@@ -25,4 +25,5 @@ public interface CustomerController extends Remote {
     
     public ArrayList<Customer> getSimilarCustomerNames(String name)  throws RemoteException, SQLException,ClassNotFoundException;
 
+    public Customer searchCustomer(String cust_id) throws RemoteException, SQLException,ClassNotFoundException;
 }

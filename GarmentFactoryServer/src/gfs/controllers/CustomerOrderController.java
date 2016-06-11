@@ -85,4 +85,41 @@ public class CustomerOrderController {
             readWriteLock.readLock().unlock();
         }
     }
+
+    public ArrayList<CustomerOrder> getSimilarOrderIDs(String customer,String order_id_part) throws ClassNotFoundException, SQLException {
+        try {
+            readWriteLock.readLock().lock();
+
+            Connection conn = DBConnection.getDBConnection().getConnection();
+            String sql = "Select * From customerorder where order_id like '" +order_id_part+ "%' and cust_id='"+customer+"' order by order_id limit 10";
+            ResultSet rst = DBHandler.getData(conn, sql);
+            ArrayList<CustomerOrder> list = new ArrayList<>();
+            while (rst.next()) {
+                CustomerOrder customerOrder=new CustomerOrder(rst.getString("order_id"), rst.getString("cust_id"), rst.getString("garment_id"),rst.getString("dateOfOrder"),rst.getInt("amount"),rst.getDouble("unit_price"));
+                list.add(customerOrder);
+            }
+            return list;
+
+        } finally {
+            readWriteLock.readLock().unlock();
+        }
+    }
+
+    public ArrayList<CustomerOrder> searchOrder(String order_id) throws SQLException, ClassNotFoundException {
+        try {
+            readWriteLock.readLock().lock();
+
+            Connection conn = DBConnection.getDBConnection().getConnection();
+            String sql = "Select * From customer_order where order_id='" +order_id + "'";
+            ResultSet rst = DBHandler.getData(conn, sql);
+            ArrayList<CustomerOrder> list = new ArrayList<>();
+            while (rst.next()) {
+                CustomerOrder customerOrder=new CustomerOrder(rst.getString("order_id"), rst.getString("cust_id"), rst.getString("garment_id"),rst.getString("dateOfOrder"),rst.getInt("amount"),rst.getDouble("unit_price"));
+                list.add(customerOrder);
+            }
+            return list;
+        } finally {
+            readWriteLock.readLock().unlock();
+        }
+    }
 }
