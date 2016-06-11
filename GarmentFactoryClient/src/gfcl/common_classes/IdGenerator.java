@@ -124,6 +124,25 @@ public class IdGenerator {
         return nextOrderID;
     }
     
+    public static String generateNextGarmentID(String lastGarmentID) {
+        if(lastGarmentID==null){
+            return "G001";
+        }
+        String nextGarmentID = "G";
+        String substring = lastGarmentID.substring(1);
+        int parseInt = Integer.parseInt(substring);
+        parseInt++;
+        String valueOf = String.valueOf(parseInt);
+        if (parseInt > 10 && parseInt < 100) {
+            nextGarmentID  += "0" + valueOf;
+        } else if (parseInt > 100) {
+            nextGarmentID  += valueOf;
+        } else {
+            nextGarmentID  += "00" + valueOf;
+        }
+        return nextGarmentID ;
+    }
+    
     
     
     

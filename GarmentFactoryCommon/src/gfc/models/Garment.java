@@ -36,8 +36,12 @@ public class Garment implements Serializable{
         this.sewing_stipend = sewing_stipend;
         this.waxing_stipend = waxing_stipend;
     }
-
     
+    public Garment(String garment_id, double sewing_stipend, double waxing_stipend) {
+        this.garment_id = garment_id;
+        this.sewing_stipend = sewing_stipend;
+        this.waxing_stipend = waxing_stipend;
+    }
     
     public String getGarment_id() {
         return garment_id;

@@ -5,7 +5,6 @@
  */
 package gfs.controllers;
 
-import gfc.models.Employee;
 import gfc.models.Garment;
 import gfs.db_utilities.DBConnection;
 import gfs.db_utilities.DBHandler;
@@ -72,4 +71,48 @@ public class GarmentController {
             readWriteLock.readLock().unlock();
         }
     }
+
+    public String getLastGarmentId() throws ClassNotFoundException, SQLException {
+        try {
+            readWriteLock.readLock().lock();
+            Connection conn = DBConnection.getDBConnection().getConnection();
+            String sql = "Select garment_id From Garment order by garment_id desc limit 1";
+            ResultSet rst = DBHandler.getData(conn, sql);
+            if (rst.next()) {
+                return rst.getString("garment_id");
+            } else {
+                return null;
+            }
+        } finally {
+            readWriteLock.readLock().unlock();
+        }
+    }
+
+    public int addNewGarment(Garment garment) throws ClassNotFoundException, SQLException {
+        try {
+            readWriteLock.writeLock().lock();
+            DBConnection dbconn = DBConnection.getDBConnection();
+            Connection conn = dbconn.getConnection();
+            String sql = "Insert into Garment Values('" + garment.getGarment_id() + "','" + garment.getGarment_name() + "','" + garment.getIn_stock() + "','" +garment.getSewing_stipend()+ "','" + garment.getWaxing_stipend() + "')";
+            int res = DBHandler.setData(conn, sql);
+            return res;
+        } finally {
+            readWriteLock.writeLock().unlock();
+        }
+    }
+
+    public int updateGarmentStipends(Garment garment) throws ClassNotFoundException, SQLException {
+        try {
+            readWriteLock.writeLock().lock();
+            DBConnection dbconn = DBConnection.getDBConnection();
+            Connection conn = dbconn.getConnection();
+            String sql = "Update Garment set sewing_stipend= '" +garment.getSewing_stipend()+ "',waxing_stipend='" + garment.getWaxing_stipend() + "' where garment_id='"+garment.getGarment_id()+"';";
+            int res = DBHandler.setData(conn, sql);
+            return res;
+        } finally {
+            readWriteLock.writeLock().unlock();
+        }
+    }
+
+    
 }

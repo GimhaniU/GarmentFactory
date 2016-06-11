@@ -781,7 +781,7 @@ public class FrontPage extends javax.swing.JFrame {
         shortcutAccessPanel.add(otherExpensesButton);
 
         addNewEmployeeButton.setFont(new java.awt.Font("Microsoft Sans Serif", 1, 14)); // NOI18N
-        addNewEmployeeButton.setText("6-Add New Employee");
+        addNewEmployeeButton.setText("6-Garment Details");
         importantButtonSet.add(addNewEmployeeButton);
         addNewEmployeeButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1124,12 +1124,12 @@ public class FrontPage extends javax.swing.JFrame {
     }
 
     private void addNewEmployeeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addNewEmployeeButtonActionPerformed
-        EmployeeDetailFrame employeeForm = new EmployeeDetailFrame();
-        employeeForm.setSize(desktopPane.getSize());
+        GarmentDetailFrame form = new GarmentDetailFrame();
+        form.setSize(desktopPane.getSize());
         desktopPane.removeAll();
-        desktopPane.add(employeeForm);
-        employeeForm.setVisible(true);
-        employeeForm.requestFoucsForm();
+        desktopPane.add(form);
+        form.setVisible(true);
+        form.requestFoucsForm();
     }//GEN-LAST:event_addNewEmployeeButtonActionPerformed
 
     private void productionDetailsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_productionDetailsButtonActionPerformed

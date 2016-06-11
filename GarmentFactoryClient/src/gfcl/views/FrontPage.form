@@ -1199,7 +1199,7 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Microsoft Sans Serif" size="14" style="1"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="6-Add New Employee"/>
+                <Property name="text" type="java.lang.String" value="6-Garment Details"/>
                 <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
                   <ComponentRef name="importantButtonSet"/>
                 </Property>
