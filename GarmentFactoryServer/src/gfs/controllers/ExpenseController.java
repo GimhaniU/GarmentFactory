@@ -68,4 +68,38 @@ public class ExpenseController {
             readWriteLock.writeLock().unlock();
         }
     }
+
+    public ArrayList<Expense> getMonthlyExpenses(int year, int month) throws ClassNotFoundException, SQLException {
+        try {
+            readWriteLock.readLock().lock();
+            Connection conn = DBConnection.getDBConnection().getConnection();
+            String sql = "Select * From expense where  dateofexp like '"+year+"-"+month+"-%' or dateofexp like '"+year+"-0"+month+"-%'";
+            ResultSet rst = DBHandler.getData(conn, sql);
+            ArrayList<Expense> list = new ArrayList<>();
+            while (rst.next()) {
+                Expense expense=new Expense(rst.getString("expense_id"),rst.getString("expense"),rst.getString("dateOfExp"),rst.getDouble("Amount"));
+                list.add(expense);
+            }
+            return list;
+        } finally {
+            readWriteLock.readLock().unlock();
+        }
+    }
+
+    public ArrayList<Expense> getYearlyExpenses(int year) throws ClassNotFoundException, SQLException {
+        try {
+            readWriteLock.readLock().lock();
+            Connection conn = DBConnection.getDBConnection().getConnection();
+            String sql = "Select * From expense where  dateofexp like '"+year+"%' ";
+            ResultSet rst = DBHandler.getData(conn, sql);
+            ArrayList<Expense> list = new ArrayList<>();
+            while (rst.next()) {
+                Expense expense=new Expense(rst.getString("expense_id"),rst.getString("expense"),rst.getString("dateOfExp"),rst.getDouble("Amount"));
+                list.add(expense);
+            }
+            return list;
+        } finally {
+            readWriteLock.readLock().unlock();
+        }
+    }
 }

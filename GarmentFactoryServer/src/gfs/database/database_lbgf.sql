@@ -144,6 +144,14 @@ CREATE TABLE Expense(
         DateOfExp DATE NOT NULL,
         Amount NUMERIC(10,2),
         CONSTRAINT PRIMARY KEY (Expense_id)
+);
+
+CREATE TABLE Income(
+        income_id VARCHAR(10) NOT NULL,
+        income VARCHAR(100) NOT NULL,
+        DateOfInc DATE NOT NULL,
+        Amount NUMERIC(10,2),
+        CONSTRAINT PRIMARY KEY (Income_id)
 ); 
 
 create table User (

@@ -22,4 +22,8 @@ public interface ExpenseController extends Remote{
     public ArrayList<Expense> getSimilarExpenseNames(String item) throws RemoteException, SQLException,ClassNotFoundException; 
 
     public int addNewExpense(Expense expense) throws RemoteException, SQLException,ClassNotFoundException;
+
+    public ArrayList<Expense> getMonthlyExpenses(int year,int month) throws RemoteException, SQLException,ClassNotFoundException; 
+    
+    public ArrayList<Expense> getYearlyExpenses(int year) throws RemoteException, SQLException,ClassNotFoundException; 
 }

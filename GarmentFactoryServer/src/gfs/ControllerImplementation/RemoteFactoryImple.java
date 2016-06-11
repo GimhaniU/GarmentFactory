@@ -88,4 +88,9 @@ public class RemoteFactoryImple extends UnicastRemoteObject implements RemoteFac
         return new EmpWageControllerImple();
     }
 
+    @Override
+    public IncomeController getIncomeController() throws RemoteException, SQLException, ClassNotFoundException {
+        return new IncomeControllerImple();
+    }
+
 }

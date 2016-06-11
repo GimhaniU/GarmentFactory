@@ -35,6 +35,7 @@ public class Connector {
     private PieceCoverageController pieceCoverageController;
     private ExpenseController expenseController;
     private EmpWageController empWageController;
+    private IncomeController incomeController;
 
     public Connector() throws NotBoundException, MalformedURLException, RemoteException {
         String lookUpString = "rmi://127.0.0.1:344/GarmentFactoryServer";
@@ -114,6 +115,13 @@ public class Connector {
             garmentController = remoteFactory.getGarmentController();
         }
         return garmentController;
+    }
+    
+    public IncomeController getIncomeController() throws RemoteException, SQLException, ClassNotFoundException {
+        if (incomeController == null) {
+            incomeController = remoteFactory.getIncomeController();
+        }
+        return incomeController;
     }
 
     public MaterialController getMaterialController() throws RemoteException, SQLException, ClassNotFoundException {

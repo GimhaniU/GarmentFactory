@@ -3,26 +3,8 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/E:/Semester%2005/Software%20Engineering%20Project/Gimhani/Project/GarmentFactory/GarmentFactoryServer/test/gfs/controllers/CustomerControllerIT.java</file>
-            <file>file:/E:/Semester%2005/Software%20Engineering%20Project/Gimhani/Project/GarmentFactory/GarmentFactoryServer/test/gfs/controllers/CustomerControllerTest.java</file>
-            <file>file:/E:/Semester%2005/Software%20Engineering%20Project/Gimhani/Project/GarmentFactory/GarmentFactoryServer/src/gfs/controllers/PieceCoverageController.java</file>
-            <file>file:/E:/Semester%2005/Software%20Engineering%20Project/Gimhani/Project/GarmentFactory/GarmentFactoryServer/src/gfs/ControllerImplementation/DailyClothUsageControllerImple.java</file>
-            <file>file:/E:/Semester%2005/Software%20Engineering%20Project/Gimhani/Project/GarmentFactory/GarmentFactoryServer/src/gfs/controllers/CustomerController.java</file>
-            <file>file:/E:/Semester%2005/Software%20Engineering%20Project/Gimhani/Project/GarmentFactory/GarmentFactoryServer/src/gfs/controllers/DailyClothUsageController.java</file>
-            <file>file:/E:/Semester%2005/Software%20Engineering%20Project/Gimhani/Project/GarmentFactory/GarmentFactoryServer/src/gfs/ControllerImplementation/ExpenseControllerImple.java</file>
-            <file>file:/E:/Semester%2005/Software%20Engineering%20Project/Gimhani/Project/GarmentFactory/GarmentFactoryServer/src/gfs/controllers/EmpWageController.java</file>
-            <file>file:/E:/Semester%2005/Software%20Engineering%20Project/Gimhani/Project/GarmentFactory/GarmentFactoryServer/src/gfs/ControllerImplementation/EmpWageControllerImple.java</file>
-            <file>file:/E:/Semester%2005/Software%20Engineering%20Project/Gimhani/Project/GarmentFactory/GarmentFactoryServer/test/gfs/controllers/ControllersITSuite.java</file>
-            <file>file:/E:/Semester%2005/Software%20Engineering%20Project/Gimhani/Project/GarmentFactory/GarmentFactoryServer/src/gfs/controllers/DailyCoverageController.java</file>
-            <file>file:/E:/Semester%2005/Software%20Engineering%20Project/Gimhani/Project/GarmentFactory/GarmentFactoryServer/src/gfs/controllers/EmployeeController.java</file>
-            <file>file:/E:/Semester%2005/Software%20Engineering%20Project/Gimhani/Project/GarmentFactory/GarmentFactoryServer/src/gfs/controllers/MaterialController.java</file>
+            <file>file:/E:/Semester%2005/Software%20Engineering%20Project/Gimhani/Project/GarmentFactory/GarmentFactoryServer/src/gfs/controllers/IncomeController.java</file>
             <file>file:/E:/Semester%2005/Software%20Engineering%20Project/Gimhani/Project/GarmentFactory/GarmentFactoryServer/src/gfs/controllers/ExpenseController.java</file>
-            <file>file:/E:/Semester%2005/Software%20Engineering%20Project/Gimhani/Project/GarmentFactory/GarmentFactoryServer/src/gfs/database/database_lbgf.sql</file>
-            <file>file:/E:/Semester%2005/Software%20Engineering%20Project/Gimhani/Project/GarmentFactory/GarmentFactoryServer/src/gfs/ControllerImplementation/CustomerControllerImple.java</file>
-            <file>file:/E:/Semester%2005/Software%20Engineering%20Project/Gimhani/Project/GarmentFactory/GarmentFactoryServer/src/gfs/ControllerImplementation/RemoteFactoryImple.java</file>
-            <file>file:/E:/Semester%2005/Software%20Engineering%20Project/Gimhani/Project/GarmentFactory/GarmentFactoryServer/test/gfs/controllers/BackUpIT.java</file>
-            <file>file:/E:/Semester%2005/Software%20Engineering%20Project/Gimhani/Project/GarmentFactory/GarmentFactoryServer/src/gfs/ControllerImplementation/DailyCoverageControllerImple.java</file>
-            <file>file:/E:/Semester%2005/Software%20Engineering%20Project/Gimhani/Project/GarmentFactory/GarmentFactoryServer/src/gfs/ControllerImplementation/PieceCoverageControllerImple.java</file>
         </group>
     </open-files>
 </project-private>

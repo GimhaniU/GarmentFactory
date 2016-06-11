@@ -38,4 +38,14 @@ public class ExpenseControllerImple extends UnicastRemoteObject implements gfc.c
     public int addNewExpense(Expense expense) throws RemoteException, SQLException, ClassNotFoundException {
         return expenseController.addNewExpense(expense);
     }
+
+    @Override
+    public ArrayList<Expense> getMonthlyExpenses(int year, int month) throws RemoteException, SQLException, ClassNotFoundException {
+        return expenseController.getMonthlyExpenses(year, month);
+    }
+
+    @Override
+    public ArrayList<Expense> getYearlyExpenses(int year) throws RemoteException, SQLException, ClassNotFoundException {
+        return expenseController.getYearlyExpenses(year);
+    }
 }

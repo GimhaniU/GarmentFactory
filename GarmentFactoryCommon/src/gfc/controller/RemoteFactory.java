@@ -33,6 +33,8 @@ public interface RemoteFactory extends Remote {
 
     public GarmentController getGarmentController() throws RemoteException, SQLException, ClassNotFoundException;
 
+    public IncomeController getIncomeController() throws RemoteException, SQLException, ClassNotFoundException;
+    
     public MaterialController getMaterialController() throws RemoteException, SQLException, ClassNotFoundException;
 
     public StockController getStockController() throws RemoteException, SQLException, ClassNotFoundException;
