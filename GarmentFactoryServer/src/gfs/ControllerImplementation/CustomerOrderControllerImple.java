@@ -48,4 +48,14 @@ public class CustomerOrderControllerImple extends UnicastRemoteObject implements
     public ArrayList<CustomerOrder> getOrdersOfCustomer(String cust_id) throws RemoteException, SQLException, ClassNotFoundException {
         return customerOrderController.getOrdersOfCustomer(cust_id);
     }
+
+    @Override
+    public double getMonthlySalesIncome(int year, int month) throws RemoteException, SQLException, ClassNotFoundException {
+        return customerOrderController.getMonthlySalesIncome(year, month);
+    }
+
+    @Override
+    public double getYearlySalesIncome(int year) throws RemoteException, SQLException, ClassNotFoundException {
+        return customerOrderController.getYearlySalesIncome(year);
+    }
 }

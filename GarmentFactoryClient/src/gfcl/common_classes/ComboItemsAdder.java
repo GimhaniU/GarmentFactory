@@ -10,12 +10,14 @@ import gfc.controller.CustomerOrderController;
 import gfc.controller.EmployeeController;
 import gfc.controller.ExpenseController;
 import gfc.controller.GarmentController;
+import gfc.controller.IncomeController;
 import gfc.controller.MaterialController;
 import gfc.models.Customer;
 import gfc.models.CustomerOrder;
 import gfc.models.Employee;
 import gfc.models.Expense;
 import gfc.models.Garment;
+import gfc.models.Income;
 import gfc.models.Material;
 import gfcl.connector.Connector;
 import java.awt.event.KeyAdapter;
@@ -42,6 +44,7 @@ public class ComboItemsAdder {
     private CustomerController customerController;
     private ExpenseController expenseController;
     private CustomerOrderController customerOrderController;
+    private IncomeController incomeController;
 
     public ComboItemsAdder() {
         try {
@@ -52,6 +55,7 @@ public class ComboItemsAdder {
             customerController = sConnector.getCustomerController();
             expenseController = sConnector.getExpenseController();
             customerOrderController = sConnector.getCustomerOrderController();
+            incomeController=sConnector.getIncomeController();
         } catch (NotBoundException | MalformedURLException | RemoteException | SQLException | ClassNotFoundException ex) {
             Logger.getLogger(ComboItemsAdder.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -182,10 +186,37 @@ public class ComboItemsAdder {
                 try {
                     String item = (String) combo.getEditor().getItem();
                     ArrayList<Object> list = new ArrayList();
-                    ArrayList<Expense> similar = expenseController.getSimilarExpenseNames(item);
-                    if (similar != null) {
+                    ArrayList<Expense> similar = new ArrayList<>();
+                    similar = expenseController.getSimilarExpenseNames(item);
+                    if (similar.size() != 0) {
                         for (int i = 0; i < similar.size(); i++) {
                             list.add(similar.get(i).getExpense());
+                        }
+                        GUIitemsValidator.addItemToCombo(list, combo);
+                    }
+                } catch (ClassNotFoundException | SQLException | RemoteException ex) {
+                    Logger.getLogger(GUIitemsValidator.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
+            }
+
+        });
+    }
+
+    public void addSimilarIncomenames(JComboBox combo) {
+        JTextComponent matCombo = (JTextComponent) combo.getEditor().getEditorComponent();
+        matCombo.addKeyListener(new KeyAdapter() {
+
+            @Override
+            public void keyReleased(KeyEvent e) {
+                try {
+                    String item = (String) combo.getEditor().getItem();
+                    ArrayList<Object> list = new ArrayList();
+                    ArrayList<Income> similar = new ArrayList();
+                    similar=incomeController.getSimilarIncomeNames(item);
+                    if (similar.size()!=0) {
+                        for (int i = 0; i < similar.size(); i++) {
+                            list.add(similar.get(i).getIncome());
                         }
                         GUIitemsValidator.addItemToCombo(list, combo);
                     }

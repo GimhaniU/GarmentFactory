@@ -49,6 +49,25 @@ public class IdGenerator {
         return nextExpenseID;
     }
     
+    public static String generateNextIncomeID(String lastIncomeID) {
+        if(lastIncomeID==null){
+            return "I001";
+        }
+        String nextIncomeID = "I";
+        String substring = lastIncomeID.substring(1);
+        int parseInt = Integer.parseInt(substring);
+        parseInt++;
+        String valueOf = String.valueOf(parseInt);
+        if (parseInt > 10 && parseInt < 100) {
+            nextIncomeID += "0" + valueOf;
+        } else if (parseInt > 100) {
+            nextIncomeID += valueOf;
+        } else {
+            nextIncomeID += "00" + valueOf;
+        }
+        return nextIncomeID;
+    }
+    
     public static String generateNextStockID(String lastStockID) {
         if(lastStockID==null){
             return "S001";

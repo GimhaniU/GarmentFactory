@@ -26,4 +26,8 @@ public interface CustomerOrderController extends Remote {
     public ArrayList<CustomerOrder> searchOrder(String order_id) throws RemoteException, SQLException,ClassNotFoundException;
 
     public ArrayList<CustomerOrder> getSimilarOrderIDs(String customer,String order_id_part) throws RemoteException, SQLException,ClassNotFoundException;
+
+    public double getMonthlySalesIncome(int year,int month) throws RemoteException, SQLException,ClassNotFoundException;
+
+    public double getYearlySalesIncome(int year) throws RemoteException, SQLException,ClassNotFoundException;
 }

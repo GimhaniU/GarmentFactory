@@ -33,6 +33,16 @@ public class StockControllerImple extends UnicastRemoteObject implements gfc.con
         return stockController.getLastStockId();
     }
 
+    @Override
+    public double getMonthlyCostForMaterial(int year, int month) throws RemoteException, SQLException, ClassNotFoundException {
+        return stockController.getMonthlyCostForMaterial(year, month);
+    }
+
+    @Override
+    public double getYearlyCostForMaterial(int year) throws RemoteException, SQLException, ClassNotFoundException {
+        return stockController.getYearlyCostForMaterial(year);
+    }
+
     
     
 }

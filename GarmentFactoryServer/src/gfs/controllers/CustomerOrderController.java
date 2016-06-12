@@ -140,4 +140,38 @@ public class CustomerOrderController {
             readWriteLock.readLock().unlock();
         }
     }
+
+    public double getMonthlySalesIncome(int year, int month) throws ClassNotFoundException, SQLException {
+        try {
+            readWriteLock.readLock().lock();
+
+            Connection conn = DBConnection.getDBConnection().getConnection();
+            String sql = "Select sum(amount*unit_price) as order_price From customerorder where dateoforder like '"+year+"-"+month+"-%' or dateoforder like '"+year+"-0"+month+"-%'";
+            ResultSet rst = DBHandler.getData(conn, sql);
+            
+            if(rst.next()) {
+                return rst.getDouble("order_price");
+            }
+            return 0;
+        } finally {
+            readWriteLock.readLock().unlock();
+        }
+    }
+
+    public double getYearlySalesIncome(int year) throws ClassNotFoundException, SQLException {
+        try {
+            readWriteLock.readLock().lock();
+
+            Connection conn = DBConnection.getDBConnection().getConnection();
+            String sql = "Select sum(amount*unit_price) as order_price From customerorder where dateoforder like '"+year+"%'";
+            ResultSet rst = DBHandler.getData(conn, sql);
+            
+            if(rst.next()) {
+                return rst.getDouble("order_price");
+            }
+            return 0;
+        } finally {
+            readWriteLock.readLock().unlock();
+        }
+    }
 }
