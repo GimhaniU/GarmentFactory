@@ -55,7 +55,7 @@ public class GarmentController {
         }
     }
 
-    public Garment searchGarment(String garment_id) throws ClassNotFoundException, SQLException {
+    public static Garment searchGarment(String garment_id) throws ClassNotFoundException, SQLException {
         try {
             readWriteLock.readLock().lock();
 
@@ -107,6 +107,21 @@ public class GarmentController {
             DBConnection dbconn = DBConnection.getDBConnection();
             Connection conn = dbconn.getConnection();
             String sql = "Update Garment set sewing_stipend= '" +garment.getSewing_stipend()+ "',waxing_stipend='" + garment.getWaxing_stipend() + "' where garment_id='"+garment.getGarment_id()+"';";
+            int res = DBHandler.setData(conn, sql);
+            return res;
+        } finally {
+            readWriteLock.writeLock().unlock();
+        }
+    }
+
+    public int updateGarmentStock(Garment garment) throws ClassNotFoundException, SQLException {
+        try {
+            readWriteLock.writeLock().lock();
+            DBConnection dbconn = DBConnection.getDBConnection();
+            Connection conn = dbconn.getConnection();
+            Garment searchGarment = searchGarment(garment.getGarment_id());
+            int new_in_stock=searchGarment.getIn_stock()+garment.getIn_stock();
+            String sql = "Update Garment set in_stock= '" +new_in_stock+ "'  where garment_id='"+garment.getGarment_id()+"';";
             int res = DBHandler.setData(conn, sql);
             return res;
         } finally {

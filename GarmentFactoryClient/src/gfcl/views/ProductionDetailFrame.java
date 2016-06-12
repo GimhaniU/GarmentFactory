@@ -11,6 +11,7 @@ import gfc.controller.GarmentController;
 import gfc.controller.MaterialController;
 import gfc.models.DailyClothUsage;
 import gfc.models.DailyCoverage;
+import gfc.models.Garment;
 import gfc.models.Material;
 import gfcl.common_classes.ComboItemsAdder;
 import gfcl.common_classes.GUIitemsValidator;
@@ -1427,7 +1428,8 @@ public class ProductionDetailFrame extends javax.swing.JInternalFrame {
         try {
             String date = date_text.getText();
             String garment = garment_combo.getSelectedItem().toString();
-            String garment_id = garment.substring(garment.length() - 4, garment.length());
+            String garment_id = garment.substring(garment.length() - 4);
+            String garment_name=garment.substring(0,garment.length() - 4);
             int no_of_cut = Integer.valueOf(cutting_spinner.getValue().toString());
             int no_of_sewn = Integer.valueOf(sewing_spinner.getValue().toString());
             int no_of_dyed = Integer.valueOf(dyeing_spinner.getValue().toString());
@@ -1442,7 +1444,13 @@ public class ProductionDetailFrame extends javax.swing.JInternalFrame {
                 addDailyCoverage = dailyCoverageController.addDailyCoverage(dc);
             }
             if (addDailyCoverage > 0) {
+                Garment garment1=new Garment(garment_id, garment_name, no_of_finish);
+                int done=garmentController.updateGarmentStock(garment1);
+                if(done>0){
                 JOptionPane.showMessageDialog(this, "Daily coverage added!");
+                }else{
+                  JOptionPane.showMessageDialog(this, "Garment stock update was failed!");  
+                }
             } else {
                 JOptionPane.showMessageDialog(this, "Daily coverage update was failed!");
             }
@@ -1540,6 +1548,8 @@ public class ProductionDetailFrame extends javax.swing.JInternalFrame {
                         no_of_finish = Integer.valueOf(dtm.getValueAt(i, 3).toString());
                         dc = new DailyCoverage(garment_id, date, no_of_finish);
                         res = dailyCoverageController.updateDailyCoverageFinish(dc);
+                        Garment g_stock=new Garment(garment_id, dtm.getValueAt(i, 2).toString(), no_of_finish);
+                        int done=garmentController.updateGarmentStock(g_stock);
                         break;
                 }
                 if (res <= 0) {

@@ -28,4 +28,6 @@ public interface GarmentController extends Remote {
 
     public int updateGarmentStipends(Garment garment) throws RemoteException, SQLException,ClassNotFoundException;
 
+    public int updateGarmentStock(Garment garment) throws RemoteException, SQLException,ClassNotFoundException;
+
 }

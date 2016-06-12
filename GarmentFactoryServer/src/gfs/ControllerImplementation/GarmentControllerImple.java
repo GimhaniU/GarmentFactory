@@ -53,5 +53,10 @@ public class GarmentControllerImple extends UnicastRemoteObject implements gfc.c
         return garmentController.updateGarmentStipends(garment);
     }
 
+    @Override
+    public int updateGarmentStock(Garment garment) throws RemoteException, SQLException, ClassNotFoundException {
+        return garmentController.updateGarmentStock(garment);
+    }
+
     
 }
