@@ -3,7 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/E:/Semester%2005/Software%20Engineering%20Project/Gimhani/Project/GarmentFactory/GarmentFactoryClient/src/gfcl/common_classes/ComboItemsAdder.java</file>
+            <file>file:/E:/Semester%2005/Software%20Engineering%20Project/Gimhani/Project/GarmentFactory/GarmentFactoryClient/src/gfcl/views/ProductionDetailFrame.java</file>
+            <file>file:/E:/Semester%2005/Software%20Engineering%20Project/Gimhani/Project/GarmentFactory/GarmentFactoryClient/src/gfcl/common_classes/IdGenerator.java</file>
             <file>file:/E:/Semester%2005/Software%20Engineering%20Project/Gimhani/Project/GarmentFactory/GarmentFactoryClient/src/gfcl/views/IncomeSummaryFrame.java</file>
+            <file>file:/E:/Semester%2005/Software%20Engineering%20Project/Gimhani/Project/GarmentFactory/GarmentFactoryClient/src/gfcl/sms_sender/SMS_Sender.java</file>
+            <file>file:/E:/Semester%2005/Software%20Engineering%20Project/Gimhani/Project/GarmentFactory/GarmentFactoryClient/src/gfcl/sms_sender/OzekiSmsClient.java</file>
         </group>
     </open-files>
 </project-private>

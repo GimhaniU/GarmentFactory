@@ -48,7 +48,7 @@ public class EmpWageController {
             if (getEmployeeAttendance(new_employee.getEmp_id(), new_employee.getMonth(), new_employee.getYear()) != null) {
                 sql = "Update empwage set  no_of_days='" + new_employee.getNo_of_days() + "',ot_hours='" + new_employee.getOt_hours() + "' where emp_id='" + new_employee.getEmp_id() + "' and month='" + new_employee.getMonth() + "' and year='" + new_employee.getYear() + "';";
             } else {
-                sql = "Insert into empwage values('" + new_employee.getEmp_id() + "','" + new_employee.getMonth() + "','" + new_employee.getYear() + "','" + new_employee.getNo_of_days() + "','" + new_employee.getOt_hours() + "','0') ;";
+                sql = "Insert into empwage values('" + new_employee.getEmp_id() + "','" + new_employee.getMonth() + "','" + new_employee.getYear() + "','" + new_employee.getNo_of_days() + "','" + new_employee.getOt_hours() + "','0','0','0','0') ;";
             }
             int res = DBHandler.setData(conn, sql);
             return res;
