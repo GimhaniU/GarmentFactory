@@ -9,8 +9,9 @@ import gfc.controller.GarmentController;
 import gfc.models.Garment;
 import gfcl.common_classes.ComboItemsAdder;
 import gfcl.common_classes.IdGenerator;
+import gfcl.common_classes.PatternChecker;
 import gfcl.connector.Connector;
-import java.awt.Image;
+import java.awt.event.KeyEvent;
 import java.net.MalformedURLException;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
@@ -18,7 +19,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -101,9 +101,12 @@ public class GarmentDetailFrame extends javax.swing.JInternalFrame {
         jLabel8 = new javax.swing.JLabel();
         waxing_stipend_text1 = new javax.swing.JTextField();
         jPanel9 = new javax.swing.JPanel();
-        cancel_new_button1 = new javax.swing.JButton();
-        save_new_button1 = new javax.swing.JButton();
+        cancel_edit_button = new javax.swing.JButton();
+        save_edit_button = new javax.swing.JButton();
         garment_edit_combo = new javax.swing.JComboBox<>();
+
+        jTabbedPane1.setForeground(new java.awt.Color(0, 0, 204));
+        jTabbedPane1.setFont(new java.awt.Font("SansSerif", 3, 11)); // NOI18N
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -116,6 +119,7 @@ public class GarmentDetailFrame extends javax.swing.JInternalFrame {
             .addGap(0, 100, Short.MAX_VALUE)
         );
 
+        garment_table.setFont(new java.awt.Font("SansSerif", 0, 11)); // NOI18N
         garment_table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -123,7 +127,15 @@ public class GarmentDetailFrame extends javax.swing.JInternalFrame {
             new String [] {
                 "Garment_ID", "Garment_Name", "In_Stock"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         garment_table.getTableHeader().setReorderingAllowed(false);
         jScrollPane2.setViewportView(garment_table);
 
@@ -148,29 +160,63 @@ public class GarmentDetailFrame extends javax.swing.JInternalFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 362, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(84, Short.MAX_VALUE))
+                .addContainerGap(86, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("View Garments Available", jPanel1);
+        jTabbedPane1.addTab("View Garments Available", new javax.swing.ImageIcon(getClass().getResource("/gfcl/images/cloth_types.png")), jPanel1); // NOI18N
 
+        jLabel1.setFont(new java.awt.Font("SansSerif", 1, 11)); // NOI18N
         jLabel1.setText("Garment ID:");
 
         garment_id_text.setEditable(false);
+        garment_id_text.setFont(new java.awt.Font("SansSerif", 0, 11)); // NOI18N
 
+        jLabel2.setFont(new java.awt.Font("SansSerif", 1, 11)); // NOI18N
         jLabel2.setText("Garment Name:");
 
+        garment_name_text.setFont(new java.awt.Font("SansSerif", 0, 11)); // NOI18N
+        garment_name_text.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                garment_name_textKeyReleased(evt);
+            }
+        });
+
+        jLabel3.setFont(new java.awt.Font("SansSerif", 1, 11)); // NOI18N
         jLabel3.setText("Sewing stipend:");
 
+        sewing_stipend_text.setFont(new java.awt.Font("SansSerif", 0, 11)); // NOI18N
+        sewing_stipend_text.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                sewing_stipend_textKeyReleased(evt);
+            }
+        });
+
+        jLabel4.setFont(new java.awt.Font("SansSerif", 1, 11)); // NOI18N
         jLabel4.setText("Waxing stipend:");
 
+        waxing_stipend_text.setFont(new java.awt.Font("SansSerif", 0, 11)); // NOI18N
+        waxing_stipend_text.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                waxing_stipend_textKeyReleased(evt);
+            }
+        });
+
+        jPanel7.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
+        cancel_new_button.setFont(new java.awt.Font("Perpetua Titling MT", 1, 11)); // NOI18N
+        cancel_new_button.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gfcl/images/cancel_icon.png"))); // NOI18N
         cancel_new_button.setText("Cancel");
+        cancel_new_button.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         cancel_new_button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cancel_new_buttonActionPerformed(evt);
             }
         });
 
+        save_new_button.setFont(new java.awt.Font("Perpetua Titling MT", 1, 11)); // NOI18N
+        save_new_button.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gfcl/images/save_small.png"))); // NOI18N
         save_new_button.setText("Save");
+        save_new_button.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         save_new_button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 save_new_buttonActionPerformed(evt);
@@ -183,7 +229,7 @@ public class GarmentDetailFrame extends javax.swing.JInternalFrame {
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(save_new_button)
+                .addComponent(save_new_button, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(cancel_new_button)
                 .addContainerGap())
@@ -277,28 +323,63 @@ public class GarmentDetailFrame extends javax.swing.JInternalFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 442, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 448, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("Add New Garment Type", jPanel2);
+        jTabbedPane1.addTab("Add New Garment Type", new javax.swing.ImageIcon(getClass().getResource("/gfcl/images/shirt_polo.png")), jPanel2); // NOI18N
 
+        jLabel5.setFont(new java.awt.Font("SansSerif", 1, 11)); // NOI18N
         jLabel5.setText("Garment :");
 
+        jLabel7.setFont(new java.awt.Font("SansSerif", 1, 11)); // NOI18N
         jLabel7.setText("Sewing stipend:");
 
-        jLabel8.setText("Waxing stipend:");
-
-        cancel_new_button1.setText("Cancel");
-        cancel_new_button1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cancel_new_button1ActionPerformed(evt);
+        sewing_stipend_text1.setFont(new java.awt.Font("SansSerif", 0, 11)); // NOI18N
+        sewing_stipend_text1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                sewing_stipend_text1KeyReleased(evt);
             }
         });
 
-        save_new_button1.setText("Save");
-        save_new_button1.addActionListener(new java.awt.event.ActionListener() {
+        jLabel8.setFont(new java.awt.Font("SansSerif", 1, 11)); // NOI18N
+        jLabel8.setText("Waxing stipend:");
+
+        waxing_stipend_text1.setFont(new java.awt.Font("SansSerif", 0, 11)); // NOI18N
+        waxing_stipend_text1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                waxing_stipend_text1KeyReleased(evt);
+            }
+        });
+
+        jPanel9.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
+        cancel_edit_button.setFont(new java.awt.Font("Perpetua Titling MT", 1, 11)); // NOI18N
+        cancel_edit_button.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gfcl/images/cancel_icon.png"))); // NOI18N
+        cancel_edit_button.setText("Cancel");
+        cancel_edit_button.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        cancel_edit_button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                save_new_button1ActionPerformed(evt);
+                cancel_edit_buttonActionPerformed(evt);
+            }
+        });
+        cancel_edit_button.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                cancel_edit_buttonKeyReleased(evt);
+            }
+        });
+
+        save_edit_button.setFont(new java.awt.Font("Perpetua Titling MT", 1, 11)); // NOI18N
+        save_edit_button.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gfcl/images/save_small.png"))); // NOI18N
+        save_edit_button.setText("Save");
+        save_edit_button.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        save_edit_button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                save_edit_buttonActionPerformed(evt);
+            }
+        });
+        save_edit_button.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                save_edit_buttonKeyReleased(evt);
             }
         });
 
@@ -308,9 +389,9 @@ public class GarmentDetailFrame extends javax.swing.JInternalFrame {
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(save_new_button1)
+                .addComponent(save_edit_button, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(cancel_new_button1)
+                .addComponent(cancel_edit_button, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         jPanel9Layout.setVerticalGroup(
@@ -318,10 +399,17 @@ public class GarmentDetailFrame extends javax.swing.JInternalFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
                 .addContainerGap(24, Short.MAX_VALUE)
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cancel_new_button1)
-                    .addComponent(save_new_button1))
+                    .addComponent(cancel_edit_button)
+                    .addComponent(save_edit_button))
                 .addContainerGap())
         );
+
+        garment_edit_combo.setFont(new java.awt.Font("SansSerif", 0, 11)); // NOI18N
+        garment_edit_combo.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                garment_edit_comboItemStateChanged(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
@@ -333,19 +421,16 @@ public class GarmentDetailFrame extends javax.swing.JInternalFrame {
                     .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel8Layout.createSequentialGroup()
                         .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel8Layout.createSequentialGroup()
-                                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel7)
-                                    .addComponent(jLabel8))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(waxing_stipend_text1, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(sewing_stipend_text1, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(jPanel8Layout.createSequentialGroup()
-                                .addComponent(jLabel5)
-                                .addGap(40, 40, 40)
-                                .addComponent(garment_edit_combo, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 478, Short.MAX_VALUE)))
+                            .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jLabel7)
+                                .addComponent(jLabel8))
+                            .addComponent(jLabel5))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(garment_edit_combo, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(waxing_stipend_text1, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(sewing_stipend_text1, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 467, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel8Layout.setVerticalGroup(
@@ -365,7 +450,7 @@ public class GarmentDetailFrame extends javax.swing.JInternalFrame {
                     .addComponent(jLabel8))
                 .addGap(66, 66, 66)
                 .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(212, Short.MAX_VALUE))
+                .addContainerGap(209, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -385,7 +470,7 @@ public class GarmentDetailFrame extends javax.swing.JInternalFrame {
                 .addContainerGap())
         );
 
-        jTabbedPane1.addTab("Edit Garment Stipends", jPanel3);
+        jTabbedPane1.addTab("Edit Garment Stipends", new javax.swing.ImageIcon(getClass().getResource("/gfcl/images/calculator.png")), jPanel3); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -423,7 +508,7 @@ public class GarmentDetailFrame extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_save_new_buttonActionPerformed
 
-    private void save_new_button1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_save_new_button1ActionPerformed
+    private void save_edit_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_save_edit_buttonActionPerformed
         if(garment_edit_combo.getSelectedItem()!=null){
             String selected=garment_edit_combo.getSelectedItem().toString();
             if(selected.length()>4){
@@ -446,15 +531,15 @@ public class GarmentDetailFrame extends javax.swing.JInternalFrame {
                 
             }
         }
-    }//GEN-LAST:event_save_new_button1ActionPerformed
+    }//GEN-LAST:event_save_edit_buttonActionPerformed
 
-    private void cancel_new_button1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancel_new_button1ActionPerformed
+    private void cancel_edit_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancel_edit_buttonActionPerformed
         try {
             createNewUpdateForm();
         } catch (RemoteException | SQLException | ClassNotFoundException ex) {
             Logger.getLogger(GarmentDetailFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_cancel_new_button1ActionPerformed
+    }//GEN-LAST:event_cancel_edit_buttonActionPerformed
 
     private void cancel_new_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancel_new_buttonActionPerformed
         try {
@@ -463,6 +548,92 @@ public class GarmentDetailFrame extends javax.swing.JInternalFrame {
             Logger.getLogger(GarmentDetailFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_cancel_new_buttonActionPerformed
+
+    private void garment_edit_comboItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_garment_edit_comboItemStateChanged
+        if(garment_edit_combo.getSelectedItem()!=null){
+            String selected=garment_edit_combo.getSelectedItem().toString();
+            if(selected.length()>4){
+                try {
+                    String garment_id=selected.substring(selected.length()-4);
+                    Garment searchGarment = garmentController.searchGarment(garment_id);
+                    if(searchGarment!=null){
+                        sewing_stipend_text1.setText(String.valueOf(searchGarment.getSewing_stipend()));
+                        waxing_stipend_text1.setText(String.valueOf(searchGarment.getWaxing_stipend()));
+                    }
+                } catch (RemoteException | SQLException | ClassNotFoundException ex) {
+                    Logger.getLogger(GarmentDetailFrame.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+        
+    }//GEN-LAST:event_garment_edit_comboItemStateChanged
+
+    private void sewing_stipend_text1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_sewing_stipend_text1KeyReleased
+        String checkDecimal = PatternChecker.checkDecimal(sewing_stipend_text1.getText());
+        sewing_stipend_text1.setText(checkDecimal);
+        
+        if(evt.getKeyCode()==KeyEvent.VK_ENTER){
+            waxing_stipend_text1.requestFocus();
+        }else if(evt.getKeyCode()==KeyEvent.VK_UP){
+            garment_edit_combo.requestFocus();
+        }
+    }//GEN-LAST:event_sewing_stipend_text1KeyReleased
+
+    private void waxing_stipend_text1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_waxing_stipend_text1KeyReleased
+        String checkDecimal = PatternChecker.checkDecimal(waxing_stipend_text1.getText());
+        waxing_stipend_text1.setText(checkDecimal);
+        
+        if(evt.getKeyCode()==KeyEvent.VK_ENTER){
+            save_edit_button.requestFocus();
+        }else if(evt.getKeyCode()==KeyEvent.VK_UP){
+            sewing_stipend_text1.requestFocus();
+        }
+    }//GEN-LAST:event_waxing_stipend_text1KeyReleased
+
+    private void save_edit_buttonKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_save_edit_buttonKeyReleased
+        if(evt.getKeyCode()==KeyEvent.VK_ENTER){
+            save_edit_button.doClick();
+        }else if(evt.getKeyCode()==KeyEvent.VK_RIGHT){
+            cancel_edit_button.requestFocus();
+        }
+    }//GEN-LAST:event_save_edit_buttonKeyReleased
+
+    private void cancel_edit_buttonKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cancel_edit_buttonKeyReleased
+        if(evt.getKeyCode()==KeyEvent.VK_ENTER){
+            cancel_edit_button.doClick();
+        }else if(evt.getKeyCode()==KeyEvent.VK_UP){
+            save_edit_button.requestFocus();
+        }
+    }//GEN-LAST:event_cancel_edit_buttonKeyReleased
+
+    private void sewing_stipend_textKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_sewing_stipend_textKeyReleased
+        String checkDecimal = PatternChecker.checkDecimal(sewing_stipend_text.getText());
+        sewing_stipend_text.setText(checkDecimal);
+        
+        if(evt.getKeyCode()==KeyEvent.VK_ENTER || evt.getKeyCode()==KeyEvent.VK_DOWN ){
+            waxing_stipend_text.requestFocus();
+        }else if(evt.getKeyCode()==KeyEvent.VK_UP){
+            garment_name_text.requestFocus();
+        }
+    }//GEN-LAST:event_sewing_stipend_textKeyReleased
+
+    private void garment_name_textKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_garment_name_textKeyReleased
+        if(evt.getKeyCode()==KeyEvent.VK_ENTER || evt.getKeyCode()==KeyEvent.VK_DOWN ){
+            sewing_stipend_text.requestFocus();
+        }else if(evt.getKeyCode()==KeyEvent.VK_UP){
+            garment_name_text.requestFocus();;
+        }
+    }//GEN-LAST:event_garment_name_textKeyReleased
+
+    private void waxing_stipend_textKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_waxing_stipend_textKeyReleased
+        String checkDecimal = PatternChecker.checkDecimal(waxing_stipend_text.getText());
+        waxing_stipend_text.setText(checkDecimal);
+        if(evt.getKeyCode()==KeyEvent.VK_ENTER || evt.getKeyCode()==KeyEvent.VK_DOWN ){
+            save_new_button.requestFocus();
+        }else if(evt.getKeyCode()==KeyEvent.VK_UP){
+            sewing_stipend_text.requestFocus();;
+        }
+    }//GEN-LAST:event_waxing_stipend_textKeyReleased
 
     private void createNewForm() throws RemoteException, SQLException, ClassNotFoundException{
         garment_id_text.setText(IdGenerator.generateNextGarmentID(garmentController.getLastGarmentId()));
@@ -478,8 +649,8 @@ public class GarmentDetailFrame extends javax.swing.JInternalFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton cancel_edit_button;
     private javax.swing.JButton cancel_new_button;
-    private javax.swing.JButton cancel_new_button1;
     private javax.swing.JComboBox<String> garment_edit_combo;
     private javax.swing.JTextField garment_id_text;
     private javax.swing.JTextField garment_name_text;
@@ -503,8 +674,8 @@ public class GarmentDetailFrame extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JButton save_edit_button;
     private javax.swing.JButton save_new_button;
-    private javax.swing.JButton save_new_button1;
     private javax.swing.JTextField sewing_stipend_text;
     private javax.swing.JTextField sewing_stipend_text1;
     private javax.swing.JTextField waxing_stipend_text;
