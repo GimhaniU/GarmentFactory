@@ -15,6 +15,7 @@ import gfcl.common_classes.ComboItemsAdder;
 import gfcl.common_classes.IdGenerator;
 import gfcl.common_classes.PatternChecker;
 import gfcl.connector.Connector;
+import java.awt.event.KeyEvent;
 import java.net.MalformedURLException;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
@@ -52,8 +53,8 @@ public class IncomeSummaryFrame extends javax.swing.JInternalFrame {
             Connector connector = Connector.getSConnector();
             expenseController = connector.getExpenseController();
             incomeController = connector.getIncomeController();
-            stockController=connector.getStockController();
-            customerOrderController=connector.getCustomerOrderController();
+            stockController = connector.getStockController();
+            customerOrderController = connector.getCustomerOrderController();
 
             DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
             Date date = new Date();
@@ -79,6 +80,10 @@ public class IncomeSummaryFrame extends javax.swing.JInternalFrame {
                 yearCombo1.addItem(String.valueOf(year));
                 year--;
             }
+
+            invalid_date_format_label.setVisible(false);
+            invalid_expense_label.setVisible(false);
+            no_expense_name_label.setVisible(false);
 
         } catch (NotBoundException | MalformedURLException | RemoteException | SQLException | ClassNotFoundException ex) {
             Logger.getLogger(IncomeSummaryFrame.class.getName()).log(Level.SEVERE, null, ex);
@@ -165,6 +170,9 @@ public class IncomeSummaryFrame extends javax.swing.JInternalFrame {
         jPanel4 = new javax.swing.JPanel();
         cancel_button = new javax.swing.JButton();
         save_button = new javax.swing.JButton();
+        invalid_date_format_label = new javax.swing.JLabel();
+        invalid_expense_label = new javax.swing.JLabel();
+        no_expense_name_label = new javax.swing.JLabel();
         jPanel13 = new javax.swing.JPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
         jPanel14 = new javax.swing.JPanel();
@@ -184,13 +192,26 @@ public class IncomeSummaryFrame extends javax.swing.JInternalFrame {
         tabpane.setForeground(new java.awt.Color(0, 0, 204));
         tabpane.setFont(new java.awt.Font("SansSerif", 3, 11)); // NOI18N
 
+        jTabbedPane1.setFont(new java.awt.Font("SansSerif", 1, 11)); // NOI18N
+
         jPanel10.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
+        jLabel5.setFont(new java.awt.Font("SansSerif", 1, 11)); // NOI18N
         jLabel5.setText("Select month:");
 
+        monthCombo.setFont(new java.awt.Font("SansSerif", 0, 11)); // NOI18N
         monthCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December", " " }));
 
+        yearCombo.setFont(new java.awt.Font("SansSerif", 0, 11)); // NOI18N
+        yearCombo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                yearComboKeyReleased(evt);
+            }
+        });
+
+        view_monthly_summary.setFont(new java.awt.Font("SansSerif", 0, 11)); // NOI18N
         view_monthly_summary.setText("View income-expense");
+        view_monthly_summary.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         view_monthly_summary.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 view_monthly_summaryActionPerformed(evt);
@@ -208,9 +229,9 @@ public class IncomeSummaryFrame extends javax.swing.JInternalFrame {
                 .addComponent(monthCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(yearCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(38, 38, 38)
+                .addGap(28, 28, 28)
                 .addComponent(view_monthly_summary)
-                .addContainerGap(233, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel10Layout.setVerticalGroup(
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -224,10 +245,15 @@ public class IncomeSummaryFrame extends javax.swing.JInternalFrame {
                 .addContainerGap(21, Short.MAX_VALUE))
         );
 
-        income_month_panel.setBorder(javax.swing.BorderFactory.createTitledBorder("Income Summary"));
+        income_month_panel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Income Summary", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("SansSerif", 2, 11))); // NOI18N
 
+        jLabel7.setFont(new java.awt.Font("SansSerif", 1, 11)); // NOI18N
         jLabel7.setText("Sales:");
 
+        sales_income_text.setEditable(false);
+        sales_income_text.setFont(new java.awt.Font("SansSerif", 0, 11)); // NOI18N
+
+        income_summary_table.setFont(new java.awt.Font("SansSerif", 0, 11)); // NOI18N
         income_summary_table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -235,11 +261,25 @@ public class IncomeSummaryFrame extends javax.swing.JInternalFrame {
             new String [] {
                 "Income_id", "Income", "Date", "Amount"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, true, true
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        income_summary_table.getTableHeader().setReorderingAllowed(false);
         jScrollPane5.setViewportView(income_summary_table);
 
+        jLabel14.setFont(new java.awt.Font("SansSerif", 1, 11)); // NOI18N
         jLabel14.setText("Other income:");
 
+        total_income_text.setEditable(false);
+        total_income_text.setFont(new java.awt.Font("SansSerif", 0, 11)); // NOI18N
+
+        jLabel16.setFont(new java.awt.Font("SansSerif", 1, 11)); // NOI18N
         jLabel16.setText("Total income:");
 
         javax.swing.GroupLayout income_month_panelLayout = new javax.swing.GroupLayout(income_month_panel);
@@ -251,9 +291,9 @@ public class IncomeSummaryFrame extends javax.swing.JInternalFrame {
                 .addGroup(income_month_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(income_month_panelLayout.createSequentialGroup()
                         .addComponent(jLabel7)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 526, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 542, Short.MAX_VALUE)
                         .addComponent(sales_income_text, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 688, Short.MAX_VALUE)
+                    .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 708, Short.MAX_VALUE)
                     .addGroup(income_month_panelLayout.createSequentialGroup()
                         .addComponent(jLabel14)
                         .addGap(0, 0, Short.MAX_VALUE))
@@ -282,8 +322,9 @@ public class IncomeSummaryFrame extends javax.swing.JInternalFrame {
                 .addContainerGap(22, Short.MAX_VALUE))
         );
 
-        jPanel12.setBorder(javax.swing.BorderFactory.createTitledBorder("Expense Summary"));
+        jPanel12.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Expense Summary", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("SansSerif", 2, 11))); // NOI18N
 
+        expense_summary_table.setFont(new java.awt.Font("SansSerif", 0, 11)); // NOI18N
         expense_summary_table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -291,13 +332,31 @@ public class IncomeSummaryFrame extends javax.swing.JInternalFrame {
             new String [] {
                 "Expense_id", "Expense", "Date", "Amount"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        expense_summary_table.getTableHeader().setReorderingAllowed(false);
         jScrollPane3.setViewportView(expense_summary_table);
 
+        jLabel8.setFont(new java.awt.Font("SansSerif", 1, 11)); // NOI18N
         jLabel8.setText("Total expense:");
 
+        total_expense_text.setEditable(false);
+        total_expense_text.setFont(new java.awt.Font("SansSerif", 0, 11)); // NOI18N
+
+        jLabel13.setFont(new java.awt.Font("SansSerif", 1, 11)); // NOI18N
         jLabel13.setText("Expense to buy materials within month:");
 
+        buying_material_text.setEditable(false);
+        buying_material_text.setFont(new java.awt.Font("SansSerif", 0, 11)); // NOI18N
+
+        jLabel15.setFont(new java.awt.Font("SansSerif", 1, 11)); // NOI18N
         jLabel15.setText("Other expenses:");
 
         javax.swing.GroupLayout jPanel12Layout = new javax.swing.GroupLayout(jPanel12);
@@ -307,7 +366,7 @@ public class IncomeSummaryFrame extends javax.swing.JInternalFrame {
             .addGroup(jPanel12Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 688, Short.MAX_VALUE)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 708, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel12Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -339,7 +398,13 @@ public class IncomeSummaryFrame extends javax.swing.JInternalFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        jPanel17.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        jLabel17.setFont(new java.awt.Font("SansSerif", 1, 11)); // NOI18N
         jLabel17.setText("Estimated profit:");
+
+        profit_text.setEditable(false);
+        profit_text.setFont(new java.awt.Font("SansSerif", 0, 11)); // NOI18N
 
         javax.swing.GroupLayout jPanel17Layout = new javax.swing.GroupLayout(jPanel17);
         jPanel17.setLayout(jPanel17Layout);
@@ -347,8 +412,8 @@ public class IncomeSummaryFrame extends javax.swing.JInternalFrame {
             jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel17Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(profit_text, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -359,7 +424,7 @@ public class IncomeSummaryFrame extends javax.swing.JInternalFrame {
                 .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel17)
                     .addComponent(profit_text, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(69, Short.MAX_VALUE))
+                .addContainerGap(19, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
@@ -386,7 +451,7 @@ public class IncomeSummaryFrame extends javax.swing.JInternalFrame {
                 .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(171, Short.MAX_VALUE))
+                .addContainerGap(221, Short.MAX_VALUE))
         );
 
         jScrollPane1.setViewportView(jPanel8);
@@ -396,13 +461,13 @@ public class IncomeSummaryFrame extends javax.swing.JInternalFrame {
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 787, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 788, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 704, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
@@ -410,9 +475,19 @@ public class IncomeSummaryFrame extends javax.swing.JInternalFrame {
 
         jPanel19.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
+        jLabel18.setFont(new java.awt.Font("SansSerif", 1, 11)); // NOI18N
         jLabel18.setText("Select year:");
 
+        yearCombo1.setFont(new java.awt.Font("SansSerif", 0, 11)); // NOI18N
+        yearCombo1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                yearCombo1KeyReleased(evt);
+            }
+        });
+
+        view_yearly_summary.setFont(new java.awt.Font("SansSerif", 0, 11)); // NOI18N
         view_yearly_summary.setText("View income-expense");
+        view_yearly_summary.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         view_yearly_summary.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 view_yearly_summaryActionPerformed(evt);
@@ -425,12 +500,12 @@ public class IncomeSummaryFrame extends javax.swing.JInternalFrame {
             jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel19Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel18)
-                .addGap(18, 18, 18)
+                .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(yearCombo1, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(view_yearly_summary)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(422, Short.MAX_VALUE))
         );
         jPanel19Layout.setVerticalGroup(
             jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -443,10 +518,15 @@ public class IncomeSummaryFrame extends javax.swing.JInternalFrame {
                 .addContainerGap(21, Short.MAX_VALUE))
         );
 
-        income_month_panel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Income Summary"));
+        income_month_panel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Income Summary", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("SansSerif", 2, 11))); // NOI18N
 
+        jLabel19.setFont(new java.awt.Font("SansSerif", 1, 11)); // NOI18N
         jLabel19.setText("Sales:");
 
+        sales_income_text1.setEditable(false);
+        sales_income_text1.setFont(new java.awt.Font("SansSerif", 0, 11)); // NOI18N
+
+        income_summary_table1.setFont(new java.awt.Font("SansSerif", 0, 11)); // NOI18N
         income_summary_table1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -454,11 +534,25 @@ public class IncomeSummaryFrame extends javax.swing.JInternalFrame {
             new String [] {
                 "Income_id", "Income", "Date", "Amount"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        income_summary_table1.getTableHeader().setReorderingAllowed(false);
         jScrollPane6.setViewportView(income_summary_table1);
 
+        jLabel20.setFont(new java.awt.Font("SansSerif", 1, 11)); // NOI18N
         jLabel20.setText("Other income:");
 
+        total_income_text1.setEditable(false);
+        total_income_text1.setFont(new java.awt.Font("SansSerif", 0, 11)); // NOI18N
+
+        jLabel21.setFont(new java.awt.Font("SansSerif", 1, 11)); // NOI18N
         jLabel21.setText("Total income:");
 
         javax.swing.GroupLayout income_month_panel1Layout = new javax.swing.GroupLayout(income_month_panel1);
@@ -472,7 +566,7 @@ public class IncomeSummaryFrame extends javax.swing.JInternalFrame {
                         .addComponent(jLabel19)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 526, Short.MAX_VALUE)
                         .addComponent(sales_income_text1, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 688, Short.MAX_VALUE)
+                    .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 692, Short.MAX_VALUE)
                     .addGroup(income_month_panel1Layout.createSequentialGroup()
                         .addComponent(jLabel20)
                         .addGap(0, 0, Short.MAX_VALUE))
@@ -501,8 +595,9 @@ public class IncomeSummaryFrame extends javax.swing.JInternalFrame {
                 .addContainerGap(22, Short.MAX_VALUE))
         );
 
-        jPanel20.setBorder(javax.swing.BorderFactory.createTitledBorder("Expense Summary"));
+        jPanel20.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Expense Summary", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("SansSerif", 2, 11))); // NOI18N
 
+        expense_summary_table1.setFont(new java.awt.Font("SansSerif", 0, 11)); // NOI18N
         expense_summary_table1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -510,13 +605,31 @@ public class IncomeSummaryFrame extends javax.swing.JInternalFrame {
             new String [] {
                 "Expense_id", "Expense", "Date", "Amount"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, true, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        expense_summary_table1.getTableHeader().setReorderingAllowed(false);
         jScrollPane7.setViewportView(expense_summary_table1);
 
+        jLabel22.setFont(new java.awt.Font("SansSerif", 1, 11)); // NOI18N
         jLabel22.setText("Total expense:");
 
+        total_expense_text1.setEditable(false);
+        total_expense_text1.setFont(new java.awt.Font("SansSerif", 0, 11)); // NOI18N
+
+        jLabel23.setFont(new java.awt.Font("SansSerif", 1, 11)); // NOI18N
         jLabel23.setText("Expense to buy materials within month:");
 
+        buying_material_text1.setEditable(false);
+        buying_material_text1.setFont(new java.awt.Font("SansSerif", 0, 11)); // NOI18N
+
+        jLabel24.setFont(new java.awt.Font("SansSerif", 1, 11)); // NOI18N
         jLabel24.setText("Other expenses:");
 
         javax.swing.GroupLayout jPanel20Layout = new javax.swing.GroupLayout(jPanel20);
@@ -526,7 +639,7 @@ public class IncomeSummaryFrame extends javax.swing.JInternalFrame {
             .addGroup(jPanel20Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 688, Short.MAX_VALUE)
+                    .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 692, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel20Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -558,7 +671,13 @@ public class IncomeSummaryFrame extends javax.swing.JInternalFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        jPanel21.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        jLabel25.setFont(new java.awt.Font("SansSerif", 1, 11)); // NOI18N
         jLabel25.setText("Estimated profit:");
+
+        profit_text1.setEditable(false);
+        profit_text1.setFont(new java.awt.Font("SansSerif", 0, 11)); // NOI18N
 
         javax.swing.GroupLayout jPanel21Layout = new javax.swing.GroupLayout(jPanel21);
         jPanel21.setLayout(jPanel21Layout);
@@ -566,7 +685,7 @@ public class IncomeSummaryFrame extends javax.swing.JInternalFrame {
             jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel21Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel25, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLabel25, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(profit_text1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -578,7 +697,7 @@ public class IncomeSummaryFrame extends javax.swing.JInternalFrame {
                 .addGroup(jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel25)
                     .addComponent(profit_text1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(69, Short.MAX_VALUE))
+                .addContainerGap(19, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel18Layout = new javax.swing.GroupLayout(jPanel18);
@@ -605,7 +724,7 @@ public class IncomeSummaryFrame extends javax.swing.JInternalFrame {
                 .addComponent(jPanel20, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel21, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(171, Short.MAX_VALUE))
+                .addContainerGap(15, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
@@ -619,10 +738,10 @@ public class IncomeSummaryFrame extends javax.swing.JInternalFrame {
         );
         jPanel9Layout.setVerticalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel9Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel18, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addContainerGap(206, Short.MAX_VALUE))
         );
 
         jScrollPane2.setViewportView(jPanel9);
@@ -631,11 +750,13 @@ public class IncomeSummaryFrame extends javax.swing.JInternalFrame {
         jPanel7.setLayout(jPanel7Layout);
         jPanel7Layout.setHorizontalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane2)
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 798, Short.MAX_VALUE)
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 692, Short.MAX_VALUE)
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 713, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 54, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("For year", jPanel7);
@@ -648,7 +769,9 @@ public class IncomeSummaryFrame extends javax.swing.JInternalFrame {
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 720, Short.MAX_VALUE)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 796, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -664,32 +787,62 @@ public class IncomeSummaryFrame extends javax.swing.JInternalFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, 743, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         tabpane.addTab("View Expense-Income summary", new javax.swing.ImageIcon(getClass().getResource("/gfcl/images/report16.png")), jPanel2); // NOI18N
 
-        jLabel1.setText("Date:");
+        jLabel1.setFont(new java.awt.Font("SansSerif", 1, 11)); // NOI18N
+        jLabel1.setText("Date of Expense:");
 
+        date_text.setFont(new java.awt.Font("SansSerif", 0, 11)); // NOI18N
+        date_text.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                date_textKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                date_textKeyReleased(evt);
+            }
+        });
+
+        jLabel2.setFont(new java.awt.Font("SansSerif", 1, 11)); // NOI18N
         jLabel2.setText("Expense Id:");
 
         expense_id_text.setEditable(false);
+        expense_id_text.setFont(new java.awt.Font("SansSerif", 0, 11)); // NOI18N
 
+        jLabel3.setFont(new java.awt.Font("SansSerif", 1, 11)); // NOI18N
         jLabel3.setText("Add Expense Type:");
 
+        expense_type_combo.setFont(new java.awt.Font("SansSerif", 0, 11)); // NOI18N
+        expense_type_combo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                expense_type_comboKeyReleased(evt);
+            }
+        });
+
+        jLabel4.setFont(new java.awt.Font("SansSerif", 1, 11)); // NOI18N
         jLabel4.setText("Expense Amount: Rs.");
 
-        jPanel4.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        amount_text.setFont(new java.awt.Font("SansSerif", 0, 11)); // NOI18N
 
+        jPanel4.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
+        cancel_button.setFont(new java.awt.Font("Perpetua Titling MT", 1, 11)); // NOI18N
+        cancel_button.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gfcl/images/cancel_icon.png"))); // NOI18N
         cancel_button.setText("Cancel");
+        cancel_button.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         cancel_button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cancel_buttonActionPerformed(evt);
             }
         });
 
+        save_button.setFont(new java.awt.Font("Perpetua Titling MT", 1, 11)); // NOI18N
+        save_button.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gfcl/images/save_small.png"))); // NOI18N
         save_button.setText("Save");
+        save_button.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         save_button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 save_buttonActionPerformed(evt);
@@ -702,7 +855,7 @@ public class IncomeSummaryFrame extends javax.swing.JInternalFrame {
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(save_button)
+                .addComponent(save_button, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(cancel_button)
                 .addContainerGap())
@@ -717,6 +870,18 @@ public class IncomeSummaryFrame extends javax.swing.JInternalFrame {
                 .addContainerGap())
         );
 
+        invalid_date_format_label.setFont(new java.awt.Font("SansSerif", 0, 11)); // NOI18N
+        invalid_date_format_label.setForeground(new java.awt.Color(255, 0, 0));
+        invalid_date_format_label.setText("invalid date format!");
+
+        invalid_expense_label.setFont(new java.awt.Font("SansSerif", 0, 11)); // NOI18N
+        invalid_expense_label.setForeground(new java.awt.Color(255, 0, 0));
+        invalid_expense_label.setText("invalid  expense value!");
+
+        no_expense_name_label.setFont(new java.awt.Font("SansSerif", 0, 11)); // NOI18N
+        no_expense_name_label.setForeground(new java.awt.Color(255, 0, 0));
+        no_expense_name_label.setText("Please give an expense name");
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -728,26 +893,35 @@ public class IncomeSummaryFrame extends javax.swing.JInternalFrame {
                         .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addContainerGap())
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(date_text, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel2)
-                        .addGap(18, 18, 18)
-                        .addComponent(expense_id_text, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(39, 39, 39))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel4)
-                            .addComponent(jLabel3))
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel1))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(expense_type_combo, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap(432, Short.MAX_VALUE))
-                            .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addComponent(amount_text, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))))))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(invalid_expense_label, javax.swing.GroupLayout.DEFAULT_SIZE, 111, Short.MAX_VALUE)
+                                .addGap(410, 410, 410))
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel3Layout.createSequentialGroup()
+                                        .addComponent(date_text, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(invalid_date_format_label, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(expense_type_combo, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel3Layout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jLabel2)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(expense_id_text, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(39, 39, 39))
+                                    .addGroup(jPanel3Layout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(no_expense_name_label)
+                                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -757,15 +931,18 @@ public class IncomeSummaryFrame extends javax.swing.JInternalFrame {
                     .addComponent(jLabel1)
                     .addComponent(date_text, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2)
-                    .addComponent(expense_id_text, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(expense_id_text, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(invalid_date_format_label))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(expense_type_combo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(expense_type_combo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(no_expense_name_label))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(amount_text, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(amount_text, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(invalid_expense_label))
                 .addGap(60, 60, 60)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(22, Short.MAX_VALUE))
@@ -785,31 +962,53 @@ public class IncomeSummaryFrame extends javax.swing.JInternalFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(487, Short.MAX_VALUE))
+                .addContainerGap(506, Short.MAX_VALUE))
         );
 
         tabpane.addTab("Add Expense", new javax.swing.ImageIcon(getClass().getResource("/gfcl/images/report--minus.png")), jPanel1); // NOI18N
 
-        jLabel9.setText("Date:");
+        jLabel9.setFont(new java.awt.Font("SansSerif", 1, 11)); // NOI18N
+        jLabel9.setText("Date of Expense:");
 
+        date_text1.setFont(new java.awt.Font("SansSerif", 0, 11)); // NOI18N
+        date_text1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                date_text1ActionPerformed(evt);
+            }
+        });
+
+        jLabel10.setFont(new java.awt.Font("SansSerif", 1, 11)); // NOI18N
         jLabel10.setText("Income Id:");
 
         income_id_text.setEditable(false);
+        income_id_text.setFont(new java.awt.Font("SansSerif", 0, 11)); // NOI18N
 
+        jLabel11.setFont(new java.awt.Font("SansSerif", 1, 11)); // NOI18N
         jLabel11.setText("Add Income Type:");
 
+        income_type_combo.setFont(new java.awt.Font("SansSerif", 0, 11)); // NOI18N
+
+        jLabel12.setFont(new java.awt.Font("SansSerif", 1, 11)); // NOI18N
         jLabel12.setText("Income Amount: Rs.");
 
-        jPanel16.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        amount_text1.setFont(new java.awt.Font("SansSerif", 0, 11)); // NOI18N
 
+        jPanel16.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
+        cancel_button1.setFont(new java.awt.Font("Perpetua Titling MT", 1, 11)); // NOI18N
+        cancel_button1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gfcl/images/cancel_icon.png"))); // NOI18N
         cancel_button1.setText("Cancel");
+        cancel_button1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         cancel_button1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cancel_button1ActionPerformed(evt);
             }
         });
 
+        save_button1.setFont(new java.awt.Font("Perpetua Titling MT", 1, 11)); // NOI18N
+        save_button1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gfcl/images/save_small.png"))); // NOI18N
         save_button1.setText("Save");
+        save_button1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         save_button1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 save_button1ActionPerformed(evt);
@@ -822,7 +1021,7 @@ public class IncomeSummaryFrame extends javax.swing.JInternalFrame {
             jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel16Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(save_button1)
+                .addComponent(save_button1, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(cancel_button1)
                 .addContainerGap())
@@ -848,20 +1047,19 @@ public class IncomeSummaryFrame extends javax.swing.JInternalFrame {
                         .addComponent(jPanel16, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addContainerGap())
                     .addGroup(jPanel15Layout.createSequentialGroup()
-                        .addComponent(jLabel9)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(date_text1, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel10)
-                        .addGap(18, 18, 18)
-                        .addComponent(income_id_text, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(39, 39, 39))
-                    .addGroup(jPanel15Layout.createSequentialGroup()
                         .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel12)
-                            .addComponent(jLabel11))
+                            .addComponent(jLabel11)
+                            .addComponent(jLabel9))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel15Layout.createSequentialGroup()
+                                .addComponent(date_text1, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel10)
+                                .addGap(18, 18, 18)
+                                .addComponent(income_id_text, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(39, 39, 39))
                             .addGroup(jPanel15Layout.createSequentialGroup()
                                 .addComponent(income_type_combo, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addContainerGap(436, Short.MAX_VALUE))
@@ -905,7 +1103,7 @@ public class IncomeSummaryFrame extends javax.swing.JInternalFrame {
             .addGroup(jPanel14Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(485, Short.MAX_VALUE))
+                .addContainerGap(795, Short.MAX_VALUE))
         );
 
         jScrollPane4.setViewportView(jPanel14);
@@ -914,11 +1112,11 @@ public class IncomeSummaryFrame extends javax.swing.JInternalFrame {
         jPanel13.setLayout(jPanel13Layout);
         jPanel13Layout.setHorizontalGroup(
             jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane4)
+            .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 823, Short.MAX_VALUE)
         );
         jPanel13Layout.setVerticalGroup(
             jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane4)
+            .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 766, Short.MAX_VALUE)
         );
 
         tabpane.addTab("Add Income", new javax.swing.ImageIcon(getClass().getResource("/gfcl/images/report--plus.png")), jPanel13); // NOI18N
@@ -931,33 +1129,43 @@ public class IncomeSummaryFrame extends javax.swing.JInternalFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(tabpane)
-                .addContainerGap())
+            .addComponent(tabpane, javax.swing.GroupLayout.PREFERRED_SIZE, 789, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void save_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_save_buttonActionPerformed
-        try {
-            String expense_id = expense_id_text.getText();
-            String expense_name = expense_type_combo.getSelectedItem().toString();
-            double amount = Double.valueOf(amount_text.getText());
-            String date = date_text.getText();
-            Expense expense = new Expense(expense_id, expense_name, date, amount);
-            System.out.println(expense_name);
-            int addNewExpense = 0;
-            addNewExpense = expenseController.addNewExpense(expense);
-            if (addNewExpense > 0) {
-                JOptionPane.showMessageDialog(this, "Expense added successfully");
-                createNewForm("Expense");
-            } else {
-                JOptionPane.showMessageDialog(this, "Expense failed to add!");
+        if (expense_type_combo.getSelectedItem() == null || !PatternChecker.checkDecimaldirect(amount_text.getText()) || !PatternChecker.dateFormatChecker(date_text.getText())) {
+            if(expense_type_combo.getSelectedItem() == null){
+                no_expense_name_label.setVisible(true);
             }
+            if(!PatternChecker.checkDecimaldirect(amount_text.getText())){
+                invalid_expense_label.setVisible(true);
+            }
+            if(!PatternChecker.dateFormatChecker(date_text.getText())){
+                invalid_date_format_label.setVisible(true);
+            }
+        } else {
+            try {
+                String expense_id = expense_id_text.getText();
+                String expense_name = expense_type_combo.getSelectedItem().toString();
+                double amount = Double.valueOf(amount_text.getText());
+                String date = date_text.getText();
+                Expense expense = new Expense(expense_id, expense_name, date, amount);
+                System.out.println(expense_name);
+                int addNewExpense = 0;
+                addNewExpense = expenseController.addNewExpense(expense);
+                if (addNewExpense > 0) {
+                    JOptionPane.showMessageDialog(this, "Expense added successfully");
+                    createNewForm("Expense");
+                } else {
+                    JOptionPane.showMessageDialog(this, "Expense failed to add!");
+                }
 
-        } catch (RemoteException | SQLException | ClassNotFoundException ex) {
-            Logger.getLogger(IncomeSummaryFrame.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (RemoteException | SQLException | ClassNotFoundException ex) {
+                Logger.getLogger(IncomeSummaryFrame.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }//GEN-LAST:event_save_buttonActionPerformed
 
@@ -975,7 +1183,7 @@ public class IncomeSummaryFrame extends javax.swing.JInternalFrame {
             int year = Integer.valueOf(yearCombo.getSelectedItem().toString());
             ArrayList<Expense> monthlyExpenses = new ArrayList<>();
             monthlyExpenses = expenseController.getMonthlyExpenses(year, month);
-            DefaultTableModel dtm =(DefaultTableModel) expense_summary_table.getModel();
+            DefaultTableModel dtm = (DefaultTableModel) expense_summary_table.getModel();
             double expense_sum = 0;
             for (Expense expense : monthlyExpenses) {
                 Object rowdata[] = {expense.getExpense_id(), expense.getExpense(), expense.getDateOfExp(), expense.getAmount()};
@@ -983,21 +1191,21 @@ public class IncomeSummaryFrame extends javax.swing.JInternalFrame {
                 expense_sum += expense.getAmount();
             }
             buying_material_text.setText(String.valueOf(stockController.getMonthlyCostForMaterial(year, month)));
-            total_expense_text.setText(String.valueOf(expense_sum+ Double.valueOf(sales_income_text.getText())));
-        
+            total_expense_text.setText(String.valueOf(expense_sum + Double.valueOf(sales_income_text.getText())));
+
             ArrayList<Income> monthlyIncomes = new ArrayList<>();
             monthlyIncomes = incomeController.getMonthlyIncomeList(year, month);
             DefaultTableModel dtm_in = (DefaultTableModel) income_summary_table.getModel();
             double income_sum = 0;
             for (Income income : monthlyIncomes) {
-                Object rowdata[] = {income.getIncome_id(), income.getIncome(),income.getDateOfInc(), income.getAmount()};
+                Object rowdata[] = {income.getIncome_id(), income.getIncome(), income.getDateOfInc(), income.getAmount()};
                 dtm_in.addRow(rowdata);
                 income_sum += income.getAmount();
             }
             sales_income_text.setText(String.valueOf(customerOrderController.getMonthlySalesIncome(year, month)));
-            total_income_text.setText(String.valueOf(income_sum+ Double.valueOf(sales_income_text1.getText())));
-        
-            profit_text.setText(String.valueOf(Double.valueOf(total_income_text.getText())-Double.valueOf(total_expense_text.getText())));
+            total_income_text.setText(String.valueOf(income_sum + Double.valueOf(sales_income_text1.getText())));
+
+            profit_text.setText(String.valueOf(Double.valueOf(total_income_text.getText()) - Double.valueOf(total_expense_text.getText())));
         } catch (RemoteException | SQLException | ClassNotFoundException ex) {
             Logger.getLogger(IncomeSummaryFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -1035,11 +1243,11 @@ public class IncomeSummaryFrame extends javax.swing.JInternalFrame {
 
     private void view_yearly_summaryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_view_yearly_summaryActionPerformed
         try {
-           
+
             int year = Integer.valueOf(yearCombo1.getSelectedItem().toString());
             ArrayList<Expense> yearlyExpenses = new ArrayList<>();
             yearlyExpenses = expenseController.getYearlyExpenses(year);
-            DefaultTableModel dtm =(DefaultTableModel) expense_summary_table1.getModel();
+            DefaultTableModel dtm = (DefaultTableModel) expense_summary_table1.getModel();
             double expense_sum = 0;
             for (Expense expense : yearlyExpenses) {
                 Object rowdata[] = {expense.getExpense_id(), expense.getExpense(), expense.getDateOfExp(), expense.getAmount()};
@@ -1047,31 +1255,77 @@ public class IncomeSummaryFrame extends javax.swing.JInternalFrame {
                 expense_sum += expense.getAmount();
             }
             buying_material_text1.setText(String.valueOf(stockController.getYearlyCostForMaterial(year)));
-            total_expense_text1.setText(String.valueOf(expense_sum+ Double.valueOf(buying_material_text1.getText())));
-        
+            total_expense_text1.setText(String.valueOf(expense_sum + Double.valueOf(buying_material_text1.getText())));
+
             ArrayList<Income> yearlyIncomes = new ArrayList<>();
             yearlyIncomes = incomeController.getYearlyIncomeList(year);
             DefaultTableModel dtm_in = (DefaultTableModel) income_summary_table1.getModel();
             double income_sum = 0;
             for (Income income : yearlyIncomes) {
-                Object rowdata[] = {income.getIncome_id(), income.getIncome(),income.getDateOfInc(), income.getAmount()};
+                Object rowdata[] = {income.getIncome_id(), income.getIncome(), income.getDateOfInc(), income.getAmount()};
                 dtm_in.addRow(rowdata);
                 income_sum += income.getAmount();
             }
             sales_income_text1.setText(String.valueOf(customerOrderController.getYearlySalesIncome(year)));
-            total_income_text1.setText(String.valueOf(income_sum+ Double.valueOf(sales_income_text1.getText())));
-        
-            profit_text1.setText(String.valueOf(Double.valueOf(total_income_text1.getText())-Double.valueOf(total_expense_text1.getText())));
+            total_income_text1.setText(String.valueOf(income_sum + Double.valueOf(sales_income_text1.getText())));
+
+            profit_text1.setText(String.valueOf(Double.valueOf(total_income_text1.getText()) - Double.valueOf(total_expense_text1.getText())));
         } catch (RemoteException | SQLException | ClassNotFoundException ex) {
             Logger.getLogger(IncomeSummaryFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_view_yearly_summaryActionPerformed
+
+    private void date_text1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_date_text1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_date_text1ActionPerformed
+
+    private void yearCombo1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_yearCombo1KeyReleased
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            view_yearly_summary.doClick();
+        }
+    }//GEN-LAST:event_yearCombo1KeyReleased
+
+    private void yearComboKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_yearComboKeyReleased
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            view_monthly_summary.doClick();
+        }
+    }//GEN-LAST:event_yearComboKeyReleased
+
+    private void date_textKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_date_textKeyPressed
+        
+    }//GEN-LAST:event_date_textKeyPressed
+
+    private void expense_type_comboKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_expense_type_comboKeyReleased
+        no_expense_name_label.setVisible(false);
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            if (expense_type_combo.getSelectedItem() != null) {
+                if (expense_type_combo.getSelectedItem().toString().trim().length() == 0) {
+                    no_expense_name_label.setVisible(true);
+                }
+            } else {
+                no_expense_name_label.setVisible(true);
+            }
+        }
+    }//GEN-LAST:event_expense_type_comboKeyReleased
+
+    private void date_textKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_date_textKeyReleased
+        invalid_date_format_label.setVisible(false);
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            boolean dateFormatChecker = PatternChecker.dateFormatChecker(date_text.getText());
+            if (!dateFormatChecker) {
+                invalid_date_format_label.setVisible(true);
+            }
+        }
+    }//GEN-LAST:event_date_textKeyReleased
 
     void createNewForm(String type) throws RemoteException, SQLException, ClassNotFoundException {
         if (type == "Expense") {
             expense_id_text.setText(IdGenerator.generateNextExpenseID(expenseController.getLastExpId()));
             amount_text.setText("");
             expense_type_combo.setSelectedItem(null);
+            invalid_date_format_label.setVisible(false);
+            invalid_expense_label.setVisible(false);
+            no_expense_name_label.setVisible(false);
         } else {
             income_id_text.setText(IdGenerator.generateNextExpenseID(incomeController.getLastIncomeId()));
             amount_text1.setText("");
@@ -1079,7 +1333,8 @@ public class IncomeSummaryFrame extends javax.swing.JInternalFrame {
         }
     }
 
-    void focustabbedpane(int num) {
+    void focustabbedpane(int num
+    ) {
         tabpane.setSelectedIndex(num);
     }
 
@@ -1090,8 +1345,6 @@ public class IncomeSummaryFrame extends javax.swing.JInternalFrame {
 
         }
     }
-
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField amount_text;
     private javax.swing.JTextField amount_text1;
@@ -1111,6 +1364,8 @@ public class IncomeSummaryFrame extends javax.swing.JInternalFrame {
     private javax.swing.JTable income_summary_table;
     private javax.swing.JTable income_summary_table1;
     private javax.swing.JComboBox<String> income_type_combo;
+    private javax.swing.JLabel invalid_date_format_label;
+    private javax.swing.JLabel invalid_expense_label;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -1164,6 +1419,7 @@ public class IncomeSummaryFrame extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JComboBox<String> monthCombo;
+    private javax.swing.JLabel no_expense_name_label;
     private javax.swing.JTextField profit_text;
     private javax.swing.JTextField profit_text1;
     private javax.swing.JTextField sales_income_text;

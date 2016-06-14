@@ -24,10 +24,7 @@
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="1" attributes="0">
-              <Component id="tabpane" max="32767" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
-          </Group>
+          <Component id="tabpane" min="-2" pref="789" max="-2" attributes="0"/>
       </Group>
     </DimensionLayout>
   </Layout>
@@ -70,8 +67,8 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jPanel5" max="32767" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jPanel5" min="-2" pref="743" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -87,12 +84,20 @@
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jTabbedPane1" alignment="0" pref="720" max="32767" attributes="0"/>
+                      <Group type="102" alignment="0" attributes="0">
+                          <Component id="jTabbedPane1" min="-2" pref="796" max="-2" attributes="0"/>
+                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      </Group>
                   </Group>
                 </DimensionLayout>
               </Layout>
               <SubComponents>
                 <Container class="javax.swing.JTabbedPane" name="jTabbedPane1">
+                  <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="SansSerif" size="11" style="1"/>
+                    </Property>
+                  </Properties>
 
                   <Layout class="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout"/>
                   <SubComponents>
@@ -109,7 +114,7 @@
                         <DimensionLayout dim="0">
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
-                                  <Component id="jScrollPane1" pref="787" max="32767" attributes="0"/>
+                                  <Component id="jScrollPane1" pref="788" max="32767" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                               </Group>
                           </Group>
@@ -117,7 +122,7 @@
                         <DimensionLayout dim="1">
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
-                                  <Component id="jScrollPane1" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jScrollPane1" min="-2" pref="704" max="-2" attributes="0"/>
                                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                               </Group>
                           </Group>
@@ -156,7 +161,7 @@
                                           <Component id="jPanel12" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace max="-2" attributes="0"/>
                                           <Component id="jPanel17" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace pref="171" max="32767" attributes="0"/>
+                                          <EmptySpace pref="221" max="32767" attributes="0"/>
                                       </Group>
                                   </Group>
                                 </DimensionLayout>
@@ -181,9 +186,9 @@
                                               <Component id="monthCombo" min="-2" pref="125" max="-2" attributes="0"/>
                                               <EmptySpace type="separate" max="-2" attributes="0"/>
                                               <Component id="yearCombo" min="-2" pref="73" max="-2" attributes="0"/>
-                                              <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
+                                              <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
                                               <Component id="view_monthly_summary" min="-2" max="-2" attributes="0"/>
-                                              <EmptySpace pref="233" max="32767" attributes="0"/>
+                                              <EmptySpace max="32767" attributes="0"/>
                                           </Group>
                                       </Group>
                                     </DimensionLayout>
@@ -205,11 +210,17 @@
                                   <SubComponents>
                                     <Component class="javax.swing.JLabel" name="jLabel5">
                                       <Properties>
+                                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                                          <Font name="SansSerif" size="11" style="1"/>
+                                        </Property>
                                         <Property name="text" type="java.lang.String" value="Select month:"/>
                                       </Properties>
                                     </Component>
                                     <Component class="javax.swing.JComboBox" name="monthCombo">
                                       <Properties>
+                                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                                          <Font name="SansSerif" size="11" style="0"/>
+                                        </Property>
                                         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                                           <StringArray count="13">
                                             <StringItem index="0" value="January"/>
@@ -234,17 +245,31 @@
                                     </Component>
                                     <Component class="javax.swing.JComboBox" name="yearCombo">
                                       <Properties>
+                                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                                          <Font name="SansSerif" size="11" style="0"/>
+                                        </Property>
                                         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                                           <StringArray count="0"/>
                                         </Property>
                                       </Properties>
+                                      <Events>
+                                        <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="yearComboKeyReleased"/>
+                                      </Events>
                                       <AuxValues>
                                         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
                                       </AuxValues>
                                     </Component>
                                     <Component class="javax.swing.JButton" name="view_monthly_summary">
                                       <Properties>
+                                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                                          <Font name="SansSerif" size="11" style="0"/>
+                                        </Property>
                                         <Property name="text" type="java.lang.String" value="View income-expense"/>
+                                        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                                          <Border info="org.netbeans.modules.form.compat2.border.SoftBevelBorderInfo">
+                                            <BevelBorder/>
+                                          </Border>
+                                        </Property>
                                       </Properties>
                                       <Events>
                                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="view_monthly_summaryActionPerformed"/>
@@ -256,7 +281,9 @@
                                   <Properties>
                                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                                       <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-                                        <TitledBorder title="Income Summary"/>
+                                        <TitledBorder title="Income Summary">
+                                          <Font PropertyName="font" name="SansSerif" size="11" style="2"/>
+                                        </TitledBorder>
                                       </Border>
                                     </Property>
                                   </Properties>
@@ -269,10 +296,10 @@
                                               <Group type="103" groupAlignment="0" attributes="0">
                                                   <Group type="102" alignment="0" attributes="0">
                                                       <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
-                                                      <EmptySpace pref="526" max="32767" attributes="0"/>
+                                                      <EmptySpace pref="542" max="32767" attributes="0"/>
                                                       <Component id="sales_income_text" min="-2" pref="133" max="-2" attributes="0"/>
                                                   </Group>
-                                                  <Component id="jScrollPane5" alignment="0" pref="688" max="32767" attributes="0"/>
+                                                  <Component id="jScrollPane5" alignment="0" pref="708" max="32767" attributes="0"/>
                                                   <Group type="102" alignment="0" attributes="0">
                                                       <Component id="jLabel14" min="-2" max="-2" attributes="0"/>
                                                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
@@ -313,10 +340,19 @@
                                   <SubComponents>
                                     <Component class="javax.swing.JLabel" name="jLabel7">
                                       <Properties>
+                                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                                          <Font name="SansSerif" size="11" style="1"/>
+                                        </Property>
                                         <Property name="text" type="java.lang.String" value="Sales:"/>
                                       </Properties>
                                     </Component>
                                     <Component class="javax.swing.JTextField" name="sales_income_text">
+                                      <Properties>
+                                        <Property name="editable" type="boolean" value="false"/>
+                                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                                          <Font name="SansSerif" size="11" style="0"/>
+                                        </Property>
+                                      </Properties>
                                     </Component>
                                     <Container class="javax.swing.JScrollPane" name="jScrollPane5">
                                       <AuxValues>
@@ -327,10 +363,13 @@
                                       <SubComponents>
                                         <Component class="javax.swing.JTable" name="income_summary_table">
                                           <Properties>
+                                            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                                              <Font name="SansSerif" size="11" style="0"/>
+                                            </Property>
                                             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                                               <Table columnCount="4" rowCount="0">
-                                                <Column editable="true" title="Income_id" type="java.lang.Object"/>
-                                                <Column editable="true" title="Income" type="java.lang.Object"/>
+                                                <Column editable="false" title="Income_id" type="java.lang.Object"/>
+                                                <Column editable="false" title="Income" type="java.lang.Object"/>
                                                 <Column editable="true" title="Date" type="java.lang.Object"/>
                                                 <Column editable="true" title="Amount" type="java.lang.Object"/>
                                               </Table>
@@ -360,7 +399,7 @@
                                               </TableColumnModel>
                                             </Property>
                                             <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
-                                              <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
+                                              <TableHeader reorderingAllowed="false" resizingAllowed="true"/>
                                             </Property>
                                           </Properties>
                                         </Component>
@@ -368,13 +407,25 @@
                                     </Container>
                                     <Component class="javax.swing.JLabel" name="jLabel14">
                                       <Properties>
+                                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                                          <Font name="SansSerif" size="11" style="1"/>
+                                        </Property>
                                         <Property name="text" type="java.lang.String" value="Other income:"/>
                                       </Properties>
                                     </Component>
                                     <Component class="javax.swing.JTextField" name="total_income_text">
+                                      <Properties>
+                                        <Property name="editable" type="boolean" value="false"/>
+                                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                                          <Font name="SansSerif" size="11" style="0"/>
+                                        </Property>
+                                      </Properties>
                                     </Component>
                                     <Component class="javax.swing.JLabel" name="jLabel16">
                                       <Properties>
+                                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                                          <Font name="SansSerif" size="11" style="1"/>
+                                        </Property>
                                         <Property name="text" type="java.lang.String" value="Total income:"/>
                                       </Properties>
                                     </Component>
@@ -384,7 +435,9 @@
                                   <Properties>
                                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                                       <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-                                        <TitledBorder title="Expense Summary"/>
+                                        <TitledBorder title="Expense Summary">
+                                          <Font PropertyName="font" name="SansSerif" size="11" style="2"/>
+                                        </TitledBorder>
                                       </Border>
                                     </Property>
                                   </Properties>
@@ -395,7 +448,7 @@
                                           <Group type="102" attributes="0">
                                               <EmptySpace max="-2" attributes="0"/>
                                               <Group type="103" groupAlignment="0" attributes="0">
-                                                  <Component id="jScrollPane3" alignment="0" pref="688" max="32767" attributes="0"/>
+                                                  <Component id="jScrollPane3" alignment="0" pref="708" max="32767" attributes="0"/>
                                                   <Group type="102" alignment="1" attributes="0">
                                                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                                       <Component id="jLabel8" min="-2" pref="86" max="-2" attributes="0"/>
@@ -447,12 +500,15 @@
                                       <SubComponents>
                                         <Component class="javax.swing.JTable" name="expense_summary_table">
                                           <Properties>
+                                            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                                              <Font name="SansSerif" size="11" style="0"/>
+                                            </Property>
                                             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                                               <Table columnCount="4" rowCount="0">
-                                                <Column editable="true" title="Expense_id" type="java.lang.Object"/>
-                                                <Column editable="true" title="Expense" type="java.lang.Object"/>
-                                                <Column editable="true" title="Date" type="java.lang.Object"/>
-                                                <Column editable="true" title="Amount" type="java.lang.Object"/>
+                                                <Column editable="false" title="Expense_id" type="java.lang.Object"/>
+                                                <Column editable="false" title="Expense" type="java.lang.Object"/>
+                                                <Column editable="false" title="Date" type="java.lang.Object"/>
+                                                <Column editable="false" title="Amount" type="java.lang.Object"/>
                                               </Table>
                                             </Property>
                                             <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
@@ -480,7 +536,7 @@
                                               </TableColumnModel>
                                             </Property>
                                             <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
-                                              <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
+                                              <TableHeader reorderingAllowed="false" resizingAllowed="true"/>
                                             </Property>
                                           </Properties>
                                         </Component>
@@ -488,34 +544,62 @@
                                     </Container>
                                     <Component class="javax.swing.JLabel" name="jLabel8">
                                       <Properties>
+                                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                                          <Font name="SansSerif" size="11" style="1"/>
+                                        </Property>
                                         <Property name="text" type="java.lang.String" value="Total expense:"/>
                                       </Properties>
                                     </Component>
                                     <Component class="javax.swing.JTextField" name="total_expense_text">
+                                      <Properties>
+                                        <Property name="editable" type="boolean" value="false"/>
+                                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                                          <Font name="SansSerif" size="11" style="0"/>
+                                        </Property>
+                                      </Properties>
                                     </Component>
                                     <Component class="javax.swing.JLabel" name="jLabel13">
                                       <Properties>
+                                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                                          <Font name="SansSerif" size="11" style="1"/>
+                                        </Property>
                                         <Property name="text" type="java.lang.String" value="Expense to buy materials within month:"/>
                                       </Properties>
                                     </Component>
                                     <Component class="javax.swing.JTextField" name="buying_material_text">
+                                      <Properties>
+                                        <Property name="editable" type="boolean" value="false"/>
+                                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                                          <Font name="SansSerif" size="11" style="0"/>
+                                        </Property>
+                                      </Properties>
                                     </Component>
                                     <Component class="javax.swing.JLabel" name="jLabel15">
                                       <Properties>
+                                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                                          <Font name="SansSerif" size="11" style="1"/>
+                                        </Property>
                                         <Property name="text" type="java.lang.String" value="Other expenses:"/>
                                       </Properties>
                                     </Component>
                                   </SubComponents>
                                 </Container>
                                 <Container class="javax.swing.JPanel" name="jPanel17">
+                                  <Properties>
+                                    <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                                      <Border info="org.netbeans.modules.form.compat2.border.EtchedBorderInfo">
+                                        <EtchetBorder/>
+                                      </Border>
+                                    </Property>
+                                  </Properties>
 
                                   <Layout>
                                     <DimensionLayout dim="0">
                                       <Group type="103" groupAlignment="0" attributes="0">
                                           <Group type="102" alignment="1" attributes="0">
                                               <EmptySpace max="32767" attributes="0"/>
-                                              <Component id="jLabel17" min="-2" pref="86" max="-2" attributes="0"/>
-                                              <EmptySpace max="-2" attributes="0"/>
+                                              <Component id="jLabel17" min="-2" pref="106" max="-2" attributes="0"/>
+                                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                               <Component id="profit_text" min="-2" pref="150" max="-2" attributes="0"/>
                                               <EmptySpace max="-2" attributes="0"/>
                                           </Group>
@@ -529,7 +613,7 @@
                                                   <Component id="jLabel17" alignment="3" min="-2" max="-2" attributes="0"/>
                                                   <Component id="profit_text" alignment="3" min="-2" max="-2" attributes="0"/>
                                               </Group>
-                                              <EmptySpace pref="69" max="32767" attributes="0"/>
+                                              <EmptySpace pref="19" max="32767" attributes="0"/>
                                           </Group>
                                       </Group>
                                     </DimensionLayout>
@@ -537,10 +621,19 @@
                                   <SubComponents>
                                     <Component class="javax.swing.JLabel" name="jLabel17">
                                       <Properties>
+                                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                                          <Font name="SansSerif" size="11" style="1"/>
+                                        </Property>
                                         <Property name="text" type="java.lang.String" value="Estimated profit:"/>
                                       </Properties>
                                     </Component>
                                     <Component class="javax.swing.JTextField" name="profit_text">
+                                      <Properties>
+                                        <Property name="editable" type="boolean" value="false"/>
+                                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                                          <Font name="SansSerif" size="11" style="0"/>
+                                        </Property>
+                                      </Properties>
                                     </Component>
                                   </SubComponents>
                                 </Container>
@@ -562,12 +655,15 @@
                       <Layout>
                         <DimensionLayout dim="0">
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jScrollPane2" alignment="0" max="32767" attributes="0"/>
+                              <Component id="jScrollPane2" alignment="0" pref="798" max="32767" attributes="0"/>
                           </Group>
                         </DimensionLayout>
                         <DimensionLayout dim="1">
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jScrollPane2" alignment="0" pref="692" max="32767" attributes="0"/>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="jScrollPane2" min="-2" pref="713" max="-2" attributes="0"/>
+                                  <EmptySpace min="0" pref="54" max="32767" attributes="0"/>
+                              </Group>
                           </Group>
                         </DimensionLayout>
                       </Layout>
@@ -590,10 +686,10 @@
                                 </DimensionLayout>
                                 <DimensionLayout dim="1">
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Group type="102" attributes="0">
-                                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                      <Group type="102" alignment="1" attributes="0">
+                                          <EmptySpace max="32767" attributes="0"/>
                                           <Component id="jPanel18" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                          <EmptySpace pref="206" max="32767" attributes="0"/>
                                       </Group>
                                   </Group>
                                 </DimensionLayout>
@@ -627,7 +723,7 @@
                                               <Component id="jPanel20" min="-2" max="-2" attributes="0"/>
                                               <EmptySpace max="-2" attributes="0"/>
                                               <Component id="jPanel21" min="-2" max="-2" attributes="0"/>
-                                              <EmptySpace pref="171" max="32767" attributes="0"/>
+                                              <EmptySpace pref="15" max="32767" attributes="0"/>
                                           </Group>
                                       </Group>
                                     </DimensionLayout>
@@ -647,12 +743,12 @@
                                           <Group type="103" groupAlignment="0" attributes="0">
                                               <Group type="102" alignment="0" attributes="0">
                                                   <EmptySpace max="-2" attributes="0"/>
-                                                  <Component id="jLabel18" min="-2" max="-2" attributes="0"/>
-                                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                                  <Component id="jLabel18" min="-2" pref="72" max="-2" attributes="0"/>
+                                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                                   <Component id="yearCombo1" min="-2" pref="73" max="-2" attributes="0"/>
                                                   <EmptySpace type="separate" max="-2" attributes="0"/>
                                                   <Component id="view_yearly_summary" min="-2" max="-2" attributes="0"/>
-                                                  <EmptySpace max="32767" attributes="0"/>
+                                                  <EmptySpace pref="422" max="32767" attributes="0"/>
                                               </Group>
                                           </Group>
                                         </DimensionLayout>
@@ -673,22 +769,39 @@
                                       <SubComponents>
                                         <Component class="javax.swing.JLabel" name="jLabel18">
                                           <Properties>
+                                            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                                              <Font name="SansSerif" size="11" style="1"/>
+                                            </Property>
                                             <Property name="text" type="java.lang.String" value="Select year:"/>
                                           </Properties>
                                         </Component>
                                         <Component class="javax.swing.JComboBox" name="yearCombo1">
                                           <Properties>
+                                            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                                              <Font name="SansSerif" size="11" style="0"/>
+                                            </Property>
                                             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                                               <StringArray count="0"/>
                                             </Property>
                                           </Properties>
+                                          <Events>
+                                            <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="yearCombo1KeyReleased"/>
+                                          </Events>
                                           <AuxValues>
                                             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
                                           </AuxValues>
                                         </Component>
                                         <Component class="javax.swing.JButton" name="view_yearly_summary">
                                           <Properties>
+                                            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                                              <Font name="SansSerif" size="11" style="0"/>
+                                            </Property>
                                             <Property name="text" type="java.lang.String" value="View income-expense"/>
+                                            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                                              <Border info="org.netbeans.modules.form.compat2.border.SoftBevelBorderInfo">
+                                                <BevelBorder/>
+                                              </Border>
+                                            </Property>
                                           </Properties>
                                           <Events>
                                             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="view_yearly_summaryActionPerformed"/>
@@ -700,7 +813,9 @@
                                       <Properties>
                                         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                                           <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-                                            <TitledBorder title="Income Summary"/>
+                                            <TitledBorder title="Income Summary">
+                                              <Font PropertyName="font" name="SansSerif" size="11" style="2"/>
+                                            </TitledBorder>
                                           </Border>
                                         </Property>
                                       </Properties>
@@ -716,7 +831,7 @@
                                                           <EmptySpace pref="526" max="32767" attributes="0"/>
                                                           <Component id="sales_income_text1" min="-2" pref="133" max="-2" attributes="0"/>
                                                       </Group>
-                                                      <Component id="jScrollPane6" alignment="0" pref="688" max="32767" attributes="0"/>
+                                                      <Component id="jScrollPane6" alignment="0" pref="692" max="32767" attributes="0"/>
                                                       <Group type="102" alignment="0" attributes="0">
                                                           <Component id="jLabel20" min="-2" max="-2" attributes="0"/>
                                                           <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
@@ -757,10 +872,19 @@
                                       <SubComponents>
                                         <Component class="javax.swing.JLabel" name="jLabel19">
                                           <Properties>
+                                            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                                              <Font name="SansSerif" size="11" style="1"/>
+                                            </Property>
                                             <Property name="text" type="java.lang.String" value="Sales:"/>
                                           </Properties>
                                         </Component>
                                         <Component class="javax.swing.JTextField" name="sales_income_text1">
+                                          <Properties>
+                                            <Property name="editable" type="boolean" value="false"/>
+                                            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                                              <Font name="SansSerif" size="11" style="0"/>
+                                            </Property>
+                                          </Properties>
                                         </Component>
                                         <Container class="javax.swing.JScrollPane" name="jScrollPane6">
                                           <AuxValues>
@@ -771,12 +895,15 @@
                                           <SubComponents>
                                             <Component class="javax.swing.JTable" name="income_summary_table1">
                                               <Properties>
+                                                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                                                  <Font name="SansSerif" size="11" style="0"/>
+                                                </Property>
                                                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                                                   <Table columnCount="4" rowCount="0">
-                                                    <Column editable="true" title="Income_id" type="java.lang.Object"/>
-                                                    <Column editable="true" title="Income" type="java.lang.Object"/>
-                                                    <Column editable="true" title="Date" type="java.lang.Object"/>
-                                                    <Column editable="true" title="Amount" type="java.lang.Object"/>
+                                                    <Column editable="false" title="Income_id" type="java.lang.Object"/>
+                                                    <Column editable="false" title="Income" type="java.lang.Object"/>
+                                                    <Column editable="false" title="Date" type="java.lang.Object"/>
+                                                    <Column editable="false" title="Amount" type="java.lang.Object"/>
                                                   </Table>
                                                 </Property>
                                                 <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
@@ -804,7 +931,7 @@
                                                   </TableColumnModel>
                                                 </Property>
                                                 <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
-                                                  <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
+                                                  <TableHeader reorderingAllowed="false" resizingAllowed="true"/>
                                                 </Property>
                                               </Properties>
                                             </Component>
@@ -812,13 +939,25 @@
                                         </Container>
                                         <Component class="javax.swing.JLabel" name="jLabel20">
                                           <Properties>
+                                            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                                              <Font name="SansSerif" size="11" style="1"/>
+                                            </Property>
                                             <Property name="text" type="java.lang.String" value="Other income:"/>
                                           </Properties>
                                         </Component>
                                         <Component class="javax.swing.JTextField" name="total_income_text1">
+                                          <Properties>
+                                            <Property name="editable" type="boolean" value="false"/>
+                                            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                                              <Font name="SansSerif" size="11" style="0"/>
+                                            </Property>
+                                          </Properties>
                                         </Component>
                                         <Component class="javax.swing.JLabel" name="jLabel21">
                                           <Properties>
+                                            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                                              <Font name="SansSerif" size="11" style="1"/>
+                                            </Property>
                                             <Property name="text" type="java.lang.String" value="Total income:"/>
                                           </Properties>
                                         </Component>
@@ -828,7 +967,9 @@
                                       <Properties>
                                         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                                           <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-                                            <TitledBorder title="Expense Summary"/>
+                                            <TitledBorder title="Expense Summary">
+                                              <Font PropertyName="font" name="SansSerif" size="11" style="2"/>
+                                            </TitledBorder>
                                           </Border>
                                         </Property>
                                       </Properties>
@@ -839,7 +980,7 @@
                                               <Group type="102" alignment="0" attributes="0">
                                                   <EmptySpace max="-2" attributes="0"/>
                                                   <Group type="103" groupAlignment="0" attributes="0">
-                                                      <Component id="jScrollPane7" alignment="0" pref="688" max="32767" attributes="0"/>
+                                                      <Component id="jScrollPane7" alignment="0" pref="692" max="32767" attributes="0"/>
                                                       <Group type="102" alignment="1" attributes="0">
                                                           <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                                           <Component id="jLabel22" min="-2" pref="86" max="-2" attributes="0"/>
@@ -891,12 +1032,15 @@
                                           <SubComponents>
                                             <Component class="javax.swing.JTable" name="expense_summary_table1">
                                               <Properties>
+                                                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                                                  <Font name="SansSerif" size="11" style="0"/>
+                                                </Property>
                                                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                                                   <Table columnCount="4" rowCount="0">
-                                                    <Column editable="true" title="Expense_id" type="java.lang.Object"/>
+                                                    <Column editable="false" title="Expense_id" type="java.lang.Object"/>
                                                     <Column editable="true" title="Expense" type="java.lang.Object"/>
-                                                    <Column editable="true" title="Date" type="java.lang.Object"/>
-                                                    <Column editable="true" title="Amount" type="java.lang.Object"/>
+                                                    <Column editable="false" title="Date" type="java.lang.Object"/>
+                                                    <Column editable="false" title="Amount" type="java.lang.Object"/>
                                                   </Table>
                                                 </Property>
                                                 <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
@@ -924,7 +1068,7 @@
                                                   </TableColumnModel>
                                                 </Property>
                                                 <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
-                                                  <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
+                                                  <TableHeader reorderingAllowed="false" resizingAllowed="true"/>
                                                 </Property>
                                               </Properties>
                                             </Component>
@@ -932,33 +1076,61 @@
                                         </Container>
                                         <Component class="javax.swing.JLabel" name="jLabel22">
                                           <Properties>
+                                            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                                              <Font name="SansSerif" size="11" style="1"/>
+                                            </Property>
                                             <Property name="text" type="java.lang.String" value="Total expense:"/>
                                           </Properties>
                                         </Component>
                                         <Component class="javax.swing.JTextField" name="total_expense_text1">
+                                          <Properties>
+                                            <Property name="editable" type="boolean" value="false"/>
+                                            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                                              <Font name="SansSerif" size="11" style="0"/>
+                                            </Property>
+                                          </Properties>
                                         </Component>
                                         <Component class="javax.swing.JLabel" name="jLabel23">
                                           <Properties>
+                                            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                                              <Font name="SansSerif" size="11" style="1"/>
+                                            </Property>
                                             <Property name="text" type="java.lang.String" value="Expense to buy materials within month:"/>
                                           </Properties>
                                         </Component>
                                         <Component class="javax.swing.JTextField" name="buying_material_text1">
+                                          <Properties>
+                                            <Property name="editable" type="boolean" value="false"/>
+                                            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                                              <Font name="SansSerif" size="11" style="0"/>
+                                            </Property>
+                                          </Properties>
                                         </Component>
                                         <Component class="javax.swing.JLabel" name="jLabel24">
                                           <Properties>
+                                            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                                              <Font name="SansSerif" size="11" style="1"/>
+                                            </Property>
                                             <Property name="text" type="java.lang.String" value="Other expenses:"/>
                                           </Properties>
                                         </Component>
                                       </SubComponents>
                                     </Container>
                                     <Container class="javax.swing.JPanel" name="jPanel21">
+                                      <Properties>
+                                        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                                          <Border info="org.netbeans.modules.form.compat2.border.EtchedBorderInfo">
+                                            <EtchetBorder/>
+                                          </Border>
+                                        </Property>
+                                      </Properties>
 
                                       <Layout>
                                         <DimensionLayout dim="0">
                                           <Group type="103" groupAlignment="0" attributes="0">
                                               <Group type="102" alignment="1" attributes="0">
                                                   <EmptySpace max="32767" attributes="0"/>
-                                                  <Component id="jLabel25" min="-2" pref="86" max="-2" attributes="0"/>
+                                                  <Component id="jLabel25" min="-2" pref="118" max="-2" attributes="0"/>
                                                   <EmptySpace max="-2" attributes="0"/>
                                                   <Component id="profit_text1" min="-2" pref="150" max="-2" attributes="0"/>
                                                   <EmptySpace max="-2" attributes="0"/>
@@ -973,7 +1145,7 @@
                                                       <Component id="jLabel25" alignment="3" min="-2" max="-2" attributes="0"/>
                                                       <Component id="profit_text1" alignment="3" min="-2" max="-2" attributes="0"/>
                                                   </Group>
-                                                  <EmptySpace pref="69" max="32767" attributes="0"/>
+                                                  <EmptySpace pref="19" max="32767" attributes="0"/>
                                               </Group>
                                           </Group>
                                         </DimensionLayout>
@@ -981,10 +1153,19 @@
                                       <SubComponents>
                                         <Component class="javax.swing.JLabel" name="jLabel25">
                                           <Properties>
+                                            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                                              <Font name="SansSerif" size="11" style="1"/>
+                                            </Property>
                                             <Property name="text" type="java.lang.String" value="Estimated profit:"/>
                                           </Properties>
                                         </Component>
                                         <Component class="javax.swing.JTextField" name="profit_text1">
+                                          <Properties>
+                                            <Property name="editable" type="boolean" value="false"/>
+                                            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                                              <Font name="SansSerif" size="11" style="0"/>
+                                            </Property>
+                                          </Properties>
                                         </Component>
                                       </SubComponents>
                                     </Container>
@@ -1029,7 +1210,7 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jPanel3" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="487" max="32767" attributes="0"/>
+                      <EmptySpace pref="506" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -1048,29 +1229,42 @@
                                   <EmptySpace max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
-                                  <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Component id="date_text" min="-2" pref="109" max="-2" attributes="0"/>
-                                  <EmptySpace max="32767" attributes="0"/>
-                                  <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="expense_id_text" min="-2" pref="75" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="102" alignment="0" attributes="0">
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Component id="jLabel4" alignment="0" min="-2" max="-2" attributes="0"/>
                                       <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Group type="102" attributes="0">
-                                          <Component id="expense_type_combo" min="-2" pref="238" max="-2" attributes="0"/>
-                                          <EmptySpace pref="432" max="32767" attributes="0"/>
-                                      </Group>
-                                      <Group type="102" attributes="0">
                                           <Component id="amount_text" min="-2" pref="133" max="-2" attributes="0"/>
-                                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Component id="invalid_expense_label" pref="111" max="32767" attributes="0"/>
+                                          <EmptySpace min="-2" pref="410" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <Group type="103" groupAlignment="1" attributes="0">
+                                              <Group type="102" alignment="0" attributes="0">
+                                                  <Component id="date_text" min="-2" pref="109" max="-2" attributes="0"/>
+                                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                                  <Component id="invalid_date_format_label" min="-2" pref="111" max="-2" attributes="0"/>
+                                              </Group>
+                                              <Component id="expense_type_combo" min="-2" pref="238" max="-2" attributes="0"/>
+                                          </Group>
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Group type="102" attributes="0">
+                                                  <EmptySpace max="32767" attributes="0"/>
+                                                  <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+                                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                                  <Component id="expense_id_text" min="-2" pref="75" max="-2" attributes="0"/>
+                                                  <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
+                                              </Group>
+                                              <Group type="102" alignment="0" attributes="0">
+                                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                                  <Component id="no_expense_name_label" min="-2" max="-2" attributes="0"/>
+                                                  <EmptySpace max="32767" attributes="0"/>
+                                              </Group>
+                                          </Group>
                                       </Group>
                                   </Group>
                               </Group>
@@ -1087,16 +1281,19 @@
                               <Component id="date_text" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="expense_id_text" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="invalid_date_format_label" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="expense_type_combo" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="no_expense_name_label" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="amount_text" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="invalid_expense_label" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="60" max="-2" attributes="0"/>
                           <Component id="jPanel4" min="-2" max="-2" attributes="0"/>
@@ -1108,48 +1305,83 @@
               <SubComponents>
                 <Component class="javax.swing.JLabel" name="jLabel1">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Date:"/>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="SansSerif" size="11" style="1"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="Date of Expense:"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="date_text">
+                  <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="SansSerif" size="11" style="0"/>
+                    </Property>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="date_textKeyPressed"/>
+                    <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="date_textKeyReleased"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel2">
                   <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="SansSerif" size="11" style="1"/>
+                    </Property>
                     <Property name="text" type="java.lang.String" value="Expense Id:"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="expense_id_text">
                   <Properties>
                     <Property name="editable" type="boolean" value="false"/>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="SansSerif" size="11" style="0"/>
+                    </Property>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel3">
                   <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="SansSerif" size="11" style="1"/>
+                    </Property>
                     <Property name="text" type="java.lang.String" value="Add Expense Type:"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JComboBox" name="expense_type_combo">
                   <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="SansSerif" size="11" style="0"/>
+                    </Property>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                       <StringArray count="0"/>
                     </Property>
                   </Properties>
+                  <Events>
+                    <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="expense_type_comboKeyReleased"/>
+                  </Events>
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
                   </AuxValues>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel4">
                   <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="SansSerif" size="11" style="1"/>
+                    </Property>
                     <Property name="text" type="java.lang.String" value="Expense Amount: Rs."/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="amount_text">
+                  <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="SansSerif" size="11" style="0"/>
+                    </Property>
+                  </Properties>
                 </Component>
                 <Container class="javax.swing.JPanel" name="jPanel4">
                   <Properties>
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-                      <Border info="org.netbeans.modules.form.compat2.border.EtchedBorderInfo">
-                        <EtchetBorder/>
+                      <Border info="org.netbeans.modules.form.compat2.border.SoftBevelBorderInfo">
+                        <BevelBorder/>
                       </Border>
                     </Property>
                   </Properties>
@@ -1159,7 +1391,7 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="1" attributes="0">
                               <EmptySpace max="32767" attributes="0"/>
-                              <Component id="save_button" min="-2" max="-2" attributes="0"/>
+                              <Component id="save_button" min="-2" pref="79" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Component id="cancel_button" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
@@ -1182,7 +1414,18 @@
                   <SubComponents>
                     <Component class="javax.swing.JButton" name="cancel_button">
                       <Properties>
+                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                          <Font name="Perpetua Titling MT" size="11" style="1"/>
+                        </Property>
+                        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                          <Image iconType="3" name="/gfcl/images/cancel_icon.png"/>
+                        </Property>
                         <Property name="text" type="java.lang.String" value="Cancel"/>
+                        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                          <Border info="org.netbeans.modules.form.compat2.border.SoftBevelBorderInfo">
+                            <BevelBorder/>
+                          </Border>
+                        </Property>
                       </Properties>
                       <Events>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cancel_buttonActionPerformed"/>
@@ -1190,7 +1433,18 @@
                     </Component>
                     <Component class="javax.swing.JButton" name="save_button">
                       <Properties>
+                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                          <Font name="Perpetua Titling MT" size="11" style="1"/>
+                        </Property>
+                        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                          <Image iconType="3" name="/gfcl/images/save_small.png"/>
+                        </Property>
                         <Property name="text" type="java.lang.String" value="Save"/>
+                        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                          <Border info="org.netbeans.modules.form.compat2.border.SoftBevelBorderInfo">
+                            <BevelBorder/>
+                          </Border>
+                        </Property>
                       </Properties>
                       <Events>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="save_buttonActionPerformed"/>
@@ -1198,6 +1452,39 @@
                     </Component>
                   </SubComponents>
                 </Container>
+                <Component class="javax.swing.JLabel" name="invalid_date_format_label">
+                  <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="SansSerif" size="11" style="0"/>
+                    </Property>
+                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="0" green="0" red="ff" type="rgb"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="invalid date format!"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JLabel" name="invalid_expense_label">
+                  <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="SansSerif" size="11" style="0"/>
+                    </Property>
+                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="0" green="0" red="ff" type="rgb"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="invalid  expense value!"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JLabel" name="no_expense_name_label">
+                  <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="SansSerif" size="11" style="0"/>
+                    </Property>
+                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="0" green="0" red="ff" type="rgb"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="Please give an expense name"/>
+                  </Properties>
+                </Component>
               </SubComponents>
             </Container>
           </SubComponents>
@@ -1217,12 +1504,12 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jScrollPane4" alignment="0" max="32767" attributes="0"/>
+                  <Component id="jScrollPane4" alignment="0" pref="823" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jScrollPane4" alignment="0" max="32767" attributes="0"/>
+                  <Component id="jScrollPane4" alignment="0" pref="766" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
           </Layout>
@@ -1248,7 +1535,7 @@
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="jPanel15" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace pref="485" max="32767" attributes="0"/>
+                              <EmptySpace pref="795" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -1267,22 +1554,21 @@
                                           <EmptySpace max="-2" attributes="0"/>
                                       </Group>
                                       <Group type="102" alignment="0" attributes="0">
-                                          <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                          <Component id="date_text1" min="-2" pref="109" max="-2" attributes="0"/>
-                                          <EmptySpace max="32767" attributes="0"/>
-                                          <Component id="jLabel10" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                                          <Component id="income_id_text" min="-2" pref="75" max="-2" attributes="0"/>
-                                          <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
-                                      </Group>
-                                      <Group type="102" alignment="0" attributes="0">
                                           <Group type="103" groupAlignment="0" attributes="0">
                                               <Component id="jLabel12" alignment="0" min="-2" max="-2" attributes="0"/>
                                               <Component id="jLabel11" alignment="0" min="-2" max="-2" attributes="0"/>
+                                              <Component id="jLabel9" alignment="0" min="-2" max="-2" attributes="0"/>
                                           </Group>
                                           <EmptySpace type="separate" max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="0" attributes="0">
+                                              <Group type="102" attributes="0">
+                                                  <Component id="date_text1" min="-2" pref="109" max="-2" attributes="0"/>
+                                                  <EmptySpace max="32767" attributes="0"/>
+                                                  <Component id="jLabel10" min="-2" max="-2" attributes="0"/>
+                                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                                  <Component id="income_id_text" min="-2" pref="75" max="-2" attributes="0"/>
+                                                  <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
+                                              </Group>
                                               <Group type="102" alignment="0" attributes="0">
                                                   <Component id="income_type_combo" min="-2" pref="238" max="-2" attributes="0"/>
                                                   <EmptySpace pref="436" max="32767" attributes="0"/>
@@ -1327,28 +1613,51 @@
                       <SubComponents>
                         <Component class="javax.swing.JLabel" name="jLabel9">
                           <Properties>
-                            <Property name="text" type="java.lang.String" value="Date:"/>
+                            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                              <Font name="SansSerif" size="11" style="1"/>
+                            </Property>
+                            <Property name="text" type="java.lang.String" value="Date of Expense:"/>
                           </Properties>
                         </Component>
                         <Component class="javax.swing.JTextField" name="date_text1">
+                          <Properties>
+                            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                              <Font name="SansSerif" size="11" style="0"/>
+                            </Property>
+                          </Properties>
+                          <Events>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="date_text1ActionPerformed"/>
+                          </Events>
                         </Component>
                         <Component class="javax.swing.JLabel" name="jLabel10">
                           <Properties>
+                            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                              <Font name="SansSerif" size="11" style="1"/>
+                            </Property>
                             <Property name="text" type="java.lang.String" value="Income Id:"/>
                           </Properties>
                         </Component>
                         <Component class="javax.swing.JTextField" name="income_id_text">
                           <Properties>
                             <Property name="editable" type="boolean" value="false"/>
+                            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                              <Font name="SansSerif" size="11" style="0"/>
+                            </Property>
                           </Properties>
                         </Component>
                         <Component class="javax.swing.JLabel" name="jLabel11">
                           <Properties>
+                            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                              <Font name="SansSerif" size="11" style="1"/>
+                            </Property>
                             <Property name="text" type="java.lang.String" value="Add Income Type:"/>
                           </Properties>
                         </Component>
                         <Component class="javax.swing.JComboBox" name="income_type_combo">
                           <Properties>
+                            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                              <Font name="SansSerif" size="11" style="0"/>
+                            </Property>
                             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                               <StringArray count="0"/>
                             </Property>
@@ -1359,16 +1668,24 @@
                         </Component>
                         <Component class="javax.swing.JLabel" name="jLabel12">
                           <Properties>
+                            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                              <Font name="SansSerif" size="11" style="1"/>
+                            </Property>
                             <Property name="text" type="java.lang.String" value="Income Amount: Rs."/>
                           </Properties>
                         </Component>
                         <Component class="javax.swing.JTextField" name="amount_text1">
+                          <Properties>
+                            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                              <Font name="SansSerif" size="11" style="0"/>
+                            </Property>
+                          </Properties>
                         </Component>
                         <Container class="javax.swing.JPanel" name="jPanel16">
                           <Properties>
                             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-                              <Border info="org.netbeans.modules.form.compat2.border.EtchedBorderInfo">
-                                <EtchetBorder/>
+                              <Border info="org.netbeans.modules.form.compat2.border.SoftBevelBorderInfo">
+                                <BevelBorder/>
                               </Border>
                             </Property>
                           </Properties>
@@ -1378,7 +1695,7 @@
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" alignment="1" attributes="0">
                                       <EmptySpace max="32767" attributes="0"/>
-                                      <Component id="save_button1" min="-2" max="-2" attributes="0"/>
+                                      <Component id="save_button1" min="-2" pref="67" max="-2" attributes="0"/>
                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                       <Component id="cancel_button1" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
@@ -1401,7 +1718,18 @@
                           <SubComponents>
                             <Component class="javax.swing.JButton" name="cancel_button1">
                               <Properties>
+                                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                                  <Font name="Perpetua Titling MT" size="11" style="1"/>
+                                </Property>
+                                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                                  <Image iconType="3" name="/gfcl/images/cancel_icon.png"/>
+                                </Property>
                                 <Property name="text" type="java.lang.String" value="Cancel"/>
+                                <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                                  <Border info="org.netbeans.modules.form.compat2.border.SoftBevelBorderInfo">
+                                    <BevelBorder/>
+                                  </Border>
+                                </Property>
                               </Properties>
                               <Events>
                                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cancel_button1ActionPerformed"/>
@@ -1409,7 +1737,18 @@
                             </Component>
                             <Component class="javax.swing.JButton" name="save_button1">
                               <Properties>
+                                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                                  <Font name="Perpetua Titling MT" size="11" style="1"/>
+                                </Property>
+                                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                                  <Image iconType="3" name="/gfcl/images/save_small.png"/>
+                                </Property>
                                 <Property name="text" type="java.lang.String" value="Save"/>
+                                <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                                  <Border info="org.netbeans.modules.form.compat2.border.SoftBevelBorderInfo">
+                                    <BevelBorder/>
+                                  </Border>
+                                </Property>
                               </Properties>
                               <Events>
                                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="save_button1ActionPerformed"/>
