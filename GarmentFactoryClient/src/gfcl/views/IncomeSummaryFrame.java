@@ -12,7 +12,6 @@ import gfc.controller.StockController;
 import gfc.models.Expense;
 import gfc.models.Income;
 import gfcl.common_classes.ComboItemsAdder;
-import gfcl.common_classes.GUIitemsValidator;
 import gfcl.common_classes.IdGenerator;
 import gfcl.common_classes.PatternChecker;
 import gfcl.connector.Connector;
@@ -181,6 +180,9 @@ public class IncomeSummaryFrame extends javax.swing.JInternalFrame {
         jPanel16 = new javax.swing.JPanel();
         cancel_button1 = new javax.swing.JButton();
         save_button1 = new javax.swing.JButton();
+
+        tabpane.setForeground(new java.awt.Color(0, 0, 204));
+        tabpane.setFont(new java.awt.Font("SansSerif", 3, 11)); // NOI18N
 
         jPanel10.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
@@ -633,7 +635,7 @@ public class IncomeSummaryFrame extends javax.swing.JInternalFrame {
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 689, Short.MAX_VALUE)
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 692, Short.MAX_VALUE)
         );
 
         jTabbedPane1.addTab("For year", jPanel7);
@@ -646,7 +648,7 @@ public class IncomeSummaryFrame extends javax.swing.JInternalFrame {
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 717, Short.MAX_VALUE)
+            .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 720, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -666,7 +668,7 @@ public class IncomeSummaryFrame extends javax.swing.JInternalFrame {
                 .addContainerGap())
         );
 
-        tabpane.addTab("View Expense-Income summary", jPanel2);
+        tabpane.addTab("View Expense-Income summary", new javax.swing.ImageIcon(getClass().getResource("/gfcl/images/report16.png")), jPanel2); // NOI18N
 
         jLabel1.setText("Date:");
 
@@ -783,10 +785,10 @@ public class IncomeSummaryFrame extends javax.swing.JInternalFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(484, Short.MAX_VALUE))
+                .addContainerGap(487, Short.MAX_VALUE))
         );
 
-        tabpane.addTab("Add Expense", jPanel1);
+        tabpane.addTab("Add Expense", new javax.swing.ImageIcon(getClass().getResource("/gfcl/images/report--minus.png")), jPanel1); // NOI18N
 
         jLabel9.setText("Date:");
 
@@ -903,7 +905,7 @@ public class IncomeSummaryFrame extends javax.swing.JInternalFrame {
             .addGroup(jPanel14Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(482, Short.MAX_VALUE))
+                .addContainerGap(485, Short.MAX_VALUE))
         );
 
         jScrollPane4.setViewportView(jPanel14);
@@ -919,7 +921,7 @@ public class IncomeSummaryFrame extends javax.swing.JInternalFrame {
             .addComponent(jScrollPane4)
         );
 
-        tabpane.addTab("Add Income", jPanel13);
+        tabpane.addTab("Add Income", new javax.swing.ImageIcon(getClass().getResource("/gfcl/images/report--plus.png")), jPanel13); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
