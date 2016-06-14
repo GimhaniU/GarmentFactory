@@ -199,23 +199,17 @@ public class FrontPage extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         LogOutButton = new javax.swing.JButton();
         ExitButton = new javax.swing.JButton();
-        jPanel1 = new javax.swing.JPanel();
         todayLabel = new javax.swing.JLabel();
         dateLabel = new javax.swing.JLabel();
-        CalenderButton = new javax.swing.JButton();
-        REminderButton = new javax.swing.JButton();
-        jButton17 = new javax.swing.JButton();
-        jButton18 = new javax.swing.JButton();
-        searchPanel = new javax.swing.JPanel();
-        jLabel6 = new javax.swing.JLabel();
-        searchSetCombo = new javax.swing.JComboBox();
-        searchByWhatCombo = new javax.swing.JComboBox();
-        goButton = new javax.swing.JButton();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
         internalFrameAreaPanel = new javax.swing.JPanel();
         desktopPane = new javax.swing.JDesktopPane();
         jPanel3 = new javax.swing.JPanel();
+        jPanel4 = new javax.swing.JPanel();
+        jLabel5 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
         shortcutAccessPanel = new javax.swing.JPanel();
         employeeDetailsButton = new javax.swing.JButton();
         stockDetailsButton = new javax.swing.JButton();
@@ -416,7 +410,7 @@ public class FrontPage extends javax.swing.JFrame {
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gfcl/images/iconc.jpg"))); // NOI18N
 
         jLabel2.setFont(new java.awt.Font("Stencil", 1, 36)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(0, 153, 51));
+        jLabel2.setForeground(new java.awt.Color(0, 153, 204));
         jLabel2.setText("LEKHA BATHIK GARMENT FACTORY");
 
         jLabel3.setFont(new java.awt.Font("Vani", 1, 18)); // NOI18N
@@ -439,7 +433,7 @@ public class FrontPage extends javax.swing.JFrame {
                             .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 567, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 567, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addContainerGap())
-                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 660, Short.MAX_VALUE)))
+                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
         titlePanelLayout.setVerticalGroup(
             titlePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -457,7 +451,7 @@ public class FrontPage extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        userpanel.setBackground(new java.awt.Color(102, 102, 102));
+        userpanel.setBackground(new java.awt.Color(0, 153, 204));
 
         username.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         username.setForeground(new java.awt.Color(255, 255, 255));
@@ -486,6 +480,13 @@ public class FrontPage extends javax.swing.JFrame {
         });
         jPanel2.add(ExitButton);
 
+        todayLabel.setBackground(new java.awt.Color(204, 204, 255));
+        todayLabel.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        todayLabel.setForeground(new java.awt.Color(255, 255, 255));
+        todayLabel.setText("Today:");
+
+        dateLabel.setForeground(new java.awt.Color(255, 255, 255));
+
         javax.swing.GroupLayout userpanelLayout = new javax.swing.GroupLayout(userpanel);
         userpanel.setLayout(userpanelLayout);
         userpanelLayout.setHorizontalGroup(
@@ -493,9 +494,14 @@ public class FrontPage extends javax.swing.JFrame {
             .addGroup(userpanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(userpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(username, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(userpanelLayout.createSequentialGroup()
-                        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 249, Short.MAX_VALUE)
+                        .addComponent(todayLabel)
+                        .addGap(18, 18, 18)
+                        .addComponent(dateLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(username, javax.swing.GroupLayout.DEFAULT_SIZE, 155, Short.MAX_VALUE))
+                    .addGroup(userpanelLayout.createSequentialGroup()
+                        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addContainerGap())))
         );
         userpanelLayout.setVerticalGroup(
@@ -504,79 +510,12 @@ public class FrontPage extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(username, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        jPanel1.setBackground(new java.awt.Color(102, 102, 102));
-
-        todayLabel.setBackground(new java.awt.Color(204, 204, 255));
-        todayLabel.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
-        todayLabel.setForeground(new java.awt.Color(255, 255, 255));
-        todayLabel.setText("Today:");
-
-        dateLabel.setForeground(new java.awt.Color(255, 255, 255));
-
-        CalenderButton.setToolTipText("Calender");
-        CalenderButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CalenderButtonActionPerformed(evt);
-            }
-        });
-
-        REminderButton.setToolTipText("Reminders");
-        REminderButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                REminderButtonActionPerformed(evt);
-            }
-        });
-
-        jButton17.setToolTipText("Calculator");
-        jButton17.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton17ActionPerformed(evt);
-            }
-        });
-
-        jButton18.setToolTipText("Calculator");
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(REminderButton, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton17, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton18, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(todayLabel)
-                        .addGap(18, 18, 18)
-                        .addComponent(dateLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(CalenderButton, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(todayLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(dateLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addComponent(CalenderButton, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(REminderButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton17, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton18, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+                .addGroup(userpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(username, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(userpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(todayLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(dateLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(49, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout userLogPanelLayout = new javax.swing.GroupLayout(userLogPanel);
@@ -585,97 +524,12 @@ public class FrontPage extends javax.swing.JFrame {
             userLogPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, userLogPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(userpanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(2, 2, 2))
+                .addContainerGap())
         );
         userLogPanelLayout.setVerticalGroup(
             userLogPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, userLogPanelLayout.createSequentialGroup()
-                .addGroup(userLogPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(userpanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
-        );
-
-        searchPanel.setBackground(new java.awt.Color(102, 102, 102));
-        searchPanel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        searchPanel.setForeground(new java.awt.Color(255, 255, 255));
-
-        jLabel6.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel6.setText("Search ");
-
-        searchSetCombo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Employee", "Customer", "Material", "Garment" }));
-        searchSetCombo.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                searchSetComboItemStateChanged(evt);
-            }
-        });
-        searchSetCombo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                searchSetComboActionPerformed(evt);
-            }
-        });
-
-        searchByWhatCombo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "By name", "By NIC" }));
-        searchByWhatCombo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                searchByWhatComboActionPerformed(evt);
-            }
-        });
-
-        goButton.setText("Go ");
-        goButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                goButtonActionPerformed(evt);
-            }
-        });
-
-        jLabel5.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
-
-        jLabel9.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
-        jLabel9.setText("-A Product By GenuiN Soft-");
-
-        javax.swing.GroupLayout searchPanelLayout = new javax.swing.GroupLayout(searchPanel);
-        searchPanel.setLayout(searchPanelLayout);
-        searchPanelLayout.setHorizontalGroup(
-            searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(searchPanelLayout.createSequentialGroup()
-                .addGroup(searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(searchPanelLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(searchPanelLayout.createSequentialGroup()
-                                .addGroup(searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(searchSetCombo, 0, 162, Short.MAX_VALUE)
-                                        .addComponent(searchByWhatCombo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                    .addComponent(goButton, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(searchPanelLayout.createSequentialGroup()
-                                        .addComponent(jLabel5)
-                                        .addGap(17, 17, 17)))
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, 162, Short.MAX_VALUE))))
-                .addContainerGap())
-        );
-        searchPanelLayout.setVerticalGroup(
-            searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(searchPanelLayout.createSequentialGroup()
-                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26)
-                .addComponent(searchSetCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(searchByWhatCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30)
-                .addComponent(goButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel5)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+            .addComponent(userpanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         desktopPane.setOpaque(false);
@@ -699,34 +553,77 @@ public class FrontPage extends javax.swing.JFrame {
         desktopPaneLayout.setHorizontalGroup(
             desktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, desktopPaneLayout.createSequentialGroup()
-                .addContainerGap(700, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(130, 130, 130))
         );
         desktopPaneLayout.setVerticalGroup(
             desktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(desktopPaneLayout.createSequentialGroup()
-                .addGap(207, 207, 207)
+                .addGap(268, 268, 268)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(276, Short.MAX_VALUE))
+                .addContainerGap(162, Short.MAX_VALUE))
         );
+
+        jPanel4.setBackground(new java.awt.Color(0, 153, 204));
+        jPanel4.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jPanel4.setLayout(new java.awt.GridLayout(1, 0, 50, 50));
+
+        jLabel5.setFont(new java.awt.Font("Perpetua Titling MT", 1, 14)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel5.setText("QUick Search:");
+        jPanel4.add(jLabel5);
+
+        jButton1.setBackground(new java.awt.Color(0, 153, 255));
+        jButton1.setFont(new java.awt.Font("Perpetua Titling MT", 1, 12)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
+        jButton1.setText("SEARCH EMPLOYEE");
+        jButton1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanel4.add(jButton1);
+
+        jButton2.setBackground(new java.awt.Color(0, 153, 255));
+        jButton2.setFont(new java.awt.Font("Perpetua Titling MT", 1, 12)); // NOI18N
+        jButton2.setForeground(new java.awt.Color(255, 255, 255));
+        jButton2.setText("SEARCH GARMENT");
+        jButton2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanel4.add(jButton2);
+
+        jButton3.setBackground(new java.awt.Color(0, 153, 255));
+        jButton3.setFont(new java.awt.Font("Perpetua Titling MT", 1, 12)); // NOI18N
+        jButton3.setForeground(new java.awt.Color(255, 255, 255));
+        jButton3.setText("SEARCH MATERIAL");
+        jButton3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanel4.add(jButton3);
+
+        jButton4.setBackground(new java.awt.Color(0, 153, 255));
+        jButton4.setFont(new java.awt.Font("Perpetua Titling MT", 1, 12)); // NOI18N
+        jButton4.setForeground(new java.awt.Color(255, 255, 255));
+        jButton4.setText("SEARCH CUSTOMER");
+        jButton4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanel4.add(jButton4);
 
         javax.swing.GroupLayout internalFrameAreaPanelLayout = new javax.swing.GroupLayout(internalFrameAreaPanel);
         internalFrameAreaPanel.setLayout(internalFrameAreaPanelLayout);
         internalFrameAreaPanelLayout.setHorizontalGroup(
             internalFrameAreaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(internalFrameAreaPanelLayout.createSequentialGroup()
-                .addComponent(desktopPane, javax.swing.GroupLayout.PREFERRED_SIZE, 896, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addContainerGap()
+                .addGroup(internalFrameAreaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(desktopPane, javax.swing.GroupLayout.DEFAULT_SIZE, 1262, Short.MAX_VALUE)
+                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, 1262, Short.MAX_VALUE))
+                .addContainerGap())
         );
         internalFrameAreaPanelLayout.setVerticalGroup(
             internalFrameAreaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(internalFrameAreaPanelLayout.createSequentialGroup()
-                .addComponent(desktopPane, javax.swing.GroupLayout.PREFERRED_SIZE, 512, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(23, 23, 23)
+                .addComponent(desktopPane, javax.swing.GroupLayout.PREFERRED_SIZE, 459, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        shortcutAccessPanel.setBackground(new java.awt.Color(102, 102, 102));
+        shortcutAccessPanel.setBackground(new java.awt.Color(0, 153, 204));
         shortcutAccessPanel.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         shortcutAccessPanel.setLayout(new java.awt.GridLayout(7, 1, 50, 10));
 
@@ -805,12 +702,11 @@ public class FrontPage extends javax.swing.JFrame {
         desktopJPanelLayout.setHorizontalGroup(
             desktopJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(desktopJPanelLayout.createSequentialGroup()
-                .addComponent(titlePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(titlePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addComponent(userLogPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(desktopJPanelLayout.createSequentialGroup()
-                .addComponent(searchPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addContainerGap()
                 .addComponent(internalFrameAreaPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(shortcutAccessPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -822,12 +718,10 @@ public class FrontPage extends javax.swing.JFrame {
                     .addComponent(userLogPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(titlePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(desktopJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(desktopJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(internalFrameAreaPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(searchPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(shortcutAccessPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 494, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(desktopJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(internalFrameAreaPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(shortcutAccessPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
 
         jMenuBar1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -1055,12 +949,6 @@ public class FrontPage extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void REminderButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_REminderButtonActionPerformed
-        //add another dialog to show 
-
-
-    }//GEN-LAST:event_REminderButtonActionPerformed
-
     private void employeeDetailsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_employeeDetailsButtonActionPerformed
         EmployeeDetailFrame employeeForm = new EmployeeDetailFrame();
         employeeForm.setSize(desktopPane.getSize());
@@ -1148,47 +1036,9 @@ public class FrontPage extends javax.swing.JFrame {
         setDesktopPaneForSales(form, 0);
     }//GEN-LAST:event_salesDetailsButtonActionPerformed
 
-    private void goButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_goButtonActionPerformed
-        //add a search form to middle based on combo boxes
-    }//GEN-LAST:event_goButtonActionPerformed
-
-    private void searchSetComboItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_searchSetComboItemStateChanged
-        String selected = String.valueOf(searchSetCombo.getSelectedItem());
-
-        ArrayList<String> employeelist = new ArrayList<>(Arrays.asList("By Reg Id", "By name", "By NIC"));
-        ArrayList<String> materialList = new ArrayList<>(Arrays.asList("By material id", "By material name"));
-        ArrayList<String> garmentList = new ArrayList<>(Arrays.asList("By garment id", "By garment name"));
-        ArrayList<String> customerList = new ArrayList<>(Arrays.asList("By garment id", "By garment name"));
-
-        if (null != selected) {
-            switch (selected) {
-                case "Employee":
-                    GUIitemsValidator.addItemToCombo(employeelist, searchByWhatCombo);
-                    break;
-                case "Material":
-                    GUIitemsValidator.addItemToCombo(materialList, searchByWhatCombo);
-                    break;
-                case "Garment":
-                    GUIitemsValidator.addItemToCombo(garmentList, searchByWhatCombo);
-                    break;
-                case "Customer":
-                    GUIitemsValidator.addItemToCombo(customerList, searchByWhatCombo);
-                    break;
-                default:
-                    break;
-            }
-        }
-    }//GEN-LAST:event_searchSetComboItemStateChanged
-
-    private void searchByWhatComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchByWhatComboActionPerformed
-    }//GEN-LAST:event_searchByWhatComboActionPerformed
-
     private void otherExpensesButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_otherExpensesButtonActionPerformed
         setDesktopPaneForIncome(new IncomeSummaryFrame(), 0);
     }//GEN-LAST:event_otherExpensesButtonActionPerformed
-
-    private void searchSetComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchSetComboActionPerformed
-    }//GEN-LAST:event_searchSetComboActionPerformed
 
     private void addNewStockMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addNewStockMenuActionPerformed
         setDesktopPaneForStock(new StockDetailFrame(), 0);
@@ -1328,14 +1178,6 @@ public class FrontPage extends javax.swing.JFrame {
     }//GEN-LAST:event_formKeyReleased
 
 
-    private void jButton17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton17ActionPerformed
-
-    }//GEN-LAST:event_jButton17ActionPerformed
-
-    private void CalenderButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CalenderButtonActionPerformed
-
-    }//GEN-LAST:event_CalenderButtonActionPerformed
-
     private void paySalaryButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_paySalaryButtonActionPerformed
         setDesktopPaneForEmployee(new EmployeeDetailFrame(), 3);
     }//GEN-LAST:event_paySalaryButtonActionPerformed
@@ -1412,10 +1254,8 @@ public class FrontPage extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton CalenderButton;
     private javax.swing.JButton ExitButton;
     private javax.swing.JButton LogOutButton;
-    private javax.swing.JButton REminderButton;
     private javax.swing.JMenuItem addCustomerMenu;
     private javax.swing.JMenuItem addDailyProdMenu;
     private javax.swing.JMenuItem addDailyUsageMenu;
@@ -1436,13 +1276,14 @@ public class FrontPage extends javax.swing.JFrame {
     private javax.swing.JMenuItem editEmployeeMenu;
     private javax.swing.JButton employeeDetailsButton;
     private javax.swing.JMenu employeeMenu;
-    private javax.swing.JButton goButton;
     private javax.swing.ButtonGroup grantSearchSet;
     private javax.swing.ButtonGroup importantButtonSet;
     private javax.swing.JMenu incomeSummaryMenu;
     private javax.swing.JPanel internalFrameAreaPanel;
-    private javax.swing.JButton jButton17;
-    private javax.swing.JButton jButton18;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     private javax.swing.JCheckBox jCheckBox13;
     private javax.swing.JCheckBox jCheckBox14;
     private javax.swing.JCheckBox jCheckBox15;
@@ -1460,15 +1301,13 @@ public class FrontPage extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
     private javax.swing.JRadioButton jRadioButton10;
     private javax.swing.JRadioButton jRadioButton6;
     private javax.swing.JRadioButton jRadioButton7;
@@ -1488,11 +1327,8 @@ public class FrontPage extends javax.swing.JFrame {
     private javax.swing.JButton salesDetailsButton;
     private javax.swing.JMenu salesMenu;
     private javax.swing.ButtonGroup searchButtonSet;
-    private javax.swing.JComboBox searchByWhatCombo;
     private javax.swing.JMenuItem searchEmployeeMenu;
-    private javax.swing.JPanel searchPanel;
     private javax.swing.JPanel searchPanel1;
-    private javax.swing.JComboBox searchSetCombo;
     private javax.swing.JPanel shortcutAccessPanel;
     private javax.swing.JButton stockDetailsButton;
     private javax.swing.JMenu systemMenu;

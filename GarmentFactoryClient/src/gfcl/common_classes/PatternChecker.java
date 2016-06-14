@@ -103,8 +103,8 @@ public class PatternChecker {
 
     }
 
-    public static boolean birthdayChecker(String birthday) {
-        SimpleDateFormat sdf = new SimpleDateFormat("MM/d/yyyy");
+    public static boolean dateFormatChecker(String birthday) {
+        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
         Date testdate = null;
         try {
             testdate = sdf.parse(birthday);
