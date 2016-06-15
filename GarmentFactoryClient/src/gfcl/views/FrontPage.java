@@ -433,7 +433,7 @@ public class FrontPage extends javax.swing.JFrame {
                             .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 567, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 567, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addContainerGap())
-                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 941, Short.MAX_VALUE)))
         );
         titlePanelLayout.setVerticalGroup(
             titlePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -629,8 +629,8 @@ public class FrontPage extends javax.swing.JFrame {
             .addGroup(internalFrameAreaPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(internalFrameAreaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(desktopPane, javax.swing.GroupLayout.DEFAULT_SIZE, 1262, Short.MAX_VALUE)
-                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, 1262, Short.MAX_VALUE))
+                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, 1080, Short.MAX_VALUE)
+                    .addComponent(desktopPane, javax.swing.GroupLayout.DEFAULT_SIZE, 1080, Short.MAX_VALUE))
                 .addContainerGap())
         );
         internalFrameAreaPanelLayout.setVerticalGroup(
@@ -648,6 +648,7 @@ public class FrontPage extends javax.swing.JFrame {
         shortcutAccessPanel.setLayout(new java.awt.GridLayout(7, 1, 50, 10));
 
         employeeDetailsButton.setFont(new java.awt.Font("Microsoft Sans Serif", 1, 14)); // NOI18N
+        employeeDetailsButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gfcl/images/employee.png"))); // NOI18N
         employeeDetailsButton.setText("1-Employee Details");
         importantButtonSet.add(employeeDetailsButton);
         employeeDetailsButton.addActionListener(new java.awt.event.ActionListener() {
@@ -658,6 +659,7 @@ public class FrontPage extends javax.swing.JFrame {
         shortcutAccessPanel.add(employeeDetailsButton);
 
         stockDetailsButton.setFont(new java.awt.Font("Microsoft Sans Serif", 1, 14)); // NOI18N
+        stockDetailsButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gfcl/images/inventory_icon.jpg"))); // NOI18N
         stockDetailsButton.setText("2-Stock Details");
         importantButtonSet.add(stockDetailsButton);
         stockDetailsButton.addActionListener(new java.awt.event.ActionListener() {
@@ -668,6 +670,7 @@ public class FrontPage extends javax.swing.JFrame {
         shortcutAccessPanel.add(stockDetailsButton);
 
         salesDetailsButton.setFont(new java.awt.Font("Microsoft Sans Serif", 1, 14)); // NOI18N
+        salesDetailsButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gfcl/images/sales.png"))); // NOI18N
         salesDetailsButton.setText("3-Sales Details");
         importantButtonSet.add(salesDetailsButton);
         salesDetailsButton.addActionListener(new java.awt.event.ActionListener() {
@@ -678,6 +681,7 @@ public class FrontPage extends javax.swing.JFrame {
         shortcutAccessPanel.add(salesDetailsButton);
 
         productionDetailsButton.setFont(new java.awt.Font("Microsoft Sans Serif", 1, 14)); // NOI18N
+        productionDetailsButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gfcl/images/productions.png"))); // NOI18N
         productionDetailsButton.setText("4-Prodcution Details");
         importantButtonSet.add(productionDetailsButton);
         productionDetailsButton.addActionListener(new java.awt.event.ActionListener() {
@@ -688,6 +692,7 @@ public class FrontPage extends javax.swing.JFrame {
         shortcutAccessPanel.add(productionDetailsButton);
 
         otherExpensesButton.setFont(new java.awt.Font("Microsoft Sans Serif", 1, 14)); // NOI18N
+        otherExpensesButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gfcl/images/budget64.png"))); // NOI18N
         otherExpensesButton.setText("5-Other Expenses");
         importantButtonSet.add(otherExpensesButton);
         otherExpensesButton.addActionListener(new java.awt.event.ActionListener() {
@@ -727,9 +732,9 @@ public class FrontPage extends javax.swing.JFrame {
                 .addComponent(userLogPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(desktopJPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(internalFrameAreaPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(shortcutAccessPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(internalFrameAreaPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(shortcutAccessPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         desktopJPanelLayout.setVerticalGroup(
             desktopJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -741,7 +746,7 @@ public class FrontPage extends javax.swing.JFrame {
                 .addGroup(desktopJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(internalFrameAreaPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(shortcutAccessPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jMenuBar1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
