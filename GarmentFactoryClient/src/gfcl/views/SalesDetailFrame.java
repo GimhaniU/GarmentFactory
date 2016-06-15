@@ -1397,4 +1397,16 @@ public class SalesDetailFrame extends javax.swing.JInternalFrame {
     private javax.swing.JTable view_customer_order_table;
     private javax.swing.JTextField view_total_payement_text;
     // End of variables declaration//GEN-END:variables
+
+    void setDisabledTabs(boolean tab1,boolean tab2,boolean tab3,boolean tab4,boolean tab5){
+        tabpane.setEnabledAt(0,tab1 );
+        tabpane.setEnabledAt(1,tab2 );
+        tabpane.setEnabledAt(2,tab3 );
+        tabpane.setEnabledAt(3,tab4 );
+        tabpane.setEnabledAt(4,tab5 );
+    }
+
+    void setUpdateButton(boolean b) {
+        save_button1.setEnabled(b);
+    }
 }

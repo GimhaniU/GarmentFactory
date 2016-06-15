@@ -804,4 +804,15 @@ public class GarmentDetailFrame extends javax.swing.JInternalFrame {
             garment_edit_combo.requestFocus();
         }
     }
+
+    void focustabbedpane(int num) {
+        tabpane.setSelectedIndex(num);
+    }
+
+    void setDisabledTabs(boolean b0, boolean b1, boolean b2) {
+        tabpane.setEnabledAt(0, b0);
+        tabpane.setEnabledAt(1, b1);
+        tabpane.setEnabledAt(2, b2);
+    }
+
 }

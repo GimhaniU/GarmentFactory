@@ -1343,4 +1343,13 @@ public class StockDetailFrame extends javax.swing.JInternalFrame {
     private javax.swing.JPanel wax_panel;
     private javax.swing.JTable wax_stock_table;
     // End of variables declaration//GEN-END:variables
+
+    public void setDisabledTabs(boolean tab1,boolean tab2,boolean tab3,boolean tab4){
+        tabpane.setEnabledAt(0,tab1 );
+        tabpane.setEnabledAt(1,tab2 );
+        tabpane.setEnabledAt(2,tab3 );
+        tabpane.setEnabledAt(3,tab4 );
+    }
+
+   
 }

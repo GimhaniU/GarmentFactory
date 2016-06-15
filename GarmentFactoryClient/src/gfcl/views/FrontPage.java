@@ -207,9 +207,9 @@ public class FrontPage extends javax.swing.JFrame {
         jPanel4 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         search_employee_button = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        search_garment_button = new javax.swing.JButton();
+        search_material_button = new javax.swing.JButton();
+        search_customer_button = new javax.swing.JButton();
         shortcutAccessPanel = new javax.swing.JPanel();
         employeeDetailsButton = new javax.swing.JButton();
         stockDetailsButton = new javax.swing.JButton();
@@ -586,26 +586,41 @@ public class FrontPage extends javax.swing.JFrame {
         });
         jPanel4.add(search_employee_button);
 
-        jButton2.setBackground(new java.awt.Color(0, 153, 255));
-        jButton2.setFont(new java.awt.Font("Perpetua Titling MT", 1, 12)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setText("SEARCH GARMENT");
-        jButton2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel4.add(jButton2);
+        search_garment_button.setBackground(new java.awt.Color(0, 153, 255));
+        search_garment_button.setFont(new java.awt.Font("Perpetua Titling MT", 1, 12)); // NOI18N
+        search_garment_button.setForeground(new java.awt.Color(255, 255, 255));
+        search_garment_button.setText("SEARCH GARMENT");
+        search_garment_button.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        search_garment_button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                search_garment_buttonActionPerformed(evt);
+            }
+        });
+        jPanel4.add(search_garment_button);
 
-        jButton3.setBackground(new java.awt.Color(0, 153, 255));
-        jButton3.setFont(new java.awt.Font("Perpetua Titling MT", 1, 12)); // NOI18N
-        jButton3.setForeground(new java.awt.Color(255, 255, 255));
-        jButton3.setText("SEARCH MATERIAL");
-        jButton3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel4.add(jButton3);
+        search_material_button.setBackground(new java.awt.Color(0, 153, 255));
+        search_material_button.setFont(new java.awt.Font("Perpetua Titling MT", 1, 12)); // NOI18N
+        search_material_button.setForeground(new java.awt.Color(255, 255, 255));
+        search_material_button.setText("SEARCH MATERIAL");
+        search_material_button.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        search_material_button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                search_material_buttonActionPerformed(evt);
+            }
+        });
+        jPanel4.add(search_material_button);
 
-        jButton4.setBackground(new java.awt.Color(0, 153, 255));
-        jButton4.setFont(new java.awt.Font("Perpetua Titling MT", 1, 12)); // NOI18N
-        jButton4.setForeground(new java.awt.Color(255, 255, 255));
-        jButton4.setText("SEARCH CUSTOMER");
-        jButton4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel4.add(jButton4);
+        search_customer_button.setBackground(new java.awt.Color(0, 153, 255));
+        search_customer_button.setFont(new java.awt.Font("Perpetua Titling MT", 1, 12)); // NOI18N
+        search_customer_button.setForeground(new java.awt.Color(255, 255, 255));
+        search_customer_button.setText("SEARCH CUSTOMER");
+        search_customer_button.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        search_customer_button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                search_customer_buttonActionPerformed(evt);
+            }
+        });
+        jPanel4.add(search_customer_button);
 
         javax.swing.GroupLayout internalFrameAreaPanelLayout = new javax.swing.GroupLayout(internalFrameAreaPanel);
         internalFrameAreaPanel.setLayout(internalFrameAreaPanelLayout);
@@ -1007,6 +1022,15 @@ public class FrontPage extends javax.swing.JFrame {
         form.focustabbedpane(num);
         form.requestFoucsForm();
     }
+    
+    public void setDesktopPaneForGarment(GarmentDetailFrame form, int num) {
+        form.setSize(desktopPane.getSize());
+        desktopPane.removeAll();
+        desktopPane.add(form);
+        form.setVisible(true);
+        form.focustabbedpane(num);
+        form.requestFoucsForm();
+    }
 
     public void addEmployeeForm(String nic) {
         EmployeeDetailFrame form = new EmployeeDetailFrame(nic);
@@ -1218,6 +1242,25 @@ public class FrontPage extends javax.swing.JFrame {
         setDesktopPaneForEmployee(employeeDetailFrame, 1);
     }//GEN-LAST:event_search_employee_buttonActionPerformed
 
+    private void search_garment_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_search_garment_buttonActionPerformed
+        GarmentDetailFrame garmentDetailFrame = new GarmentDetailFrame();
+        garmentDetailFrame.setDisabledTabs(true, false, false);
+        setDesktopPaneForGarment(garmentDetailFrame, 0);
+    }//GEN-LAST:event_search_garment_buttonActionPerformed
+
+    private void search_material_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_search_material_buttonActionPerformed
+        StockDetailFrame stockDetailFrame = new StockDetailFrame();
+        stockDetailFrame.setDisabledTabs(false, false, false,true);
+        setDesktopPaneForStock(stockDetailFrame, 3);
+    }//GEN-LAST:event_search_material_buttonActionPerformed
+
+    private void search_customer_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_search_customer_buttonActionPerformed
+        SalesDetailFrame salesDetailFrame = new SalesDetailFrame();
+        salesDetailFrame.setDisabledTabs(false, false,true, false, false);
+        salesDetailFrame.setUpdateButton(false);
+        setDesktopPaneForSales(salesDetailFrame, 2);
+    }//GEN-LAST:event_search_customer_buttonActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1292,9 +1335,6 @@ public class FrontPage extends javax.swing.JFrame {
     private javax.swing.ButtonGroup importantButtonSet;
     private javax.swing.JMenu incomeSummaryMenu;
     private javax.swing.JPanel internalFrameAreaPanel;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JCheckBox jCheckBox13;
     private javax.swing.JCheckBox jCheckBox14;
     private javax.swing.JCheckBox jCheckBox15;
@@ -1340,7 +1380,10 @@ public class FrontPage extends javax.swing.JFrame {
     private javax.swing.ButtonGroup searchButtonSet;
     private javax.swing.JMenuItem searchEmployeeMenu;
     private javax.swing.JPanel searchPanel1;
+    private javax.swing.JButton search_customer_button;
     private javax.swing.JButton search_employee_button;
+    private javax.swing.JButton search_garment_button;
+    private javax.swing.JButton search_material_button;
     private javax.swing.JPanel shortcutAccessPanel;
     private javax.swing.JButton stockDetailsButton;
     private javax.swing.JMenu systemMenu;
