@@ -37,14 +37,25 @@
   </Layout>
   <SubComponents>
     <Container class="javax.swing.JTabbedPane" name="tab_pane_out">
+      <Properties>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="cc" green="0" red="0" type="rgb"/>
+        </Property>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="SansSerif" size="11" style="3"/>
+        </Property>
+      </Properties>
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout"/>
       <SubComponents>
-        <Container class="javax.swing.JPanel" name="jPanel1">
+        <Container class="javax.swing.JPanel" name="daily_coverage_panel">
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
               <JTabbedPaneConstraints tabName="Add Daily Coverage">
                 <Property name="tabTitle" type="java.lang.String" value="Add Daily Coverage"/>
+                <Property name="tabIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/gfcl/images/report--plus.png"/>
+                </Property>
               </JTabbedPaneConstraints>
             </Constraint>
           </Constraints>
@@ -95,9 +106,9 @@
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" attributes="0">
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="jPanel6" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jPanel5" min="-2" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                      <Component id="jPanel5" max="32767" attributes="0"/>
+                                      <Component id="jPanel6" max="32767" attributes="0"/>
                                   </Group>
                                   <EmptySpace pref="135" max="32767" attributes="0"/>
                               </Group>
@@ -133,7 +144,9 @@
                                       <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
                                       <Component id="date_text" min="-2" pref="156" max="-2" attributes="0"/>
-                                      <EmptySpace pref="391" max="32767" attributes="0"/>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <Component id="invalid_date_format_label" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="32767" attributes="0"/>
                                   </Group>
                               </Group>
                             </DimensionLayout>
@@ -144,6 +157,7 @@
                                       <Group type="103" groupAlignment="3" attributes="0">
                                           <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
                                           <Component id="date_text" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="invalid_date_format_label" alignment="3" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                       <EmptySpace max="32767" attributes="0"/>
                                   </Group>
@@ -153,10 +167,29 @@
                           <SubComponents>
                             <Component class="javax.swing.JLabel" name="jLabel1">
                               <Properties>
+                                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                                  <Font name="SansSerif" size="11" style="1"/>
+                                </Property>
                                 <Property name="text" type="java.lang.String" value="Date:"/>
                               </Properties>
                             </Component>
                             <Component class="javax.swing.JTextField" name="date_text">
+                              <Properties>
+                                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                                  <Font name="SansSerif" size="11" style="0"/>
+                                </Property>
+                              </Properties>
+                              <Events>
+                                <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="date_textKeyReleased"/>
+                              </Events>
+                            </Component>
+                            <Component class="javax.swing.JLabel" name="invalid_date_format_label">
+                              <Properties>
+                                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                                  <Color blue="0" green="0" red="ff" type="rgb"/>
+                                </Property>
+                                <Property name="text" type="java.lang.String" value="Invalid date format!"/>
+                              </Properties>
                             </Component>
                           </SubComponents>
                         </Container>
@@ -190,6 +223,11 @@
                           </Layout>
                           <SubComponents>
                             <Container class="javax.swing.JTabbedPane" name="tabpane_in">
+                              <Properties>
+                                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                                  <Font name="Perpetua Titling MT" size="11" style="1"/>
+                                </Property>
+                              </Properties>
 
                               <Layout class="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout"/>
                               <SubComponents>
@@ -229,16 +267,16 @@
                                               <Group type="103" groupAlignment="0" attributes="0">
                                                   <Group type="102" attributes="0">
                                                       <Group type="103" groupAlignment="0" attributes="0">
-                                                          <Group type="102" alignment="0" attributes="0">
-                                                              <EmptySpace max="-2" attributes="0"/>
-                                                              <Component id="jPanel11" min="-2" max="-2" attributes="0"/>
-                                                          </Group>
-                                                          <Group type="102" alignment="0" attributes="0">
+                                                          <Group type="102" attributes="0">
                                                               <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
                                                               <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                                                               <EmptySpace type="separate" max="-2" attributes="0"/>
                                                               <Group type="103" groupAlignment="0" attributes="0">
-                                                                  <Component id="garment_combo" min="-2" pref="176" max="-2" attributes="0"/>
+                                                                  <Group type="102" attributes="0">
+                                                                      <Component id="garment_combo" min="-2" pref="176" max="-2" attributes="0"/>
+                                                                      <EmptySpace max="-2" attributes="0"/>
+                                                                      <Component id="no_valid_garment_label" min="-2" max="-2" attributes="0"/>
+                                                                  </Group>
                                                                   <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
                                                                       <Group type="102" alignment="0" attributes="0">
                                                                           <Group type="103" groupAlignment="0" attributes="0">
@@ -247,7 +285,7 @@
                                                                               <Component id="jLabel5" alignment="0" min="-2" max="-2" attributes="0"/>
                                                                               <Component id="jLabel6" alignment="0" min="-2" max="-2" attributes="0"/>
                                                                           </Group>
-                                                                          <EmptySpace pref="77" max="32767" attributes="0"/>
+                                                                          <EmptySpace max="32767" attributes="0"/>
                                                                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                                                               <Component id="washing_spinner" pref="40" max="32767" attributes="0"/>
                                                                               <Component id="dyeing_spinner" max="32767" attributes="0"/>
@@ -269,8 +307,12 @@
                                                                   </Group>
                                                               </Group>
                                                           </Group>
+                                                          <Group type="102" alignment="0" attributes="0">
+                                                              <EmptySpace max="-2" attributes="0"/>
+                                                              <Component id="jPanel11" min="-2" max="-2" attributes="0"/>
+                                                          </Group>
                                                       </Group>
-                                                      <EmptySpace pref="67" max="32767" attributes="0"/>
+                                                      <EmptySpace pref="121" max="32767" attributes="0"/>
                                                   </Group>
                                               </Group>
                                             </DimensionLayout>
@@ -281,6 +323,7 @@
                                                       <Group type="103" groupAlignment="3" attributes="0">
                                                           <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
                                                           <Component id="garment_combo" alignment="3" min="-2" max="-2" attributes="0"/>
+                                                          <Component id="no_valid_garment_label" alignment="3" min="-2" max="-2" attributes="0"/>
                                                       </Group>
                                                       <EmptySpace type="separate" max="-2" attributes="0"/>
                                                       <Group type="103" groupAlignment="3" attributes="0">
@@ -322,17 +365,25 @@
                                           <SubComponents>
                                             <Component class="javax.swing.JLabel" name="jLabel2">
                                               <Properties>
+                                                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                                                  <Font name="SansSerif" size="11" style="1"/>
+                                                </Property>
                                                 <Property name="text" type="java.lang.String" value="Select garment:"/>
                                               </Properties>
                                             </Component>
                                             <Component class="javax.swing.JComboBox" name="garment_combo">
                                               <Properties>
+                                                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                                                  <Font name="SansSerif" size="11" style="0"/>
+                                                </Property>
                                                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                                                   <StringArray count="0"/>
                                                 </Property>
                                               </Properties>
                                               <Events>
                                                 <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="garment_comboItemStateChanged"/>
+                                                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="garment_comboActionPerformed"/>
+                                                <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="garment_comboKeyReleased"/>
                                               </Events>
                                               <AuxValues>
                                                 <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
@@ -340,60 +391,108 @@
                                             </Component>
                                             <Component class="javax.swing.JLabel" name="jLabel3">
                                               <Properties>
+                                                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                                                  <Font name="SansSerif" size="11" style="1"/>
+                                                </Property>
                                                 <Property name="text" type="java.lang.String" value="Cuttings:"/>
                                               </Properties>
                                             </Component>
                                             <Component class="javax.swing.JLabel" name="jLabel5">
                                               <Properties>
+                                                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                                                  <Font name="SansSerif" size="11" style="1"/>
+                                                </Property>
                                                 <Property name="text" type="java.lang.String" value="Sewings:"/>
                                               </Properties>
                                             </Component>
                                             <Component class="javax.swing.JLabel" name="jLabel6">
                                               <Properties>
+                                                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                                                  <Font name="SansSerif" size="11" style="1"/>
+                                                </Property>
                                                 <Property name="text" type="java.lang.String" value="Dyeings:"/>
                                               </Properties>
                                             </Component>
                                             <Component class="javax.swing.JLabel" name="jLabel8">
                                               <Properties>
+                                                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                                                  <Font name="SansSerif" size="11" style="1"/>
+                                                </Property>
                                                 <Property name="text" type="java.lang.String" value="Washings:"/>
                                               </Properties>
                                             </Component>
                                             <Component class="javax.swing.JLabel" name="jLabel9">
                                               <Properties>
+                                                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                                                  <Font name="SansSerif" size="11" style="1"/>
+                                                </Property>
                                                 <Property name="text" type="java.lang.String" value="Fininsh sewings:"/>
                                               </Properties>
                                             </Component>
                                             <Component class="javax.swing.JLabel" name="jLabel11">
                                               <Properties>
+                                                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                                                  <Font name="SansSerif" size="11" style="1"/>
+                                                </Property>
                                                 <Property name="text" type="java.lang.String" value="Completions:"/>
                                               </Properties>
                                             </Component>
                                             <Component class="javax.swing.JSpinner" name="cutting_spinner">
+                                              <Properties>
+                                                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                                                  <Font name="SansSerif" size="11" style="0"/>
+                                                </Property>
+                                              </Properties>
                                               <Events>
                                                 <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="cutting_spinnerStateChanged"/>
                                               </Events>
                                             </Component>
                                             <Component class="javax.swing.JSpinner" name="sewing_spinner">
+                                              <Properties>
+                                                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                                                  <Font name="SansSerif" size="11" style="0"/>
+                                                </Property>
+                                              </Properties>
                                               <Events>
                                                 <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="sewing_spinnerStateChanged"/>
                                               </Events>
                                             </Component>
                                             <Component class="javax.swing.JSpinner" name="dyeing_spinner">
+                                              <Properties>
+                                                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                                                  <Font name="SansSerif" size="11" style="0"/>
+                                                </Property>
+                                              </Properties>
                                               <Events>
                                                 <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="dyeing_spinnerStateChanged"/>
                                               </Events>
                                             </Component>
                                             <Component class="javax.swing.JSpinner" name="washing_spinner">
+                                              <Properties>
+                                                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                                                  <Font name="SansSerif" size="11" style="0"/>
+                                                </Property>
+                                              </Properties>
                                               <Events>
                                                 <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="washing_spinnerStateChanged"/>
                                               </Events>
                                             </Component>
                                             <Component class="javax.swing.JSpinner" name="completing_spinner">
+                                              <Properties>
+                                                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                                                  <Font name="SansSerif" size="11" style="0"/>
+                                                </Property>
+                                              </Properties>
                                               <Events>
                                                 <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="completing_spinnerStateChanged"/>
                                               </Events>
                                             </Component>
                                             <Component class="javax.swing.JSpinner" name="sewing_finish_spinner">
+                                              <Properties>
+                                                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                                                  <Font name="SansSerif" size="11" style="0"/>
+                                                </Property>
+                                              </Properties>
                                               <Events>
                                                 <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="sewing_finish_spinnerStateChanged"/>
                                               </Events>
@@ -401,8 +500,8 @@
                                             <Container class="javax.swing.JPanel" name="jPanel11">
                                               <Properties>
                                                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-                                                  <Border info="org.netbeans.modules.form.compat2.border.EtchedBorderInfo">
-                                                    <EtchetBorder/>
+                                                  <Border info="org.netbeans.modules.form.compat2.border.SoftBevelBorderInfo">
+                                                    <BevelBorder/>
                                                   </Border>
                                                 </Property>
                                               </Properties>
@@ -411,9 +510,9 @@
                                                 <DimensionLayout dim="0">
                                                   <Group type="103" groupAlignment="0" attributes="0">
                                                       <Group type="102" alignment="1" attributes="0">
-                                                          <EmptySpace pref="422" max="32767" attributes="0"/>
-                                                          <Component id="save_by_garment_button" min="-2" max="-2" attributes="0"/>
-                                                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                                          <EmptySpace pref="343" max="32767" attributes="0"/>
+                                                          <Component id="save_by_garment_button" min="-2" pref="72" max="-2" attributes="0"/>
+                                                          <EmptySpace type="separate" max="-2" attributes="0"/>
                                                           <Component id="cancel_button" min="-2" max="-2" attributes="0"/>
                                                           <EmptySpace max="-2" attributes="0"/>
                                                       </Group>
@@ -422,7 +521,7 @@
                                                 <DimensionLayout dim="1">
                                                   <Group type="103" groupAlignment="0" attributes="0">
                                                       <Group type="102" alignment="1" attributes="0">
-                                                          <EmptySpace pref="12" max="32767" attributes="0"/>
+                                                          <EmptySpace max="32767" attributes="0"/>
                                                           <Group type="103" groupAlignment="3" attributes="0">
                                                               <Component id="cancel_button" alignment="3" min="-2" max="-2" attributes="0"/>
                                                               <Component id="save_by_garment_button" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -435,7 +534,18 @@
                                               <SubComponents>
                                                 <Component class="javax.swing.JButton" name="save_by_garment_button">
                                                   <Properties>
+                                                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                                                      <Font name="Perpetua Titling MT" size="11" style="1"/>
+                                                    </Property>
+                                                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                                                      <Image iconType="3" name="/gfcl/images/save_small.png"/>
+                                                    </Property>
                                                     <Property name="text" type="java.lang.String" value="Save"/>
+                                                    <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                                                      <Border info="org.netbeans.modules.form.compat2.border.SoftBevelBorderInfo">
+                                                        <BevelBorder/>
+                                                      </Border>
+                                                    </Property>
                                                   </Properties>
                                                   <Events>
                                                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="save_by_garment_buttonActionPerformed"/>
@@ -443,7 +553,18 @@
                                                 </Component>
                                                 <Component class="javax.swing.JButton" name="cancel_button">
                                                   <Properties>
+                                                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                                                      <Font name="Perpetua Titling MT" size="11" style="1"/>
+                                                    </Property>
+                                                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                                                      <Image iconType="3" name="/gfcl/images/cancel_icon.png"/>
+                                                    </Property>
                                                     <Property name="text" type="java.lang.String" value="Cancel"/>
+                                                    <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                                                      <Border info="org.netbeans.modules.form.compat2.border.SoftBevelBorderInfo">
+                                                        <BevelBorder/>
+                                                      </Border>
+                                                    </Property>
                                                   </Properties>
                                                   <Events>
                                                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cancel_buttonActionPerformed"/>
@@ -451,6 +572,14 @@
                                                 </Component>
                                               </SubComponents>
                                             </Container>
+                                            <Component class="javax.swing.JLabel" name="no_valid_garment_label">
+                                              <Properties>
+                                                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                                                  <Color blue="0" green="0" red="ff" type="rgb"/>
+                                                </Property>
+                                                <Property name="text" type="java.lang.String" value="Please select a valid garment"/>
+                                              </Properties>
+                                            </Component>
                                           </SubComponents>
                                         </Container>
                                       </SubComponents>
@@ -496,24 +625,21 @@
                                           <Layout>
                                             <DimensionLayout dim="0">
                                               <Group type="103" groupAlignment="0" attributes="0">
-                                                  <Group type="102" attributes="0">
+                                                  <Group type="102" alignment="0" attributes="0">
                                                       <EmptySpace max="-2" attributes="0"/>
                                                       <Group type="103" groupAlignment="0" attributes="0">
-                                                          <Component id="jPanel12" max="32767" attributes="0"/>
-                                                          <Group type="102" attributes="0">
-                                                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                                                  <Group type="102" attributes="0">
-                                                                      <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
-                                                                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                                                                      <Component id="processes_combo" min="-2" pref="216" max="-2" attributes="0"/>
-                                                                  </Group>
-                                                                  <Component id="jPanel13" alignment="0" max="32767" attributes="0"/>
-                                                                  <Component id="jPanel14" alignment="0" max="32767" attributes="0"/>
+                                                          <Component id="jPanel12" min="-2" max="-2" attributes="0"/>
+                                                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                                              <Group type="102" attributes="0">
+                                                                  <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
+                                                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                                                  <Component id="processes_combo" min="-2" pref="216" max="-2" attributes="0"/>
                                                               </Group>
-                                                              <EmptySpace min="0" pref="155" max="32767" attributes="0"/>
+                                                              <Component id="jPanel13" alignment="0" max="32767" attributes="0"/>
+                                                              <Component id="jPanel14" alignment="0" max="32767" attributes="0"/>
                                                           </Group>
                                                       </Group>
-                                                      <EmptySpace max="-2" attributes="0"/>
+                                                      <EmptySpace pref="142" max="32767" attributes="0"/>
                                                   </Group>
                                               </Group>
                                             </DimensionLayout>
@@ -539,11 +665,17 @@
                                           <SubComponents>
                                             <Component class="javax.swing.JLabel" name="jLabel4">
                                               <Properties>
+                                                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                                                  <Font name="SansSerif" size="11" style="1"/>
+                                                </Property>
                                                 <Property name="text" type="java.lang.String" value="Select process:"/>
                                               </Properties>
                                             </Component>
                                             <Component class="javax.swing.JComboBox" name="processes_combo">
                                               <Properties>
+                                                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                                                  <Font name="SansSerif" size="11" style="0"/>
+                                                </Property>
                                                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                                                   <StringArray count="6">
                                                     <StringItem index="0" value="Cutting"/>
@@ -588,7 +720,9 @@
                                                                   </Group>
                                                               </Group>
                                                           </Group>
-                                                          <EmptySpace max="32767" attributes="0"/>
+                                                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                                          <Component id="invalid_garment_pro_label" min="-2" max="-2" attributes="0"/>
+                                                          <EmptySpace pref="121" max="32767" attributes="0"/>
                                                       </Group>
                                                   </Group>
                                                 </DimensionLayout>
@@ -599,6 +733,7 @@
                                                           <Group type="103" groupAlignment="3" attributes="0">
                                                               <Component id="garment_inpro_combo" alignment="3" min="-2" max="-2" attributes="0"/>
                                                               <Component id="jLabel7" alignment="3" min="-2" max="-2" attributes="0"/>
+                                                              <Component id="invalid_garment_pro_label" alignment="3" min="-2" max="-2" attributes="0"/>
                                                           </Group>
                                                           <EmptySpace type="separate" max="-2" attributes="0"/>
                                                           <Group type="103" groupAlignment="3" attributes="0">
@@ -615,11 +750,17 @@
                                               <SubComponents>
                                                 <Component class="javax.swing.JLabel" name="jLabel7">
                                                   <Properties>
+                                                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                                                      <Font name="SansSerif" size="11" style="1"/>
+                                                    </Property>
                                                     <Property name="text" type="java.lang.String" value="Select Garment:"/>
                                                   </Properties>
                                                 </Component>
                                                 <Component class="javax.swing.JComboBox" name="garment_inpro_combo">
                                                   <Properties>
+                                                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                                                      <Font name="SansSerif" size="11" style="0"/>
+                                                    </Property>
                                                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                                                       <StringArray count="0"/>
                                                     </Property>
@@ -633,21 +774,48 @@
                                                 </Component>
                                                 <Component class="javax.swing.JLabel" name="jLabel10">
                                                   <Properties>
+                                                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                                                      <Font name="SansSerif" size="11" style="1"/>
+                                                    </Property>
                                                     <Property name="text" type="java.lang.String" value="No.Of Garments:"/>
                                                   </Properties>
                                                 </Component>
                                                 <Component class="javax.swing.JSpinner" name="no_of_garments_spinner">
+                                                  <Properties>
+                                                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                                                      <Font name="SansSerif" size="11" style="0"/>
+                                                    </Property>
+                                                  </Properties>
                                                   <Events>
                                                     <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="no_of_garments_spinnerStateChanged"/>
                                                   </Events>
                                                 </Component>
                                                 <Component class="javax.swing.JButton" name="add_to_table_button">
                                                   <Properties>
+                                                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                                                      <Font name="Perpetua Titling MT" size="11" style="0"/>
+                                                    </Property>
+                                                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                                                      <Image iconType="3" name="/gfcl/images/Add.png"/>
+                                                    </Property>
                                                     <Property name="text" type="java.lang.String" value="Add"/>
+                                                    <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                                                      <Border info="org.netbeans.modules.form.compat2.border.SoftBevelBorderInfo">
+                                                        <BevelBorder/>
+                                                      </Border>
+                                                    </Property>
                                                   </Properties>
                                                   <Events>
                                                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="add_to_table_buttonActionPerformed"/>
                                                   </Events>
+                                                </Component>
+                                                <Component class="javax.swing.JLabel" name="invalid_garment_pro_label">
+                                                  <Properties>
+                                                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                                                      <Color blue="0" green="0" red="ff" type="rgb"/>
+                                                    </Property>
+                                                    <Property name="text" type="java.lang.String" value="Please select a valid garment!"/>
+                                                  </Properties>
                                                 </Component>
                                               </SubComponents>
                                             </Container>
@@ -683,6 +851,9 @@
                                                   <SubComponents>
                                                     <Component class="javax.swing.JTable" name="process_table">
                                                       <Properties>
+                                                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                                                          <Font name="SansSerif" size="11" style="0"/>
+                                                        </Property>
                                                         <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                                                           <Table columnCount="4" rowCount="0">
                                                             <Column editable="true" title="Process" type="java.lang.Object"/>
@@ -727,8 +898,8 @@
                                             <Container class="javax.swing.JPanel" name="jPanel14">
                                               <Properties>
                                                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-                                                  <Border info="org.netbeans.modules.form.compat2.border.EtchedBorderInfo">
-                                                    <EtchetBorder/>
+                                                  <Border info="org.netbeans.modules.form.compat2.border.BevelBorderInfo">
+                                                    <BevelBorder/>
                                                   </Border>
                                                 </Property>
                                               </Properties>
@@ -738,7 +909,7 @@
                                                   <Group type="103" groupAlignment="0" attributes="0">
                                                       <Group type="102" alignment="1" attributes="0">
                                                           <EmptySpace max="32767" attributes="0"/>
-                                                          <Component id="save_by_process_button" min="-2" max="-2" attributes="0"/>
+                                                          <Component id="save_by_process_button" min="-2" pref="75" max="-2" attributes="0"/>
                                                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                                           <Component id="cancel_button2" min="-2" max="-2" attributes="0"/>
                                                           <EmptySpace max="-2" attributes="0"/>
@@ -761,7 +932,18 @@
                                               <SubComponents>
                                                 <Component class="javax.swing.JButton" name="cancel_button2">
                                                   <Properties>
+                                                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                                                      <Font name="Perpetua Titling MT" size="11" style="1"/>
+                                                    </Property>
+                                                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                                                      <Image iconType="3" name="/gfcl/images/cancel_icon.png"/>
+                                                    </Property>
                                                     <Property name="text" type="java.lang.String" value="Cancel"/>
+                                                    <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                                                      <Border info="org.netbeans.modules.form.compat2.border.SoftBevelBorderInfo">
+                                                        <BevelBorder/>
+                                                      </Border>
+                                                    </Property>
                                                   </Properties>
                                                   <Events>
                                                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cancel_button2ActionPerformed"/>
@@ -769,7 +951,18 @@
                                                 </Component>
                                                 <Component class="javax.swing.JButton" name="save_by_process_button">
                                                   <Properties>
+                                                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                                                      <Font name="Perpetua Titling MT" size="11" style="1"/>
+                                                    </Property>
+                                                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                                                      <Image iconType="3" name="/gfcl/images/save_small.png"/>
+                                                    </Property>
                                                     <Property name="text" type="java.lang.String" value="Save"/>
+                                                    <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                                                      <Border info="org.netbeans.modules.form.compat2.border.SoftBevelBorderInfo">
+                                                        <BevelBorder/>
+                                                      </Border>
+                                                    </Property>
                                                   </Properties>
                                                   <Events>
                                                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="save_by_process_buttonActionPerformed"/>
@@ -795,11 +988,14 @@
             </Container>
           </SubComponents>
         </Container>
-        <Container class="javax.swing.JPanel" name="jPanel2">
+        <Container class="javax.swing.JPanel" name="cloth_cutting_panel">
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
               <JTabbedPaneConstraints tabName="Add cloth cuttings">
                 <Property name="tabTitle" type="java.lang.String" value="Add cloth cuttings"/>
+                <Property name="tabIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/gfcl/images/cloth_cut.png"/>
+                </Property>
               </JTabbedPaneConstraints>
             </Constraint>
           </Constraints>
@@ -832,11 +1028,11 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jPanel17" min="-2" max="-2" attributes="0"/>
-                              <Component id="jPanel18" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="jPanel18" max="32767" attributes="0"/>
+                              <Component id="jPanel17" max="32767" attributes="0"/>
                           </Group>
-                          <EmptySpace max="32767" attributes="0"/>
+                          <EmptySpace pref="155" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -870,7 +1066,9 @@
                               <Component id="jLabel12" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="date_text_cloth" min="-2" pref="156" max="-2" attributes="0"/>
-                              <EmptySpace pref="394" max="32767" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="invalid_date_format_label_cloth" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -881,6 +1079,7 @@
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="jLabel12" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="date_text_cloth" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="invalid_date_format_label_cloth" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="32767" attributes="0"/>
                           </Group>
@@ -890,10 +1089,29 @@
                   <SubComponents>
                     <Component class="javax.swing.JLabel" name="jLabel12">
                       <Properties>
+                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                          <Font name="SansSerif" size="11" style="1"/>
+                        </Property>
                         <Property name="text" type="java.lang.String" value="Date:"/>
                       </Properties>
                     </Component>
                     <Component class="javax.swing.JTextField" name="date_text_cloth">
+                      <Properties>
+                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                          <Font name="SansSerif" size="11" style="0"/>
+                        </Property>
+                      </Properties>
+                      <Events>
+                        <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="date_text_clothKeyReleased"/>
+                      </Events>
+                    </Component>
+                    <Component class="javax.swing.JLabel" name="invalid_date_format_label_cloth">
+                      <Properties>
+                        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                          <Color blue="0" green="0" red="ff" type="rgb"/>
+                        </Property>
+                        <Property name="text" type="java.lang.String" value="Invalid date format!"/>
+                      </Properties>
                     </Component>
                   </SubComponents>
                 </Container>
@@ -915,17 +1133,30 @@
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
                                           <Component id="jSeparator1" max="32767" attributes="0"/>
-                                          <Group type="102" attributes="0">
+                                          <Group type="102" alignment="0" attributes="0">
                                               <Component id="jLabel13" min="-2" max="-2" attributes="0"/>
                                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                                              <Component id="cloth_type_combo" min="-2" pref="206" max="-2" attributes="0"/>
-                                              <EmptySpace min="-2" pref="67" max="-2" attributes="0"/>
-                                              <Component id="jLabel15" min="-2" max="-2" attributes="0"/>
+                                              <Group type="103" groupAlignment="0" attributes="0">
+                                                  <Group type="102" alignment="0" attributes="0">
+                                                      <Component id="cloth_type_combo" min="-2" pref="206" max="-2" attributes="0"/>
+                                                      <EmptySpace min="-2" pref="67" max="-2" attributes="0"/>
+                                                      <Component id="jLabel15" min="-2" max="-2" attributes="0"/>
+                                                  </Group>
+                                                  <Component id="invalid_cloth_type_label" alignment="0" min="-2" max="-2" attributes="0"/>
+                                              </Group>
                                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                                              <Component id="stock_text" min="-2" pref="59" max="-2" attributes="0"/>
-                                              <EmptySpace max="-2" attributes="0"/>
-                                              <Component id="unit_label" pref="42" max="32767" attributes="0"/>
-                                              <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+                                              <Group type="103" groupAlignment="0" attributes="0">
+                                                  <Group type="102" attributes="0">
+                                                      <Component id="invalid_stock_value_label" min="-2" max="-2" attributes="0"/>
+                                                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                                  </Group>
+                                                  <Group type="102" attributes="0">
+                                                      <Component id="stock_text" min="-2" pref="59" max="-2" attributes="0"/>
+                                                      <EmptySpace max="-2" attributes="0"/>
+                                                      <Component id="unit_label" max="32767" attributes="0"/>
+                                                      <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+                                                  </Group>
+                                              </Group>
                                           </Group>
                                       </Group>
                                   </Group>
@@ -936,15 +1167,30 @@
                                   <Group type="102" attributes="0">
                                       <EmptySpace min="-2" pref="81" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="jLabel14" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jLabel16" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jLabel17" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="garment_type_combo" min="-2" pref="160" max="-2" attributes="0"/>
-                                          <Component id="amount_of_cloth_text" min="-2" pref="109" max="-2" attributes="0"/>
-                                          <Component id="cloth_cutting_spinner" alignment="0" min="-2" pref="43" max="-2" attributes="0"/>
+                                          <Group type="102" attributes="0">
+                                              <Group type="103" groupAlignment="0" attributes="0">
+                                                  <Component id="jLabel14" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="jLabel17" min="-2" max="-2" attributes="0"/>
+                                              </Group>
+                                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                                              <Group type="103" groupAlignment="0" attributes="0">
+                                                  <Group type="102" alignment="0" attributes="0">
+                                                      <Component id="amount_of_cloth_text" min="-2" pref="109" max="-2" attributes="0"/>
+                                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                                      <Component id="invalid_cloth_amount_label" min="-2" max="-2" attributes="0"/>
+                                                  </Group>
+                                                  <Group type="102" alignment="0" attributes="0">
+                                                      <Component id="garment_type_combo" min="-2" pref="160" max="-2" attributes="0"/>
+                                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                                      <Component id="invalid_garment_name_label" min="-2" max="-2" attributes="0"/>
+                                                  </Group>
+                                              </Group>
+                                          </Group>
+                                          <Group type="102" attributes="0">
+                                              <Component id="jLabel16" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
+                                              <Component id="cloth_cutting_spinner" min="-2" pref="43" max="-2" attributes="0"/>
+                                          </Group>
                                       </Group>
                                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                   </Group>
@@ -966,24 +1212,31 @@
                                       <Component id="stock_text" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="jSeparator1" min="-2" pref="10" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="invalid_cloth_type_label" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="invalid_stock_value_label" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
+                              <Component id="jSeparator1" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="jLabel14" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="garment_type_combo" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="invalid_garment_name_label" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="jLabel17" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="amount_of_cloth_text" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="invalid_cloth_amount_label" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="jLabel16" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="cloth_cutting_spinner" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="jPanel19" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" max="-2" attributes="0"/>
                           </Group>
@@ -993,17 +1246,25 @@
                   <SubComponents>
                     <Component class="javax.swing.JLabel" name="jLabel13">
                       <Properties>
+                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                          <Font name="SansSerif" size="11" style="1"/>
+                        </Property>
                         <Property name="text" type="java.lang.String" value="Select cloth type:"/>
                       </Properties>
                     </Component>
                     <Component class="javax.swing.JComboBox" name="cloth_type_combo">
                       <Properties>
+                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                          <Font name="SansSerif" size="11" style="0"/>
+                        </Property>
                         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                           <StringArray count="0"/>
                         </Property>
                       </Properties>
                       <Events>
+                        <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="cloth_type_comboItemStateChanged"/>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cloth_type_comboActionPerformed"/>
+                        <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="cloth_type_comboKeyReleased"/>
                       </Events>
                       <AuxValues>
                         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
@@ -1013,32 +1274,51 @@
                     </Component>
                     <Component class="javax.swing.JLabel" name="jLabel14">
                       <Properties>
+                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                          <Font name="SansSerif" size="11" style="1"/>
+                        </Property>
                         <Property name="text" type="java.lang.String" value="Select garment:"/>
                       </Properties>
                     </Component>
                     <Component class="javax.swing.JLabel" name="jLabel15">
                       <Properties>
+                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                          <Font name="SansSerif" size="11" style="1"/>
+                        </Property>
                         <Property name="text" type="java.lang.String" value="Available stock:"/>
                       </Properties>
                     </Component>
                     <Component class="javax.swing.JTextField" name="stock_text">
+                      <Properties>
+                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                          <Font name="SansSerif" size="11" style="0"/>
+                        </Property>
+                      </Properties>
                       <Events>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="stock_textActionPerformed"/>
+                        <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="stock_textKeyReleased"/>
                       </Events>
                     </Component>
                     <Component class="javax.swing.JLabel" name="unit_label">
                       <Properties>
+                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                          <Font name="SansSerif" size="11" style="0"/>
+                        </Property>
                         <Property name="text" type="java.lang.String" value="meters"/>
                       </Properties>
                     </Component>
                     <Component class="javax.swing.JComboBox" name="garment_type_combo">
                       <Properties>
+                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                          <Font name="SansSerif" size="11" style="0"/>
+                        </Property>
                         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                           <StringArray count="0"/>
                         </Property>
                       </Properties>
                       <Events>
                         <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="garment_type_comboItemStateChanged"/>
+                        <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="garment_type_comboKeyReleased"/>
                       </Events>
                       <AuxValues>
                         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
@@ -1046,10 +1326,18 @@
                     </Component>
                     <Component class="javax.swing.JLabel" name="jLabel16">
                       <Properties>
+                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                          <Font name="SansSerif" size="11" style="1"/>
+                        </Property>
                         <Property name="text" type="java.lang.String" value="No of Cuttings:"/>
                       </Properties>
                     </Component>
                     <Component class="javax.swing.JSpinner" name="cloth_cutting_spinner">
+                      <Properties>
+                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                          <Font name="SansSerif" size="11" style="0"/>
+                        </Property>
+                      </Properties>
                       <Events>
                         <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="cloth_cutting_spinnerStateChanged"/>
                       </Events>
@@ -1057,8 +1345,8 @@
                     <Container class="javax.swing.JPanel" name="jPanel19">
                       <Properties>
                         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-                          <Border info="org.netbeans.modules.form.compat2.border.EtchedBorderInfo">
-                            <EtchetBorder/>
+                          <Border info="org.netbeans.modules.form.compat2.border.SoftBevelBorderInfo">
+                            <BevelBorder/>
                           </Border>
                         </Property>
                       </Properties>
@@ -1068,7 +1356,7 @@
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="1" attributes="0">
                                   <EmptySpace max="32767" attributes="0"/>
-                                  <Component id="save_button" min="-2" max="-2" attributes="0"/>
+                                  <Component id="save_button" min="-2" pref="73" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="cancel_button3" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
@@ -1091,12 +1379,34 @@
                       <SubComponents>
                         <Component class="javax.swing.JButton" name="cancel_button3">
                           <Properties>
+                            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                              <Font name="Perpetua Titling MT" size="11" style="1"/>
+                            </Property>
+                            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                              <Image iconType="3" name="/gfcl/images/cancel_icon.png"/>
+                            </Property>
                             <Property name="text" type="java.lang.String" value="Cancel"/>
+                            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                              <Border info="org.netbeans.modules.form.compat2.border.SoftBevelBorderInfo">
+                                <BevelBorder/>
+                              </Border>
+                            </Property>
                           </Properties>
                         </Component>
                         <Component class="javax.swing.JButton" name="save_button">
                           <Properties>
+                            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                              <Font name="Perpetua Titling MT" size="11" style="1"/>
+                            </Property>
+                            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                              <Image iconType="3" name="/gfcl/images/save_small.png"/>
+                            </Property>
                             <Property name="text" type="java.lang.String" value="Save"/>
+                            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                              <Border info="org.netbeans.modules.form.compat2.border.SoftBevelBorderInfo">
+                                <BevelBorder/>
+                              </Border>
+                            </Property>
                           </Properties>
                           <Events>
                             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="save_buttonActionPerformed"/>
@@ -1106,14 +1416,66 @@
                     </Container>
                     <Component class="javax.swing.JLabel" name="jLabel17">
                       <Properties>
+                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                          <Font name="SansSerif" size="11" style="1"/>
+                        </Property>
                         <Property name="text" type="java.lang.String" value="Amount of Cloth:"/>
                       </Properties>
                     </Component>
                     <Component class="javax.swing.JTextField" name="amount_of_cloth_text">
+                      <Properties>
+                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                          <Font name="SansSerif" size="11" style="0"/>
+                        </Property>
+                      </Properties>
                       <Events>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="amount_of_cloth_textActionPerformed"/>
                         <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="amount_of_cloth_textKeyReleased"/>
                       </Events>
+                    </Component>
+                    <Component class="javax.swing.JLabel" name="invalid_cloth_type_label">
+                      <Properties>
+                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                          <Font name="SansSerif" size="11" style="0"/>
+                        </Property>
+                        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                          <Color blue="0" green="0" red="ff" type="rgb"/>
+                        </Property>
+                        <Property name="text" type="java.lang.String" value="Invalid cloth type!"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JLabel" name="invalid_stock_value_label">
+                      <Properties>
+                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                          <Font name="SansSerif" size="11" style="0"/>
+                        </Property>
+                        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                          <Color blue="0" green="0" red="ff" type="rgb"/>
+                        </Property>
+                        <Property name="text" type="java.lang.String" value="Invalid stock value!"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JLabel" name="invalid_garment_name_label">
+                      <Properties>
+                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                          <Font name="SansSerif" size="11" style="0"/>
+                        </Property>
+                        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                          <Color blue="0" green="0" red="ff" type="rgb"/>
+                        </Property>
+                        <Property name="text" type="java.lang.String" value="Invalid garment type!"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JLabel" name="invalid_cloth_amount_label">
+                      <Properties>
+                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                          <Font name="SansSerif" size="11" style="0"/>
+                        </Property>
+                        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                          <Color blue="0" green="0" red="ff" type="rgb"/>
+                        </Property>
+                        <Property name="text" type="java.lang.String" value="Invalid cloth amount!"/>
+                      </Properties>
                     </Component>
                   </SubComponents>
                 </Container>
@@ -1121,11 +1483,14 @@
             </Container>
           </SubComponents>
         </Container>
-        <Container class="javax.swing.JPanel" name="jPanel15">
+        <Container class="javax.swing.JPanel" name="production_panel">
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
               <JTabbedPaneConstraints tabName="View Production">
                 <Property name="tabTitle" type="java.lang.String" value="View Production"/>
+                <Property name="tabIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/gfcl/images/production.png"/>
+                </Property>
               </JTabbedPaneConstraints>
             </Constraint>
           </Constraints>
@@ -1166,7 +1531,7 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jScrollPane5" pref="672" max="32767" attributes="0"/>
+                          <Component id="jScrollPane5" pref="674" max="32767" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -1201,6 +1566,11 @@
                       </Layout>
                       <SubComponents>
                         <Container class="javax.swing.JTabbedPane" name="jTabbedPane1">
+                          <Properties>
+                            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                              <Font name="Tahoma" size="11" style="1"/>
+                            </Property>
+                          </Properties>
 
                           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout"/>
                           <SubComponents>
@@ -1451,7 +1821,7 @@
                                                         <Column editable="false" title="SewStarted" type="java.lang.Integer"/>
                                                         <Column editable="false" title="Dyed" type="java.lang.Integer"/>
                                                         <Column editable="false" title="WashDry" type="java.lang.Integer"/>
-                                                        <Column editable="true" title="SewFinish" type="java.lang.Integer"/>
+                                                        <Column editable="false" title="SewFinish" type="java.lang.Integer"/>
                                                         <Column editable="false" title="Finished" type="java.lang.Integer"/>
                                                       </Table>
                                                     </Property>
@@ -1573,7 +1943,7 @@
                                                       <Table columnCount="4" rowCount="0">
                                                         <Column editable="false" title="Garment" type="java.lang.Object"/>
                                                         <Column editable="false" title="Material" type="java.lang.Object"/>
-                                                        <Column editable="true" title="Cloth_length" type="java.lang.Object"/>
+                                                        <Column editable="false" title="Cloth_length" type="java.lang.Object"/>
                                                         <Column editable="false" title="No_of_pieces" type="java.lang.Object"/>
                                                       </Table>
                                                     </Property>
@@ -1869,7 +2239,7 @@
                                                         <Column editable="false" title="SewStarted" type="java.lang.Object"/>
                                                         <Column editable="false" title="Dyed" type="java.lang.Object"/>
                                                         <Column editable="false" title="Washdry" type="java.lang.Object"/>
-                                                        <Column editable="true" title="SewFinish" type="java.lang.Object"/>
+                                                        <Column editable="false" title="SewFinish" type="java.lang.Object"/>
                                                         <Column editable="false" title="Finished" type="java.lang.Object"/>
                                                       </Table>
                                                     </Property>
@@ -1999,7 +2369,7 @@
                                                       <Table columnCount="4" rowCount="0">
                                                         <Column editable="false" title="Garment" type="java.lang.Object"/>
                                                         <Column editable="false" title="Material" type="java.lang.Object"/>
-                                                        <Column editable="true" title="Cloth length" type="java.lang.Object"/>
+                                                        <Column editable="false" title="Cloth length" type="java.lang.Object"/>
                                                         <Column editable="false" title="No_of_pieces" type="java.lang.Object"/>
                                                       </Table>
                                                     </Property>

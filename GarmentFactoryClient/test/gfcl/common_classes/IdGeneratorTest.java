@@ -36,7 +36,7 @@ public class IdGeneratorTest {
     @After
     public void tearDown() {
     }
-
+    //to test the usual behaviour of methods
     /**
      * Test of generateNextCustomerID method, of class IdGenerator.
      */
@@ -72,6 +72,91 @@ public class IdGeneratorTest {
         String lastEmpID = "E031";
         String expResult = "E032";
         String result = IdGenerator.generateNextEmployeeID(lastEmpID);
+        assertEquals(expResult, result);
+        
+    }
+
+    /**
+     * Test of generateNextExpenseID method, of class IdGenerator.
+     */
+    @Test
+    public void testGenerateNextExpenseID() {
+        System.out.println("generateNextExpenseID");
+        String lastExpenseID = "P021";
+        String expResult = "P022";
+        String result = IdGenerator.generateNextExpenseID(lastExpenseID);
+        assertEquals(expResult, result);
+        
+    }
+    
+    /**
+     * Test of generateNextIncomeID method, of class IdGenerator.
+     */
+    @Test
+    public void testGenerateNextIncomeID() {
+        System.out.println("generateNextIncomeID");
+        String lastIncomeID = "I001";
+        String expResult = "I002";
+        String result = IdGenerator.generateNextIncomeID(lastIncomeID);
+        assertEquals(expResult, result);
+        
+    }
+
+    /**
+     * Test of generateNextStockID method, of class IdGenerator.
+     */
+    @Test
+    public void testGenerateNextStockID() {
+        System.out.println("generateNextStockID");
+        String lastStockID = "S001";
+        String expResult = "S002";
+        String result = IdGenerator.generateNextStockID(lastStockID);
+        assertEquals(expResult, result);
+        
+    }
+
+    /**
+     * Test of generateNextOrderID method, of class IdGenerator.
+     */
+    @Test
+    public void testGenerateNextOrderID() {
+        System.out.println("generateNextOrderID");
+        String lastOrderID = "Q001";
+        String expResult = "Q002";
+        String result = IdGenerator.generateNextOrderID(lastOrderID);
+        assertEquals(expResult, result);
+        
+    }
+
+    /**
+     * Test of generateNextGarmentID method, of class IdGenerator.
+     */
+    @Test
+    public void testGenerateNextGarmentID() {
+        System.out.println("generateNextGarmentID");
+        String lastGarmentID = "G032";
+        String expResult = "G033";
+        String result = IdGenerator.generateNextGarmentID(lastGarmentID);
+        assertEquals(expResult, result);
+        
+    }
+    
+    //to test whether the system can hold incorrect inputs
+    
+    @Test
+    public void testGenerateNextExpenseID1() {
+        System.out.println("generateNextExpenseID");
+        String lastExpenseID = null;
+        String expResult = "P001";
+        String result = IdGenerator.generateNextExpenseID(lastExpenseID);
+        assertEquals(expResult, result);  
+    }
+    
+    public void testGenerateNextGarmentID1() {
+        System.out.println("generateNextGarmentID");
+        String lastGarmentID = null;
+        String expResult = "G033";
+        String result = IdGenerator.generateNextGarmentID(lastGarmentID);
         assertEquals(expResult, result);
         
     }

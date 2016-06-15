@@ -240,6 +240,9 @@ public class SalesDetailFrame extends javax.swing.JInternalFrame {
         jLabel13 = new javax.swing.JLabel();
         not_found_label = new javax.swing.JLabel();
 
+        tabpane.setForeground(new java.awt.Color(0, 0, 204));
+        tabpane.setFont(new java.awt.Font("SansSerif", 3, 11)); // NOI18N
+
         jLabel7.setText("Customer:");
 
         customerCombo.setEditable(true);
@@ -473,10 +476,10 @@ public class SalesDetailFrame extends javax.swing.JInternalFrame {
             .addGroup(jPanel13Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 488, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(14, Short.MAX_VALUE))
+                .addContainerGap(12, Short.MAX_VALUE))
         );
 
-        tabpane.addTab("Add a sale", jPanel13);
+        tabpane.addTab("Add a sale", new javax.swing.ImageIcon(getClass().getResource("/gfcl/images/shopping_cart.png")), jPanel13); // NOI18N
 
         jPanel21.setBorder(javax.swing.BorderFactory.createTitledBorder("Personal Details"));
 
@@ -619,11 +622,11 @@ public class SalesDetailFrame extends javax.swing.JInternalFrame {
         jPanel19Layout.setVerticalGroup(
             jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel19Layout.createSequentialGroup()
-                .addComponent(jScrollPane9, javax.swing.GroupLayout.DEFAULT_SIZE, 502, Short.MAX_VALUE)
+                .addComponent(jScrollPane9, javax.swing.GroupLayout.DEFAULT_SIZE, 500, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
-        tabpane.addTab("Add new customer", jPanel19);
+        tabpane.addTab("Add new customer", new javax.swing.ImageIcon(getClass().getResource("/gfcl/images/customer_add_s.png")), jPanel19); // NOI18N
 
         jPanel23.setBorder(javax.swing.BorderFactory.createTitledBorder("Personal Details"));
 
@@ -744,10 +747,10 @@ public class SalesDetailFrame extends javax.swing.JInternalFrame {
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 513, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 511, Short.MAX_VALUE)
         );
 
-        tabpane.addTab("Edit Customer Details", jPanel3);
+        tabpane.addTab("Search Customer Details", new javax.swing.ImageIcon(getClass().getResource("/gfcl/images/customer_search_s.png")), jPanel3); // NOI18N
 
         jLabel2.setText("Select Customer:");
 
@@ -836,7 +839,7 @@ public class SalesDetailFrame extends javax.swing.JInternalFrame {
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 491, Short.MAX_VALUE)
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 489, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
@@ -856,7 +859,7 @@ public class SalesDetailFrame extends javax.swing.JInternalFrame {
                 .addContainerGap())
         );
 
-        tabpane.addTab("View Customer History", jPanel4);
+        tabpane.addTab("View Customer History", new javax.swing.ImageIcon(getClass().getResource("/gfcl/images/Folder History.png")), jPanel4); // NOI18N
 
         jLabel3.setText("Select Customer:");
 
@@ -988,11 +991,11 @@ public class SalesDetailFrame extends javax.swing.JInternalFrame {
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel9Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 491, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 489, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
-        tabpane.addTab("View Customer Order", jPanel9);
+        tabpane.addTab("View Customer Order", new javax.swing.ImageIcon(getClass().getResource("/gfcl/images/report_user.png")), jPanel9); // NOI18N
 
         javax.swing.GroupLayout jPanel12Layout = new javax.swing.GroupLayout(jPanel12);
         jPanel12.setLayout(jPanel12Layout);

@@ -206,7 +206,7 @@ public class FrontPage extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        search_employee_button = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
@@ -574,12 +574,17 @@ public class FrontPage extends javax.swing.JFrame {
         jLabel5.setText("QUick Search:");
         jPanel4.add(jLabel5);
 
-        jButton1.setBackground(new java.awt.Color(0, 153, 255));
-        jButton1.setFont(new java.awt.Font("Perpetua Titling MT", 1, 12)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("SEARCH EMPLOYEE");
-        jButton1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel4.add(jButton1);
+        search_employee_button.setBackground(new java.awt.Color(0, 153, 255));
+        search_employee_button.setFont(new java.awt.Font("Perpetua Titling MT", 1, 12)); // NOI18N
+        search_employee_button.setForeground(new java.awt.Color(255, 255, 255));
+        search_employee_button.setText("SEARCH EMPLOYEE");
+        search_employee_button.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        search_employee_button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                search_employee_buttonActionPerformed(evt);
+            }
+        });
+        jPanel4.add(search_employee_button);
 
         jButton2.setBackground(new java.awt.Color(0, 153, 255));
         jButton2.setFont(new java.awt.Font("Perpetua Titling MT", 1, 12)); // NOI18N
@@ -1206,6 +1211,13 @@ public class FrontPage extends javax.swing.JFrame {
         setDesktopPaneForIncome(new IncomeSummaryFrame(),1 );
     }//GEN-LAST:event_viewIncomeSummaryMenuActionPerformed
 
+    private void search_employee_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_search_employee_buttonActionPerformed
+        EmployeeDetailFrame employeeDetailFrame = new EmployeeDetailFrame();
+        employeeDetailFrame.setDisabledTabs(false, true, false, false);
+        employeeDetailFrame.setUpdateButton(false);
+        setDesktopPaneForEmployee(employeeDetailFrame, 1);
+    }//GEN-LAST:event_search_employee_buttonActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1280,7 +1292,6 @@ public class FrontPage extends javax.swing.JFrame {
     private javax.swing.ButtonGroup importantButtonSet;
     private javax.swing.JMenu incomeSummaryMenu;
     private javax.swing.JPanel internalFrameAreaPanel;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
@@ -1329,6 +1340,7 @@ public class FrontPage extends javax.swing.JFrame {
     private javax.swing.ButtonGroup searchButtonSet;
     private javax.swing.JMenuItem searchEmployeeMenu;
     private javax.swing.JPanel searchPanel1;
+    private javax.swing.JButton search_employee_button;
     private javax.swing.JPanel shortcutAccessPanel;
     private javax.swing.JButton stockDetailsButton;
     private javax.swing.JMenu systemMenu;

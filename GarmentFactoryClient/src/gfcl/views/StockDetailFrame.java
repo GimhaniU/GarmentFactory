@@ -166,7 +166,7 @@ public class StockDetailFrame extends javax.swing.JInternalFrame {
         jPanel12 = new javax.swing.JPanel();
         addnew_mat_button = new javax.swing.JButton();
         cancelbutton = new javax.swing.JButton();
-        jPanel13 = new javax.swing.JPanel();
+        view_current_stocks_panel = new javax.swing.JPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
         jScrollPane5 = new javax.swing.JScrollPane();
         jPanel14 = new javax.swing.JPanel();
@@ -182,6 +182,9 @@ public class StockDetailFrame extends javax.swing.JInternalFrame {
         wax_panel = new javax.swing.JPanel();
         jScrollPane9 = new javax.swing.JScrollPane();
         wax_stock_table = new javax.swing.JTable();
+
+        tabpane.setForeground(new java.awt.Color(0, 0, 204));
+        tabpane.setFont(new java.awt.Font("SansSerif", 3, 11)); // NOI18N
 
         jPanel4.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
@@ -405,7 +408,7 @@ public class StockDetailFrame extends javax.swing.JInternalFrame {
                 .addContainerGap())
         );
 
-        tabpane.addTab("Add stock entry", add_stock_entry_panel);
+        tabpane.addTab("Add stock entry", new javax.swing.ImageIcon(getClass().getResource("/gfcl/images/baggage_cart_box.png")), add_stock_entry_panel); // NOI18N
 
         jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder("Last updated"));
 
@@ -580,7 +583,7 @@ public class StockDetailFrame extends javax.swing.JInternalFrame {
                 .addContainerGap(671, Short.MAX_VALUE))
         );
 
-        tabpane.addTab("Add daily usage", add_daily_usage_panel);
+        tabpane.addTab("Add daily usage", new javax.swing.ImageIcon(getClass().getResource("/gfcl/images/box_down.png")), add_daily_usage_panel); // NOI18N
 
         intial_stock_panel.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Initial Stcok"));
 
@@ -785,7 +788,7 @@ public class StockDetailFrame extends javax.swing.JInternalFrame {
                 .addContainerGap(582, Short.MAX_VALUE))
         );
 
-        tabpane.addTab("Add new material type", add_new_panel);
+        tabpane.addTab("Add new material type", new javax.swing.ImageIcon(getClass().getResource("/gfcl/images/box--plus.png")), add_new_panel); // NOI18N
 
         clothstock_panel.setBorder(javax.swing.BorderFactory.createTitledBorder("Cloth Stocks"));
 
@@ -945,10 +948,9 @@ public class StockDetailFrame extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(wax_panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(dye_panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(thread_panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(clothstock_panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(dye_panel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(thread_panel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(clothstock_panel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(64, Short.MAX_VALUE))
         );
         jPanel14Layout.setVerticalGroup(
@@ -969,20 +971,20 @@ public class StockDetailFrame extends javax.swing.JInternalFrame {
 
         jScrollPane4.setViewportView(jScrollPane5);
 
-        javax.swing.GroupLayout jPanel13Layout = new javax.swing.GroupLayout(jPanel13);
-        jPanel13.setLayout(jPanel13Layout);
-        jPanel13Layout.setHorizontalGroup(
-            jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout view_current_stocks_panelLayout = new javax.swing.GroupLayout(view_current_stocks_panel);
+        view_current_stocks_panel.setLayout(view_current_stocks_panelLayout);
+        view_current_stocks_panelLayout.setHorizontalGroup(
+            view_current_stocks_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 645, Short.MAX_VALUE)
         );
-        jPanel13Layout.setVerticalGroup(
-            jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel13Layout.createSequentialGroup()
+        view_current_stocks_panelLayout.setVerticalGroup(
+            view_current_stocks_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(view_current_stocks_panelLayout.createSequentialGroup()
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 896, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 145, Short.MAX_VALUE))
         );
 
-        tabpane.addTab("View current stocks", jPanel13);
+        tabpane.addTab("View current stocks", new javax.swing.ImageIcon(getClass().getResource("/gfcl/images/box_search.png")), view_current_stocks_panel); // NOI18N
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -1299,7 +1301,6 @@ public class StockDetailFrame extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel12;
-    private javax.swing.JPanel jPanel13;
     private javax.swing.JPanel jPanel14;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -1338,6 +1339,7 @@ public class StockDetailFrame extends javax.swing.JInternalFrame {
     private javax.swing.JTable thread_stock_table;
     private javax.swing.JLabel unit_price_label;
     private javax.swing.JTextField unitprice_text;
+    private javax.swing.JPanel view_current_stocks_panel;
     private javax.swing.JPanel wax_panel;
     private javax.swing.JTable wax_stock_table;
     // End of variables declaration//GEN-END:variables
