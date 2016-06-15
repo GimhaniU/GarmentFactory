@@ -4,14 +4,20 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/E:/Semester%2005/Software%20Engineering%20Project/Gimhani/Project/GarmentFactory/GarmentFactoryClient/src/gfcl/views/FrontPage.java</file>
+            <file>file:/E:/Semester%2005/Software%20Engineering%20Project/Gimhani/Project/GarmentFactory/GarmentFactoryClient/src/gfcl/views/IncomeSummaryFrame.java</file>
+            <file>file:/E:/Semester%2005/Software%20Engineering%20Project/Gimhani/Project/GarmentFactory/GarmentFactoryClient/test/gfcl/common_classes/IdGeneratorTest.java</file>
+            <file>file:/E:/Semester%2005/Software%20Engineering%20Project/Gimhani/Project/GarmentFactory/GarmentFactoryClient/src/gfcl/views/StartSplash.java</file>
             <file>file:/E:/Semester%2005/Software%20Engineering%20Project/Gimhani/Project/GarmentFactory/GarmentFactoryClient/src/gfcl/common_classes/ComboItemsAdder.java</file>
             <file>file:/E:/Semester%2005/Software%20Engineering%20Project/Gimhani/Project/GarmentFactory/GarmentFactoryClient/src/gfcl/views/EmployeeDetailFrame.java</file>
             <file>file:/E:/Semester%2005/Software%20Engineering%20Project/Gimhani/Project/GarmentFactory/GarmentFactoryClient/src/gfcl/views/ProductionDetailFrame.java</file>
+            <file>file:/E:/Semester%2005/Software%20Engineering%20Project/Gimhani/Project/GarmentFactory/GarmentFactoryClient/src/gfcl/views/SalesDetailFrame.java</file>
+            <file>file:/E:/Semester%2005/Software%20Engineering%20Project/Gimhani/Project/GarmentFactory/GarmentFactoryClient/src/gfcl/views/user_views/LoginForm.java</file>
             <file>file:/E:/Semester%2005/Software%20Engineering%20Project/Gimhani/Project/GarmentFactory/GarmentFactoryClient/src/gfcl/common_classes/IdGenerator.java</file>
             <file>file:/E:/Semester%2005/Software%20Engineering%20Project/Gimhani/Project/GarmentFactory/GarmentFactoryClient/src/gfcl/common_classes/PatternChecker.java</file>
-            <file>file:/E:/Semester%2005/Software%20Engineering%20Project/Gimhani/Project/GarmentFactory/GarmentFactoryClient/src/gfcl/views/IncomeSummaryFrame.java</file>
+            <file>file:/E:/Semester%2005/Software%20Engineering%20Project/Gimhani/Project/GarmentFactory/GarmentFactoryClient/test/gfcl/common_classes/PatternCheckerTest.java</file>
             <file>file:/E:/Semester%2005/Software%20Engineering%20Project/Gimhani/Project/GarmentFactory/GarmentFactoryClient/src/gfcl/views/GarmentDetailFrame.java</file>
             <file>file:/E:/Semester%2005/Software%20Engineering%20Project/Gimhani/Project/GarmentFactory/GarmentFactoryClient/src/gfcl/sms_sender/SMS_Sender.java</file>
+            <file>file:/E:/Semester%2005/Software%20Engineering%20Project/Gimhani/Project/GarmentFactory/GarmentFactoryClient/src/gfcl/views/StockDetailFrame.java</file>
             <file>file:/E:/Semester%2005/Software%20Engineering%20Project/Gimhani/Project/GarmentFactory/GarmentFactoryClient/src/gfcl/sms_sender/OzekiSmsClient.java</file>
         </group>
     </open-files>

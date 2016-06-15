@@ -10,6 +10,7 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -140,7 +141,7 @@ public class PatternChecker {
 
     public static boolean checkDecimaldirect(String text) {
 
-        Pattern pattern = Pattern.compile("[0-9.]");//[a-z A-Z]
+        Pattern pattern = Pattern.compile("^[1-9]\\d*(\\.\\d+)?$");//[a-z A-Z]
         Matcher matcher = pattern.matcher(text);
         return matcher.find();
     }
@@ -178,7 +179,7 @@ public class PatternChecker {
 
     }
 
-    public static String checkPrice(String text) {
+    public static String addDecimalPointsForPrice(String text) {
         int result = 0;
         for (int i = 1; i < text.length() + 1; i++) {
             Character c = text.charAt(i - 1);
@@ -330,5 +331,41 @@ public class PatternChecker {
         BigDecimal bd = new BigDecimal(value);
         bd = bd.setScale(places, RoundingMode.HALF_UP);
         return bd.doubleValue();
+    }
+
+    public static boolean isDateValid(String date) {
+        Calendar c = Calendar.getInstance();
+
+        // set the calendar to start of today
+        c.set(Calendar.HOUR_OF_DAY, 0);
+        c.set(Calendar.MINUTE, 0);
+        c.set(Calendar.SECOND, 0);
+        c.set(Calendar.MILLISECOND, 0);
+
+        // and get that as a Date
+        Date today = c.getTime();
+
+        // or as a timestamp in milliseconds
+        long todayInMillis = c.getTimeInMillis();
+
+        String[] date_array = date.split("-");
+        int year = Integer.valueOf(date_array[0]);
+        int month = Integer.valueOf(date_array[1]);
+        int dayOfMonth = Integer.valueOf(date_array[2]);
+
+        // reuse the calendar to set user specified date
+        c.set(Calendar.YEAR, year);
+        c.set(Calendar.MONTH, month);
+        c.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+
+        // and get that as a Date
+        Date dateSpecified = c.getTime();
+
+        // test condition
+        if (dateSpecified.before(today)) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }

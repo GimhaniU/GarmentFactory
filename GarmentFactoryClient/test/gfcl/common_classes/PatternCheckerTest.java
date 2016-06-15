@@ -202,14 +202,14 @@ public class PatternCheckerTest {
     }
 
     /**
-     * Test of checkPrice method, of class PatternChecker.
+     * Test of addDecimalPointsForPrice method, of class PatternChecker.
      */
     @Test
     public void testCheckPrice() {
         System.out.println("checkPrice");
-        String text = "12.36a";
-        String expResult = "12.36";
-        String result = PatternChecker.checkPrice(text);
+        String text = "12";
+        String expResult = "12.00";
+        String result = PatternChecker.addDecimalPointsForPrice(text);
         assertEquals(expResult, result);
         
     }
@@ -266,6 +266,28 @@ public class PatternCheckerTest {
         double expResult = 0.12;
         double result = PatternChecker.round(value, places);
         assertEquals(expResult, result, 0.0);
+        
+    }
+    /**
+     * Test of isDateValid method, of class PatternChecker.
+     */
+    @Test
+    public void testIsDateValid() {
+        System.out.println("isDateValid");
+        String date = "2015-08-04";
+        boolean expResult = true;
+        boolean result = PatternChecker.isDateValid(date);
+        assertEquals(expResult, result);
+        
+    }
+    
+    @Test
+    public void testIsDateValid1() {
+        System.out.println("isDateValid");
+        String date = "2016-08-04";
+        boolean expResult = false;
+        boolean result = PatternChecker.isDateValid(date);
+        assertEquals(expResult, result);
         
     }
     
