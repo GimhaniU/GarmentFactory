@@ -27,8 +27,8 @@ public class StartSplash extends javax.swing.JFrame {
         setLocationRelativeTo(null);
 
         setResizable(false);
-        setTitle("Welcome to Lekha Bathik");
-        ImageIcon icon1 = new ImageIcon(getClass().getResource("/gfcl/images/icon.jpg"));
+        setTitle("Lekha Bathik");
+        ImageIcon icon1 = new ImageIcon(getClass().getResource("/gfcl/images/iconc.jpg"));
         setIconImage(icon1.getImage());
 
         progressbar.setForeground(Color.CYAN);
