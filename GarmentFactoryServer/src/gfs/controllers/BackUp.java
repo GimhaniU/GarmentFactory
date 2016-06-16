@@ -14,12 +14,12 @@ public class BackUp {
 
     public static int  writeBackup() throws IOException,InterruptedException {
         Runtime runTime = Runtime.getRuntime();
-        Process exec = runTime.exec("mysqldump LandBranch -h localhost -u root -pGimhani@1120 -r database.sql");
+        Process exec = runTime.exec("mysqldump Lekhabathikfactory -h localhost -u root -pgimhani -r database.sql");
         return exec.waitFor();
     }
 
     public static int restoreBackup() throws IOException, InterruptedException {
-        String[] executeCmd = new String[]{"mysql", "--user=root", "--password=Gimhani@1120","LandBranch", "-e", " source  E:\\Education\\Semester 03\\Object Oriented Software Development\\Project Final\\LandAdministrationSystem2\\LandAdministrationSystem\\database.sql"};
+        String[] executeCmd = new String[]{"mysql", "--user=root", "--password=gimhani","lekhabathik", "-e", " source  E:\\Semester 05\\Software Engineering Project\\Gimhani\\Project\\GarmentFactory\\GarmentFactoryServer\\src\\gfs\\database.sql"};
         Process runtimeProcess = Runtime.getRuntime().exec(executeCmd);
         int waitFor = runtimeProcess.waitFor();
         return  waitFor;

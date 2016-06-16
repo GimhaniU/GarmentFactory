@@ -37,7 +37,8 @@ public class LoginForm extends javax.swing.JFrame {
      */
     public LoginForm() {
         initComponents();
-        setSize(Toolkit.getDefaultToolkit().getScreenSize());
+        //setSize(Toolkit.getDefaultToolkit().getScreenSize());
+        setLocationRelativeTo(null);
         ImageIcon icon1 = new ImageIcon(getClass().getResource("/gfcl/images/iconc.jpg"));
         setIconImage(icon1.getImage());
         try {
@@ -136,6 +137,11 @@ public class LoginForm extends javax.swing.JFrame {
                 logInButtonActionPerformed(evt);
             }
         });
+        logInButton.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                logInButtonKeyReleased(evt);
+            }
+        });
 
         logInFailedLabel.setBackground(new java.awt.Color(255, 255, 255));
         logInFailedLabel.setFont(new java.awt.Font("Proxima Nova Alt Lt", 1, 14)); // NOI18N
@@ -187,7 +193,7 @@ public class LoginForm extends javax.swing.JFrame {
         );
 
         jPanel2.add(jPanel3);
-        jPanel3.setBounds(570, 230, 420, 230);
+        jPanel3.setBounds(580, 150, 420, 230);
 
         jLabel2.setBackground(new java.awt.Color(0, 0, 153));
         jLabel2.setFont(new java.awt.Font("Proxima Nova Lt", 1, 24)); // NOI18N
@@ -240,6 +246,12 @@ public class LoginForm extends javax.swing.JFrame {
             Logger.getLogger(LoginForm.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_logInButtonActionPerformed
+
+    private void logInButtonKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_logInButtonKeyReleased
+        if(evt.getKeyCode()==KeyEvent.VK_ENTER){
+            logInButton.doClick();
+        }
+    }//GEN-LAST:event_logInButtonKeyReleased
 
     /**
      * @param args the command line arguments

@@ -6,7 +6,6 @@
 package gfs.controllers;
 
 import gfc.models.EmpWage;
-import gfc.models.Employee;
 import gfs.db_utilities.DBConnection;
 import gfs.db_utilities.DBHandler;
 import java.sql.Connection;
